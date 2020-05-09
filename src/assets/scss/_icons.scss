@@ -1,0 +1,31 @@
+.gigwire-svg-icon {
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    color: inherit;
+    vertical-align: middle;
+    fill: none;
+    stroke: currentColor;
+}
+
+.gigwire-svg-fill {
+    fill: currentColor;
+    stroke: none;
+}
+
+.gigwire-svg-up {
+    /* default */
+    transform: rotate(0deg);
+}
+
+.gigwire-svg-right {
+    transform: rotate(90deg);
+}
+
+.gigwire-svg-down {
+    transform: rotate(180deg);
+}
+
+.gigwire-svg-left {
+    transform: rotate(-90deg);
+}
