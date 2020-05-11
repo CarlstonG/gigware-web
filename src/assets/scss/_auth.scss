@@ -1,0 +1,23 @@
+.auth {
+  background: url('/images/auth_background.png') fixed no-repeat center;
+  background-size: cover;
+  height: 1004px;
+  justify-content: center;
+  padding-top: 50px;
+  .form-card {
+    max-width: 575px;
+    margin: 0 auto;
+    padding: 50px 75px;
+    background-color: $white;
+    border-top: 8px solid $dark-blue;
+    border-radius: 4px;
+    p {
+      font-family: $font-family-alternative;
+      font-size: 30px;
+      margin-bottom: 0;
+    }
+  }
+  .custom-radio {
+    margin-bottom: 0.75rem;
+  }
+}

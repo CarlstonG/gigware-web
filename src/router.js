@@ -1,14 +1,22 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import Home from './core/views/Home.vue'
+import Home from './core/views/Home'
+
+// Auth
+import Authentication from './modules/auth/views/Authentication'
 
 Vue.use(VueRouter)
 
 const routes = [
   {
     path: '/',
-    name: 'Home',
+    name: 'home',
     component: Home,
+  },
+  {
+    path: '/authentication',
+    name: 'auth',
+    component: Authentication,
   },
   {
     path: '/about',

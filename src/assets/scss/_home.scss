@@ -3,47 +3,6 @@ $link-color: #0f4f85;
 $text-color: #718096;
 
 .home {
-  .navbar-brand {
-    margin-right: 0;
-    @include media-breakpoint-up(xs) {
-      margin: 0 auto;
-    }
-    img {
-      @include media-breakpoint-up(xs) {
-        width: 107px;
-      }
-      @include media-breakpoint-up(md) {
-        width: 247px;
-      }
-    }
-  }
-
-  .navbar-nav {
-    .nav-item {
-      .nav-link {
-        font-size: 18px;
-      }
-      &.btn {
-        margin-left: 1.5rem;
-        .nav-link {
-          color: $body-color;
-        }
-      }
-
-      &.text-primary .nav-link {
-        color: $primary;
-      }
-
-      @include media-breakpoint-down(md) {
-        .nav-link {
-          font-weight: 600;
-          font-size: 24px;
-          font-family: $font-family-alternative;
-        }
-      }
-    }
-  }
-
   .text-block {
     display: flex;
     align-items: center;
@@ -141,39 +100,35 @@ $text-color: #718096;
 
       .form-control {
         border-color: #9aafc5;
-        height: 45px;
-
-        @include media-breakpoint-up(sm) {
-          height: 68px;
+        height: 68px;
+        &::placeholder {
+          color: $text-muted;
+          font-size: 16px;
+          font-family: $font-family-sans-serif;
+        }
+        &:-ms-input-placeholder {
+          color: $text-muted;
+          font-size: 16px;
+          font-family: $font-family-sans-serif;
+        }
+        &::-ms-input-placeholder {
+          color: $text-muted;
+          font-size: 16px;
+          font-family: 'Roboto';
+        }
+        @include media-breakpoint-down(sm) {
+          height: 45px;
           &::placeholder {
-            font-size: 16px;
+            font-size: 10px;
           }
   
           &:-ms-input-placeholder {
-            font-size: 16px;
+            font-size: 10px;
           }
   
           &::-ms-input-placeholder {
-            font-size: 16px;
+            font-size: 10px;
           }
-        }
-
-        &::placeholder {
-          color: $text-muted;
-          font-size: 10px;
-          font-family: $font-family-sans-serif;
-        }
-
-        &:-ms-input-placeholder {
-          color: $text-muted;
-          font-size: 10px;
-          font-family: $font-family-sans-serif;
-        }
-
-        &::-ms-input-placeholder {
-          color: $text-muted;
-          font-size: 10px;
-          font-family: 'Roboto';
         }
       }
     }
@@ -251,22 +206,6 @@ $text-color: #718096;
 
     .content {
       font-size: 22px;
-    }
-  }
-
-  footer {
-    background-color: #10243b;
-    color: $white;
-    .wrapper {
-      padding: 3.75rem 0;
-    }
-    h4 {
-      font-size: 22px;
-      font-weight: bold;
-    }
-    p {
-      font-size: 18px;
-      margin-top: 1.3rem;
     }
   }
 }

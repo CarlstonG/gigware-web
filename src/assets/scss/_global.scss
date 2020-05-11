@@ -1,0 +1,56 @@
+.navbar-brand {
+  margin-right: 0;
+  @include media-breakpoint-up(xs) {
+    margin: 0 auto;
+  }
+  img {
+    @include media-breakpoint-up(xs) {
+      width: 107px;
+    }
+    @include media-breakpoint-up(md) {
+      width: 247px;
+    }
+  }
+}
+
+.navbar-nav {
+  .nav-item {
+    .nav-link {
+      font-size: 18px;
+    }
+    &.btn {
+      margin-left: 1.5rem;
+      .nav-link {
+        color: $body-color;
+      }
+    }
+
+    &.text-primary .nav-link {
+      color: $primary;
+    }
+
+    @include media-breakpoint-down(md) {
+      .nav-link {
+        font-weight: 600;
+        font-size: 24px;
+        font-family: $font-family-alternative;
+      }
+    }
+  }
+}
+
+footer {
+  background-color: #10243b;
+  color: $white;
+  .wrapper {
+    padding: 3.75rem 0;
+  }
+  h4 {
+    font-size: 22px;
+    font-weight: bold;
+  }
+  p {
+    font-size: 18px;
+    margin-top: 1.3rem;
+  }
+}
