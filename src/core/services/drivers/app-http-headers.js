@@ -2,7 +2,7 @@ import store from '@/core/store'
 
 export default () => {
   let headers = {
-    ApiKey: process.env.VUE_APP_BASE_API_KEY,
+    // ApiKey: process.env.VUE_APP_BASE_API_KEY,
     Accept: 'application/json',
     'Content-Type': 'application/json',
   }

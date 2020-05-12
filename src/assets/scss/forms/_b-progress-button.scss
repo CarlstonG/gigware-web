@@ -1,0 +1,44 @@
+.__progress-button {
+  position: relative;
+  border: none;
+  overflow: hidden;
+
+  &.is-transitioning {
+    opacity: 1;
+  }
+
+  .__progress-button-content-success, .__progress-button-content-error {
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    border-radius: rem(5px);
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    transform: translateX(-100%);
+    opacity: 0;
+    transition-duration: 0.5s;
+    transform-origin: 0 50%;
+    transition-property: transform;
+    transition-timing-function: ease-out;
+
+    &.enter {
+      opacity: 1;
+      transform: translateX(0);
+    }
+    &.exit {
+      opacity: 1;
+      transition-duration: 0.3s;
+      transform: translateX(100%);
+    }
+  }
+
+  .__progress-button-content-success {
+    background: $success;
+  }
+
+  .__progress-button-content-error {
+    background: $error;
+  }
+}
