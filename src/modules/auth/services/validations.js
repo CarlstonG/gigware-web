@@ -1,6 +1,12 @@
 import { email, required, sameAs, minLength } from 'vuelidate/lib/validators'
 
 export default {
+  login: {
+    form: {
+      email: { required, email },
+      password: { required },
+    },
+  },
   providerRegistration: {
     form: {
       email: { required, email },

@@ -25,4 +25,16 @@ export default {
         })
     })
   },
+  login(context, data) {
+    return new Promise((resolve, reject) => {
+      api.auth
+        .login(data)
+        .then(({ data }) => {
+          resolve(data)
+        })
+        .catch(error => {
+          reject(error)
+        })
+    })
+  },
 }

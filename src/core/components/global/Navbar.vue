@@ -10,7 +10,7 @@
           class="ml-auto align-items-center pt-5 pt-lg-0 pb-5 pb-lg-0"
         >
           <b-nav-item>FAQ</b-nav-item>
-          <b-nav-item>Log In</b-nav-item>
+          <b-nav-item :to="{ name: 'login' }">Log In</b-nav-item>
           <b-nav-item :to="{ name: 'register' }">Build a profile</b-nav-item>
           <b-button
             variant="primary"

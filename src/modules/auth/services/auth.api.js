@@ -7,4 +7,7 @@ export default {
   customer: {
     register: data => http.post('auth/customer-registration', data),
   },
+  auth: {
+    login: data => http.post('auth/login', data),
+  },
 }
