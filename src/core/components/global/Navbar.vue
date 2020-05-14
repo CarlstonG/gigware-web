@@ -11,7 +11,7 @@
         >
           <b-nav-item>FAQ</b-nav-item>
           <b-nav-item>Log In</b-nav-item>
-          <b-nav-item :to="{ name: 'auth' }">Build a profile</b-nav-item>
+          <b-nav-item :to="{ name: 'register' }">Build a profile</b-nav-item>
           <b-button
             variant="primary"
             size="lg"

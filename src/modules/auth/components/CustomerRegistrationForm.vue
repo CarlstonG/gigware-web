@@ -1,53 +1,102 @@
 <template>
-  <b-form class="mt-5">
-    <b-form-group
-      v-model="form.email"
-      label="Email"
-      for="email"
-      :state="true"
-      class="mt-4"
-    >
-      <b-form-input id="email" :state="null" trim />
-    </b-form-group>
-    <b-form-group
-      v-model="form.password"
-      label="Password"
-      for="password"
-      :state="true"
-      class="mt-4"
-    >
-      <b-form-input id="password" :state="null" trim />
-    </b-form-group>
-    <b-form-group
-      v-model="form.password_confirmation"
-      label="Confirm Password"
-      for="password_confirmation"
-      :state="true"
-      class="mt-4"
-    >
-      <b-form-input id="password_confirmation" :state="null" trim />
-    </b-form-group>
-    <b-form-checkbox v-model="termsAndConds">
-      I have read and agree to Gig Wire’s
-      <b-link>Terms of Service</b-link>
-      ?
-    </b-form-checkbox>
-    <b-form-row class="justify-content-end mt-5">
-      <b-button variant="primary" size="lg" :disabled="!termsAndConds">Submit</b-button>
-    </b-form-row>
-  </b-form>
+  <validated-b-form-wrapper :validator="$v.form">
+    <b-form @submit.prevent="submit">
+      <validated-b-form-group name="email" label="Email" :disabled="formLocked">
+        <b-form-input v-model.trim.lazy="form.email" />
+      </validated-b-form-group>
+      <validated-b-form-group
+        name="password"
+        label="Password"
+        :disabled="formLocked"
+      >
+        <b-form-input v-model.trim.lazy="form.password" type="password" />
+      </validated-b-form-group>
+      <validated-b-form-group
+        name="password_confirmation"
+        label="Confirm password"
+        :disabled="formLocked"
+      >
+        <b-form-input
+          v-model.trim.lazy="form.password_confirmation"
+          type="password"
+        />
+      </validated-b-form-group>
+      <validated-b-form-group name="first_name" label="First Name" :disabled="formLocked">
+        <b-form-input v-model.trim.lazy="form.first_name" />
+      </validated-b-form-group>
+      <validated-b-form-group name="last_name" label="Last Name" :disabled="formLocked">
+        <b-form-input v-model.trim.lazy="form.last_name" />
+      </validated-b-form-group>
+      <validated-b-form-group name="company_name" label="Company" :disabled="formLocked">
+        <b-form-input v-model.trim.lazy="form.company_name" />
+      </validated-b-form-group>
+      <validated-b-form-group name="zip_code" label="Zip Code" :disabled="formLocked">
+        <b-form-input v-model.trim.lazy="form.zip_code" />
+      </validated-b-form-group>
+      <validated-b-form-group name="phone_number" label="Phone Number" :disabled="formLocked">
+        <b-form-input v-model.trim.lazy="form.phone_number" />
+      </validated-b-form-group>
+      <validated-b-form-group name="role" label="I am a" :disabled="formLocked">
+        <b-form-select v-model.trim.lazy="form.role" :options="roles" />
+      </validated-b-form-group>
+      <b-form-checkbox v-model="termsAndConds">
+        I have read and agree to Gig Wire’s
+        <b-link>Terms of Service</b-link>
+        ?
+      </b-form-checkbox>
+      <b-form-row class="justify-content-end mt-5">
+        <b-progress-button
+          size="lg"
+          :disabled="!termsAndConds || formLocked"
+          :state="formState"
+          default-text="Submit"
+        />
+      </b-form-row>
+    </b-form>
+  </validated-b-form-wrapper>
 </template>
 
 <script>
+  import validations from '../services/validations'
+  import validateFormMixin from '@/core/mixins/validate-form-mixin'
+  import { mapActions } from 'vuex'
   export default {
+    mixins: [validateFormMixin],
     data: () => ({
       termsAndConds: false,
+      roles: [
+        { value: 'customer-integrator', text: 'Integrator' },
+        { value: 'customer-end-user', text: 'End User' },
+      ],
       form: {
-        role: 1,
-        email: '',
-        password: '',
-        password_confirmation: '',
+        role: 'customer-integrator',
+        email: 'traikovn@gmail.com',
+        password: 'Ektomorf!23',
+        password_confirmation: 'Ektomorf!23',
+        first_name: 'Nikolay',
+        last_name: 'Traykov',
+        company_name: 'Bianor',
+        zip_code: '123456',
+        phone_number: '34334534',
       },
     }),
+    validations: validations.customerRegistration,
+    methods: {
+      ...mapActions('auth', ['registerCustomer']),
+      submit() {
+        this.validate(() => {
+          this.register()
+        })
+      },
+      register() {
+        this.registerCustomer(this.form)
+          .catch(error => {
+            this.handleServerError(error)
+          })
+          .finally(() => {
+            this.setDefaultState()
+          })
+      },
+    }
   }
 </script>

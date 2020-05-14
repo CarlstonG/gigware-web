@@ -1,9 +1,9 @@
-import Authentication from '@/modules/auth/views/Authentication'
+import Registration from '@/modules/auth/views/Registration'
 
 export default [
   {
-    path: '/authentication',
-    name: 'auth',
-    component: Authentication,
+    path: '/registration',
+    name: 'register',
+    component: Registration,
   },
 ]

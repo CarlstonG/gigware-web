@@ -38,6 +38,9 @@ Vue.use(VuelidateErrorExtractor, {
     name: 'name',
     first_name: 'first name',
     last_name: 'last name',
+    company_name: 'company',
+    phone_number: 'phone number',
+    zip_code: 'zip code',
   },
 })
 

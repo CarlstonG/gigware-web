@@ -13,7 +13,7 @@ export default {
         })
     })
   },
-  registerCustomer(data) {
+  registerCustomer(context, data) {
     return new Promise((resolve, reject) => {
       api.customer
         .register(data)

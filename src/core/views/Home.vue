@@ -37,7 +37,7 @@
             </b-input-group>
             <p class="subtitle">
               Want to become a Cabling Partner?
-              <b-link :to="{ name: 'auth' }">
+              <b-link :to="{ name: 'register' }">
                 Build a Profile
               </b-link>
             </p>
@@ -61,7 +61,7 @@
             </div>
             <div class="subtitle mt-5 mb-5">
               How do we do it?
-              <b-link :to="{ name: 'auth' }">
+              <b-link :to="{ name: 'register' }">
                 Build a Profile
               </b-link>
             </div>
@@ -75,7 +75,7 @@
                 reliable Cabling Professionals.
               </p>
             </div>
-            <b-button :to="{ name: 'auth' }" variant="primary" size="lg">
+            <b-button :to="{ name: 'register' }" variant="primary" size="lg">
               Build a Profile
             </b-button>
           </div>
@@ -199,7 +199,7 @@
                 </b-col>
               </b-row>
             </div>
-            <b-button :to="{ name: 'auth' }" variant="primary" size="lg">
+            <b-button :to="{ name: 'register' }" variant="primary" size="lg">
               Build a Profile
             </b-button>
           </div>
