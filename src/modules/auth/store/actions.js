@@ -25,11 +25,14 @@ export default {
         })
     })
   },
-  login(context, data) {
+  login({ commit }, data) {
     return new Promise((resolve, reject) => {
       api.auth
         .login(data)
         .then(({ data }) => {
+          commit('SET_USER', data)
+          commit('SET_TOKEN', data.token)
+
           resolve(data)
         })
         .catch(error => {

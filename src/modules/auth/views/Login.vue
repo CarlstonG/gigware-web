@@ -72,6 +72,9 @@
       },
       performLogin() {
         this.login(this.form)
+          .then(() => {
+            this.$router.push({ name: 'onboarding.basic-information' })
+          })
           .catch(error => {
             this.handleServerError(error)
           })
