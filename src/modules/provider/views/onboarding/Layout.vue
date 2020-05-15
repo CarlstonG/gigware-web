@@ -37,35 +37,35 @@
       steps: [
         {
           label: 'Basic Information',
-          route: { name: 'onboarding.basic-information' },
+          route: { name: 'provider.onboarding.basic-information' },
         },
         {
           label: 'Rates And Location',
-          route: { name: 'onboarding.rates-and-location' },
+          route: { name: 'provider.onboarding.rates-and-location' },
         },
         {
           label: 'Availability',
-          route: { name: 'onboarding.availability' },
+          route: { name: 'provider.onboarding.availability' },
         },
         {
           label: 'Licenses',
-          route: { name: 'onboarding.licenses' },
+          route: { name: 'provider.onboarding.licenses' },
         },
         {
           label: 'Experience',
-          route: { name: 'onboarding.experience' },
+          route: { name: 'provider.onboarding.experience' },
         },
         {
           label: 'Proof of insurance',
-          route: { name: 'onboarding.proof-of-insurance' },
+          route: { name: 'provider.onboarding.proof-of-insurance' },
         },
         {
           label: 'Ratings & Reviews',
-          route: { name: 'onboarding.ratings-and-reviews' },
+          route: { name: 'provider.onboarding.ratings-and-reviews' },
         },
         {
           label: 'Confirmation',
-          route: { name: 'onboarding.confirmation' },
+          route: { name: 'provider.onboarding.confirmation' },
         },
       ],
     }),

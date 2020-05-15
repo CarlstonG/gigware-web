@@ -8,12 +8,12 @@
           <p>Support/Contact US</p>
           <p>FAQ</p>
           <p>Terms of Service</p>
-          <p>Privcy Policy</p>
+          <p>Privacy Policy</p>
         </b-col>
         <b-col lg="4">
           <h4>Contact us</h4>
           <p>info@gigwire.com</p>
-          <p>713-xxx-xxxx</p>
+          <p>713-300-0575</p>
           <p>
             <b-link class="mr-3">
               <svg-icon name="facebook_footer" width="30" height="30" />

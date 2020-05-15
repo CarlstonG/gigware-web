@@ -53,12 +53,7 @@
     validations: validations.providerRegistration,
     methods: {
       ...mapActions('auth', ['registerProvider']),
-      submit() {
-        this.validate(() => {
-          this.register()
-        })
-      },
-      register() {
+      sendRequest() {
         this.registerProvider(this.form)
           .catch(error => {
             this.handleServerError(error)

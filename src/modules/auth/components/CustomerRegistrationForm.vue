@@ -21,19 +21,39 @@
           type="password"
         />
       </validated-b-form-group>
-      <validated-b-form-group name="first_name" label="First Name" :disabled="formLocked">
+      <validated-b-form-group
+        name="first_name"
+        label="First Name"
+        :disabled="formLocked"
+      >
         <b-form-input v-model.trim.lazy="form.first_name" />
       </validated-b-form-group>
-      <validated-b-form-group name="last_name" label="Last Name" :disabled="formLocked">
+      <validated-b-form-group
+        name="last_name"
+        label="Last Name"
+        :disabled="formLocked"
+      >
         <b-form-input v-model.trim.lazy="form.last_name" />
       </validated-b-form-group>
-      <validated-b-form-group name="company_name" label="Company" :disabled="formLocked">
+      <validated-b-form-group
+        name="company_name"
+        label="Company"
+        :disabled="formLocked"
+      >
         <b-form-input v-model.trim.lazy="form.company_name" />
       </validated-b-form-group>
-      <validated-b-form-group name="zip_code" label="Zip Code" :disabled="formLocked">
+      <validated-b-form-group
+        name="zip_code"
+        label="Zip Code"
+        :disabled="formLocked"
+      >
         <b-form-input v-model.trim.lazy="form.zip_code" />
       </validated-b-form-group>
-      <validated-b-form-group name="phone_number" label="Phone Number" :disabled="formLocked">
+      <validated-b-form-group
+        name="phone_number"
+        label="Phone Number"
+        :disabled="formLocked"
+      >
         <b-form-input v-model.trim.lazy="form.phone_number" />
       </validated-b-form-group>
       <validated-b-form-group name="role" label="I am a" :disabled="formLocked">
@@ -83,12 +103,7 @@
     validations: validations.customerRegistration,
     methods: {
       ...mapActions('auth', ['registerCustomer']),
-      submit() {
-        this.validate(() => {
-          this.register()
-        })
-      },
-      register() {
+      sendRequest() {
         this.registerCustomer(this.form)
           .catch(error => {
             this.handleServerError(error)
@@ -97,6 +112,6 @@
             this.setDefaultState()
           })
       },
-    }
+    },
   }
 </script>

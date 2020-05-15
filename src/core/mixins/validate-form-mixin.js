@@ -8,6 +8,11 @@ export default {
     serverError: {},
   }),
   methods: {
+    submit() {
+      this.validate(() => {
+        this.sendRequest()
+      })
+    },
     validate(callback) {
       this.$v.$touch()
 

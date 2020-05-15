@@ -4,6 +4,7 @@ import Home from '@/core/views/Home'
 
 // Auth
 import authRoutes from '@/modules/auth/routes'
+import providerRoutes from '@/modules/provider/routes'
 
 Vue.use(VueRouter)
 
@@ -14,6 +15,7 @@ const routes = [
     component: Home,
   },
   ...authRoutes,
+  ...providerRoutes,
 ]
 
 export default new VueRouter({

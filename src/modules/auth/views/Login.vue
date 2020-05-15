@@ -65,12 +65,7 @@
     validations: validations.login,
     methods: {
       ...mapActions('auth', ['login']),
-      submit() {
-        this.validate(() => {
-          this.performLogin()
-        })
-      },
-      performLogin() {
+      sendRequest() {
         this.login(this.form)
           .then(() => {
             this.$router.push({ name: 'onboarding.basic-information' })
