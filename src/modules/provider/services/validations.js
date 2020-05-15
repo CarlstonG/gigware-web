@@ -7,7 +7,8 @@ export default {
       last_name: { required },
       company_name: { required },
       phone_number: { required },
-      team_size: { integer }
+      team_size: { integer },
+      description: { required }
     },
   },
 }

@@ -3,8 +3,8 @@ import api from '@/modules/auth/services/auth.api'
 export default {
   registerProvider(context, form) {
     return new Promise((resolve, reject) => {
-      api.provider
-        .register(form)
+      api.register
+        .provider(form)
         .then(({ data }) => {
           resolve(data)
         })
@@ -15,8 +15,8 @@ export default {
   },
   registerCustomer(context, data) {
     return new Promise((resolve, reject) => {
-      api.customer
-        .register(data)
+      api.register
+        .customer(data)
         .then(({ data }) => {
           resolve(data)
         })
@@ -27,7 +27,7 @@ export default {
   },
   login({ commit }, data) {
     return new Promise((resolve, reject) => {
-      api.auth
+      api
         .login(data)
         .then(({ data }) => {
           commit('SET_USER', data)

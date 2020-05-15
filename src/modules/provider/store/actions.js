@@ -1,10 +1,10 @@
-import api from '@/modules/auth/services/auth.api'
+import api from '@/modules/provider/services/provider.api'
 
 export default {
-  registerProvider(context, form) {
+  saveBasicInformation(context, form) {
     return new Promise((resolve, reject) => {
-      api.provider
-        .register(form)
+      api.onboarding
+        .saveBasicInformation(form)
         .then(({ data }) => {
           resolve(data)
         })

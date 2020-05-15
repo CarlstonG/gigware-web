@@ -68,7 +68,7 @@
       sendRequest() {
         this.login(this.form)
           .then(() => {
-            this.$router.push({ name: 'onboarding.basic-information' })
+            this.$router.push({ name: 'provider.onboarding.basic-information' })
           })
           .catch(error => {
             this.handleServerError(error)

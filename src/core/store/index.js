@@ -15,7 +15,7 @@ export default new Vuex.Store({
   plugins: [
     createPersistedState({
       key: process.env.VUE_APP_VUEX_PERSISTENCE_KEY,
-      paths: ['auth.user', 'auth.token']
-    })
-  ]
+      paths: ['auth.user', 'auth.token'],
+    }),
+  ],
 })

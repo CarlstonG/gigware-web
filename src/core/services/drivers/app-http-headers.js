@@ -7,7 +7,7 @@ export default () => {
     'Content-Type': 'application/json',
   }
 
-  if (store.getters['auth/user'] && store.getters['auth/user'].token) {
+  if (store.getters['auth/token']) {
     headers['Authorization'] = `Bearer ${store.getters['auth/user'].token}`
   }
 
