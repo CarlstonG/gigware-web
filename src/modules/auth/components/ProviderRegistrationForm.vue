@@ -55,6 +55,9 @@
       ...mapActions('auth', ['registerProvider']),
       sendRequest() {
         this.registerProvider(this.form)
+          .then(() => {
+            this.$router.push({ name: 'provider.onboarding.basic-information' })
+          })
           .catch(error => {
             this.handleServerError(error)
           })

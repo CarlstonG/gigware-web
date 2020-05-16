@@ -105,6 +105,9 @@
       ...mapActions('auth', ['registerCustomer']),
       sendRequest() {
         this.registerCustomer(this.form)
+          .then(() => {
+            this.$router.push({ name: 'home' })
+          })
           .catch(error => {
             this.handleServerError(error)
           })
