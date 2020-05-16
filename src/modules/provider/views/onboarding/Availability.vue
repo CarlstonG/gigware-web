@@ -1,7 +1,9 @@
 <template>
   <div>
     <div class="mb-4 d-flex align-items-center">
-      <div style="width: 54px; height: 19px; background-color: #1994db; border-radius: 10px; margin-right: 20px;"></div>
+      <div
+        style="width: 54px; height: 19px; background-color: #1994db; border-radius: 10px; margin-right: 20px;"
+      ></div>
       <div style="font-size: 22px">Unavailable</div>
     </div>
     <v-date-picker
@@ -13,7 +15,7 @@
       is-expanded
       is-inline
     />
-    <steps-footer @next="submit" />
+    <steps-footer @next="submit" :loading="formLocked" :state="formState" />
   </div>
 </template>
 

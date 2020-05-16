@@ -89,7 +89,7 @@
           </validated-b-form-group>
         </b-col>
       </b-row>
-      <steps-footer @next="submit" />
+      <steps-footer @next="submit" :loading="formLocked" :state="formState" />
     </b-form>
   </validated-b-form-wrapper>
 </template>
@@ -119,9 +119,11 @@
     methods: {
       ...mapActions('provider', ['createBasicInformation']),
       sendRequest() {
-        this.saveBasicInformation(this.formData())
+        this.createBasicInformation(this.formData())
           .then(() => {
-            this.$router.push({ name: 'provider.onboarding.rates-and-location' })
+            this.$router.push({
+              name: 'provider.onboarding.rates-and-location',
+            })
           })
           .catch(error => {
             this.handleServerError(error)
@@ -130,7 +132,7 @@
             this.setDefaultState()
           })
       },
-      formData () {
+      formData() {
         let formData = new FormData()
         formData.append('first_name', this.form.first_name)
         formData.append('last_name', this.form.last_name)
@@ -141,7 +143,7 @@
         formData.append('profile_image', this.form.profile_image)
 
         return formData
-      }
+      },
     },
   }
 </script>
