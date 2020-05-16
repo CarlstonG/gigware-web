@@ -115,9 +115,9 @@
         profile_image: null,
       },
     }),
-    validations: validations.basicInformation,
+    validations: validations.onboarding.basicInformation,
     methods: {
-      ...mapActions('provider', ['saveBasicInformation']),
+      ...mapActions('provider', ['createBasicInformation']),
       sendRequest() {
         this.saveBasicInformation(this.formData())
           .then(() => {
