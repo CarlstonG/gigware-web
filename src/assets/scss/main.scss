@@ -11,10 +11,14 @@
 @import 'fonts';
 @import 'icons';
 
+@import 'vendor/index';
+
+// Forms
 @import 'forms/b-progress-button';
 @import 'button';
 
+// Pages
 @import 'global';
 @import 'auth';
-@import 'onboarding';
+@import 'onboarding/index';
 @import 'home';

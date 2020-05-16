@@ -1,0 +1,19 @@
+.vc-container {
+  border: none;
+  border-top: 7px solid $dark-blue;
+  background-color: $dirty-white;
+}
+
+.vc-highlight {
+  background-color: $primary;
+  &:focus {
+    background-color: $primary;
+  }
+}
+
+.vc-font-bold {
+  font-weight: normal;
+  &:focus {
+    font-weight: normal;
+  }
+}

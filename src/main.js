@@ -7,6 +7,7 @@ import Vuelidate from 'vuelidate'
 import VuelidateErrorExtractor, { templates } from 'vuelidate-error-extractor'
 import ValidatedBFormGroup from '@/core/components/forms/ValidatedBFormGroup'
 import BProgressButton from '@/core/components/forms/BProgressButton'
+import VCalendar from 'v-calendar'
 import * as VueSVGIcon from 'vue-svgicon'
 import './core/icons/index'
 
@@ -47,6 +48,7 @@ Vue.use(VuelidateErrorExtractor, {
 Vue.component('ValidatedBFormWrapper', templates.FormWrapper)
 Vue.component('ValidatedBFormGroup', ValidatedBFormGroup)
 Vue.component('BProgressButton', BProgressButton)
+Vue.use(VCalendar);
 
 Vue.config.productionTip = false
 
