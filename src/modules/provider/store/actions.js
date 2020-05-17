@@ -37,4 +37,16 @@ export default {
         })
     })
   },
+  createCertificates(context, certificates) {
+    return new Promise((resolve, reject) => {
+      api.onboarding
+        .createCertificates(certificates)
+        .then(({ data }) => {
+          resolve(data)
+        })
+        .catch(error => {
+          reject(error)
+        })
+    })
+  },
 }
