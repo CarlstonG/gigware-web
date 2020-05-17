@@ -45,4 +45,12 @@ export default {
         })
     })
   },
+  logout({ commit }) {
+    return new Promise(resolve => {
+      commit('SET_USER', null)
+      commit('SET_TOKEN', '')
+
+      resolve()
+    })
+  }
 }

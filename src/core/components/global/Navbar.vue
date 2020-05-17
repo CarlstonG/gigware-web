@@ -11,6 +11,7 @@
         >
           <b-nav-item>FAQ</b-nav-item>
           <b-nav-item :to="{ name: 'login' }" v-if="!isLoggedIn">Log In</b-nav-item>
+          <b-nav-item @click="performLogout" v-else>Logout</b-nav-item>
           <b-nav-item :to="{ name: 'register' }" v-if="!isLoggedIn">Build a profile</b-nav-item>
           <b-button
             variant="primary"
@@ -30,8 +31,16 @@
 </template>
 
 <script>
-  import { mapGetters } from 'vuex'
+  import { mapGetters, mapActions } from 'vuex'
   export default {
+    methods: {
+      ...mapActions('auth', ['logout']),
+      performLogout() {
+        this.logout().then(() => {
+          this.$router.push({ name: 'home' })
+        })
+      }
+    },
     computed: mapGetters('auth', ['isLoggedIn']),
   }
 </script>
