@@ -1,6 +1,6 @@
 <template>
   <div class="mt-5 d-flex justify-content-between">
-    <b-button variant="link" size="lg">
+    <b-button variant="link" size="lg" class="p-0">
       {{ isFirstStep ? '' : 'Back' }}
     </b-button>
     <b-progress-button

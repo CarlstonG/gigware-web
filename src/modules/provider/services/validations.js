@@ -24,5 +24,18 @@ export default {
         }
       },
     },
+    experience: {
+      forms: {
+        $each: {
+          job_location: { required },
+          job_description: { required },
+          employer_name: { required },
+          employer_title: { required },
+          employer_phone: { required },
+          start_date: { required },
+          end_date: { required },
+        }
+      },
+    },
   },
 }

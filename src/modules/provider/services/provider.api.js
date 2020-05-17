@@ -6,5 +6,6 @@ export default {
     saveRatesAndLocation: form => http.post('/providers/onboarding/rates-and-location', form),
     createUnavailabilities: form => http.post('/providers/onboarding/unavailabilities', form),
     createCertificates: form => http.post('/providers/onboarding/certificates', form),
+    createExperiences: form => http.post('/providers/onboarding/experiences', form),
   },
 }

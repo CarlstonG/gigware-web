@@ -6,16 +6,18 @@
       ></div>
       <div style="font-size: 22px">Unavailable</div>
     </div>
-    <v-date-picker
-      mode="multiple"
-      color="blue"
-      v-model="form.dates"
-      :min-date="new Date()"
-      :columns="$screens({ default: 1, lg: 3 })"
-      is-expanded
-      is-inline
-    />
-    <steps-footer @next="submit" :loading="formLocked" :state="formState" />
+    <b-form @submit.prevent="submit">
+      <v-date-picker
+        mode="multiple"
+        color="blue"
+        v-model="form.dates"
+        :min-date="new Date()"
+        :columns="$screens({ default: 1, lg: 3 })"
+        is-expanded
+        is-inline
+      />
+      <steps-footer :loading="formLocked" :state="formState" />
+    </b-form>
   </div>
 </template>
 
@@ -26,6 +28,8 @@
   export default {
     components: { StepsFooter },
     data: () => ({
+      formLocked: false,
+      formState: 'default',
       form: {
         dates: [],
       },
@@ -33,12 +37,16 @@
     methods: {
       ...mapActions('provider', ['createUnavailabilities']),
       submit() {
+        this.formLocked = true
+        this.formState = 'loading'
+
         this.createUnavailabilities(this.form)
           .then(() => {
             this.$router.push({ name: 'provider.onboarding.licenses' })
           })
-          .catch(error => {
-            this.handleServerError(error)
+          .finally(() => {
+            this.formLocked = false
+            this.formState = 'default'
           })
       },
     },

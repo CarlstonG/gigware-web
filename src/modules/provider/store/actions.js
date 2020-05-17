@@ -49,4 +49,16 @@ export default {
         })
     })
   },
+  createExperiences(context, experiences) {
+    return new Promise((resolve, reject) => {
+      api.onboarding
+        .createExperiences(experiences)
+        .then(({ data }) => {
+          resolve(data)
+        })
+        .catch(error => {
+          reject(error)
+        })
+    })
+  },
 }
