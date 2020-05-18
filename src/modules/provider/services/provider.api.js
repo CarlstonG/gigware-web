@@ -8,5 +8,6 @@ export default {
     createCertificates: form => http.post('/providers/onboarding/certificates', form),
     createExperiences: form => http.post('/providers/onboarding/experiences', form),
     createInsurance: form => http.post('/providers/onboarding/insurance', form),
+    createReviewRequest: form => http.post('/providers/onboarding/review-requests', form),
   },
 }

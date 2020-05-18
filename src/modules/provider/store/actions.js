@@ -73,4 +73,16 @@ export default {
         })
     })
   },
+  createReviewRequest(context, form) {
+    return new Promise((resolve, reject) => {
+      api.onboarding
+        .createReviewRequest(form)
+        .then(({ data }) => {
+          resolve(data)
+        })
+        .catch(error => {
+          reject(error)
+        })
+    })
+  },
 }

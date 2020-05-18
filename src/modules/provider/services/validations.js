@@ -1,4 +1,4 @@
-import { required, integer } from 'vuelidate/lib/validators'
+import { required, email, integer } from 'vuelidate/lib/validators'
 
 export default {
   onboarding: {
@@ -43,6 +43,18 @@ export default {
         start_date: { required },
         end_date: { required },
         image: { required },
+      },
+    },
+    ratingsAndReviews: {
+      form: {
+        emails: {
+          $each: {
+            email: { required, email },
+          },
+        },
+        email_template: {
+          required,
+        },
       },
     },
   },
