@@ -7,5 +7,6 @@ export default {
     createUnavailabilities: form => http.post('/providers/onboarding/unavailabilities', form),
     createCertificates: form => http.post('/providers/onboarding/certificates', form),
     createExperiences: form => http.post('/providers/onboarding/experiences', form),
+    createInsurance: form => http.post('/providers/onboarding/insurance', form),
   },
 }

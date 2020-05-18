@@ -65,7 +65,6 @@
               >
                 <v-date-picker
                   v-model.trim.lazy="form.start_date"
-                  :data="['YYYY-MM-DD']"
                   :input-props="{
                     placeholder: 'MM/DD/YYYY',
                     class: 'form-control',
@@ -81,7 +80,6 @@
               >
                 <v-date-picker
                   v-model.trim.lazy="form.end_date"
-                  data="YYYY/MM/DD"
                   :input-props="{
                     placeholder: 'MM/DD/YYYY',
                     class: 'form-control',

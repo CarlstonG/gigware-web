@@ -61,4 +61,16 @@ export default {
         })
     })
   },
+  createInsurance(context, form) {
+    return new Promise((resolve, reject) => {
+      api.onboarding
+        .createInsurance(form)
+        .then(({ data }) => {
+          resolve(data)
+        })
+        .catch(error => {
+          reject(error)
+        })
+    })
+  },
 }

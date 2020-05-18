@@ -21,7 +21,7 @@ export default {
           city: { required },
           suite: { required },
           zip_code: { required },
-        }
+        },
       },
     },
     experience: {
@@ -34,7 +34,15 @@ export default {
           employer_phone: { required },
           start_date: { required },
           end_date: { required },
-        }
+        },
+      },
+    },
+    insurance: {
+      form: {
+        insurance_provider_name: { required },
+        start_date: { required },
+        end_date: { required },
+        image: { required },
       },
     },
   },
