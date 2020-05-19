@@ -1,13 +1,13 @@
 <template>
   <div class="mt-5 d-flex justify-content-between">
-    <b-button variant="link" size="lg" class="p-0">
+    <b-button @click="$router.go(-1)" variant="link" size="lg" class="p-0">
       {{ isFirstStep ? '' : 'Back' }}
     </b-button>
     <b-progress-button
       size="lg"
       :disabled="loading"
       :state="state"
-      default-text="Next"
+      :default-text="nextBtnText"
       loading-text="Loading..."
     />
   </div>
@@ -16,6 +16,10 @@
 <script>
   export default {
     props: {
+      nextBtnText: {
+        type: String,
+        default: 'Next',
+      },
       loading: {
         type: Boolean,
         required: true,

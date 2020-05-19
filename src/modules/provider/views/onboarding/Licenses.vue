@@ -6,8 +6,18 @@
         :key="index"
         class="mb-2 form-inline"
       >
-        <b-form-checkbox v-model="certificate.checked" class="mr-5">
-          {{ certificate.name }}
+        <b-form-checkbox
+          v-model="certificate.checked"
+          class="mr-5 justify-content-start"
+          style="min-width: 320px"
+        >
+          <b-form-input
+            v-model.trim.lazy="certificate.name"
+            class="mr-2 w-100"
+            :disabled="!certificate.checked"
+            v-if="certificate.isCustom"
+          />
+          <span v-else>{{ certificate.name }}</span>
         </b-form-checkbox>
 
         <label :for="`team-members-${index}`" class="mr-2">Is held by</label>
@@ -32,7 +42,7 @@
               @click="openFileDialog"
               :disabled="!certificate.checked"
             >
-              <svg-icon name="caret" width="21" class="mr-4" />
+              <svg-icon name="upload_icon" width="21" class="mr-4" />
               Upload Certificate
             </b-button>
           </template>
@@ -66,6 +76,7 @@
           </template>
         </multiple-image-upload>
       </div>
+      <b-link @click="addCustomCertificate">+ Add New Certificate</b-link>
       <steps-footer :loading="formLocked" :state="formState" />
     </b-form>
   </div>
@@ -76,7 +87,16 @@
   import MultipleImageUpload from '@/core/components/images/MultipleImageUpload'
   import { mapActions } from 'vuex'
 
-  const DEFAULT_CERTIFICATE_COUNT = 7
+  const CERTIFICATES = [
+    'Hubbell Certification',
+    'Panduit Certification',
+    'Leviton Certification',
+    'SYSTIMAX Certification',
+    'Belden Certification',
+    'CommScope Certification',
+    'Certified Cabling Test Technician - Copper',
+    'Certified Cabling Test Technician - Fiber',
+  ]
 
   export default {
     components: { StepsFooter, MultipleImageUpload },
@@ -104,6 +124,10 @@
             `certificates[${index}][team_members_count]`,
             certificate.team_members_count,
           )
+          form.append(
+            `certificates[${index}][name]`,
+            certificate.name,
+          )
           certificate.images.map(image => {
             form.append(`certificates[${index}][images][]`, image.file)
           })
@@ -117,17 +141,24 @@
         certificate.images.splice(index, 1)
       },
       initCertificates() {
-        for (let i = 0; i < DEFAULT_CERTIFICATE_COUNT; i++) {
-          this.certificates.push(this.emptyCertificate())
-        }
+        CERTIFICATES.forEach(certificate => {
+          this.certificates.push(this.emptyCertificate(certificate))
+        })
       },
-      emptyCertificate() {
+      emptyCertificate(name = '') {
         return {
-          name: 'Certificate',
+          name,
           checked: false,
           team_members_count: 0,
           images: [],
+          isCustom: false,
         }
+      },
+      addCustomCertificate() {
+        let certificate = this.emptyCertificate()
+        certificate.isCustom = true
+
+        this.certificates.push(certificate)
       },
     },
     computed: {
