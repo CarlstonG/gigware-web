@@ -81,7 +81,12 @@
           </validated-b-form-group>
         </b-col>
       </b-row>
-      <steps-footer :loading="formLocked" :state="formState" />
+      <steps-footer
+        :loading="formLocked"
+        :state="formState"
+        :optional="true"
+        @skip="goToNextStep"
+      />
     </b-form>
   </validated-b-form-wrapper>
 </template>
@@ -107,12 +112,15 @@
     validations: validations.onboarding.insurance,
     methods: {
       ...mapActions('provider', ['createInsurance']),
+      goToNextStep() {
+        this.$router.push({
+          name: 'provider.onboarding.ratings-and-reviews',
+        })
+      },
       sendRequest() {
         this.createInsurance(this.formData())
           .then(() => {
-            this.$router.push({
-              name: 'provider.onboarding.ratings-and-reviews',
-            })
+            this.goToNextStep()
           })
           .catch(error => {
             this.handleServerError(error)

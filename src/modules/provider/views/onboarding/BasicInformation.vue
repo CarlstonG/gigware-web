@@ -7,6 +7,7 @@
             name="first_name"
             label="First Name"
             :disabled="formLocked"
+            class="required"
           >
             <b-form-input v-model.trim.lazy="form.first_name" />
           </validated-b-form-group>
@@ -14,6 +15,7 @@
             name="last_name"
             label="Last Name"
             :disabled="formLocked"
+            class="required"
           >
             <b-form-input v-model.trim.lazy="form.last_name" />
           </validated-b-form-group>
@@ -21,6 +23,7 @@
             name="phone_number"
             label="Phone Number"
             :disabled="formLocked"
+            class="required"
           >
             <b-form-input v-model.trim.lazy="form.phone_number" />
           </validated-b-form-group>
@@ -28,6 +31,7 @@
             name="company_name"
             label="Company Name"
             :disabled="formLocked"
+            class="required"
           >
             <b-form-input v-model.trim.lazy="form.company_name" />
           </validated-b-form-group>
@@ -35,7 +39,7 @@
             name="team_size"
             label="Team Size"
             :disabled="formLocked"
-            class="w-25"
+            class="w-25 required"
           >
             <b-form-input v-model.trim.lazy="form.team_size" />
           </validated-b-form-group>
@@ -43,8 +47,9 @@
             name="description"
             label="About Us"
             :disabled="formLocked"
+            class="required"
           >
-            <b-textarea v-model.trim.lazy="form.description" />
+            <b-form-textarea v-model.trim.lazy="form.description" rows="5" />
           </validated-b-form-group>
         </b-col>
         <b-col lg="6" class="pl-5">
@@ -52,6 +57,7 @@
             name="profile_image"
             label="Upload Profile Image"
             :disabled="formLocked"
+            class="required"
           >
             <image-upload
               v-model="form.profile_image"
@@ -59,7 +65,7 @@
             >
               <template #no-image="{ openFileDialog }">
                 <div class="pt-5 pb-5">
-                  <div class="mb-2"><svg-icon name="caret" width="30" /></div>
+                  <div class="mb-2"><svg-icon name="upload_icon" width="30" /></div>
                   <div class="mb-3">Drag an Image to upload</div>
                   <b-button variant="primary" size="sm" @click="openFileDialog">
                     Choose an Image

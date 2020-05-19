@@ -130,7 +130,12 @@
           </div>
         </b-col>
       </b-row>
-      <steps-footer :loading="formLocked" :state="formState" />
+      <steps-footer
+        :loading="formLocked"
+        :state="formState"
+        :optional="true"
+        @skip="goToNextStep"
+      />
     </b-form>
   </validated-b-form-wrapper>
 </template>
@@ -151,12 +156,15 @@
     validations: validations.onboarding.experience,
     methods: {
       ...mapActions('provider', ['createExperiences']),
+      goToNextStep() {
+        this.$router.push({
+          name: 'provider.onboarding.proof-of-insurance',
+        })
+      },
       sendRequest() {
         this.createExperiences(this.formData())
           .then(() => {
-            this.$router.push({
-              name: 'provider.onboarding.proof-of-insurance',
-            })
+            this.goToNextStep()
           })
           .catch(error => {
             this.handleServerError(error)
@@ -188,8 +196,14 @@
             `experiences[${index}][employer_phone]`,
             form.employer_phone,
           )
-          formData.append(`experiences[${index}][start_date]`, form.start_date.toISOString())
-          formData.append(`experiences[${index}][end_date]`, form.end_date.toISOString())
+          formData.append(
+            `experiences[${index}][start_date]`,
+            form.start_date.toISOString(),
+          )
+          formData.append(
+            `experiences[${index}][end_date]`,
+            form.end_date.toISOString(),
+          )
           formData.append(`experiences[${index}][image]`, form.image)
         })
 

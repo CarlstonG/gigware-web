@@ -7,6 +7,7 @@
             name="rates_per_run"
             label="What does your team charge per cable run?"
             :disabled="formLocked"
+            class="required"
           >
             <div class="d-flex align-items-center">
               <span class="mr-2">$</span>
@@ -20,6 +21,7 @@
             name="city"
             label="Your city"
             :disabled="formLocked"
+            class="required"
           >
             <b-form-input
               v-model.trim.lazy="form.address.city"
@@ -30,6 +32,7 @@
             name="work_radius"
             label="What mile radius beyond your city will your team work?"
             :disabled="formLocked"
+            class="required"
           >
             <div class="d-flex align-items-center">
               <b-form-input

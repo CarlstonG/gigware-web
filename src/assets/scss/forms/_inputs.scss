@@ -3,3 +3,32 @@
     justify-content: start;
   }
 }
+
+.form-group {
+  .col-form-label {
+    color: $input-label;
+  }
+  .form-control {
+    background-color: $dirty-white;
+    &[type="text"] {
+      height: 48px;
+    }
+  }
+  &.required {
+    .col-form-label:after {
+      content: ' *';
+      color: $error;
+    }
+  }
+  &.is-invalid {
+    .col-form-label {
+      color: $error;
+    }
+    .form-control {
+      border-color: $error;
+    }
+    .invalid-feedback {
+      color: $error;
+    }
+  }
+}

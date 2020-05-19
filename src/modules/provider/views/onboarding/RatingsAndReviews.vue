@@ -30,7 +30,13 @@
             </validated-b-form-group>
           </b-col>
         </b-row>
-        <steps-footer :loading="formLocked" :state="formState" />
+        <steps-footer
+          :loading="formLocked"
+          :state="formState"          
+          :optional="true"
+          next-btn-text="Send & Next"
+          @skip="goToNextStep"
+        />
       </b-form>
     </validated-b-form-wrapper>
   </div>
@@ -55,12 +61,15 @@
     validations: validations.onboarding.ratingsAndReviews,
     methods: {
       ...mapActions('provider', ['createReviewRequest']),
+      goToNextStep() {
+        this.$router.push({
+          name: 'provider.onboarding.confirmation',
+        })
+      },
       sendRequest() {
         this.createReviewRequest(this.prepareData())
           .then(() => {
-            this.$router.push({
-              name: 'provider.onboarding.confirmation',
-            })
+            this.goToNextStep()
           })
           .catch(error => {
             this.handleServerError(error)
@@ -72,7 +81,7 @@
       prepareData() {
         let data = { email_template: this.form.email_template, emails: [] }
         this.form.emails.forEach(current => {
-          data.emails.push(current.email);
+          data.emails.push(current.email)
         })
         return data
       },
