@@ -5,7 +5,7 @@
         <b-col lg="6" class="pr-5">
           <validated-b-form-group
             name="rates_per_run"
-            label="What does your team charge per cable run?"
+            label="At a minimum, what does your team charge per cable run?"
             :disabled="formLocked"
             class="required"
           >

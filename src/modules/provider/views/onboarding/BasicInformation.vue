@@ -65,7 +65,9 @@
             >
               <template #no-image="{ openFileDialog }">
                 <div class="pt-5 pb-5">
-                  <div class="mb-2"><svg-icon name="upload_icon" width="30" /></div>
+                  <div class="mb-2">
+                    <svg-icon name="upload_icon" width="30" />
+                  </div>
                   <div class="mb-3">Drag an Image to upload</div>
                   <b-button variant="primary" size="sm" @click="openFileDialog">
                     Choose an Image
@@ -73,10 +75,14 @@
                 </div>
               </template>
               <template #image-uploaded="{ src, openFileDialog }">
-                <img
+                <vue-cropper
+                  ref="cropper"
                   :src="src"
-                  class="w-100 h-auto"
-                  style="object-fit: contain; max-height: 200px"
+                  :img-style="{ 'obect-fit': 'contain', 'max-height': '200px' }"
+                  :modal="false"
+                  :guides="false"
+                  :background="false"
+                  :aspect-ratio="'1:1'"
                 />
                 <b-button
                   variant="primary"

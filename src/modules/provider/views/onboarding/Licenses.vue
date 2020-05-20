@@ -11,12 +11,16 @@
           class="mr-5 justify-content-start"
           style="min-width: 320px"
         >
-          <b-form-input
-            v-model.trim.lazy="certificate.name"
-            class="mr-2 w-100"
-            :disabled="!certificate.checked"
-            v-if="certificate.isCustom"
-          />
+          <div v-if="certificate.isCustom" class="position-relative">
+            <b-form-input
+              v-model.trim.lazy="certificate.name"
+              class="mr-2 w-100"
+              :disabled="!certificate.checked"
+            />
+            <b-link @click="removeCertificate(index)" style="position: absolute; top: 5px; right: -20px;">
+              <svg-icon name="close_icon" color="red" width="8" height="8" />
+            </b-link>
+          </div>
           <span v-else>{{ certificate.name }}</span>
         </b-form-checkbox>
 
@@ -124,10 +128,7 @@
             `certificates[${index}][team_members_count]`,
             certificate.team_members_count,
           )
-          form.append(
-            `certificates[${index}][name]`,
-            certificate.name,
-          )
+          form.append(`certificates[${index}][name]`, certificate.name)
           certificate.images.map(image => {
             form.append(`certificates[${index}][images][]`, image.file)
           })
@@ -160,6 +161,9 @@
 
         this.certificates.push(certificate)
       },
+      removeCertificate(index) {
+        this.certificates.splice(index, 1)
+      }
     },
     computed: {
       checkedCertificates() {
