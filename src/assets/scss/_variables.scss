@@ -2,10 +2,13 @@
 $text-color: #070f18;
 $text-dark: #304445;
 $text-muted: #718096;
+$color-gray: #707070;
 $color-gray-light: #BCBCBC;
+$color-gray-lighter: #E2E8F0;
 $color-availability: #D5EBF8;
 $color-job-employer-name: #0F4F85;
-$color-review-card-border: #4293D5;
+$color-blue-borders: #4293D5;
+$modal-footer-close-text-color: #718096;
 
 $primary: #1994db;
 $primary-dark: #582772;
@@ -31,8 +34,8 @@ $navbar-light-color: $text-color;
 $navbar-nav-link-padding-x: 1.5rem;
 
 $container-max-widths: (
-  sm: 540px,
-  md: 720px,
-  lg: 960px,
-  xl: 1380px,
+        sm: 540px,
+        md: 720px,
+        lg: 960px,
+        xl: 1380px,
 );

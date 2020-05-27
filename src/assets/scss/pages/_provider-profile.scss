@@ -5,18 +5,14 @@
   padding: 50px 0;
 
   :focus { // remove all focus
-    outline:none;
+    outline: none;
   }
 
-  @include media-breakpoint-up(md) {
+  @include media-breakpoint-up(xl) {
     background-image: url(/images/profile_background_elements_left.png), url(/images/profile_background_elements_right.png);
     background-position: left bottom 20%, right top 27%;
     background-repeat: no-repeat, no-repeat;
     background-size: 842px 1078px, 842px 1078px;
-  }
-
-  h2, h3, h4, h5 {
-    font-family: $font-family-alternative;
   }
 
   > .content > section {
@@ -334,7 +330,7 @@
 
   .review-card {
     display: flex;
-    border: 1px solid $color-review-card-border;
+    border: 1px solid $color-blue-borders;
     padding: 2rem;
     font-family: Roboto, serif;
     margin-bottom: 2rem;

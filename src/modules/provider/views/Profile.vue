@@ -5,10 +5,10 @@
         <section>
           <div class="icon-card">
             <div class="icon-card-icon">
-              <b-avatar :src="profile.user.images.data.length ? profile.user.images.data[0].url : ''"></b-avatar>
+              <b-avatar :src="profile.user.images && profile.user.images.data.length ? profile.user.images.data[0].url : ''"></b-avatar>
             </div>
             <div class="profile-data">
-              <h2 class="company-title">{{ profile.company_name }}</h2>
+              <h2 class="company-title title">{{ profile.company_name }}</h2>
               <div class="icon-card">
                 <svg-icon name="icon_team_lead" class="icon-card-icon"/>
                 <span class="label">{{ profile.user.first_name }} {{ profile.user.last_name }}</span>
@@ -79,7 +79,9 @@
                   <div class="title">{{profile.certificates.data.length}}
                     <span class="muted">/{{profile.certificates.data.length}}</span>
                   </div>
-                  <div class="subtitle"><a href="#">Verified Credentials</a></div>
+                  <div class="subtitle">
+                    <a href="#" v-on:click="showProofOfInsurance($event)">Verified Credentials</a>
+                  </div>
                 </div>
               </div>
             </b-col>
@@ -88,7 +90,7 @@
                 <svg-icon name="icon_certs" class="icon-card-icon"/>
                 <div>
                   <div class="title">&nbsp;</div>
-                  <div class="subtitle"><a href="#">Prof of Insurance</a></div>
+                  <div class="subtitle"><a href="#" v-on:click="showProofOfInsurance($event)">Prof of Insurance</a></div>
                 </div>
               </div>
             </b-col>
@@ -125,7 +127,7 @@
 
         <div class="completed_jobs-gallery" v-if="profile.experiences.data.length">
           <b-row>
-            <b-col cols="12" md="3" class="completed_jobs-gallery-data">
+            <b-col cols="12" lg="4" class="completed_jobs-gallery-data">
               <hooper group="group1" :settings="hooperNoEvents">
                 <slide v-for="item in profile.experiences.data" :key="item.id">
                   <h3 class="title">{{item.job_location}},</h3>
@@ -144,7 +146,7 @@
                 </hooper-navigation>
               </hooper>
             </b-col>
-            <b-col cols="12" md="9" class="completed_jobs-gallery-images">
+            <b-col cols="12" lg="8" class="completed_jobs-gallery-images">
               <div class="completed_jobs-gallery-images-container">
                 <hooper group="group1" :itemsToShow="$screens({ default: 1.5, lg: 2.25 })">
                   <slide v-for="item in profile.experiences.data" :key="item.id">
@@ -199,6 +201,8 @@
 
     </b-container>
 
+    <proof-of-insuarence-modal v-model="proofOfInsuranceData" />
+
     <site-footer/>
   </div>
 </template>
@@ -208,9 +212,10 @@
   import { mapActions, mapState } from "vuex";
   import { Hooper, Slide, Navigation as HooperNavigation } from 'hooper';
   import 'hooper/dist/hooper.css';
+  import ProofOfInsuarenceModal from "../components/ProofOfInsuranceModal";
 
   export default {
-    components: { SiteFooter, Hooper, Slide, HooperNavigation },
+    components: { ProofOfInsuarenceModal, SiteFooter, Hooper, Slide, HooperNavigation },
     data: () => ({
       ratingValue: 4.5,
       hooperNoEvents: {
@@ -219,13 +224,21 @@
         wheelControl: false,
         keysControl: false,
         shortDrag: false,
-      }
+      },
+      proofOfInsuranceData: null
     }),
     methods: {
       ...mapActions('provider', ['profileRequest']),
       scrollToTop(e) {
         e.preventDefault();
         window.scrollTo(0, 0);
+      },
+      showProofOfInsurance(e) {
+        e.preventDefault();
+        // send new observer each time
+        this.proofOfInsuranceData = Object.assign({}, this.provider_profile.certificates.data[
+          0//Math.floor(Math.random() * this.provider_profile.certificates.data.length)
+          ]) || {};
       }
     },
     computed: {
