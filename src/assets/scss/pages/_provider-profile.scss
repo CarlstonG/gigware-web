@@ -113,7 +113,24 @@
       font-size: 1rem;
     }
 
-    @include media-breakpoint-up(md) {
+    .phone-button {
+      margin-top: 1rem;
+      padding: 1.5rem 3.5rem;
+    }
+
+    @include media-breakpoint-down(md) {
+      .phone-button {
+        position: fixed;
+        left: 1.5rem;
+        right: 1.5rem;
+        bottom: 2.5rem;
+        box-shadow: 0 5px 10px #71809683;
+        z-index: 5;
+        margin: 0;
+        padding: 1rem 0;
+      }
+    }
+      @include media-breakpoint-up(md) {
       svg {
         @include size(48px !important);
         margin-right: 21px;

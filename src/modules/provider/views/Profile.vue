@@ -17,6 +17,7 @@
                 <svg-icon name="icon_location" class="icon-card-icon"/>
                 <span class="label">{{ profile.address.street_address }}</span>
               </div>
+              <a :href="'tel:' + profile.phone" class="btn btn-primary phone-button">Contact|{{ profile.phone }}</a>
             </div>
           </div>
         </section>
@@ -29,7 +30,7 @@
               <div class="icon-card">
                 <svg-icon name="icon_reviews" class="icon-card-icon"/>
                 <div>
-                  <div class="title">47.5<span class="muted">/5</span></div>
+                  <div class="title">4.5<span class="muted">/5</span></div>
                   <div class="subtitle"><a href="#reviews-anchor">Reviews 5</a></div>
                 </div>
               </div>
@@ -75,8 +76,9 @@
               <div class="icon-card">
                 <svg-icon name="icon_verified_credentials" class="icon-card-icon"/>
                 <div>
-                  <div class="title">{{profile.certificates.data.length}}<span
-                      class="muted">/{{profile.team_size}}</span></div>
+                  <div class="title">{{profile.certificates.data.length}}
+                    <span class="muted">/{{profile.certificates.data.length}}</span>
+                  </div>
                   <div class="subtitle"><a href="#">Verified Credentials</a></div>
                 </div>
               </div>
