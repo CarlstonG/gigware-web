@@ -4,6 +4,10 @@
   justify-content: center;
   padding: 50px 0;
 
+  :focus { // remove all focus
+    outline:none;
+  }
+
   @include media-breakpoint-up(md) {
     background-image: url(/images/profile_background_elements_left.png), url(/images/profile_background_elements_right.png);
     background-position: left bottom 20%, right top 27%;
