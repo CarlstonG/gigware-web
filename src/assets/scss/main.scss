@@ -13,12 +13,19 @@
 
 @import 'vendor/index';
 
+// Text
+@import "text";
+
+// Elements
+@import "elements";
+
 // Forms
 @import 'forms/b-progress-button';
 @import 'forms/inputs';
 @import 'button';
 
 // Pages
+@import "pages";
 @import 'global';
 @import 'auth';
 @import 'onboarding/index';

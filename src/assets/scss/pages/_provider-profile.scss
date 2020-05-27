@@ -1,0 +1,390 @@
+.provider-profile {
+  background-size: cover;
+  min-height: 600px;
+  justify-content: center;
+  padding: 50px 0;
+
+  @include media-breakpoint-up(md) {
+    background-image: url(/images/profile_background_elements_left.png), url(/images/profile_background_elements_right.png);
+    background-position: left bottom 20%, right top 27%;
+    background-repeat: no-repeat, no-repeat;
+    background-size: 842px 1078px, 842px 1078px;
+  }
+
+  h2, h3, h4, h5 {
+    font-family: $font-family-alternative;
+  }
+
+  > .content > section {
+    padding: 0 22px;
+
+    .title {
+      font-size: 1.4rem;
+      font-weight: bold;
+      margin-bottom: .25rem;
+    }
+
+    .description {
+      margin-bottom: 1rem;
+    }
+
+    @include media-breakpoint-up(md) {
+      padding: 0 50px;
+
+      .title {
+        font-size: 2rem;
+        margin-bottom: 1rem;
+      }
+
+      .description {
+        font-size: 1.25rem;
+        margin-bottom: 2rem;
+      }
+    }
+  }
+
+  hr {
+    margin: 1.25rem .1rem;
+    border: 0;
+    border-top: 1px solid rgba($color-gray-light, 0.5);
+
+    @include media-breakpoint-up(md) {
+      margin: 2.25rem .1rem;
+    }
+  }
+
+  .badge {
+    display: inline-block;
+    position: relative;
+    top: 2px;
+    margin-right: .5rem;
+    border-radius: 100px;
+    padding: 0;
+  }
+
+  .b-avatar {
+    margin-top: -.25rem;
+    @include size(75px !important);
+
+    @include media-breakpoint-up(md) {
+      @include size(125px !important);
+      margin-top: -1rem;
+      margin-right: 2rem;
+    }
+
+    @include media-breakpoint-up(lg) {
+      @include size(200px !important);
+    }
+
+    img {
+      width: 100%;
+      height: 100%;
+    }
+  }
+
+  .company-title {
+    text-align: left;
+    font-size: 1.2rem;
+    font-weight: bold;
+    letter-spacing: 0;
+    margin-bottom: .5rem;
+
+    @include media-breakpoint-up(md) {
+      margin-bottom: 1rem;
+      font-size: 2rem;
+    }
+  }
+
+  .profile-data {
+    .icon-card {
+      margin-bottom: .5rem;
+    }
+
+    svg {
+      @include size(22px);
+      margin-right: 10px;
+    }
+
+    .label {
+      font-size: 1rem;
+    }
+
+    @include media-breakpoint-up(md) {
+      svg {
+        @include size(48px !important);
+        margin-right: 21px;
+      }
+
+      .label {
+        font-size: 1.75rem;
+      }
+    }
+  }
+
+  .props .icon-card {
+    margin: .5rem 0;
+
+    svg.icon-card-icon {
+      @include size(32px);
+      margin-top: .5rem;
+    }
+
+    .title {
+      font-weight: bold;
+      font-size: 1.3rem;
+    }
+
+    .subtitle {
+      color: $text-muted;
+    }
+
+    @include media-breakpoint-up(md) {
+      svg.icon-card-icon {
+        @include size(60px);
+      }
+
+      .title {
+        font-size: 2rem;
+      }
+
+      .subtitle {
+        margin-top: -1rem;
+        font-size: 1.5rem;
+      }
+    }
+  }
+
+  .about {
+    .props .icon-card {
+      .title {
+        min-height: 1.5rem;
+      }
+
+      svg.icon-card-icon {
+        @include size(45px);
+
+        @include media-breakpoint-up(md) {
+          @include size(75px);
+        }
+      }
+    }
+  }
+
+  .availability {
+    .title {
+      margin-bottom: 1.5rem;
+    }
+
+    .badge {
+      background: $color-availability;
+      width: 2.5rem;
+      height: 1rem;
+    }
+  }
+
+  .completed_jobs {
+    margin-bottom: 2rem;
+
+    @include media-breakpoint-up(md) {
+      margin-bottom: 4rem;
+    }
+
+    > .title {
+      margin-bottom: 2rem;
+    }
+  }
+
+  .completed_jobs-gallery {
+    .hooper {
+      height: auto;
+
+      &-list {
+        padding-left: 2px; // is left somewhere
+      }
+
+      &-navigation {
+        margin-top: 1rem;
+
+        @include media-breakpoint-up(md) {
+          position: relative;
+          top: -32px; // icon size
+          left: 22px;
+        }
+      }
+
+      &-next, &-prev {
+        display: inline-block;
+        position: relative;
+        top: 0;
+
+        svg {
+          @include size(16px);
+
+          @include media-breakpoint-up(md) {
+            @include size(32px);
+          }
+        }
+      }
+    }
+
+    &-data {
+      font-size: 1rem;
+
+      @include media-breakpoint-up(md) {
+        font-size: 1.25rem;
+      }
+
+      .hooper-slide {
+        padding: 0 22px 0 17px; // left 22 subtract bootstrap 15px padding
+        @include media-breakpoint-up(md) {
+          padding: 0 0 0 50px;
+          height: 569px;
+        }
+      }
+
+      .title {
+        font-weight: bold;
+        margin-bottom: 2rem;
+      }
+
+      .description {
+        margin-bottom: 2rem;
+      }
+
+      .employer-name {
+        font-weight: bold;
+        margin-bottom: 0;
+        color: $color-job-employer-name;
+      }
+
+      .icon-card {
+        margin: 2rem 0;
+
+        svg.icon-card-icon {
+          @include size(24px);
+          @include media-breakpoint-up(md) {
+            @include size(34px);
+          }
+        }
+      }
+    }
+
+    &-images {
+      &-container {
+        padding-left: 22px;
+        @include media-breakpoint-up(md) {
+          padding-left: 50px;
+        }
+      }
+
+      .hooper-list {
+        margin-left: -.25rem;
+        width: calc(100% + .25rem);
+      }
+
+      .hooper-slide {
+        height: 337px;
+        padding: 0 .25rem;
+
+        @include media-breakpoint-up(md) {
+          height: 569px;
+          padding: 0 .5rem;
+        }
+
+        .bg-image {
+          height: 100%;
+          width: 100%;
+          background-size: cover;
+        }
+      }
+    }
+  }
+
+  .reviews {
+    .title {
+      margin-bottom: 2rem !important;
+    }
+
+    .view-all {
+      text-align: right;
+      font-size: 125%;
+    }
+  }
+
+  .review-card {
+    display: flex;
+    border: 1px solid $color-review-card-border;
+    padding: 2rem;
+    font-family: Roboto, serif;
+    margin-bottom: 2rem;
+    background: $white;
+
+    .quotes-icon {
+      margin: -.5rem .8rem 0 -.75rem;
+      width: 100px;
+      height: 40px;
+    }
+
+    &-body {
+      .description {
+        font-style: italic;
+      }
+
+      .description,
+      .b-rating {
+        margin-bottom: 1.5rem;
+      }
+
+      .b-rating {
+        padding-left: 0;
+        margin-left: -.25rem;
+      }
+
+      .name {
+        color: $color-job-employer-name;
+        font-weight: bold;
+
+        .badge {
+          top: -5px;
+          background: $color-gray-light;
+          opacity: 0.5;
+          width: 2rem;
+          height: 3px;
+        }
+      }
+    }
+  }
+
+  .verified_credentials {
+    .title {
+      margin-bottom: 2rem !important;
+    }
+
+    > .icon-card {
+      margin-bottom: 1rem;
+
+      > div {
+        flex-grow: 1;
+      }
+
+      svg.icon-card-icon {
+        @include size(32px);
+      }
+    }
+
+    .back-top {
+      text-align: right;
+      margin-top: 3rem;
+      margin-right: 20px;
+
+      .icon-card {
+        display: inline-flex;
+
+        &-icon {
+          position: relative;
+          top: .25rem;
+        }
+      }
+    }
+  }
+}

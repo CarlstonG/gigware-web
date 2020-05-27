@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="19.091" height="20" viewBox="0 0 19.091 20">
+    <defs>
+        <style>.a{fill:#0f4f85;}.b{fill:none;}</style>
+    </defs>
+    <g transform="translate(0 20) rotate(-90)">
+        <g transform="translate(0 19.091) rotate(-90)">
+            <path class="a"
+                  d="M9.039,18.5a1.36,1.36,0,0,1-.972-.412L.4,10.244a1.432,1.432,0,0,1,0-1.993L8.059.413A1.353,1.353,0,0,1,10,.413,1.432,1.432,0,0,1,10,2.4L3.321,9.246l6.69,6.851a1.433,1.433,0,0,1,.3,1.535A1.376,1.376,0,0,1,9.039,18.5Z"
+                  transform="translate(4.2 0.774)"/>
+            <rect class="b" width="19.091" height="20"/>
+        </g>
+    </g>
+</svg>

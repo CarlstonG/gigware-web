@@ -1,0 +1,11 @@
+.icon-card {
+  display: flex;
+
+  svg.icon-card-icon {
+    @include size(16px);
+  }
+
+  &-icon {
+    margin-right: .8rem;
+  }
+}

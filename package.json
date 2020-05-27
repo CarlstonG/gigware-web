@@ -11,9 +11,10 @@
   },
   "dependencies": {
     "axios": "^0.19.2",
-    "bootstrap-vue": "^2.13.1",
+    "bootstrap-vue": "^2.15.0",
     "core-js": "^3.6.4",
     "google-maps-api-loader": "^1.1.1",
+    "hooper": "^0.3.4",
     "v-calendar": "^1.0.6",
     "vue": "^2.6.11",
     "vue-cropperjs": "^4.1.0",

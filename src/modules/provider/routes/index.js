@@ -7,6 +7,7 @@ import Experience from '@/modules/provider/views/onboarding/Experience'
 import InsuranceProof from '@/modules/provider/views/onboarding/InsuranceProof'
 import RatingsAndReviews from '@/modules/provider/views/onboarding/RatingsAndReviews'
 import Confirmation from '@/modules/provider/views/onboarding/Confirmation'
+import Profile from "@/modules/provider/views/Profile";
 
 export default [
   {
@@ -102,5 +103,11 @@ export default [
         },
       },
     ],
+  },
+
+  {
+    path: '/profile/:id',
+    name: 'provider.profile',
+    component: Profile,
   },
 ]

@@ -85,4 +85,17 @@ export default {
         })
     })
   },
+
+  profileRequest(context, id) {
+    return new Promise((resolve, reject) => {
+      api.getProfile(id)
+        .then(({ data }) => {
+          context.commit('SET_BASIC_INFORMATION', data)
+          resolve(data)
+        })
+        .catch(error => {
+          reject(error)
+        })
+    })
+  }
 }

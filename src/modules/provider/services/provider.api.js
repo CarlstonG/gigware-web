@@ -10,4 +10,6 @@ export default {
     createInsurance: form => http.post('/providers/onboarding/insurance', form),
     createReviewRequest: form => http.post('/providers/onboarding/review-requests', form),
   },
+
+  getProfile: (id) => http.get('/providers/provider/' + id)
 }

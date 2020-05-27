@@ -53,6 +53,13 @@ Vue.component('BProgressButton', BProgressButton)
 Vue.use(VCalendar)
 Vue.component('VueCropper', VueCropper)
 
+/*
+ * Filters
+ */
+Vue.filter('bgImage', function (value) {
+  return 'background-image: url(' + value + ');';
+})
+
 Vue.config.productionTip = false
 
 export default new Vue({

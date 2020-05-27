@@ -1,1 +1,3 @@
-export default {}
+export default {
+  profile: (state) => state.provider_profile,
+}
