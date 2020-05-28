@@ -40,7 +40,39 @@
       .nav-link {
         font-weight: 600;
         font-size: 24px;
-        font-family: $font-family-alternative;
+        font-family: $font-family-alternative-bold;
+      }
+    }
+
+    &.account-phone {
+      &.profile-link .nav-link {
+        display: flex;
+        align-items: center;
+        font-family: $font-family-sans-serif;
+        font-size: 14px;
+
+        .b-avatar {
+          margin-right: .75rem;
+        }
+
+        .username {
+          letter-spacing: 0;
+          color: $titles-color;
+          text-transform: uppercase;
+        }
+      }
+
+      &.menu-link .nav-link {
+        padding: 1rem 1rem;
+
+        .icon-card {
+          display: flex;
+          align-items: center;
+        }
+
+        .icon-card-icon {
+          margin-right: 1rem;
+        }
       }
     }
 
@@ -79,10 +111,9 @@
       }
 
       .menu-link {
-        padding: 1rem 1rem;
-
         .icon-card {
           align-items: center;
+          min-width: 240px;
         }
 
         .icon-card-icon {

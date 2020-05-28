@@ -15,7 +15,13 @@
               </div>
               <div class="icon-card">
                 <svg-icon name="icon_location" class="icon-card-icon"/>
-                <span class="label">{{ profile.address.street_address }}</span>
+                <div>
+                  <span class="label">{{ profile.address.street_address }}</span>
+                  <span class="label muted ml-3" v-if="currentGeoLocation && profile.address.lat">
+                    <span class="mr-3">+23{{getDistanceTo([profile.address.lat, profile.address.lng])}}mi</span>
+                    <a class="small" href="#">#See on Map</a>
+                  </span>
+                </div>
               </div>
               <a :href="'tel:' + profile.phone" class="btn btn-primary phone-button">Contact|{{ profile.phone }}</a>
             </div>
@@ -68,7 +74,7 @@
         <hr/>
 
         <section class="about">
-          <h3 class="title">About Us</h3>
+          <h3 class="title">About Us<svg-icon v-if="isAccountProfile" name="edit_selection" width="27" class="ml-4"/></h3>
           <div class="description">{{profile.description}}</div>
 
           <b-row class="props">
@@ -100,7 +106,7 @@
         <hr/>
 
         <section class="availability">
-          <div class="title">Availability</div>
+          <h3 class="title">Availability<svg-icon v-if="isAccountProfile" name="edit_selection" width="27" class="ml-4"/></h3>
           <div class="description"><span class="badge"></span>Unavailable</div>
 
           <b-row>
@@ -213,8 +219,10 @@
   import { Hooper, Slide, Navigation as HooperNavigation } from 'hooper';
   import 'hooper/dist/hooper.css';
   import ProofOfInsuarenceModal from "../components/ProofOfInsuranceModal";
+  import geoLocationMixin from "@/core/mixins/geo-location";
 
   export default {
+    mixins: [geoLocationMixin],
     components: { ProofOfInsuarenceModal, SiteFooter, Hooper, Slide, HooperNavigation },
     data: () => ({
       ratingValue: 4.5,
@@ -225,7 +233,8 @@
         keysControl: false,
         shortDrag: false,
       },
-      proofOfInsuranceData: null
+      proofOfInsuranceData: null,
+      currentGeoLocation: null,
     }),
     methods: {
       ...mapActions('provider', ['profileRequest']),
@@ -239,12 +248,16 @@
         this.proofOfInsuranceData = Object.assign({}, this.provider_profile.certificates.data[
           0//Math.floor(Math.random() * this.provider_profile.certificates.data.length)
           ]) || {};
-      }
+      },
     },
     computed: {
+      ...mapState('auth', ['user']),
       ...mapState('provider', ['provider_profile']),
       profile() {
         return this.provider_profile
+      },
+      isAccountProfile() {
+        return this.user && this.provider_profile && this.user.provider_profile && this.user.provider_profile.id == this.provider_profile.id;
       }
     },
     created() {
