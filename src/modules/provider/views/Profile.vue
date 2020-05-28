@@ -18,7 +18,7 @@
                 <div>
                   <span class="label">{{ profile.address.street_address }}</span>
                   <span class="label muted ml-3" v-if="currentGeoLocation && profile.address.lat">
-                    <span class="mr-3">+23{{getDistanceTo([profile.address.lat, profile.address.lng])}}mi</span>
+                    <span class="mr-3">+{{getDistanceTo([profile.address.lat, profile.address.lng])}}mi</span>
                     <a class="small" href="#">#See on Map</a>
                   </span>
                 </div>
