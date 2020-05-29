@@ -52,8 +52,8 @@
       </b-col>
     </b-row>
 
-    <!--  Card Footer :to="{ name: 'provider.profile', params: { id: profile.id } }"-->
-    <template v-slot:footer>
+    <!--  Card Footer-->
+    <template v-slot:footer :to="{ name: 'provider.profile', params: { id: profile.id } }">
       <b-button variant="light" >
         <div class="icon-card">
           <svg-icon name="eye" class="icon-card-icon"/>
