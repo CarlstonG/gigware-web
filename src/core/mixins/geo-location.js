@@ -14,6 +14,7 @@ const geoOptions = {
 const geoDistanceOptions = { units: 'miles' };
 
 
+// todo: make a module and get to state once. This impl generates as many geo as calls
 export default {
   data: () => ({
     currentGeoLocation: null

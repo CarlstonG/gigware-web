@@ -4,6 +4,7 @@ import createPersistedState from 'vuex-persistedstate'
 
 import auth from '@/modules/auth/store'
 import provider from '@/modules/provider/store'
+import search from '@/modules/search/store'
 
 Vue.use(Vuex)
 
@@ -11,6 +12,7 @@ export default new Vuex.Store({
   modules: {
     auth,
     provider,
+    search
   },
   plugins: [
     createPersistedState({

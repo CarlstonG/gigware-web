@@ -68,6 +68,7 @@
         .icon-card {
           display: flex;
           align-items: center;
+          min-width: $dropdown-menu-min-width;
         }
 
         .icon-card-icon {
@@ -113,7 +114,6 @@
       .menu-link {
         .icon-card {
           align-items: center;
-          min-width: 240px;
         }
 
         .icon-card-icon {

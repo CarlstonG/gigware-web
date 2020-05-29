@@ -1,0 +1,51 @@
+.partners-search {
+  > .search {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: url('/images/partners_search_background.png') no-repeat left;
+    background-color: $dark-blue;
+    background-size: cover;
+    min-height: 222px;
+  }
+
+  > .content {
+    background-color: $content-shaded-color;
+    padding: 1rem 2rem 2rem;
+    min-height: 400px;
+
+    .search-info {
+      display: flex;
+      align-items: center;
+      color: $text-muted;
+      font-size: .85rem;
+      margin-bottom: 1rem;
+
+      .search-text {
+        color: $text-info-color;
+        font-weight: bold;
+        margin-left: .25rem;
+      }
+
+      .clear-filters {
+        color: $text-muted;
+        font-size: .85rem;
+
+        @include hover-focus-active() {
+          box-shadow: none !important;
+          background: transparent;
+        }
+
+        &:active {
+          color: $text-dark;
+        }
+      }
+    }
+
+    .cards {
+      .card {
+        margin-bottom: 1.5rem;
+      }
+    }
+  }
+}
