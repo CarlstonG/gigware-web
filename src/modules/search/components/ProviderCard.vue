@@ -93,7 +93,6 @@
     },
     methods: {
       goToProfile(id) {
-        debugger
         this.$router.push({ name: 'provider.profile', params: { id } });
       }
     }

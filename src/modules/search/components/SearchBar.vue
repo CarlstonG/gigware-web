@@ -107,9 +107,7 @@
           })
       },
       setInnerFilter(item) {
-        debugger;
-        let a = { ...this.filters, search: { field: item.value } }
-        this.updateSearchQueryFilters(a);
+        this.updateSearchQueryFilters({ ...this.filters, search: { field: item.value } });
       }
     },
     computed: {
