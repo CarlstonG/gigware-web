@@ -9,12 +9,13 @@
     <b-container fluid="lg" class="content">
       <div class="search-info">
         Results for <span class="search-text">{{lastSearchQueryText}}</span>
+<!--        <search-filter-tags :options="searchLeftFiltersOptions"/>-->
         <b-button variant="transparent" class="clear-filters" @click="clearSearchQueryFilters">delete filters</b-button>
       </div>
 
       <b-row class="cards" v-if="search_result && search_result.length">
         <b-col cols="12" lg="6" v-for="item in search_result" :key="item.id">
-          <provider-card :v-model="item"></provider-card>
+          <provider-card :value="item"></provider-card>
         </b-col>
       </b-row>
 
