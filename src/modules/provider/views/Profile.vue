@@ -43,7 +43,7 @@
             </b-col>
             <b-col cols="6" md="3">
               <div class="icon-card">
-                <svg-icon name="icon_completed_jobs" class="icon-card-icon"/>
+                <svg-icon name="icon_per_run" class="icon-card-icon"/>
                 <div>
                   <div class="title">${{profile.rates_per_run}}</div>
                   <div class="subtitle">Per run</div>
@@ -61,7 +61,7 @@
             </b-col>
             <b-col cols="6" md="3">
               <div class="icon-card">
-                <svg-icon name="icon_reviews" class="icon-card-icon"/>
+                <svg-icon name="icon_completed_jobs" class="icon-card-icon"/>
                 <div>
                   <div class="title">{{profile.experiences.data.length}}</div>
                   <div class="subtitle"><a href="#completed-jobs-anchor">Completed jobs</a></div>
@@ -233,8 +233,7 @@
         keysControl: false,
         shortDrag: false,
       },
-      proofOfInsuranceData: null,
-      currentGeoLocation: null,
+      proofOfInsuranceData: null
     }),
     methods: {
       ...mapActions('provider', ['profileRequest']),
