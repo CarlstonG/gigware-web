@@ -18,7 +18,7 @@
         </b-col>
       </b-row>
 
-      <div class="next-page-btn-wrapper">
+      <div class="next-page-btn-wrapper" v-if="!search_result || isLoading">
         <b-button variant="primary" :disabled="isLoading" @click="nextPage">
           <template v-if="isLoading">
             <b-spinner small type="grow"></b-spinner>
