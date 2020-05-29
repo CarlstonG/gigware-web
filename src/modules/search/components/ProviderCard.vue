@@ -3,7 +3,9 @@
     <div class="icon-card profile-data">
       <div class="icon-card-icon">
         <b-avatar
-            :src="profile.user.images && profile.user.images.data.length ? profile.user.images.data[0].url : ''"></b-avatar>
+            :src="profile.user.images && profile.user.images.data.length ? profile.user.images.data[0].url : ''"
+            :size="$screens({ default: '54', lg: '108' })"
+        />
       </div>
       <div>
         <h2 class="company-title title">{{ profile.company_name }}</h2>

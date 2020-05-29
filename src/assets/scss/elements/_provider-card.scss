@@ -26,10 +26,8 @@
 
     .b-avatar {
       margin-top: -.25rem;
-      @include size(54px !important);
 
       @include media-breakpoint-up(xl) {
-        @include size(108px !important);
         margin-top: -1rem;
         margin-right: .5rem;
       }
@@ -50,7 +48,7 @@
 
       @include media-breakpoint-up(xl) {
         margin-bottom: 1rem;
-        font-size: 2rem;
+        font-size: 1.85rem;
       }
     }
 
@@ -98,7 +96,7 @@
       }
 
       .label {
-        font-size: 1.75rem;
+        font-size: 1.5rem;
       }
     }
   }
@@ -133,16 +131,16 @@
 
       @include media-breakpoint-up(xl) {
         svg.icon-card-icon {
-          @include size(60px);
+          @include size(36px);
         }
 
         .title {
-          font-size: 2rem;
+          font-size: 1.25rem;
         }
 
         .subtitle {
           margin-top: -1rem;
-          font-size: 1.5rem;
+          font-size: 1rem;
         }
       }
     }
@@ -174,6 +172,15 @@
       .icon-card {
         display: inline-flex;
         align-items: center;
+        font-size: 1.25rem;
+
+        svg.icon-card-icon {
+          @include size(18px);
+
+          @include media-breakpoint-up(xl) {
+            @include size(28px);
+          }
+        }
       }
     }
   }

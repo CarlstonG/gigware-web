@@ -7,15 +7,16 @@
         <span class="chip" v-if="leftFilterCount > 0">{{leftFilterCount}}</span>
       </template>
       <template v-for="(item, i) in leftFilterOptions">
-      <b-dropdown-form :key="i + 'dropdown'">
+        <b-dropdown-form :key="i + 'dropdown'">
           <h4 class="header">{{item.title}}</h4>
           <b-form-radio v-for="option in item.options"
                         :key="option.value"
                         v-model="filters.filter[item.name]"
                         :name="item.name"
-                        :value="option.value">{{option.option}}</b-form-radio>
-      </b-dropdown-form>
-      <b-dropdown-divider v-if="i + 1 < leftFilterOptions.length" :key="i + 'divider'"/>
+                        :value="option.value">{{option.option}}
+          </b-form-radio>
+        </b-dropdown-form>
+        <b-dropdown-divider v-if="i + 1 < leftFilterOptions.length" :key="i + 'divider'"/>
       </template>
     </b-dropdown>
 
@@ -26,27 +27,34 @@
             <span class="select-text">{{innerFilterSelected.option}}</span>
             <svg-icon name="search_carret" :width="$screens({ default: '8', md: '12' })"></svg-icon>
           </template>
-          <b-dropdown-item v-for="item in innerOptions" :key="item.value" @click="setInnerFilter(item)">{{item.option}}</b-dropdown-item>
+          <b-dropdown-item v-for="item in innerOptions" :key="item.value" @click="setInnerFilter(item)">
+            {{item.option}}
+          </b-dropdown-item>
         </b-dropdown>
       </template>
 
-<!--      todo: check "go" on mobile keyboard working-->
-      <b-form-input id="search-input" class="search-input" type="search" v-model="filters.search.text"></b-form-input>
+      <!--      todo: check "go" on mobile keyboard working-->
+      <b-form-input id="search-input" class="search-input" type="search"
+                    v-model="filters.search.text"/>
 
       <template v-slot:append>
-        <b-button type="submit" variant="light" class="submit-sm d-md-none" @click="submit">
-          <svg-icon name="search" width="18"></svg-icon>
+        <b-button type="submit" variant="light" class="submit-sm d-md-none" :disabled="isLoading" @click="submit">
+          <b-spinner small v-if="isLoading"></b-spinner>
+          <svg-icon name="search" v-else></svg-icon>
         </b-button>
 
-        <b-button type="submit" variant="primary" class="submit-md d-none d-md-block" @click="submit">Search</b-button>
+        <b-button type="submit" variant="primary" class="submit-md d-none d-md-block" :disabled="isLoading"
+                  @click="submit">
+          <b-spinner small type="grow" v-if="isLoading"></b-spinner>
+          Search
+        </b-button>
       </template>
     </b-input-group>
   </div>
 </template>
 
 <script>
-
-  import { mapActions } from "vuex";
+  import { mapActions, mapGetters } from "vuex";
 
   export default {
     name: "SearchBar",
@@ -85,19 +93,25 @@
     methods: {
       ...mapActions('search', ['fetchPartnersSearchRequest']),
       submit() {
-        this.fetchPartnersSearchRequest().catch(err => {
-          debugger
-          this.$root.$bvToast.toast(err.message, {
-            toaster: 'b-toaster-top-right',
-            variant: 'danger',
+        if (this.isLoading) return;
+
+        this.fetchPartnersSearchRequest()
+          .then(res => {
+            console.log('fetchPartnersSearchRequest success', res)
           })
-        })
+          .catch(err => {
+            this.$root.$bvToast.toast(err.message, {
+              toaster: 'b-toaster-top-right',
+              variant: 'danger',
+            })
+          })
       },
       setInnerFilter(item) {
-        this.filters = {...this.filters, search: {field: item.value}};
+        this.filters = { ...this.filters, search: { field: item.value } };
       }
     },
     computed: {
+      ...mapGetters('search', ['isLoading', 'searchQuery']),
       innerFilterSelected() {
         if (!this.innerOptions?.length) return null;
         if (!this.filters?.search?.field) return this.innerOptions[0];

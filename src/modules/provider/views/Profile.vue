@@ -5,7 +5,10 @@
         <section>
           <div class="icon-card">
             <div class="icon-card-icon">
-              <b-avatar :src="profile.user.images && profile.user.images.data.length ? profile.user.images.data[0].url : ''"></b-avatar>
+              <b-avatar
+                  :src="profile.user.images && profile.user.images.data.length ? profile.user.images.data[0].url : ''"
+                  :size="$screens({ default: '75', md: '125', xl: '200' })"
+              />
             </div>
             <div class="profile-data">
               <h2 class="company-title title">{{ profile.company_name }}</h2>
@@ -74,7 +77,9 @@
         <hr/>
 
         <section class="about">
-          <h3 class="title">About Us<svg-icon v-if="isAccountProfile" name="edit_selection" width="27" class="ml-4"/></h3>
+          <h3 class="title">About Us
+            <svg-icon v-if="isAccountProfile" name="edit_selection" width="27" class="ml-4"/>
+          </h3>
           <div class="description">{{profile.description}}</div>
 
           <b-row class="props">
@@ -96,7 +101,8 @@
                 <svg-icon name="icon_certs" class="icon-card-icon"/>
                 <div>
                   <div class="title">&nbsp;</div>
-                  <div class="subtitle"><a href="#" v-on:click="showProofOfInsurance($event)">Prof of Insurance</a></div>
+                  <div class="subtitle"><a href="#" v-on:click="showProofOfInsurance($event)">Prof of Insurance</a>
+                  </div>
                 </div>
               </div>
             </b-col>
@@ -106,7 +112,9 @@
         <hr/>
 
         <section class="availability">
-          <h3 class="title">Availability<svg-icon v-if="isAccountProfile" name="edit_selection" width="27" class="ml-4"/></h3>
+          <h3 class="title">Availability
+            <svg-icon v-if="isAccountProfile" name="edit_selection" width="27" class="ml-4"/>
+          </h3>
           <div class="description"><span class="badge"></span>Unavailable</div>
 
           <b-row>
@@ -207,7 +215,7 @@
 
     </b-container>
 
-    <proof-of-insuarence-modal v-model="proofOfInsuranceData" />
+    <proof-of-insuarence-modal v-model="proofOfInsuranceData"/>
 
     <site-footer/>
   </div>
@@ -216,7 +224,7 @@
 <script>
   import { default as SiteFooter } from '@/core/components/global/Footer'
   import { mapActions, mapState } from "vuex";
-  import { Hooper, Slide, Navigation as HooperNavigation } from 'hooper';
+  import { Hooper, Navigation as HooperNavigation, Slide } from 'hooper';
   import 'hooper/dist/hooper.css';
   import ProofOfInsuarenceModal from "../components/ProofOfInsuranceModal";
   import geoLocationMixin from "@/core/mixins/geo-location";

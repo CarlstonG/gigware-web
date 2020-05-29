@@ -64,16 +64,10 @@
 
   .b-avatar {
     margin-top: -.25rem;
-    @include size(75px !important);
 
     @include media-breakpoint-up(md) {
-      @include size(125px !important);
       margin-top: -1rem;
       margin-right: 2rem;
-    }
-
-    @include media-breakpoint-up(lg) {
-      @include size(200px !important);
     }
 
     img {

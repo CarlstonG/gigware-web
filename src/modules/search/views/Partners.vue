@@ -6,17 +6,30 @@
                   :left-filter-options="searchLeftFiltersOptions"
                   :inner-filter-options="searchInnerFiltersOptions"/>
     </b-container>
-    <b-container fluid="" class="content">
+    <b-container fluid="lg" class="content">
       <div class="search-info">
-        Results for <span class="search-text">{{searchQuery.search.text}}</span>
+        Results for <span class="search-text">{{lastSearchQueryText}}</span>
         <b-button variant="transparent" class="clear-filters" @click="clearSearchQueryFilters">delete filters</b-button>
       </div>
 
-      <b-row class="cards">
-        <b-col cols="12" lg="6" v-for="i in 20" :key="i">
-          <provider-card v-model="testProviderCardData"></provider-card>
+      <b-row class="cards" v-if="search_result && search_result.length">
+        <b-col cols="12" lg="6" v-for="item in search_result" :key="item.id">
+          <provider-card :v-model="item"></provider-card>
         </b-col>
       </b-row>
+
+      <div class="next-page-btn-wrapper">
+        <b-button variant="primary" :disabled="isLoading" @click="nextPage">
+          <template v-if="isLoading">
+            <b-spinner small type="grow"></b-spinner>
+            Loading...
+          </template>
+          <template v-else>
+            Next Page
+            <svg-icon name="next_page" width="12"/>
+          </template>
+        </b-button>
+      </div>
     </b-container>
     <site-footer/>
   </div>
@@ -68,65 +81,33 @@
         { option: "Everywhere", value: "all" },
         { option: "Company", value: "company_name" },
         { option: "Zip Code", value: "address" }
-      ],
-      testProviderCardData: {
-        "id": 1,
-        "phone": "+12465071216",
-        "company_name": "Gerhold-Hettinger",
-        "team_size": 9,
-        "rates_per_run": 250,
-        "work_radius": 75,
-        "description": "Corrupti quaerat amet vero laudantium laborum. Ut et consequatur ad quis ut. Recusandae hic qui veniam et aut iusto pariatur autem. Eum asperiores debitis in deleniti natus.",
-        "address": {
-          "id": 1,
-          "street_address": "919 Elmer Forge Suite 405",
-          "city": "Lake Ethylshire",
-          "suite": null,
-          "zip_code": "540859",
-          "lat": "59.960357",
-          "lng": "-71.987991"
-        },
-        "user": {
-          "first_name": "Ardith",
-          "last_name": "Dietrich",
-          "images": {
-            "data": [
-              {
-                "id": 1,
-                "path": "providers",
-                "name": "8rhbuZSiK1xujzinKvOTyZY5AwSOwURgWMDPOsHc",
-                "filename": "8rhbuZSiK1xujzinKvOTyZY5AwSOwURgWMDPOsHc.jpeg",
-                "full_path": "providers/8rhbuZSiK1xujzinKvOTyZY5AwSOwURgWMDPOsHc.jpeg",
-                "url": "http://localhost/storage/images/providers/8rhbuZSiK1xujzinKvOTyZY5AwSOwURgWMDPOsHc.jpeg",
-                "ext": "jpeg",
-                "pos": 1
-              }
-            ]
-          }
-        }
-      }
+      ]
     }),
     methods: {
       ...mapActions('search', ['fetchPartnersSearchRequest', 'clearSearchQueryFilters']),
-      fetch() {
-        // todo: go search
-      },
       nextPage() {
         // todo: next page
       },
     },
     computed: {
-      ...mapState('search', ['search_result', 'search_query']),
-      ...mapGetters('search', ['queryFiltersCount']),
-      searchResult() {
-        return this.search_result
-      },
-      searchQuery() {
-        return this.search_query
-      },
+      ...mapState('search', ['search_result']),
+      ...mapGetters('search', ['queryFiltersCount', 'isLoading', 'searchQuery', 'lastSearchQuery']),
+      lastSearchQueryText() {
+        return this.lastSearchQuery.search.text
+      }
+    },
+    watch: {
+      isLoading(ov, nv) {
+        console.log(ov, nv);
+      }
     },
     created() {
-    },
+      if (!this.search_result?.length) {
+        this.fetchPartnersSearchRequest().then(res => {
+          console.log('fetchPartnersSearchRequest success', res)
+        });
+      }
+    }
   }
 </script>
 
