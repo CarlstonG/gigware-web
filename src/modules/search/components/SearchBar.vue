@@ -91,7 +91,7 @@
       }
     },
     methods: {
-      ...mapActions('search', ['fetchPartnersSearchRequest']),
+      ...mapActions('search', ['fetchPartnersSearchRequest', 'updateSearchQueryFilters']),
       submit() {
         if (this.isLoading) return;
 
@@ -107,7 +107,9 @@
           })
       },
       setInnerFilter(item) {
-        this.filters = { ...this.filters, search: { field: item.value } };
+        debugger;
+        let a = { ...this.filters, search: { field: item.value } }
+        this.updateSearchQueryFilters(a);
       }
     },
     computed: {

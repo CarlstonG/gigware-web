@@ -7,6 +7,10 @@ export default {
     }
   },
 
+  UPDATE_SEARCH_QUERY_FILTERS(state, newValue) {
+    state.search_query = Object.assign({}, newValue);
+  },
+
   CLEAR_SEARCH_QUERY_FILTERS(state) {
     Object.keys(state.search_query.filter).forEach((k) => state.search_query.filter[k] = '');
   },

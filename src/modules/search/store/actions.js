@@ -1,6 +1,9 @@
 import api from "@/modules/search/services/search.api";
 
 export default {
+  updateSearchQueryFilters(context, newValue) {
+    context.commit('UPDATE_SEARCH_QUERY_FILTERS', newValue);
+  },
   clearSearchQueryFilters(context) {
     context.commit('CLEAR_SEARCH_QUERY_FILTERS');
   },
