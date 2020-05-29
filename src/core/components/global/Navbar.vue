@@ -81,10 +81,11 @@
             size="lg"
             class="d-none d-lg-block ml-lg-4"
             v-if="isLoggedIn"
+            :to="{ name: 'search-partners' }"
           >
             View Partners
           </b-button>
-          <b-nav-item class="mt-5 mt-lg-0 d-sm-block d-lg-none text-primary">
+          <b-nav-item class="mt-3 mt-lg-0 d-sm-block d-lg-none text-primary" :to="{ name: 'search-partners' }">
             View Partners
           </b-nav-item>
         </b-navbar-nav>

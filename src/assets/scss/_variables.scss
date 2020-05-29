@@ -9,9 +9,12 @@ $color-availability: #D5EBF8;
 $color-job-employer-name: #0F4F85;
 $color-blue-borders: #4293D5;
 $modal-footer-close-text-color: #718096;
+$search-inner-border: #718096;
+$color-blue-card-link: #4293D5;
 
 $titles-color: #070f18de;
 $link-color: #0f4f85;
+$text-info-color: #0f4f85;
 
 $primary: #1994db;
 $primary-dark: #582772;
@@ -30,6 +33,7 @@ $light-blue: #D0F3FF;
 $input-label: #4A5568;
 
 $box-shadow-color: #7180964F;
+$content-shaded-color: #EDF2F7;
 
 $font-family-sans-serif: 'Roboto';
 $font-family-alternative-bold: 'PT Sans Narrow';
@@ -45,3 +49,5 @@ $container-max-widths: (
         lg: 960px,
         xl: 1380px,
 );
+
+$dropdown-menu-min-width: 249px;

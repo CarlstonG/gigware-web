@@ -5,6 +5,7 @@ import Home from '@/core/views/Home'
 // Auth
 import authRoutes from '@/modules/auth/routes'
 import providerRoutes from '@/modules/provider/routes'
+import searchRoutes from '@/modules/search/routes'
 
 Vue.use(VueRouter)
 
@@ -16,6 +17,7 @@ const routes = [
   },
   ...authRoutes,
   ...providerRoutes,
+  ...searchRoutes
 ]
 
 export default new VueRouter({

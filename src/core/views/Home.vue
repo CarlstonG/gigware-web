@@ -140,7 +140,7 @@
           </b-col>
         </b-row>
         <div class="view-partners">
-          <b-button>
+          <b-button :to="{ name: 'search-partners' }">
             <span>View Partners</span>
             <svg-icon name="arrow_right" width="15" height="15" />
           </b-button>
