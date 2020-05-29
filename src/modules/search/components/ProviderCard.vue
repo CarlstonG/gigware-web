@@ -53,8 +53,8 @@
     </b-row>
 
     <!--  Card Footer-->
-    <template v-slot:footer :to="{ name: 'provider.profile', params: { id: profile.id } }">
-      <b-button variant="light" >
+    <template v-slot:footer>
+      <b-button variant="light" @click="goToProfile(profile.id)" >
         <div class="icon-card">
           <svg-icon name="eye" class="icon-card-icon"/>
           <span>View Profile</span>
@@ -89,6 +89,12 @@
     computed: {
       userAvatarUrl() {
         return this.profile?.user?.images?.data?.length ? this.profile.user.images.data[0].url : '';
+      }
+    },
+    methods: {
+      goToProfile(id) {
+        debugger
+        this.$router.push({ name: 'provider.profile', params: { id } });
       }
     }
   }
