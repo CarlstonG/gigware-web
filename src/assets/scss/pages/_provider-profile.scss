@@ -64,6 +64,7 @@
 
   .b-avatar {
     margin-top: -.25rem;
+    background-color: $color-gray-lighter;
 
     @include media-breakpoint-up(md) {
       margin-top: -1rem;

@@ -270,6 +270,9 @@
     created() {
       this.profileRequest(this.$route.params.id);
     },
+    mounted() {
+      window.scrollTo(0, 0);
+    }
   }
 </script>
 

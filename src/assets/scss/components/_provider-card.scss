@@ -25,6 +25,7 @@
     }
 
     .b-avatar {
+      background-color: $color-gray-lighter;
       margin-top: -.25rem;
 
       @include media-breakpoint-up(xl) {
@@ -61,7 +62,7 @@
       align-items: center;
     }
 
-    svg {
+    svg.icon-card-icon {
       @include size(22px);
       margin-right: 10px;
     }
