@@ -88,13 +88,19 @@ export default {
 
   profileRequest(context, id) {
     return new Promise((resolve, reject) => {
+      // search every request to hold updated profile_id
+      context.commit('SET_PROVIDER_PROFILE_STATE', true);
+
       api.getProfile(id)
         .then(({ data }) => {
-          context.commit('SET_BASIC_INFORMATION', data)
+          context.commit('SET_PROVIDER_PROFILE', data)
           resolve(data)
         })
         .catch(error => {
           reject(error)
+        })
+        .finally(() => {
+          context.commit('SET_PROVIDER_PROFILE_STATE', false);
         })
     })
   }

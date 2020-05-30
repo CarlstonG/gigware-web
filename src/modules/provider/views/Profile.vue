@@ -1,7 +1,7 @@
 <template>
   <div>
     <b-container fluid="sm" class="provider-profile">
-      <div class="content" v-if="profile">
+      <div class="content" v-if="!isLoading && profile">
         <section>
           <div class="icon-card">
             <div class="icon-card-icon">
@@ -223,7 +223,7 @@
 
 <script>
   import { default as SiteFooter } from '@/core/components/global/Footer'
-  import { mapActions, mapState } from "vuex";
+  import { mapActions, mapGetters, mapState } from "vuex";
   import { Hooper, Navigation as HooperNavigation, Slide } from 'hooper';
   import 'hooper/dist/hooper.css';
   import ProofOfInsuarenceModal from "../components/ProofOfInsuranceModal";
@@ -260,6 +260,7 @@
     computed: {
       ...mapState('auth', ['user']),
       ...mapState('provider', ['provider_profile']),
+      ...mapGetters('provider', ['isLoading']),
       profile() {
         return this.provider_profile
       },
