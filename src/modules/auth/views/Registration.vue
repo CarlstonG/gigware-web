@@ -14,7 +14,7 @@
         <customer-registration-form v-else />
         <div class="mt-5">
           Want to
-          <b-link>Sign in</b-link>
+          <b-link :to="{ name: 'login' }">Sign in</b-link>
           instead?
         </div>
       </div>
@@ -27,6 +27,7 @@
   import { default as SiteFooter } from '@/core/components/global/Footer'
   import ProviderRegistrationForm from '../components/ProviderRegistrationForm'
   import CustomerRegistrationForm from '../components/CustomerRegistrationForm'
+
   export default {
     components: { SiteFooter, ProviderRegistrationForm, CustomerRegistrationForm },
     data: () => ({
