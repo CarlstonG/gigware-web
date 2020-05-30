@@ -5,7 +5,6 @@ import store from '@/core/store'
 import { BootstrapVue } from 'bootstrap-vue'
 import Vuelidate from 'vuelidate'
 import VuelidateErrorExtractor, { templates } from 'vuelidate-error-extractor'
-import VueGeolocation from 'vue-browser-geolocation';
 import ValidatedBFormGroup from '@/core/components/forms/ValidatedBFormGroup'
 import BProgressButton from '@/core/components/forms/BProgressButton'
 import VCalendar from 'v-calendar'
@@ -17,7 +16,6 @@ import './assets/scss/main.scss'
 import 'cropperjs/dist/cropper.css'
 
 Vue.use(BootstrapVue)
-Vue.use(VueGeolocation);
 Vue.use(VueSVGIcon, {
   tagName: 'svg-icon',
   classPrefix: 'gigwire',
