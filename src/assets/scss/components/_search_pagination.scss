@@ -1,0 +1,40 @@
+.search-pagination {
+  display: flex;
+  align-items: center;
+  height: 100%;
+  font-size: 90%;
+
+  > .text,
+  > strong {
+    margin-right: .3rem;
+  }
+
+  strong {
+    font-weight: normal;
+    color: $text-color;
+  }
+
+  .page-index {
+    display: inline-flex;
+    align-items: center;
+    height: 100%;
+    background-color: $dirty-white;
+    border: 1px solid $search-pagination-border;
+    border-radius: .25rem;
+    padding: .5rem 1rem;
+    margin-right: .25rem;
+  }
+
+  &-navigation {
+    margin-top: -.1rem;
+    padding: 0;
+
+    @include hover-focus-active() {
+      box-shadow: none !important;
+    }
+
+    &:disabled {
+      opacity: 0.35;
+    }
+  }
+}

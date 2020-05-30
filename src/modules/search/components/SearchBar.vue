@@ -95,16 +95,7 @@
       submit() {
         if (this.isLoading) return;
 
-        this.fetchPartnersSearchRequest()
-          .then(res => {
-            console.log('fetchPartnersSearchRequest success', res)
-          })
-          .catch(err => {
-            this.$root.$bvToast.toast(err.message, {
-              toaster: 'b-toaster-top-right',
-              variant: 'danger',
-            })
-          })
+        this.fetchPartnersSearchRequest();
       },
       setInnerFilter(item) {
         this.updateSearchQueryFilters({ ...this.filters, search: { field: item.value } });

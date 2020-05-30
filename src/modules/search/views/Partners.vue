@@ -8,8 +8,10 @@
     </b-container>
     <b-container fluid="lg" class="content">
       <div class="search-info">
-        Results for <span class="search-text">{{lastSearchQueryText}}</span>
+        <div class="search-result-info" v-if="lastSearchQueryText || queryFiltersCount">Results for <span
+            class="search-text">{{lastSearchQueryText}}</span></div>
         <search-filter-tags :options="searchLeftFiltersOptions"/>
+        <search-pagination/>
       </div>
 
       <b-row class="cards" v-if="search_result && search_result.length">
@@ -43,10 +45,11 @@
   import SearchBar from "../components/SearchBar";
   import SearchFilterTags from "../components/SearchFilterTags";
   import ProviderCard from "../components/ProviderCard";
+  import SearchPagination from "../components/SearchPagination";
 
   export default {
     mixins: [geoLocationMixin],
-    components: { ProviderCard, SearchBar, SearchFilterTags, SiteFooter },
+    components: { SearchPagination, ProviderCard, SearchBar, SearchFilterTags, SiteFooter },
     data: () => ({
       searchLeftFiltersOptions: [
         {
@@ -92,21 +95,11 @@
     },
     computed: {
       ...mapState('search', ['search_result']),
-      ...mapGetters('search', ['queryFiltersCount', 'isLoading', 'searchQuery', 'lastSearchQuery']),
-      lastSearchQueryText() {
-        return this.lastSearchQuery.search.text
-      }
-    },
-    watch: {
-      isLoading(ov, nv) {
-        console.log(ov, nv);
-      }
+      ...mapGetters('search', ['queryFiltersCount', 'isLoading', 'searchQuery', 'lastSearchQuery', 'lastSearchQueryText']),
     },
     created() {
       if (!this.search_result?.length) {
-        this.fetchPartnersSearchRequest().then(res => {
-          console.log('fetchPartnersSearchRequest success', res)
-        });
+        this.fetchPartnersSearchRequest();
       }
     }
   }

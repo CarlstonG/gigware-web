@@ -1,10 +1,7 @@
 export default {
   SET_PARTNERS_SEARCH_RESULT(state, data) {
-    if (state.search_result) {
-      state.search_result = Object.assign({}, data)
-    } else {
-      state.search_result = data
-    }
+    state.search_result = data?.data
+    state.search_pagination = data?.meta?.pagination
   },
 
   UPDATE_SEARCH_QUERY_FILTERS(state, newValue) {
@@ -16,7 +13,7 @@ export default {
   },
 
   SET_PARTNERS_SEARCH_SEARCH_QUERY_SUCCEED(state, newValue) {
-    state.search_query = newValue;
+    state.search_query_succeed = JSON.parse(JSON.stringify(newValue)); // without old observers
   },
 
   SET_PARTNERS_SEARCH_SEARCH_STATE(state, isLoading) {

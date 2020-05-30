@@ -25,12 +25,20 @@
       color: $text-muted;
       font-size: .85rem;
       margin-bottom: 1rem;
-      min-height: 2rem;
+      min-height: 3rem;
 
       .search-text {
         color: $text-info-color;
         font-weight: bold;
         margin-left: .25rem;
+      }
+
+      .search-filter-tags {
+        flex-grow: 1;
+      }
+
+      .search-pagination {
+
       }
     }
 
