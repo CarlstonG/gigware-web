@@ -2,6 +2,10 @@
   outline: none;
 }
 
+.b-avatar {
+  background-color: $color-gray-lighter;
+}
+
 .navbar-brand {
   margin-right: 0;
   @include media-breakpoint-up(xs) {
