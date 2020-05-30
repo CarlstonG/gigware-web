@@ -5,6 +5,7 @@ import Home from '@/core/views/Home'
 import authRoutes from '@/modules/auth/routes'
 import providerRoutes from '@/modules/provider/routes'
 import searchRoutes from '@/modules/search/routes'
+import PageNotFound from "../views/PageNotFound";
 
 Vue.use(VueRouter)
 
@@ -14,6 +15,8 @@ const routes = [
     name: 'home',
     component: Home,
   },
+  { path: "*", component: PageNotFound },
+
   ...authRoutes,
   ...providerRoutes,
   ...searchRoutes
