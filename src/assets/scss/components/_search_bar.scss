@@ -160,6 +160,7 @@
   .submit-sm {
     background-color: $white;
     border-left: none;
+    color: $color-blue-borders;
 
     &:hover,
     &:focus,
@@ -168,8 +169,13 @@
     }
 
     &:hover,
-    &:focus {
+    &:focus,
+    &.disabled {
       background-color: $white;
+    }
+
+    &.disabled {
+      opacity: 1;
     }
   }
 

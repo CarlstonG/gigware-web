@@ -37,8 +37,15 @@
         flex-grow: 1;
       }
 
-      .search-pagination {
-
+      @include media-breakpoint-down(md) {
+        .search-filter-tags {
+          &-tag {
+            display: none;
+          }
+        }
+        .search-pagination {
+          display: none;
+        }
       }
     }
 

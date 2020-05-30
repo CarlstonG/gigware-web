@@ -113,11 +113,16 @@
     .icon-card {
       margin: .5rem 0;
       align-items: center;
-      font-size: .9rem;
+      font-size: .75rem;
 
       svg.icon-card-icon {
         @include size(18px);
         margin-right: .5rem;
+      }
+
+      .title,
+      .subtitle {
+        display: block;
       }
 
       .title {
@@ -128,9 +133,21 @@
       .subtitle {
         color: $text-muted;
         margin-left: .25rem;
+        white-space: nowrap;
+      }
+
+      @media (min-width: 400px) {
+        font-size: .9rem;
+
+        .title,
+        .subtitle {
+          display: inline;
+        }
       }
 
       @include media-breakpoint-up(xl) {
+        font-size: .9rem;
+
         svg.icon-card-icon {
           @include size(36px);
         }

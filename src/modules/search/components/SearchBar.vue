@@ -40,7 +40,7 @@
       <template v-slot:append>
         <b-button type="submit" variant="light" class="submit-sm d-md-none" :disabled="isLoading" @click="submit">
           <b-spinner small v-if="isLoading"></b-spinner>
-          <svg-icon name="search" v-else></svg-icon>
+          <svg-icon name="search" width="16" v-else></svg-icon>
         </b-button>
 
         <b-button type="submit" variant="primary" class="submit-md d-none d-md-block" :disabled="isLoading"

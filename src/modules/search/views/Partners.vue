@@ -6,7 +6,7 @@
                   :left-filter-options="searchLeftFiltersOptions"
                   :inner-filter-options="searchInnerFiltersOptions"/>
     </b-container>
-    <b-container fluid="lg" class="content">
+    <b-container id="search-result" fluid="lg" class="content">
       <div class="search-info">
         <div class="search-result-info" v-if="lastSearchQueryText || queryFiltersCount">Results for <span
             class="search-text">{{lastSearchQueryText}}</span></div>
@@ -20,8 +20,11 @@
         </b-col>
       </b-row>
 
-      <div class="next-page-btn-wrapper" v-if="!search_result || isLoading">
-        <b-button variant="primary" :disabled="isLoading" @click="nextPage">
+      <div class="next-page-btn-wrapper"
+           v-if="!search_result || isLoading || (searchPagination && searchPagination.total_pages > 1)">
+        <b-button variant="primary"
+                  :disabled="isLoading || (searchPagination && searchPagination.total_pages == searchPagination.current_page)"
+                  @click="nextPage">
           <template v-if="isLoading">
             <b-spinner small type="grow"></b-spinner>
             Loading...
@@ -88,14 +91,16 @@
       ]
     }),
     methods: {
-      ...mapActions('search', ['fetchPartnersSearchRequest', 'clearSearchQueryFilters']),
+      ...mapActions('search', ['fetchPartnersSearchRequest', 'fetchPartnersSearchNextPageRequest', 'clearSearchQueryFilters']),
       nextPage() {
-        // todo: next page
-      },
+        this.fetchPartnersSearchNextPageRequest().then(() => {
+          document.getElementById('search-result').scrollIntoView();
+        })
+      }
     },
     computed: {
       ...mapState('search', ['search_result']),
-      ...mapGetters('search', ['queryFiltersCount', 'isLoading', 'searchQuery', 'lastSearchQuery', 'lastSearchQueryText']),
+      ...mapGetters('search', ['queryFiltersCount', 'isLoading', 'searchQuery', 'lastSearchQuery', 'lastSearchQueryText', 'searchPagination']),
     },
     created() {
       if (!this.search_result?.length) {
