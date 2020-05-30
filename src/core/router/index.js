@@ -5,6 +5,7 @@ import Home from '@/core/views/Home'
 import authRoutes from '@/modules/auth/routes'
 import providerRoutes from '@/modules/provider/routes'
 import searchRoutes from '@/modules/search/routes'
+import staticRoutes from '@/modules/static/routes'
 import PageNotFound from "../views/PageNotFound";
 
 Vue.use(VueRouter)
@@ -19,7 +20,8 @@ const routes = [
 
   ...authRoutes,
   ...providerRoutes,
-  ...searchRoutes
+  ...searchRoutes,
+  ...staticRoutes
 ]
 
 export default new VueRouter({
