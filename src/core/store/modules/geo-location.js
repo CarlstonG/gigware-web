@@ -23,7 +23,6 @@ export default {
   getters: {
     currentGeoLocation: state => state.current_geo_location,
     getDistanceTo: state => point => {
-      debugger
       if (!state.current_geo_location) return null;
       const dist = distance(state.current_geo_location, point, geoDistanceOptions);
 
@@ -34,16 +33,6 @@ export default {
     initialize({ state, commit }) {
       if (state.initialized) return;
       state.initialized = true;
-
-      console.log('geo api initialization');
-
-      setTimeout(() => {
-        commit('SET_CURRENT_GEO_LOCATION', [45.56, 56.567]);
-      }, 1000);
-
-      setTimeout(() => {
-        commit('SET_CURRENT_GEO_LOCATION', [5.56, 6.567]);
-      }, 5000);
 
       VueGeolocation.getLocation(geoOptions)
         .then(coordinates => {
