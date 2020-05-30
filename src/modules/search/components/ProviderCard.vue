@@ -1,5 +1,5 @@
 <template>
-  <b-card class="provider-card">
+  <b-card class="provider-card" @click="goToProfile(profile.id)">
     <div class="icon-card profile-data">
       <div class="icon-card-icon">
         <b-avatar
@@ -54,7 +54,7 @@
 
     <!--  Card Footer-->
     <template v-slot:footer>
-      <b-button variant="light" @click="goToProfile(profile.id)" >
+      <b-button variant="light">
         <div class="icon-card">
           <svg-icon name="eye" class="icon-card-icon"/>
           <span>View Profile</span>
