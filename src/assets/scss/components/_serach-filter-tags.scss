@@ -1,0 +1,47 @@
+.search-filter-tags {
+  margin: 0 1rem;
+
+  &-tag {
+    background-color: $color-blue-lighter;
+    border-color: $color-blue-borders;
+    font-size: 80%;
+    font-weight: bold;
+    color: $dark-blue;
+    border-radius: .2rem;
+    margin-right: .5rem;
+    padding: 0 .5rem 0 .75rem;
+    vertical-align: middle;
+
+    &-wrapper {
+      display: flex;
+      align-items: center;
+      line-height: 2;
+    }
+
+    &-label {
+      min-width: 2.5rem;
+      display: inline-block;
+      text-align: left;
+    }
+
+    svg {
+      margin-left: .5rem;
+    }
+  }
+
+  .clear-filters {
+    color: $text-muted;
+    font-size: inherit;
+    padding-left: 0;
+    padding-right: 0;
+
+    @include hover-focus-active() {
+      box-shadow: none !important;
+      background: transparent;
+    }
+
+    &:active {
+      color: $text-dark;
+    }
+  }
+}

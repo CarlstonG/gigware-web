@@ -9,8 +9,7 @@
     <b-container fluid="lg" class="content">
       <div class="search-info">
         Results for <span class="search-text">{{lastSearchQueryText}}</span>
-<!--        <search-filter-tags :options="searchLeftFiltersOptions"/>-->
-        <b-button variant="transparent" class="clear-filters" @click="clearSearchQueryFilters">delete filters</b-button>
+        <search-filter-tags :options="searchLeftFiltersOptions"/>
       </div>
 
       <b-row class="cards" v-if="search_result && search_result.length">
@@ -42,11 +41,12 @@
   import 'hooper/dist/hooper.css';
   import geoLocationMixin from "@/core/mixins/geo-location";
   import SearchBar from "../components/SearchBar";
+  import SearchFilterTags from "../components/SearchFilterTags";
   import ProviderCard from "../components/ProviderCard";
 
   export default {
     mixins: [geoLocationMixin],
-    components: { ProviderCard, SearchBar, SiteFooter },
+    components: { ProviderCard, SearchBar, SearchFilterTags, SiteFooter },
     data: () => ({
       searchLeftFiltersOptions: [
         {

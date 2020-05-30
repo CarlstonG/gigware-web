@@ -25,25 +25,12 @@
       color: $text-muted;
       font-size: .85rem;
       margin-bottom: 1rem;
+      min-height: 2rem;
 
       .search-text {
         color: $text-info-color;
         font-weight: bold;
         margin-left: .25rem;
-      }
-
-      .clear-filters {
-        color: $text-muted;
-        font-size: .85rem;
-
-        @include hover-focus-active() {
-          box-shadow: none !important;
-          background: transparent;
-        }
-
-        &:active {
-          color: $text-dark;
-        }
       }
     }
 
