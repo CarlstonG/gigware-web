@@ -54,7 +54,7 @@ export default {
     loadingText: {
       type: String,
       default: 'Loading...'
-    },
+    }
   },
   computed: {
     stateText () {

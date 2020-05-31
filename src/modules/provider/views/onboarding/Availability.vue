@@ -32,9 +32,10 @@
   import { mapActions, mapGetters } from 'vuex'
   import AvailabilityPicker from "@/core/components/forms/AvailabilityPicker";
   import validateFormMixin from '@/core/mixins/validate-form-mixin'
+  import settingsSaveMixin from '@/modules/provider/mixins/settings-save-behaviour'
 
   export default {
-    mixins: [validateFormMixin],
+    mixins: [validateFormMixin, settingsSaveMixin],
     components: { AvailabilityPicker, StepsFooter },
     data: () => ({
       form: {
@@ -46,13 +47,14 @@
       ...mapActions('provider', ['createUnavailabilities']),
       sendRequest() {
         const _this = this;
+
         return this.createUnavailabilities(this.form)
-          .then((data) => {
+          .then(({ data }) => {
             if (_this.user?.provider_profile) {
               _this.user.provider_profile = { ..._this.user.provider_profile, unavailabilities: { data: data || [] } };
             }
 
-            this.$router.push({ name: 'provider.onboarding.licenses' })
+            _this.afterSubmit()
           })
       },
       cleanUpDates() {

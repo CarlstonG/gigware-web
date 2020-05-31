@@ -43,11 +43,12 @@
 <script>
   import validations from '../../services/validations'
   import validateFormMixin from '@/core/mixins/validate-form-mixin'
+  import settingsSaveMixin from '@/modules/provider/mixins/settings-save-behaviour'
   import { default as StepsFooter } from '@/modules/provider/components/onboarding/Footer'
   import { mapActions } from 'vuex'
 
   export default {
-    mixins: [validateFormMixin],
+    mixins: [validateFormMixin, settingsSaveMixin],
     components: { StepsFooter },
     data: () => ({
       form: {
@@ -59,16 +60,10 @@
     validations: validations.onboarding.ratingsAndReviews,
     methods: {
       ...mapActions('provider', ['createReviewRequest']),
-      goToNextStep() {
-        this.$router.push({
-          name: 'provider.onboarding.confirmation',
-        })
-      },
       sendRequest() {
-        return this.createReviewRequest(this.prepareData())
-          .then(() => {
-            this.goToNextStep()
-          })
+        return this.createReviewRequest(this.prepareData()).then(() => {
+          this.afterSubmit()
+        })
       },
       prepareData() {
         let data = { email_template: this.form.email_template, emails: [] }

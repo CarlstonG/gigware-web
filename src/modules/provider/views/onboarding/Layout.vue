@@ -18,7 +18,7 @@
         <b-col lg="10">
           <b-card no-body class="border-0">
             <b-card-header class="pt-4 pb-4 pl-5 pr-5">
-              <div class="card-hreader-title">{{ title }}</div>
+              <div class="card-header-title">{{ title }}</div>
               <div class="card-header-subtitle">{{ subtitle }}</div>
             </b-card-header>
             <div class="p-5">

@@ -82,11 +82,12 @@
   import GoogleMapsApiLoader from 'google-maps-api-loader'
   import validations from '../../services/validations'
   import validateFormMixin from '@/core/mixins/validate-form-mixin'
+  import settingsSaveMixin from '@/modules/provider/mixins/settings-save-behaviour'
   import { default as StepsFooter } from '@/modules/provider/components/onboarding/Footer'
   import { mapActions, mapGetters } from 'vuex'
 
   export default {
-    mixins: [validateFormMixin],
+    mixins: [validateFormMixin, settingsSaveMixin],
     components: { StepsFooter },
     data: () => ({
       form: {
@@ -121,9 +122,7 @@
               _this.user.provider_profile = Object.assign(_this.user.provider_profile, _this.form);
             }
 
-            this.$router.push({
-              name: 'provider.onboarding.availability',
-            })
+            _this.afterSubmit()
           })
       },
       loadGoogle() {

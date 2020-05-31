@@ -114,6 +114,7 @@
 <script>
   import { default as StepsFooter } from '@/modules/provider/components/onboarding/Footer'
   import validateFormMixin from '@/core/mixins/validate-form-mixin'
+  import settingsSaveMixin from '@/modules/provider/mixins/settings-save-behaviour'
   import MultipleImageUpload from '@/core/components/images/MultipleImageUpload'
   import { mapActions, mapGetters } from 'vuex'
 
@@ -129,7 +130,7 @@
   ]
 
   export default {
-    mixins: [validateFormMixin],
+    mixins: [validateFormMixin, settingsSaveMixin],
     components: { StepsFooter, MultipleImageUpload },
     data: () => ({
       certificates: [],
@@ -143,7 +144,7 @@
             _this.certificates = [];
             _this.initCertificates(data);
 
-            this.$router.push({ name: 'provider.onboarding.experience' })
+            _this.afterSubmit()
           })
           .catch(error => {
             // todo: process 422 errors correct way(no images)

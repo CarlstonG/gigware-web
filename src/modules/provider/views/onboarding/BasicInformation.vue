@@ -119,12 +119,13 @@
 <script>
   import validations from '../../services/validations'
   import validateFormMixin from '@/core/mixins/validate-form-mixin'
+  import settingsSaveMixin from '@/modules/provider/mixins/settings-save-behaviour'
   import ImageUpload from '@/core/components/images/ImageUpload'
   import { default as StepsFooter } from '@/modules/provider/components/onboarding/Footer'
   import { mapActions, mapGetters } from 'vuex'
 
   export default {
-    mixins: [validateFormMixin],
+    mixins: [validateFormMixin, settingsSaveMixin],
     components: { ImageUpload, StepsFooter },
     data: () => ({
       form: {
@@ -155,9 +156,7 @@
               _this.user.provider_profile = Object.assign(user.provider_profile, data.provider_profile);
             }
 
-            this.$router.push({
-              name: 'provider.onboarding.rates-and-location',
-            })
+            _this.afterSubmit()
           })
       },
       formData() {
@@ -180,6 +179,7 @@
       ...mapGetters('auth', ['user', 'userAvatarUrl']),
     },
     created() {
+      console.log(this.$router, this.route)
       if (this.user?.provider_profile) {
         const user = this.user;
         const profile = user.provider_profile;

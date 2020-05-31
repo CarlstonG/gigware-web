@@ -1,12 +1,12 @@
 import Layout from "../views/settings/Layout";
-import BasicInformation from "../views/settings/BasicInformation";
-import RatesAndLocation from "../views/settings/RatesAndLocation";
-import Availability from "../views/settings/Availability";
-import Licenses from "../views/settings/Licenses";
-import Experience from "../views/settings/Experience";
-import InsuranceProof from "../views/settings/InsuranceProof";
-import RatingsAndReviews from "../views/settings/RatingsAndReviews";
-import Confirmation from "../views/settings/Confirmation";
+import BasicInformation from "../views/onboarding/BasicInformation";
+import RatesAndLocation from "../views/onboarding/RatesAndLocation";
+import Availability from "../views/onboarding/Availability";
+import Licenses from "../views/onboarding/Licenses";
+import Experience from "../views/onboarding/Experience";
+import InsuranceProof from "../views/onboarding/InsuranceProof";
+import RatingsAndReviews from "../views/onboarding/RatingsAndReviews";
+import DeactivateAccount from "../views/settings/AccauntDeactivation";
 
 export default [
   {
@@ -14,6 +14,10 @@ export default [
     component: Layout,
     name: 'provider.settings',
     redirect: { name: 'provider.settings.basic-information' },
+    meta: {
+      type: 'settings',
+      nextBtnText: 'Save',
+    },
     children: [
       {
         path: 'basic-information',
@@ -93,12 +97,12 @@ export default [
         },
       },
       {
-        path: 'confirmation',
-        name: 'provider.settings.confirmation',
-        component: Confirmation,
+        path: 'deactivate-account',
+        name: 'provider.settings.deactivate-account',
+        component: DeactivateAccount,
         meta: {
           step: 8,
-          title: 'Confirmation',
+          title: 'DeactivateAccount',
           subtitle: '',
         },
       },

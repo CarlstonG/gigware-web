@@ -161,12 +161,13 @@
 <script>
   import validations from '../../services/validations'
   import validateFormMixin from '@/core/mixins/validate-form-mixin'
+  import settingsSaveMixin from '@/modules/provider/mixins/settings-save-behaviour'
   import ImageUpload from '@/core/components/images/ImageUpload'
   import { default as StepsFooter } from '@/modules/provider/components/onboarding/Footer'
   import { mapActions, mapGetters } from 'vuex'
 
   export default {
-    mixins: [validateFormMixin],
+    mixins: [validateFormMixin, settingsSaveMixin],
     components: { ImageUpload, StepsFooter },
     data: () => ({
       forms: [],
@@ -174,17 +175,13 @@
     validations: validations.onboarding.experience,
     methods: {
       ...mapActions('provider', ['createExperiences', 'profileRequest']),
-      goToNextStep() {
-        this.$router.push({
-          name: 'provider.onboarding.proof-of-insurance',
-        })
-      },
       sendRequest() {
         return this.createExperiences(this.formData())
           .then(({ data }) => {
             this.forms = [];
             this.pushUserJobToForm(data);
-            this.goToNextStep()
+
+            this.afterSubmit()
           })
       },
       formData() {
