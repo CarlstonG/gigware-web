@@ -61,7 +61,7 @@
       </validated-b-form-group>
       <b-form-checkbox v-model="termsAndConds">
         I have read and agree to Gig Wire’s
-        <b-link>Terms of Service</b-link>
+        <b-link to="/terms">Terms of Service</b-link>
         ?
       </b-form-checkbox>
       <b-form-row class="justify-content-end mt-5">
@@ -80,6 +80,7 @@
   import validations from '../services/validations'
   import validateFormMixin from '@/core/mixins/validate-form-mixin'
   import { mapActions } from 'vuex'
+
   export default {
     mixins: [validateFormMixin],
     data: () => ({
