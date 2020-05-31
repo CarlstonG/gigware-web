@@ -48,9 +48,6 @@
           this.$emit('input', this.file)
         }
       },
-    },
-    created() {
-      console.log(this.imgSrc)
     }
   }
 </script>

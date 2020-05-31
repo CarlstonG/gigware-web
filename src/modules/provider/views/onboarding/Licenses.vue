@@ -171,7 +171,6 @@
         return form
       },
       initCertificates(userCertificates) {
-        console.log(userCertificates)
         CERTIFICATES.forEach(certificate => {
           let newCertificate;
           let userCert = userCertificates?.find(item => item.name === certificate)

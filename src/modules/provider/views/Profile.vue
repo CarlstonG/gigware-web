@@ -78,7 +78,11 @@
 
         <section class="about">
           <h3 class="title">About Us
-            <svg-icon v-if="isAccountProfile" name="edit_selection" width="27" class="ml-4"/>
+            <svg-icon v-if="isAccountProfile"
+                      name="edit_selection"
+                      width="27"
+                      class="ml-4"
+                      @click="$router.push({ name: 'provider.settings.basic-information'})"/>
           </h3>
           <div class="description">{{profile.description}}</div>
 
@@ -113,21 +117,17 @@
 
         <section class="availability">
           <h3 class="title">Availability
-            <svg-icon v-if="isAccountProfile" name="edit_selection" width="27" class="ml-4"/>
+            <svg-icon v-if="isAccountProfile"
+                      name="edit_selection"
+                      width="27"
+                      class="ml-4"
+                      @click="$router.push({ name: 'provider.settings.availability'})"/>
           </h3>
           <div class="description"><span class="badge"></span>Unavailable</div>
 
           <b-row>
             <b-col cols="12" md="8">
-              <v-date-picker
-                  mode="multiple"
-                  color="blue"
-                  :min-date="new Date()"
-                  :columns="$screens({ default: 1, md: 2 })"
-                  is-expanded
-                  is-inline
-              />
-              <!-- todo: prepare data: v-model="profile.unavailabilities.data" -->
+              <availability-picker v-model="profileAvailabilityDates" :disabled="true"/>
             </b-col>
           </b-row>
         </section>
@@ -228,10 +228,11 @@
   import 'hooper/dist/hooper.css';
   import ProofOfInsuarenceModal from "../components/ProofOfInsuranceModal";
   import geoLocationMixin from "@/core/mixins/geo-location";
+  import AvailabilityPicker from "../../../core/components/forms/AvailabilityPicker";
 
   export default {
     mixins: [geoLocationMixin],
-    components: { ProofOfInsuarenceModal, SiteFooter, Hooper, Slide, HooperNavigation },
+    components: { AvailabilityPicker, ProofOfInsuarenceModal, SiteFooter, Hooper, Slide, HooperNavigation },
     data: () => ({
       ratingValue: 4.5,
       hooperNoEvents: {
@@ -260,12 +261,12 @@
     computed: {
       ...mapState('auth', ['user']),
       ...mapState('provider', ['provider_profile']),
-      ...mapGetters('provider', ['isLoading']),
+      ...mapGetters('provider', ['isLoading', 'profileAvailabilityDates']),
       profile() {
         return this.provider_profile
       },
       isAccountProfile() {
-        return this.user && this.provider_profile && this.user.provider_profile && this.user.provider_profile.id == this.provider_profile.id;
+        return this.user && this.provider_profile && this.user?.provider_profile?.id === this.provider_profile?.id;
       }
     },
     created() {

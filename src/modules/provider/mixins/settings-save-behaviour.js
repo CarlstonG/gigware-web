@@ -5,6 +5,12 @@ export default {
     },
   },
   methods: {
+    goToNextStep() {
+      const nextRedirect = this.$route.matched.find(r => r.meta.nextRedirect)?.meta?.nextRedirect;
+      if (nextRedirect) {
+        this.$router.push(nextRedirect)
+      }
+    },
     afterSubmit() {
       // do nothing on settings pages
       if (this.isSettingsType) {
@@ -15,10 +21,7 @@ export default {
         return;
       }
 
-      const nextRedirect = this.$route.matched.find(r => r.meta.nextRedirect)?.meta?.nextRedirect;
-      if (nextRedirect) {
-        this.$router.push(nextRedirect)
-      }
+      this.goToNextStep();
     }
   }
 }

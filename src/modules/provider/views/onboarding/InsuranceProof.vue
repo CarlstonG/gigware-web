@@ -129,11 +129,6 @@
     validations: validations.onboarding.insurance,
     methods: {
       ...mapActions('provider', ['createInsurance', 'profileRequest']),
-      goToNextStep() {
-        this.$router.push({
-          name: 'provider.onboarding.ratings-and-reviews',
-        })
-      },
       sendRequest() {
         const _this = this;
         return this.createInsurance(this.formData())

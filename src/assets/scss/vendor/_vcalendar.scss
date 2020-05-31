@@ -2,6 +2,30 @@
   border: none;
   border-top: 7px solid $dark-blue;
   background-color: $dirty-white;
+
+  &[disabled="disabled"] {
+    position: relative;
+
+    // fix to prevent reactions
+    &:before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      //background-color: rgba(red, 0.5);
+      z-index: 5;
+    }
+
+    .vc-highlight.vc-rounded-full {
+      background-color: $color-availability;
+    }
+
+    .vc-day-content {
+      color: $text-color;
+    }
+  }
 }
 
 .vc-bg-blue-200 {
@@ -12,6 +36,7 @@
   background-color: $color-availability-start;
 }
 
+// todo: does not work in some cases
 .day-from-end-1 {
   .vc-highlight.vc-rounded-full {
     background-color: $color-availability;

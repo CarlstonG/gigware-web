@@ -179,7 +179,6 @@
       ...mapGetters('auth', ['user', 'userAvatarUrl']),
     },
     created() {
-      console.log(this.$router, this.route)
       if (this.user?.provider_profile) {
         const user = this.user;
         const profile = user.provider_profile;

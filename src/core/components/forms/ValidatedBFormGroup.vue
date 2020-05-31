@@ -19,11 +19,6 @@
         default: () => [],
       },
     },
-    watch: {
-      '$parent.serverErrors': function (v) {
-        console.log('$parent.serverErrors', v);
-      }
-    },
     computed: {
       errorMessage() {
         if (this.hasErrors) {
