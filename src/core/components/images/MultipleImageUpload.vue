@@ -1,18 +1,19 @@
 <template>
   <div>
     <slot
-      v-if="images.length"
-      name="image-uploaded"
-      v-bind="{ images, openFileDialog, removeImage }"
+        v-if="uploadedImages.length"
+        name="image-uploaded"
+        v-bind="{ uploadedImages, srcImages, openFileDialog, removeImage }"
     />
-    <slot v-else name="no-image" v-bind="{ openFileDialog }" />
+    <slot v-else-if="srcImages.length" name="image" v-bind="{ srcImages, openFileDialog, removeImage }"/>
+    <slot v-else name="no-image" v-bind="{ openFileDialog }"/>
     <input
-      class="d-none"
-      type="file"
-      accept="image/jpeg, image/png"
-      ref="fileInput"
-      @change="filesUploaded"
-      multiple
+        class="d-none"
+        type="file"
+        accept="image/jpeg, image/png"
+        ref="fileInput"
+        @change="filesUploaded"
+        multiple
     />
   </div>
 </template>
@@ -20,14 +21,32 @@
 <script>
   export default {
     name: 'MultipleImageUpload',
-    data: () => ({
-      images: [],
-    }),
+    props: {
+      value: {
+        type: Array,
+        default: () => []
+      }
+    },
+    data() {
+      return {
+        images: this.value,
+      }
+    },
+    computed: {
+      srcImages() {
+        return this.images.filter(img => !(img instanceof File))
+      },
+      uploadedImages() {
+        return this.images.filter(img => img instanceof File)
+      }
+    },
     methods: {
       openFileDialog() {
         this.$refs.fileInput.click()
       },
       removeImage(index) {
+        // if (this.images[index]?.url) return;
+
         this.images.splice(index, 1)
         this.$emit('image-removed', index)
       },

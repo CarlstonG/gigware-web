@@ -4,56 +4,56 @@
       <b-row>
         <b-col lg="6" class="pr-5">
           <validated-b-form-group
-            name="first_name"
-            label="First Name"
-            :disabled="formLocked"
-            class="required"
+              name="first_name"
+              label="First Name"
+              :disabled="formLocked"
+              class="required"
           >
-            <b-form-input v-model.trim.lazy="form.first_name" />
+            <b-form-input v-model.trim.lazy="form.first_name"/>
           </validated-b-form-group>
           <validated-b-form-group
-            name="last_name"
-            label="Last Name"
-            :disabled="formLocked"
-            class="required"
+              name="last_name"
+              label="Last Name"
+              :disabled="formLocked"
+              class="required"
           >
-            <b-form-input v-model.trim.lazy="form.last_name" />
+            <b-form-input v-model.trim.lazy="form.last_name"/>
           </validated-b-form-group>
           <validated-b-form-group
-            name="phone_number"
-            label="Phone Number"
-            :disabled="formLocked"
-            class="required"
+              name="phone_number"
+              label="Phone Number"
+              :disabled="formLocked"
+              class="required"
           >
-            <b-form-input v-model.trim.lazy="form.phone_number" />
+            <b-form-input v-model.trim.lazy="form.phone_number"/>
           </validated-b-form-group>
           <validated-b-form-group
-            name="company_name"
-            label="Company Name"
-            :disabled="formLocked"
-            class="required"
+              name="company_name"
+              label="Company Name"
+              :disabled="formLocked"
+              class="required"
           >
-            <b-form-input v-model.trim.lazy="form.company_name" />
+            <b-form-input v-model.trim.lazy="form.company_name"/>
           </validated-b-form-group>
           <validated-b-form-group
-            name="team_size"
-            label="Team Size"
-            :disabled="formLocked"
-            class="w-25 required"
+              name="team_size"
+              label="Team Size"
+              :disabled="formLocked"
+              class="w-25 required"
           >
-            <b-form-input v-model.trim.lazy="form.team_size" />
+            <b-form-input v-model.trim.lazy="form.team_size"/>
           </validated-b-form-group>
           <validated-b-form-group
-            name="description"
-            label="About Us"
-            :disabled="formLocked"
-            class="required"
+              name="description"
+              label="About Us"
+              :disabled="formLocked"
+              class="required"
           >
-            <b-form-textarea v-model.trim.lazy="form.description" rows="5" />
+            <b-form-textarea v-model.trim.lazy="form.description" rows="5"/>
           </validated-b-form-group>
         </b-col>
         <b-col lg="6" class="pl-5">
-<!--      todo: fix image cropping -->
+          <!--      todo: fix image cropping -->
           <validated-b-form-group
               name="profile_image"
               label="Upload Profile Image"
@@ -95,10 +95,10 @@
                     :aspect-ratio="1"
                 />
                 <b-button
-                  variant="primary"
-                  size="sm"
-                  @click="openFileDialog"
-                  style="position: absolute; left: 0; bottom: -70px;"
+                    variant="primary"
+                    size="sm"
+                    @click="openFileDialog"
+                    style="position: absolute; left: 0; bottom: -70px;"
                 >
                   Choose an Image
                 </b-button>
@@ -111,7 +111,7 @@
           </validated-b-form-group>
         </b-col>
       </b-row>
-      <steps-footer @next="submit" :loading="formLocked" :state="formState" />
+      <steps-footer @next="submit" :loading="formLocked" :state="formState"/>
     </b-form>
   </validated-b-form-wrapper>
 </template>

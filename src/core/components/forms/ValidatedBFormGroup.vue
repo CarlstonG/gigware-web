@@ -19,6 +19,11 @@
         default: () => [],
       },
     },
+    watch: {
+      '$parent.serverErrors': function (v) {
+        console.log('$parent.serverErrors', v);
+      }
+    },
     computed: {
       errorMessage() {
         if (this.hasErrors) {
@@ -29,14 +34,18 @@
           return this.serverErrors[0]
         }
 
-        return ''
+        // fixme: make this better way
+        // todo: rewrite form validation, nested data(form.address.city) should be set as 'address.city' to form-group name
+        // console.log('errorMessage', this.name, this.$parent?.$parent?.serverErrors?.[this.name]?.[0])
+        return this.$parent?.$parent?.serverErrors?.[this.name]?.[0] || ''
       },
       hasAnyErrors() {
-        return this.hasErrors || this.serverErrors.length
+        return this.hasErrors || this.serverErrors.length || this.$parent?.$parent?.serverErrors?.[this.name]?.[0]
       },
       isFullyValid() {
-        return this.isValid && !this.serverErrors.length
+        // this.isValid === null means it's valid
+        return (this.isValid === null || !!this.isValid) && !this.serverErrors.length && !this.$parent?.$parent?.serverErrors?.[this.name]?.[0]
       },
-    },
+    }
   }
 </script>

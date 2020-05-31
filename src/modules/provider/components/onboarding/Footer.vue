@@ -46,7 +46,7 @@
     },
     computed: {
       isFirstStep() {
-        return this.$route.meta.step == 1
+        return this.$route.meta.step === 1
       },
     },
   }

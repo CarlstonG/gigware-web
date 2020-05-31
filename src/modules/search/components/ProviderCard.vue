@@ -3,7 +3,7 @@
     <div class="icon-card profile-data">
       <div class="icon-card-icon">
         <b-avatar
-            :src="userAvatarUrl"
+            :src="profileAvatarUrl"
             :size="$screens({ default: '54', lg: '108' })"
         />
       </div>
@@ -87,8 +87,8 @@
       }
     },
     computed: {
-      userAvatarUrl() {
-        return this.profile?.user?.images?.data?.length ? this.profile.user.images.data[0].url : '';
+      profileAvatarUrl() {
+        return this.profile.user?.images?.data?.length ? this.profile.user.images.data[this.profile.user.images.data.length - 1].url : null
       }
     },
     methods: {

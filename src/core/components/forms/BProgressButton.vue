@@ -58,13 +58,13 @@ export default {
   },
   computed: {
     stateText () {
-      return this.state == 'loading' ? this.loadingText : this.defaultText
+      return this.state === 'loading' ? this.loadingText : this.defaultText
     },
     defaultState () {
-      return this.state == 'default'
+      return this.state === 'default'
     },
     loadingState () {
-      return this.state == 'loading'
+      return this.state === 'loading'
     },
     isTransitioning () {
       return this.successStateEnter || this.successStateExit || this.errorStateEnter || this.errorStateExit
@@ -102,9 +102,9 @@ export default {
   },
   watch: {
     state () {
-      if (this.state == "success") {
+      if (this.state === "success") {
         this.success()
-      } else if (this.state == "error") {
+      } else if (this.state === "error") {
         this.error()
       }
     }

@@ -66,16 +66,10 @@
     methods: {
       ...mapActions('auth', ['login']),
       sendRequest() {
-        this.login(this.form)
+        return this.login(this.form)
           .then(() => {
-            // todo: implement check if redirect this.$router.push({ name: 'onboarding.basic-information' }) is necessary
+            // todo: implement check if redirect this.$router.push({ name: 'provider.onboarding.basic-information' }) is necessary
             this.$router.push({ name: 'search-partners' }); // todo: implement routes history ignoring
-          })
-          .catch(error => {
-            this.handleServerError(error)
-          })
-          .finally(() => {
-            this.setDefaultState()
           })
       },
     },

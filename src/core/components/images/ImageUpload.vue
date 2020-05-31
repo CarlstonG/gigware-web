@@ -1,6 +1,7 @@
 <template>
   <div>
     <slot v-if="src" name="image-uploaded" v-bind="{ src, openFileDialog }" />
+    <slot v-else-if="imgSrc" name="image" v-bind="{ imgSrc, openFileDialog }"/>
     <slot v-else name="no-image" v-bind="{ openFileDialog }" />
     <input
       class="d-none"
@@ -15,9 +16,15 @@
 <script>
   export default {
     name: 'ImageUpload',
+    props: {
+      imgSrc: {
+        type: String,
+        default: null
+      }
+    },
     data: () => ({
       src: '',
-      file: null,
+      file: null
     }),
     methods: {
       openFileDialog() {
@@ -42,5 +49,8 @@
         }
       },
     },
+    created() {
+      console.log(this.imgSrc)
+    }
   }
 </script>

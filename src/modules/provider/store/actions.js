@@ -5,8 +5,9 @@ export default {
     return new Promise((resolve, reject) => {
       api.onboarding
         .saveBasicInformation(form)
-        .then(({ data }) => {
-          resolve(data)
+        .then((res) => {
+          if (!res) return reject('error');
+          resolve(res.data)
         })
         .catch(error => {
           reject(error)

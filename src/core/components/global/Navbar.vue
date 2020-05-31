@@ -22,7 +22,7 @@
                 <span v-else-if="user.customer_profile" class="muted">{{user.customer_profile.company_name}}</span>
               </span>
             </b-nav-item>
-            <b-nav-item class="account-phone menu-link d-lg-none" :to="{ name: 'provider.profile', params: { id: 1 } }">
+            <b-nav-item class="account-phone menu-link d-lg-none" :to="{ name: 'provider.settings.basic-information' }">
                 <span class="icon-card">
                   <svg-icon name="navbar_settings" width="32" class="icon-card-icon"></svg-icon>
                   <span>Settings</span>
@@ -55,7 +55,7 @@
                 </span>
               </b-dropdown-item>
               <b-dropdown-divider></b-dropdown-divider>
-              <b-dropdown-item link-class="menu-link" :to="{ name: 'provider.profile', params: { id: 1 } }">
+              <b-dropdown-item link-class="menu-link" :to="{ name: 'provider.onboarding.basic-information' }">
                 <span class="icon-card">
                   <svg-icon name="navbar_settings" width="20" class="icon-card-icon"></svg-icon>
                   <span>Settings</span>
@@ -96,7 +96,8 @@
 </template>
 
 <script>
-  import { mapGetters, mapActions } from 'vuex'
+  import { mapActions, mapGetters } from 'vuex'
+
   export default {
     methods: {
       ...mapActions('auth', ['logout']),
@@ -107,10 +108,7 @@
       }
     },
     computed: {
-      ...mapGetters('auth', ['isLoggedIn', 'user']),
-      userAvatarUrl() {
-        return this.user.images && this.user.images.data.length ? this.user.images.data[0].url : null;
-      }
+      ...mapGetters('auth', ['isLoggedIn', 'user', 'userAvatarUrl'])
     },
   }
 </script>

@@ -4,54 +4,54 @@
       <b-row class="mb-5" v-for="(form, index) in forms" :key="index">
         <b-col lg="6" class="pr-5">
           <validated-b-form-group
-            :name="`$each.${index}.job_location`"
-            label="Job Location"
-            :disabled="formLocked"
+              :name="`$each.${index}.job_location`"
+              label="Job Location"
+              :disabled="formLocked"
           >
             <b-form-input
-              v-model.trim.lazy="form.job_location"
-              placeholder="Utopia Highschool"
+                v-model.trim.lazy="form.job_location"
+                placeholder="Utopia Highschool"
             />
           </validated-b-form-group>
           <validated-b-form-group
-            :name="`$each.${index}.job_description`"
-            label="Job Description"
-            :disabled="formLocked"
+              :name="`$each.${index}.job_description`"
+              label="Job Description"
+              :disabled="formLocked"
           >
             <b-textarea
-              v-model.trim.lazy="form.job_description"
-              placeholder="The team completed 15 runs for a new computer facility on campus"
-              rows="4"
+                v-model.trim.lazy="form.job_description"
+                placeholder="The team completed 15 runs for a new computer facility on campus"
+                rows="4"
             />
           </validated-b-form-group>
           <validated-b-form-group
-            :name="`$each.${index}.employer_name`"
-            label="Employer's Name"
-            :disabled="formLocked"
+              :name="`$each.${index}.employer_name`"
+              label="Employer's Name"
+              :disabled="formLocked"
           >
             <b-form-input
-              v-model.trim.lazy="form.employer_name"
-              placeholder="John Smith"
+                v-model.trim.lazy="form.employer_name"
+                placeholder="John Smith"
             />
           </validated-b-form-group>
           <validated-b-form-group
-            :name="`$each.${index}.employer_title`"
-            label="Employer's Title"
-            :disabled="formLocked"
+              :name="`$each.${index}.employer_title`"
+              label="Employer's Title"
+              :disabled="formLocked"
           >
             <b-form-input
-              v-model.trim.lazy="form.employer_title"
-              placeholder="Assistant Superintendent"
+                v-model.trim.lazy="form.employer_title"
+                placeholder="Assistant Superintendent"
             />
           </validated-b-form-group>
           <validated-b-form-group
-            :name="`$each.${index}.employer_phone`"
-            label="Employer’s Phone Number"
-            :disabled="formLocked"
+              :name="`$each.${index}.employer_phone`"
+              label="Employer’s Phone Number"
+              :disabled="formLocked"
           >
             <b-form-input
-              v-model.trim.lazy="form.employer_phone"
-              placeholder="xxx-xxx-xxxx"
+                v-model.trim.lazy="form.employer_phone"
+                placeholder="xxx-xxx-xxxx"
             />
           </validated-b-form-group>
         </b-col>
@@ -59,13 +59,13 @@
           <b-row>
             <b-col lg="6">
               <validated-b-form-group
-                :name="`$each.${index}.start_date`"
-                label="Start Date"
-                :disabled="formLocked"
+                  :name="`$each.${index}.start_date`"
+                  label="Start Date"
+                  :disabled="formLocked"
               >
                 <v-date-picker
-                  v-model.trim.lazy="form.start_date"
-                  :input-props="{
+                    v-model.trim.lazy="form.start_date"
+                    :input-props="{
                     placeholder: 'MM/DD/YYYY',
                     class: 'form-control',
                   }"
@@ -74,13 +74,13 @@
             </b-col>
             <b-col lg="6">
               <validated-b-form-group
-                :name="`$each.${index}.end_date`"
-                label="End Date"
-                :disabled="formLocked"
+                  :name="`$each.${index}.end_date`"
+                  label="End Date"
+                  :disabled="formLocked"
               >
                 <v-date-picker
-                  v-model.trim.lazy="form.end_date"
-                  :input-props="{
+                    v-model.trim.lazy="form.end_date"
+                    :input-props="{
                     placeholder: 'MM/DD/YYYY',
                     class: 'form-control',
                   }"
@@ -89,9 +89,9 @@
             </b-col>
           </b-row>
           <validated-b-form-group
-            :name="`$each.${index}.image`"
-            label="Upload Images of Your Work"
-            :disabled="formLocked"
+              :name="`$each.${index}.image`"
+              label="Upload Images of Your Work"
+              :disabled="formLocked"
           >
             <image-upload
                 v-model="form.image"
@@ -134,7 +134,7 @@
                     variant="primary"
                     size="sm"
                     @click="openFileDialog"
-                  style="position: absolute; left: 0; bottom: -50px;"
+                    style="position: absolute; left: 0; bottom: -50px;"
                 >
                   Choose an Image
                 </b-button>
@@ -149,10 +149,10 @@
         </b-col>
       </b-row>
       <steps-footer
-        :loading="formLocked"
-        :state="formState"
-        :optional="true"
-        @skip="goToNextStep"
+          :loading="formLocked"
+          :state="formState"
+          :optional="true"
+          @skip="goToNextStep"
       />
     </b-form>
   </validated-b-form-wrapper>

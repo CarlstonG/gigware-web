@@ -1,4 +1,4 @@
-import { required, email, integer } from 'vuelidate/lib/validators'
+import { email, integer, required } from 'vuelidate/lib/validators'
 
 export default {
   onboarding: {
@@ -17,10 +17,10 @@ export default {
         rates_per_run: { required },
         work_radius: { required },
         address: {
-          street_address: { required },
-          city: { required },
-          suite: { required },
-          zip_code: { required },
+          // street_address: { required },
+          // city: { required },
+          // suite: { required },
+          // zip_code: { required },
         },
       },
     },

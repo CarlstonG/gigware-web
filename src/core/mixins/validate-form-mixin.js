@@ -1,5 +1,5 @@
 const DEFAULT_MESSAGE =
-  'An unknown error occured, please try again and if the error still exists, please contact us'
+  'An unknown error occurred, please try again and if the error still exists, please contact us'
 
 export default {
   data: () => ({
@@ -10,13 +10,24 @@ export default {
   methods: {
     submit() {
       this.validate(() => {
-        this.sendRequest()
+        const request = this.sendRequest();
+        if (!(request instanceof Promise)) {
+          throw new Error('core/mixins/validate-form-mixin SHOULD get Promise from sendRequest method');
+        }
+
+        request
+          .catch(error => {
+            this.handleServerError(error)
+          })
+          .finally(() => {
+            this.setDefaultState()
+          })
       })
     },
     validate(callback) {
-      this.$v.$touch()
+      this.$v?.$touch()
 
-      if (this.$v.$anyError) return
+      if (this.$v?.$anyError) return
 
       this.formState = 'loading'
       this.serverErrors = {}
@@ -29,7 +40,10 @@ export default {
     setDefaultState() {
       this.formState = 'default'
     },
-    handle403(message = 'Insufficent permissions to access this page.') {
+    handleConnectionError(message) {
+      this.toast(message === 'Network Error' ? 'Please check your internet connection.' : message)
+    },
+    handle403(message = 'Insufficient permissions to access this page.') {
       this.toast(message)
     },
     handle404(message = 'Page not found.') {
@@ -44,11 +58,18 @@ export default {
         variant: 'danger',
       })
     },
-    handleServerError(serverError, callback) {
+    handleServerError(serverError) {
       this.serverError = serverError
 
+      if (!serverError.response && serverError.message) {
+        this.handleConnectionError(serverError.message)
+        return;
+      }
+
       if (this.statusCode === 422) {
-        callback(serverError.response.data.errors)
+        this.serverErrors = serverError.response.data?.errors || {}
+        this.toast(serverError.response.data?.message)
+        this.setErrorState()
       } else if (this.statusCode === 403) {
         this.handle403()
       } else if (this.statusCode === 404) {
@@ -62,7 +83,7 @@ export default {
   },
   computed: {
     formLocked() {
-      return this.formState == 'loading'
+      return this.formState === 'loading'
     },
     statusCode() {
       return this.serverError && this.serverError.response

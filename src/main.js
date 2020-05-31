@@ -44,6 +44,10 @@ Vue.use(VuelidateErrorExtractor, {
     company_name: 'company',
     phone_number: 'phone number',
     zip_code: 'zip code',
+    'address.street_address': 'address',
+    'address.city': 'city',
+    'address.suite': 'suite',
+    'address.zip_code': 'zip code',
   },
 })
 

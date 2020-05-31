@@ -65,9 +65,15 @@
         })
       },
       sendRequest() {
-        return this.createReviewRequest(this.prepareData())
+        this.createReviewRequest(this.prepareData())
           .then(() => {
             this.goToNextStep()
+          })
+          .catch(error => {
+            this.handleServerError(error)
+          })
+          .finally(() => {
+            this.setDefaultState()
           })
       },
       prepareData() {
