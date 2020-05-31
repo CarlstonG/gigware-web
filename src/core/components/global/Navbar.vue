@@ -9,7 +9,9 @@
         <b-navbar-nav
           class="ml-auto align-items-center pt-5 pt-lg-0 pb-5 pb-lg-0"
         >
-          <b-nav-item>FAQ</b-nav-item>
+          <b-nav-item :to="{name: 'faq'}">
+            FAQ
+          </b-nav-item>
           <b-nav-item :to="{ name: 'login' }" v-if="!isLoggedIn">Log In</b-nav-item>
           <template v-else>
             <b-nav-item class="account-phone profile-link d-lg-none" :to="{ name: 'provider.profile', params: { id: user.provider_profile.id } }">
@@ -80,7 +82,6 @@
             variant="primary"
             size="lg"
             class="d-none d-lg-block ml-lg-4"
-            v-if="isLoggedIn"
             :to="{ name: 'search-partners' }"
           >
             View Partners
