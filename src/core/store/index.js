@@ -4,6 +4,7 @@ import createPersistedState from 'vuex-persistedstate'
 
 import geoLocator from './modules/geo-location'
 import auth from '@/modules/auth/store'
+import customer from '@/modules/customer/store'
 import provider from '@/modules/provider/store'
 import search from '@/modules/search/store'
 
@@ -12,6 +13,7 @@ Vue.use(Vuex)
 export default new Vuex.Store({
   modules: {
     auth,
+    customer,
     provider,
     search,
 

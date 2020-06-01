@@ -3,6 +3,7 @@ import VueRouter from 'vue-router'
 import Home from '@/core/views/Home'
 // Auth
 import authRoutes from '@/modules/auth/routes'
+import customerRoutes from '@/modules/customer/routes'
 import providerRoutes from '@/modules/provider/routes'
 import searchRoutes from '@/modules/search/routes'
 import staticRoutes from '@/modules/static/routes'
@@ -19,6 +20,7 @@ const routes = [
   { path: "*", component: PageNotFound },
 
   ...authRoutes,
+  ...customerRoutes,
   ...providerRoutes,
   ...searchRoutes,
   ...staticRoutes

@@ -24,19 +24,22 @@
                 <span v-else-if="user.customer_profile" class="muted">{{user.customer_profile.company_name}}</span>
               </span>
             </b-nav-item>
-            <b-nav-item class="account-phone menu-link d-lg-none" :to="{ name: 'provider.settings.basic-information' }">
+            <b-nav-item class="account-phone menu-link d-lg-none"
+                        :to="{ name: isCustomer ? 'customer.settings' : 'provider.settings.basic-information' }">
                 <span class="icon-card">
                   <svg-icon name="navbar_settings" width="32" class="icon-card-icon"></svg-icon>
                   <span>Settings</span>
                 </span>
             </b-nav-item>
-            <b-nav-item class="account-phone menu-link d-lg-none" :to="{ name: 'provider.settings.availability' }">
+            <b-nav-item class="account-phone menu-link d-lg-none" v-if="!isCustomer"
+                        :to="{ name: 'provider.settings.availability' }">
                 <span class="icon-card">
                   <svg-icon name="navbar_schedule" width="32" class="icon-card-icon"></svg-icon>
                   <span>Change Availability</span>
                 </span>
             </b-nav-item>
             <b-nav-item class="account-phone menu-link d-lg-none"
+                        v-if="!isCustomer"
                         :to="{ name: 'provider.settings.ratings-and-reviews' }">
                 <span class="icon-card">
                   <svg-icon name="navbar_send_request" width="32" class="icon-card-icon"></svg-icon>
@@ -60,19 +63,22 @@
                 </span>
               </b-dropdown-item>
               <b-dropdown-divider></b-dropdown-divider>
-              <b-dropdown-item link-class="menu-link" :to="{ name: 'provider.settings.basic-information' }">
+              <b-dropdown-item link-class="menu-link"
+                               :to="{ name: isCustomer ? 'customer.settings' : 'provider.settings.basic-information' }">
                 <span class="icon-card">
                   <svg-icon name="navbar_settings" width="20" class="icon-card-icon"></svg-icon>
                   <span>Settings</span>
                 </span>
               </b-dropdown-item>
-              <b-dropdown-item link-class="menu-link" :to="{ name: 'provider.settings.availability' }">
+              <b-dropdown-item link-class="menu-link" v-if="!isCustomer"
+                               :to="{ name: 'provider.settings.availability' }">
                 <span class="icon-card">
                   <svg-icon name="navbar_schedule" width="20" class="icon-card-icon"></svg-icon>
                   <span>Change Availability</span>
                 </span>
               </b-dropdown-item>
-              <b-dropdown-item link-class="menu-link" :to="{ name: 'provider.settings.ratings-and-reviews' }">
+              <b-dropdown-item link-class="menu-link" v-if="!isCustomer"
+                               :to="{ name: 'provider.settings.ratings-and-reviews' }">
                 <span class="icon-card">
                   <svg-icon name="navbar_send_request" width="20" class="icon-card-icon"></svg-icon>
                   <span>Send Review Request</span>
@@ -107,14 +113,13 @@
     methods: {
       ...mapActions('auth', ['logout']),
       performLogout() {
-        debugger
         this.logout().then(() => {
           this.$router.push({ name: 'home' })
         })
       }
     },
     computed: {
-      ...mapGetters('auth', ['isLoggedIn', 'user', 'userProviderProfileId', 'userAvatarUrl'])
+      ...mapGetters('auth', ['isLoggedIn', 'user', 'userProviderProfileId', 'userAvatarUrl', 'isCustomer'])
     },
   }
 </script>
