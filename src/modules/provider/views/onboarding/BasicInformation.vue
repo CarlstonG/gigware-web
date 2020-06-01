@@ -153,7 +153,9 @@
               user.first_name = data.first_name;
               user.last_name = data.last_name;
               user.images = data.images;
-              _this.user.provider_profile = Object.assign(user.provider_profile, data.provider_profile);
+              _this.user.provider_profile = data.provider_profile;
+
+              _this.$store.commit('auth/SET_USER', _this.user);
             }
 
             _this.afterSubmit()

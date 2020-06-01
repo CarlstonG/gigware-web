@@ -80,8 +80,8 @@
           <h3 class="title">About Us
             <svg-icon v-if="isAccountProfile"
                       name="edit_selection"
-                      width="27"
-                      class="ml-4"
+                      :width="$screens({ default: '18', md: '27' })"
+                      class="editable-icon"
                       @click="$router.push({ name: 'provider.settings.basic-information'})"/>
           </h3>
           <div class="description">{{profile.description}}</div>
@@ -119,15 +119,15 @@
           <h3 class="title">Availability
             <svg-icon v-if="isAccountProfile"
                       name="edit_selection"
-                      width="27"
-                      class="ml-4"
+                      :width="$screens({ default: '18', md: '27' })"
+                      class="editable-icon"
                       @click="$router.push({ name: 'provider.settings.availability'})"/>
           </h3>
           <div class="description"><span class="badge"></span>Unavailable</div>
 
           <b-row>
             <b-col cols="12" md="8">
-              <availability-picker v-model="profileAvailabilityDates" :disabled="true"/>
+              <availability-picker :value="profileAvailabilityDates" :disabled="true"/>
             </b-col>
           </b-row>
         </section>

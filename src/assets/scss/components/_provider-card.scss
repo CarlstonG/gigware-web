@@ -1,4 +1,6 @@
 .provider-card {
+  cursor: pointer;
+
   :focus { // remove all focus
     outline: none;
   }

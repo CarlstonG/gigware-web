@@ -158,12 +158,15 @@
       getCheckedCertificates() {
         let form = new FormData()
         this.checkedCertificates.forEach((certificate, index) => {
+          if (certificate.id) {
+            form.append(`certificates[${index}][id]`, certificate.id)
+          }
+
           form.append(
             `certificates[${index}][team_members_count]`,
-            certificate.team_members_count,
+            certificate.team_members_count
           )
           form.append(`certificates[${index}][name]`, certificate.name)
-          form.append(`certificates[${index}][id]`, certificate.id || '')
           certificate.images.map(image => {
             form.append(`certificates[${index}][images][]`, image.file || image.id)
           })

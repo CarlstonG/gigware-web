@@ -52,6 +52,7 @@
           .then(({ data }) => {
             if (_this.user?.provider_profile) {
               _this.user.provider_profile = { ..._this.user.provider_profile, unavailabilities: { data: data || [] } };
+              _this.$store.commit('auth/SET_USER', _this.user);
             }
 
             _this.afterSubmit()

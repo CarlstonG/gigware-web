@@ -176,21 +176,22 @@
     methods: {
       ...mapActions('provider', ['createExperiences', 'profileRequest']),
       sendRequest() {
+        const _this = this;
         return this.createExperiences(this.formData())
           .then(({ data }) => {
-            this.forms = [];
-            this.pushUserJobToForm(data);
+            _this.forms = [];
+            _this.userExperiencesDataToForms(data);
 
-            this.afterSubmit()
+            _this.afterSubmit()
           })
       },
       formData() {
         let formData = new FormData()
         this.forms.forEach((form, index) => {
-          formData.append(
-            `experiences[${index}][id]`,
-            form.id || '',
-          )
+          if (form.id) {
+            formData.append(`experiences[${index}][id]`, form.id)
+          }
+
           formData.append(
             `experiences[${index}][job_location]`,
             form.job_location,
@@ -236,6 +237,13 @@
           image: null,
         })
       },
+      userExperiencesDataToForms(data) {
+        if (data?.length) {
+          data.forEach(item => this.pushUserJobToForm(item))
+        } else {
+          this.addForm()
+        }
+      },
       pushUserJobToForm(userJob) {
         this.forms.push({
           id: userJob.id,
@@ -259,12 +267,7 @@
         const _this = this;
 
         this.profileRequest(this.user.provider_profile.id).then(data => {
-          data = data?.experiences?.data;
-          if (data?.length) {
-            data.forEach(item => _this.pushUserJobToForm(item))
-          } else {
-            this.addForm()
-          }
+          _this.userExperiencesDataToForms(data?.experiences?.data)
         })
       } else {
         this.addForm()
