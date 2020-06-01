@@ -90,14 +90,17 @@
           <b-nav-item></b-nav-item>
           <b-nav-item :to="{ name: 'register' }" v-if="!isLoggedIn">Build a profile</b-nav-item>
           <b-button
-            variant="primary"
-            size="lg"
-            class="d-none d-lg-block ml-lg-4"
-            :to="{ name: 'search-partners' }"
+              variant="primary"
+              size="lg"
+              class="d-none d-lg-block ml-lg-4"
+              v-if="isLoggedIn"
+              :to="{ name: 'search-partners' }"
           >
+            <!-- for signed in only -->
             View Partners
           </b-button>
-          <b-nav-item class="mt-3 mt-lg-0 d-sm-block d-lg-none text-primary" :to="{ name: 'search-partners' }">
+          <b-nav-item class="mt-3 mt-lg-0 d-sm-block d-lg-none text-primary" v-if="isLoggedIn"
+                      :to="{ name: 'search-partners' }">
             View Partners
           </b-nav-item>
         </b-navbar-nav>
