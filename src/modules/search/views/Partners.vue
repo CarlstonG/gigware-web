@@ -20,7 +20,7 @@
       <div class="next-page-btn-wrapper"
            v-if="!search_result || isLoading || (searchPagination && searchPagination.total_pages > 1)">
         <b-button variant="primary"
-                  :disabled="isLoading || (searchPagination && searchPagination.total_pages == searchPagination.current_page)"
+                  :disabled="isLoading || (searchPagination && searchPagination.total_pages === searchPagination.current_page)"
                   @click="nextPage">
           <template v-if="isLoading">
             <b-spinner small type="grow"></b-spinner>
