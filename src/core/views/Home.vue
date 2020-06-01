@@ -15,26 +15,7 @@
                 Cabling Partners
               </p>
             </div>
-            <b-input-group class="mt-sm-5 mb-sm-5 mt-3 mb-3">
-              <template #prepend>
-                <b-dropdown text="Dropdown" no-caret>
-                  <template #button-content>
-                    <span class="text-muted mr-2">Zip Code</span>
-                    <svg-icon name="caret" class="caret mr-1" />
-                  </template>
-                  <b-dropdown-item>Zip Code</b-dropdown-item>
-                  <b-dropdown-item>Team Name</b-dropdown-item>
-                </b-dropdown>
-              </template>
-              <span class="separator"></span>
-              <b-form-input
-                class="border-left-0 pl-2 pl-sm-3"
-                placeholder="Find cabling partners by Zip Code"
-              />
-              <template #append>
-                <b-button variant="primary">Search</b-button>
-              </template>
-            </b-input-group>
+            <search-bar no-left-filter @onSearch="$router.push({ name: 'search-partners'})"/>
             <p class="subtitle">
               Want to become a Cabling Partner?
               <b-link :to="{ name: 'register' }">
@@ -48,9 +29,9 @@
         <img src="/images/home_image.png" class="img-fluid" alt="Gigwire" />
       </b-col>
     </b-row>
-    <b-row style="background-color: #FAFAFB" no-gutters>
+    <b-row class="connect-your-team" style="background-color: #FAFAFB" no-gutters>
       <b-col lg="6">
-        <img src="/images/home_image_2.png" class="img-fluid" />
+        <img src="/images/home_image_2.png" class="img-fluid"/>
       </b-col>
       <b-col lg="6">
         <div class="text-block block-text-right">
@@ -59,7 +40,7 @@
               <p>Connect your cable team</p>
               <p>with more business.</p>
             </div>
-            <div class="subtitle mt-5 mb-5">
+            <div class="subtitle mt-4 mb-4">
               How do we do it?
               <b-link :to="{ name: 'register' }">
                 Build a Profile
@@ -82,83 +63,71 @@
         </div>
       </b-col>
     </b-row>
-    <div class="text-block why-us pt-5 pb-5">
-      <b-container class="pt-5 pb-5">
-        <div class="title mb-3">
-          Why Choose Gig Wire
-        </div>
-        <b-row class="mb-5">
-          <b-col>
-            <why-us-item>
-              <template #icon>
-                <svg-icon name="more_work" width="60" height="59" />
-              </template>
-              <template #title>
-                Get More Work
-              </template>
+    <div class="text-block why-us">
+      <div class="title">
+        Why Choose Gig Wire
+      </div>
+      <b-row class="why-us-items">
+        <b-col sm="12" md="6">
+          <div class="icon-card">
+            <svg-icon class="icon-card-icon" name="more_work" :width="$screens({ default: '28', lg: '48'})"/>
+            <div>
+              <div class="title">Get More Work</div>
               <p>Gig Wire helps you advertise, increases</p>
               <p>market access, and leads to new jobs.</p>
-            </why-us-item>
-          </b-col>
-          <b-col>
-            <why-us-item>
-              <template #icon>
-                <svg-icon name="money" width="64" height="64" />
-              </template>
-              <template #title>
-                Make More Money
-              </template>
+            </div>
+          </div>
+        </b-col>
+        <b-col sm="12" md="6">
+          <div class="icon-card">
+            <svg-icon class="icon-card-icon" name="money" :width="$screens({ default: '28', lg: '48'})"/>
+            <div>
+              <div class="title">Make More Money</div>
               <p>Set your own rates, find consistent work, and</p>
               <p>increase your earning potential.</p>
-            </why-us-item>
-          </b-col>
-        </b-row>
-        <b-row class="mb-5">
-          <b-col>
-            <why-us-item>
-              <template #icon>
-                <svg-icon name="build_trust" height="76" />
-              </template>
-              <template #title>
-                Build Customer Trust
-              </template>
+            </div>
+          </div>
+        </b-col>
+        <b-col sm="12" md="6">
+          <div class="icon-card">
+            <svg-icon class="icon-card-icon" name="build_trust" :width="$screens({ default: '28', lg: '48'})"/>
+            <div>
+              <div class="title">Build Customer Trust</div>
               <p>Gig Wire partners show they’re ready for the job</p>
               <p>by providing the important information upfront.</p>
-            </why-us-item>
-          </b-col>
-          <b-col>
-            <why-us-item>
-              <template #icon>
-                <svg-icon name="schedule_management" width="45" height="50" />
-              </template>
-              <template #title>
-                Schedule Management
-              </template>
+            </div>
+          </div>
+        </b-col>
+        <b-col md="6">
+          <div class="icon-card">
+            <svg-icon class="icon-card-icon" name="schedule_management" :width="$screens({ default: '28', lg: '48'})"/>
+            <div>
+              <div class="title">Schedule Management</div>
               <p>With access to more projects, you build a schedule</p>
               <p>around your team’s needs—to work when you want.</p>
-            </why-us-item>
-          </b-col>
-        </b-row>
+            </div>
+          </div>
+        </b-col>
+      </b-row>
         <div class="view-partners">
           <b-button :to="{ name: 'search-partners' }">
-            <span>View Partners</span>
-            <svg-icon name="arrow_right" width="15" height="15" />
+            <span>Find my Cabling Partner</span>
+            <svg-icon name="arrow_right" :width="$screens({ default: '12', lg: '15'})"/>
           </b-button>
         </div>
-      </b-container>
     </div>
     <b-row no-gutters>
       <b-col lg="6">
-        <div class="text-block block-text-left">
+        <div class="text-block block-text-left advertise-for-free">
           <div>
             <div class="w-100">
-              <div class="title mb-5">
+              <div class="title">
                 <p>Advertise for free</p>
                 <p>by sharing:</p>
               </div>
               <b-row class="content mb-5">
                 <b-col lg="6" class="d-flex mb-4">
-                  <svg-icon name="checkmark" width="24" class="mr-4" />
+                  <svg-icon name="checkmark" width="24" class="mr-4"/>
                   Your rates
                 </b-col>
                 <b-col lg="6" class="d-flex mb-4">
@@ -215,8 +184,9 @@
 
 <script>
   import { default as SiteFooter } from '@/core/components/global/Footer'
-  import WhyUsItem from '@/core/components/home/WhyUsItem'
+  import SearchBar from "../../modules/search/components/SearchBar";
+
   export default {
-    components: { SiteFooter, WhyUsItem },
+    components: { SearchBar, SiteFooter },
   }
 </script>

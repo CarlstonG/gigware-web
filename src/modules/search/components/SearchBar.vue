@@ -1,17 +1,17 @@
 <template>
   <div class="search-wrapper">
-    <b-dropdown left no-caret variant="outline-light" class="left-filter">
+    <b-dropdown left no-caret variant="outline-light" class="left-filter" v-if="!noLeftFilter">
       <template v-slot:button-content>
         <svg-icon name="search_filter" :width="$screens({ default: '16', md: '26' })"></svg-icon>
         <strong class="label d-none d-md-block">Filters</strong>
-        <span class="chip" v-if="leftFilterCount > 0">{{leftFilterCount}}</span>
+        <span class="chip" v-if="queryFiltersCount > 0">{{queryFiltersCount}}</span>
       </template>
       <template v-for="(item, i) in leftFilterOptions">
         <b-dropdown-form :key="i + 'dropdown'">
           <h4 class="header">{{item.title}}</h4>
           <b-form-radio v-for="option in item.options"
                         :key="option.value"
-                        v-model="filters.filter[item.name]"
+                        v-model="searchQuery.filter[item.name]"
                         :name="item.name"
                         :value="option.value">{{option.option}}
           </b-form-radio>
@@ -35,7 +35,8 @@
 
       <!--      todo: check "go" on mobile keyboard working-->
       <b-form-input id="search-input" class="search-input" type="search"
-                    v-model="filters.search.text"/>
+                    :placeholder="innerFilterSelected.placeholder"
+                    v-model="searchQuery.search.text"/>
 
       <template v-slot:append>
         <b-button type="submit" variant="light" class="submit-sm d-md-none" :disabled="isLoading" @click="submit">
@@ -54,40 +55,35 @@
 </template>
 
 <script>
+  import leftFilterOptions from "../consts/left-filter-options"
+  import innerFilterOptions from "../consts/inner-filter-options"
+
   import { mapActions, mapGetters } from "vuex";
 
   export default {
     name: "SearchBar",
+    emits: ['onSearch'], // means nothing, it's a developer suggestion
     props: {
       value: {
         type: Object,
         default: null
       },
-      leftFilterCount: {
-        type: Number,
-        default: 0
-      },
+      noLeftFilter: Boolean,
       // [{ title: '', name: '', options: [{option: name, value: val }]}]
       leftFilterOptions: {
         type: Array,
-        default: null
+        default: () => leftFilterOptions
       },
-      // [{ option: name, value: val }]
+      // [{ option: name, value: val, placeholder: text }]
       innerFilterOptions: {
         type: Array,
-        default: null
+        default: () => innerFilterOptions
       }
     },
     data() {
       return {
-        filters: this.value,
         innerOptions: this.innerFilterOptions,
         leftOptions: this.leftFilterOptions,
-      }
-    },
-    watch: {
-      value(v) {
-        this.filters = v;
       }
     },
     methods: {
@@ -95,18 +91,19 @@
       submit() {
         if (this.isLoading) return;
 
+        this.$emit('onSearch')
         this.fetchPartnersSearchRequest();
       },
       setInnerFilter(item) {
-        this.updateSearchQueryFilters({ ...this.filters, search: { field: item.value } });
+        this.updateSearchQueryFilters({ ...this.searchQuery, search: { field: item.value } });
       }
     },
     computed: {
-      ...mapGetters('search', ['isLoading', 'searchQuery']),
+      ...mapGetters('search', ['isLoading', 'queryFiltersCount', 'searchQuery']),
       innerFilterSelected() {
         if (!this.innerOptions?.length) return null;
-        if (!this.filters?.search?.field) return this.innerOptions[0];
-        return this.innerOptions.find(item => item.value === this.filters.search.field) || null;
+        if (!this.searchQuery?.search?.field) return this.innerOptions[0];
+        return this.innerOptions.find(item => item.value === this.searchQuery.search.field) || null;
       }
     }
   }

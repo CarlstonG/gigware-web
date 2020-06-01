@@ -1,16 +1,13 @@
 <template>
   <div class="partners-search">
     <b-container fluid="" class="search">
-      <search-bar v-model="searchQuery"
-                  :left-filter-count="queryFiltersCount"
-                  :left-filter-options="searchLeftFiltersOptions"
-                  :inner-filter-options="searchInnerFiltersOptions"/>
+      <search-bar/>
     </b-container>
     <b-container id="search-result" fluid="lg" class="content">
       <div class="search-info">
         <div class="search-result-info" v-if="lastSearchQueryText || queryFiltersCount">Results for <span
             class="search-text">{{lastSearchQueryText}}</span></div>
-        <search-filter-tags :options="searchLeftFiltersOptions"/>
+        <search-filter-tags/>
         <search-pagination/>
       </div>
 
@@ -53,43 +50,6 @@
   export default {
     mixins: [geoLocationMixin],
     components: { SearchPagination, ProviderCard, SearchBar, SearchFilterTags, SiteFooter },
-    data: () => ({
-      searchLeftFiltersOptions: [
-        {
-          title: 'Team size',
-          name: 'team_size',
-          options: [
-            { option: '0-5', value: '0-5' },
-            { option: '5-10', value: '5-10' },
-            { option: '10-20', value: '10-20' },
-            { option: '20+', value: '20+' },
-          ]
-        },
-        {
-          title: 'Rates',
-          name: 'rates',
-          options: [
-            { option: '< 50$', value: '-50' },
-            { option: '$50 - $100', value: '50-100' },
-            { option: '$100 - $150', value: '100-150' },
-            { option: '$150+', value: '150+' },
-          ]
-        },
-        {
-          title: 'Availability',
-          name: 'availability',
-          options: [
-            { option: 'Available Now', value: 'now' },
-            { option: 'Available this month', value: 'month' },
-          ]
-        },
-      ],
-      searchInnerFiltersOptions: [
-        { option: "Everywhere", value: "all" },
-        { option: "Company", value: "company_name" },
-        { option: "Zip Code", value: "address" }
-      ]
-    }),
     methods: {
       ...mapActions('search', ['fetchPartnersSearchRequest', 'fetchPartnersSearchNextPageRequest', 'clearSearchQueryFilters']),
       nextPage() {
@@ -100,10 +60,10 @@
     },
     computed: {
       ...mapState('search', ['search_result']),
-      ...mapGetters('search', ['queryFiltersCount', 'isLoading', 'searchQuery', 'lastSearchQuery', 'lastSearchQueryText', 'searchPagination']),
+      ...mapGetters('search', ['queryFiltersCount', 'isLoading', 'lastSearchQuery', 'lastSearchQueryText', 'searchPagination']),
     },
-    created() {
-      if (!this.search_result?.length) {
+    mounted() {
+      if (!this.isLoading && !this.search_result?.length) {
         this.fetchPartnersSearchRequest();
       }
     }

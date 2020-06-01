@@ -14,6 +14,7 @@
 
 <script>
   import { mapActions, mapGetters } from "vuex";
+  import leftFilterOptions from "../consts/left-filter-options"
 
   export default {
     name: "SearchFilterTags",
@@ -24,7 +25,7 @@
       },
       options: {
         type: Array,
-        default: () => []
+        default: () => leftFilterOptions
       },
     },
     data() {
