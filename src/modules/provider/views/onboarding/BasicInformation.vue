@@ -145,18 +145,14 @@
         const _this = this;
 
         return this.createBasicInformation(this.formData())
-          .then((data) => {
+          .then((user) => {
             // update data
-            if (_this.user?.provider_profile) {
-              const user = _this.user;
-
-              user.first_name = data.first_name;
-              user.last_name = data.last_name;
-              user.images = data.images;
-              _this.user.provider_profile = data.provider_profile;
-
-              _this.$store.commit('auth/SET_USER', _this.user);
-            }
+            const newUser = Object.assign(_this.user, {
+              first_name: user.first_name,
+              last_name: user.last_name,
+            });
+            _this.$store.commit('auth/SET_USER', newUser);
+            _this.$store.commit('auth/SET_USER_PROVIDER_PROFILE', user.provider_profile);
 
             _this.afterSubmit()
           })

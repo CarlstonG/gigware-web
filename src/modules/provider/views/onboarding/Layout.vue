@@ -6,10 +6,11 @@
           <div class="steps-header">Steps {{ currentStep }} of 8</div>
           <b-list-group>
             <b-list-group-item
-              v-for="(step, index) in steps"
-              :key="index"
-              :to="step.route"
-              :class="{ done: index + 1 < $route.meta.step }"
+                v-for="(step, index) in steps"
+                :key="index"
+                :to="step.route"
+                :disabled="index > 0 && !user.provider_profile"
+                :class="{ done: index + 1 < $route.meta.step }"
             >
               {{ step.label }}
             </b-list-group-item>
@@ -32,6 +33,8 @@
 </template>
 
 <script>
+  import { mapGetters } from "vuex";
+
   export default {
     data: () => ({
       steps: [
@@ -70,6 +73,7 @@
       ],
     }),
     computed: {
+      ...mapGetters('auth', ['user']),
       title() {
         return this.$route.meta.title
       },

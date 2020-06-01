@@ -118,9 +118,8 @@
         return this.createRatesAndLocation(this.form)
           .then(() => {
             // update data
-            if (_this.user?.provider_profile) {
-              _this.user.provider_profile = Object.assign(_this.user.provider_profile, _this.form);
-              _this.$store.commit('auth/SET_USER', _this.user);
+            if (_this.userProviderProfileId) {
+              _this.$store.commit('auth/SET_USER_PROVIDER_PROFILE', Object.assign(_this.user.provider_profile, _this.form));
             }
 
             _this.afterSubmit()
@@ -207,13 +206,13 @@
       },
     },
     computed: {
-      ...mapGetters('auth', ['user']),
+      ...mapGetters('auth', ['user', 'userProviderProfileId']),
     },
     mounted() {
       this.loadGoogle()
     },
     created() {
-      if (this.user?.provider_profile) {
+      if (this.userProviderProfileId) {
         const profile = this.user.provider_profile;
 
         this.form = Object.assign(this.form, {

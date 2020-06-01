@@ -67,9 +67,26 @@
       ...mapActions('auth', ['login']),
       sendRequest() {
         return this.login(this.form)
-          .then(() => {
-            // todo: implement check if redirect this.$router.push({ name: 'provider.onboarding.basic-information' }) is necessary
-            this.$router.push({ name: 'search-partners' }); // todo: implement routes history ignoring
+          .then((user) => {
+            const isRegistered = user?.provider_profile?.is_registered;
+            const roleSlug = user?.role?.slug;
+            const userProviderProfileId = user?.provider_profile?.id;
+            if (isRegistered && userProviderProfileId) {
+              this.$router.push({ name: 'provider.profile', params: { id: userProviderProfileId } }); // todo: implement routes history ignoring and send before login
+            } else if (!isRegistered && roleSlug === 'provider') {
+              this.$router.push({ name: 'provider.onboarding.basic-information' });
+            } else {
+              this.$router.push({ name: 'home' })
+            }
+          })
+          .catch(error => {
+            this.serverError = error;
+
+            if (this.statusCode === 401) {
+              this.toast('Authentication is failed. Please check your credentials')
+            } else {
+              return Promise.reject(error);
+            }
           })
       },
     },

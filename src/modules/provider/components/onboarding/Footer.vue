@@ -5,7 +5,7 @@
     </b-button>
     <div>
       <b-button
-          @click="onSkip"
+          @click="onSkip($event)"
           variant="link"
           class="p-0"
           size="lg"
@@ -16,7 +16,6 @@
       <b-progress-button
           class="ml-5"
           size="lg"
-          @click="onClick"
           :disabled="loading"
           :state="state"
           :default-text="nextBtnTextFromMeta"
@@ -62,10 +61,10 @@
     },
     methods: {
       onClick(e) {
-        this.$emit('skip', e)
+        this.$emit('click', e)
       },
       onSkip(e) {
-        this.$emit('click', e)
+        this.$emit('skip', e)
       }
     }
   }

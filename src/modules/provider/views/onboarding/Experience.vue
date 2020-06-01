@@ -259,14 +259,14 @@
       }
     },
     computed: {
-      ...mapGetters('auth', ['user']),
+      ...mapGetters('auth', ['user', 'userProviderProfileId']),
     },
     created() {
       // todo: optimize this
-      if (this.user?.provider_profile) {
+      if (this.userProviderProfileId) {
         const _this = this;
 
-        this.profileRequest(this.user.provider_profile.id).then(data => {
+        this.profileRequest(this.userProviderProfileId).then(data => {
           _this.userExperiencesDataToForms(data?.experiences?.data)
         })
       } else {

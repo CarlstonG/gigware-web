@@ -14,7 +14,9 @@
           </b-nav-item>
           <b-nav-item :to="{ name: 'login' }" v-if="!isLoggedIn">Log In</b-nav-item>
           <template v-else>
-            <b-nav-item class="account-phone profile-link d-lg-none" :to="{ name: 'provider.profile', params: { id: user.provider_profile.id } }">
+            <b-nav-item class="account-phone profile-link d-lg-none"
+                        v-if="userProviderProfileId"
+                        :to="{ name: 'provider.profile', params: { id: userProviderProfileId } }">
               <b-avatar size="3rem" :src="userAvatarUrl"></b-avatar>
               <span>
                 <strong class="username">{{user.first_name}}&nbsp;{{user.last_name}}</strong><br/>
@@ -47,7 +49,9 @@
               <template slot="button-content">
                 <b-avatar size="4rem" :src="userAvatarUrl"></b-avatar>
               </template>
-              <b-dropdown-item link-class="profile-link" :to="{ name: 'provider.profile', params: { id: user.provider_profile.id } }">
+              <b-dropdown-item link-class="profile-link"
+                               v-if="userProviderProfileId"
+                               :to="{ name: 'provider.profile', params: { id: userProviderProfileId } }">
                 <b-avatar size="4rem" :src="userAvatarUrl"></b-avatar>
                 <span>
                   <strong class="username">{{user.first_name}}&nbsp;{{user.last_name}}</strong><br/>
@@ -103,13 +107,14 @@
     methods: {
       ...mapActions('auth', ['logout']),
       performLogout() {
+        debugger
         this.logout().then(() => {
           this.$router.push({ name: 'home' })
         })
       }
     },
     computed: {
-      ...mapGetters('auth', ['isLoggedIn', 'user', 'userAvatarUrl'])
+      ...mapGetters('auth', ['isLoggedIn', 'user', 'userProviderProfileId', 'userAvatarUrl'])
     },
   }
 </script>
