@@ -11,6 +11,7 @@ export default {
           });
           commit('auth/SET_USER', newUser, { root: true });
           commit('auth/SET_USER_CUSTOMER_PROFILE', data.profile, { root: true });
+          commit('auth/SET_USER_IMAGES', data.images, { root: true });
 
           resolve(data)
         })

@@ -142,19 +142,9 @@
     methods: {
       ...mapActions('provider', ['createBasicInformation']),
       sendRequest() {
-        const _this = this;
-
         return this.createBasicInformation(this.formData())
-          .then((user) => {
-            // update data
-            const newUser = Object.assign(_this.user, {
-              first_name: user.first_name,
-              last_name: user.last_name,
-            });
-            _this.$store.commit('auth/SET_USER', newUser);
-            _this.$store.commit('auth/SET_USER_PROVIDER_PROFILE', user.provider_profile);
-
-            _this.afterSubmit()
+          .then(() => {
+            this.afterSubmit()
           })
       },
       formData() {
