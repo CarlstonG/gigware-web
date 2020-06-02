@@ -175,22 +175,20 @@
         <hr/>
 
         <a id="reviews-anchor"/>
-        <section class="reviews">
+        <section class="reviews" v-if="profile.external_reviews.data.length">
           <div class="title">Reviews</div>
 
-          <div class="review-card" v-for="n in 5" :key="n">
+          <div class="review-card" v-for="item in profile.external_reviews.data.slice(0, reviewsToShow)" :key="item.id">
             <svg-icon name="quotes" class="quotes-icon"/>
             <div class="review-card-body">
-              <div class="description">Alamo Cable Installation LLC did a great job installing cable. I would definetly
-                hire them again.
-              </div>
-              <b-form-rating v-model="ratingValue" variant="warning" no-border inline readonly></b-form-rating>
-              <div class="name"><span class="badge"></span>Jane Jones</div>
+              <div class="description">{{item.text}}</div>
+              <b-form-rating :value="item.rating" variant="warning" no-border inline readonly></b-form-rating>
+              <div class="name"><span class="badge"></span>{{item.first_name}} {{item.last_name}}</div>
             </div>
           </div>
 
           <div class="view-all">
-            <a href="#">View all</a>
+            <b-link @click="showAllReviews">View all</b-link>
           </div>
         </section>
 
@@ -234,7 +232,6 @@
     mixins: [geoLocationMixin],
     components: { AvailabilityPicker, ProofOfInsuarenceModal, SiteFooter, Hooper, Slide, HooperNavigation },
     data: () => ({
-      ratingValue: 4.5,
       hooperNoEvents: {
         mouseDrag: false,
         touchDrag: false,
@@ -242,7 +239,8 @@
         keysControl: false,
         shortDrag: false,
       },
-      proofOfInsuranceData: null
+      proofOfInsuranceData: null,
+      reviewsToShow: 3,
     }),
     methods: {
       ...mapActions('provider', ['profileRequest']),
@@ -257,6 +255,9 @@
           0//Math.floor(Math.random() * this.provider_profile.certificates.data.length)
           ]) || {};
       },
+      showAllReviews() {
+        this.reviewsToShow = this.profile?.external_reviews?.data.length || 0;
+      }
     },
     computed: {
       ...mapState('auth', ['user']),
