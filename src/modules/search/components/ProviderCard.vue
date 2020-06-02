@@ -93,7 +93,9 @@
         return this.profile.user?.images?.data?.length ? this.profile.user.images.data[this.profile.user.images.data.length - 1].url : null
       },
       reviewsAvg() {
-        return this.profile?.reviews_avg_rating || 0;
+        const float = this.profile?.reviews_avg_rating || 0;
+        const int = Math.round(float);
+        return float - int > 0 ? float : int;
       }
     },
     methods: {
