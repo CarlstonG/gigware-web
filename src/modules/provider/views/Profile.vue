@@ -257,7 +257,7 @@
       showProofOfInsurance(e) {
         e.preventDefault();
         // send new observer each time
-        this.proofOfInsuranceData = this.insurance || {};
+        this.proofOfInsuranceData = this.profile?.insurance || {};
       },
       showAllReviews() {
         this.reviewsToShow = this.profileExternalReviewsCount;
