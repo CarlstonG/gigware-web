@@ -1,6 +1,6 @@
 <template>
   <div class="search-wrapper">
-    <b-dropdown left no-caret variant="outline-light" class="left-filter" v-if="!noLeftFilter">
+    <b-dropdown left no-flip no-caret variant="outline-light" class="left-filter" v-if="!noLeftFilter">
       <template v-slot:button-content>
         <svg-icon name="search_filter" :width="$screens({ default: '16', md: '26' })"></svg-icon>
         <strong class="label d-none d-md-block">Filters</strong>
