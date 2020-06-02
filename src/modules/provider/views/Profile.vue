@@ -192,7 +192,7 @@
             </div>
           </div>
 
-          <div class="view-all">
+          <div class="view-all" v-if="reviewsToShow < profileExternalReviewsCount">
             <b-link @click="showAllReviews">View all</b-link>
           </div>
         </section>
