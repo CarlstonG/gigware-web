@@ -11,7 +11,7 @@
         <h2 class="company-title title">{{ profile.company_name }}</h2>
         <div class="icon-card">
           <svg-icon name="icon_location" class="icon-card-icon"/>
-          <div>
+          <div v-if="profile.address">
             <span class="label">{{ profile.address.street_address }}</span>
             <span class="label muted ml-3" v-if="currentGeoLocation && profile.address.lat">
               <span class="mr-3">+{{getDistanceTo([profile.address.lat, profile.address.lng])}}mi</span>
