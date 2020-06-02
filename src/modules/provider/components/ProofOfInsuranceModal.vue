@@ -37,14 +37,13 @@
     data () {
       return {
         isOpen: !!this.value,
-        prof: this.value
+        prof: this.value || {}
       }
     },
     watch: {
       value(v) {
         this.isOpen = !!v;
-        this.prof = v;
-        console.log(this.prof)
+        this.prof = v || {};
       },
     },
     computed: {
