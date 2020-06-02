@@ -8,8 +8,8 @@
       <b-col cols="12" lg="4" class="proof-of-insurance">
         <h4 class="title">Proof of insurance</h4>
         <div class="info">
-          <div class="line"><strong>Proof of insurance:</strong> {{name}}</div>
-          <div class="line"><strong>Policy period:</strong> 05.05.2020 - 20.05.2020</div>
+          <div class="line"><strong>Proof of insurance:</strong> {{prof.insurance_provider_name}}</div>
+          <div class="line"><strong>Policy period:</strong>{{prof.start_date}} - {{prof.end_date}}</div>
           <div class="icon-card">
             <svg-icon name="icon_proof_of_insurance" class="icon-card-icon"/>
             <div class="align-self-center">Verified by our team</div>
@@ -43,14 +43,15 @@
       value(v) {
         this.isOpen = !!v;
         this.prof = v;
+        console.log(this.prof)
       },
     },
     computed: {
       imageUrl() {
-        return this.prof && this.prof.images && this.prof.images.data[0].url ? this.prof.images.data[0].url : null
+        return this.prof?.images?.url || null
       },
       name() {
-        return this.prof ? this.prof.name : null
+        return this.prof?.name || null
       }
     }
   }

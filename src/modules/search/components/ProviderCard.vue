@@ -46,7 +46,7 @@
         <div class="icon-card">
           <svg-icon name="icon_reviews" class="icon-card-icon"/>
           <div>
-            <span class="title">4.5<span class="muted">/5</span></span>
+            <span class="title">{{reviewsAvg}}<span class="muted">/5</span></span>
           </div>
         </div>
       </b-col>
@@ -66,6 +66,7 @@
 
 <script>
   import geoLocationMixin from "@/core/mixins/geo-location";
+  import { mapGetters } from "vuex";
 
   export default {
     mixins: [geoLocationMixin],
@@ -87,8 +88,12 @@
       }
     },
     computed: {
+      ...mapGetters('provider', ['profileExternalReviewsAverageFn']),
       profileAvatarUrl() {
         return this.profile.user?.images?.data?.length ? this.profile.user.images.data[this.profile.user.images.data.length - 1].url : null
+      },
+      reviewsAvg() {
+        return this.profile?.reviews_avg_rating || 0;
       }
     },
     methods: {

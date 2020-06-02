@@ -6,7 +6,7 @@
           <div class="icon-card">
             <div class="icon-card-icon">
               <b-avatar
-                  :src="profile.user.images && profile.user.images.data.length ? profile.user.images.data[0].url : ''"
+                  :src="profileAvatarUrl"
                   :size="$screens({ default: '75', md: '125', xl: '200' })"
               />
             </div>
@@ -39,8 +39,13 @@
               <div class="icon-card">
                 <svg-icon name="icon_reviews" class="icon-card-icon"/>
                 <div>
-                  <div class="title">4.5<span class="muted">/5</span></div>
-                  <div class="subtitle"><a href="#reviews-anchor">Reviews 5</a></div>
+                  <div class="title">{{profileExternalReviewsAverage}}<span class="muted">/5</span></div>
+                  <div class="subtitle" v-if="profileExternalReviewsCount">
+                    <a href="#reviews-anchor">Reviews {{profileExternalReviewsCount}}</a>
+                  </div>
+                  <div class="subtitle" v-else>
+                    No reviews
+                  </div>
                 </div>
               </div>
             </b-col>
@@ -87,7 +92,7 @@
           <div class="description">{{profile.description}}</div>
 
           <b-row class="props">
-            <b-col cols="12" md="6">
+            <b-col cols="12" md="6" v-if="profile.certificates.data.length">
               <div class="icon-card">
                 <svg-icon name="icon_verified_credentials" class="icon-card-icon"/>
                 <div>
@@ -95,17 +100,17 @@
                     <span class="muted">/{{profile.certificates.data.length}}</span>
                   </div>
                   <div class="subtitle">
-                    <a href="#" v-on:click="showProofOfInsurance($event)">Verified Credentials</a>
+                    <a href="#verified-credentials-anchor">Verified Credentials</a>
                   </div>
                 </div>
               </div>
             </b-col>
-            <b-col cols="12" md="6">
+            <b-col cols="12" md="6" v-if="profile.insurance">
               <div class="icon-card">
                 <svg-icon name="icon_certs" class="icon-card-icon"/>
                 <div>
                   <div class="title">&nbsp;</div>
-                  <div class="subtitle"><a href="#" v-on:click="showProofOfInsurance($event)">Prof of Insurance</a>
+                  <div class="subtitle"><a href="#" v-on:click="showProofOfInsurance($event)">Proof of Insurance</a>
                   </div>
                 </div>
               </div>
@@ -172,10 +177,10 @@
           </b-row>
         </div>
 
-        <hr/>
-
         <a id="reviews-anchor"/>
-        <section class="reviews" v-if="profile.external_reviews.data.length">
+        <hr v-if="profileExternalReviewsCount"/>
+
+        <section class="reviews" v-if="profileExternalReviewsCount">
           <div class="title">Reviews</div>
 
           <div class="review-card" v-for="item in profile.external_reviews.data.slice(0, reviewsToShow)" :key="item.id">
@@ -194,7 +199,8 @@
 
         <hr/>
 
-        <section class="verified_credentials" v-if="profile.certificates.data.length">
+        <a id="verified-credentials-anchor"/>
+        <section class="verified-credentials" v-if="profile.certificates.data.length">
           <div class="title">Verified Credentials</div>
 
           <div class="icon-card" v-for="item in profile.certificates.data" :key="item.id">
@@ -251,18 +257,16 @@
       showProofOfInsurance(e) {
         e.preventDefault();
         // send new observer each time
-        this.proofOfInsuranceData = Object.assign({}, this.provider_profile.certificates.data[
-          0//Math.floor(Math.random() * this.provider_profile.certificates.data.length)
-          ]) || {};
+        this.proofOfInsuranceData = this.insurance || {};
       },
       showAllReviews() {
-        this.reviewsToShow = this.profile?.external_reviews?.data.length || 0;
+        this.reviewsToShow = this.profileExternalReviewsCount;
       }
     },
     computed: {
       ...mapState('auth', ['user']),
       ...mapState('provider', ['provider_profile']),
-      ...mapGetters('provider', ['isLoading', 'profileAvailabilityDates']),
+      ...mapGetters('provider', ['isLoading', 'profileAvatarUrl', 'profileAvailabilityDates', 'profileExternalReviewsCount', 'profileExternalReviewsAverage']),
       profile() {
         return this.provider_profile
       },
