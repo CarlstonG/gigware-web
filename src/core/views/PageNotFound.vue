@@ -1,12 +1,8 @@
 <template>
-  <div class="home">
-    <b-container style="min-height: 50vh">
-      <div class="text-block text-center">
-        <div class="w-100">
-          <div class="title">
-            <p>Page not Found</p>
-          </div>
-        </div>
+  <div class="page-not-found">
+    <b-container>
+      <div class="title">
+        <p>Page not Found</p>
       </div>
     </b-container>
     <site-footer/>

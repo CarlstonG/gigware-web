@@ -17,7 +17,7 @@ const routes = [
     name: 'home',
     component: Home,
   },
-  { path: "*", component: PageNotFound },
+  { path: "*", name: '404', component: PageNotFound },
 
   ...authRoutes,
   ...customerRoutes,

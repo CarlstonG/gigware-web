@@ -1,0 +1,42 @@
+.external-review {
+  justify-content: center;
+
+  @include media-breakpoint-up(lg) {
+    background: url('/images/man-on-right.png') fixed no-repeat right bottom;
+    background-size: 440px;
+  }
+
+  &-form {
+    background-color: $content-shaded-color;
+  }
+
+  > .container {
+    min-height: 100vh;
+    padding: 2rem 1rem;
+
+    @include media-breakpoint-up(md) {
+      padding: 4rem 0;
+    }
+
+    .title {
+      margin-bottom: 3rem;
+    }
+
+    .success-description {
+      margin-bottom: 2.5rem;
+
+      > p {
+        padding-bottom: 2rem;
+      }
+    }
+  }
+
+  .token-checking {
+    text-align: center;
+    margin-top: 5rem;
+
+    .spinner-grow {
+      margin-right: .5rem;
+    }
+  }
+}

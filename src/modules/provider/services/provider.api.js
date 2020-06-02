@@ -11,5 +11,8 @@ export default {
     createReviewRequest: form => http.post('/providers/onboarding/review-requests', form),
   },
 
-  getProfile: (id) => http.get('/providers/provider/' + id)
+  getProfile: (id) => http.get('/providers/provider/' + id),
+
+  getExternalReviewTokenStatus: (token) => http.get('/providers/external-review/' + token),
+  postExternalReview: (token, form) => http.post('/providers/external-review/' + token, form),
 }

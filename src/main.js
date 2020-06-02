@@ -34,6 +34,7 @@ Vue.use(VuelidateErrorExtractor, {
     integer: 'The {attribute} field must be a non-decimal number',
     sameAsPassword: 'The passwords do not match',
     contactPhoneRegex: 'The {attribute} field must be a valid phone number',
+    between: "The {attribute} field is not in range from {min} to {max}",
   },
   attributes: {
     email: 'email address',

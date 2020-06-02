@@ -1,4 +1,6 @@
 import { email, integer, required } from 'vuelidate/lib/validators'
+import maxLength from "vuelidate/lib/validators/maxLength";
+import between from "vuelidate/lib/validators/between";
 
 export default {
   onboarding: {
@@ -58,4 +60,16 @@ export default {
       },
     },
   },
+
+  /*
+   * External Review
+   */
+  externalReview: {
+    form: {
+      first_name: { required },
+      last_name: { required },
+      rating: { required, integer, between: between(1, 5) },
+      review: { required, maxLength: maxLength(65535) }
+    }
+  }
 }

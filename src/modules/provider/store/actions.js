@@ -114,5 +114,29 @@ export default {
           context.commit('SET_PROVIDER_PROFILE_STATE', false);
         })
     })
+  },
+
+  checkExternalReviewToken(context, token) {
+    return new Promise((resolve, reject) => {
+      api.getExternalReviewTokenStatus(token)
+        .then(({ data }) => {
+          resolve(data)
+        })
+        .catch(error => {
+          reject(error)
+        })
+    })
+  },
+  sendExternalReview(context, { token, form }) {
+    return new Promise((resolve, reject) => {
+
+      api.postExternalReview(token, form)
+        .then(({ data }) => {
+          resolve(data)
+        })
+        .catch(error => {
+          reject(error)
+        })
+    })
   }
 }

@@ -1,0 +1,19 @@
+.page-not-found {
+  background: url('/images/man-on-right.png') fixed no-repeat right;
+  background-size: 320px;
+  justify-content: center;
+
+  @include media-breakpoint-up(lg) {
+    background-size: 440px;
+  }
+
+  > .container {
+    min-height: 50vh;
+    padding: 4rem 0;
+  }
+
+  .title {
+    text-align: center;
+    font-size: 3rem;
+  }
+}
