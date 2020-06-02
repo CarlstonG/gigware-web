@@ -5,11 +5,12 @@
       <b-col cols="12" lg="6" class="justify-contents-center d-flex">
         <img class="cert-img img-fluid" :src="imageUrl" alt="" />
       </b-col>
-      <b-col cols="12" lg="4" class="proof-of-insurance">
+      <b-col cols="12" lg="6" class="proof-of-insurance">
         <h4 class="title">Proof of insurance</h4>
         <div class="info">
-          <div class="line"><strong>Proof of insurance:</strong> {{prof.insurance_provider_name}}</div>
-          <div class="line"><strong>Policy period:</strong>{{prof.start_date}} - {{prof.end_date}}</div>
+          <div class="line"><strong>Proof of insurance:</strong>{{prof.insurance_provider_name}}</div>
+          <div class="line"><strong>Policy period:</strong>{{prof.start_date}}<span class="dash">&ndash;</span>{{prof.end_date}}
+          </div>
           <div class="icon-card">
             <svg-icon name="icon_proof_of_insurance" class="icon-card-icon"/>
             <div class="align-self-center">Verified by our team</div>
@@ -48,7 +49,7 @@
     },
     computed: {
       imageUrl() {
-        return this.prof?.images?.url || null
+        return this.prof?.image?.url || null
       },
       name() {
         return this.prof?.name || null

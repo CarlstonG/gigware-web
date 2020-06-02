@@ -58,6 +58,14 @@
 
         .line {
           margin-bottom: .5rem;
+
+          strong {
+            margin-right: .5rem;
+          }
+
+          span.dash {
+            margin: 0 .4rem;
+          }
         }
 
         .icon-card-icon {
