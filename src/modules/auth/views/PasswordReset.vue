@@ -15,7 +15,7 @@
                         </validated-b-form-group>
                         <validated-b-form-group
                                 name="new_password_repeat"
-                                label="New password repeat"
+                                label="Enter password again"
                                 :disabled="formLocked"
                         >
                             <b-form-input v-model.trim.lazy="form.new_password_repeat" />
