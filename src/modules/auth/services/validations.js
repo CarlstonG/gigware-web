@@ -32,4 +32,15 @@ export default {
       phone_number: { required },
     },
   },
+  forgot: {
+    form: {
+      email: { required, email },
+    },
+  },
+  newPassword: {
+    form: {
+      new_password: { required, minLength: minLength(6) },
+      new_password_repeat: { required, minLength: minLength(6), sameAsPassword: sameAs('new_password') },
+    },
+  },
 }

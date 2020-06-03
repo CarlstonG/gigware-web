@@ -45,6 +45,30 @@ export default {
         })
     })
   },
+  forgot(context, data) {
+    return new Promise((resolve, reject) => {
+      api
+          .forgot(data)
+          .then(({ data }) => {
+            resolve(data)
+          })
+          .catch(error => {
+            reject(error)
+          })
+    })
+  },
+  newPassword(context, data) {
+    return new Promise((resolve, reject) => {
+      api
+          .newPassword(data)
+          .then(({ data }) => {
+            resolve(data)
+          })
+          .catch(error => {
+            reject(error)
+          })
+    })
+  },
   checkAuth() {
     api.checkAuth()
   },
