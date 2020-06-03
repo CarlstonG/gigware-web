@@ -23,7 +23,7 @@
               <b-form-checkbox v-model="form.remember_me">
                 Keep me logged in
               </b-form-checkbox>
-              <b-link>Forgot password?</b-link>
+              <b-link :to="{ name: 'forgot' }">Forgot password?</b-link>
             </div>
             <b-form-row class="justify-content-end mt-5">
               <b-progress-button
