@@ -232,10 +232,11 @@
   import 'hooper/dist/hooper.css';
   import ProofOfInsuarenceModal from "../components/ProofOfInsuranceModal";
   import geoLocationMixin from "@/core/mixins/geo-location";
+  import validateFormMixin from '@/core/mixins/validate-form-mixin'
   import AvailabilityPicker from "../../../core/components/forms/AvailabilityPicker";
 
   export default {
-    mixins: [geoLocationMixin],
+    mixins: [geoLocationMixin, validateFormMixin],
     components: { AvailabilityPicker, ProofOfInsuarenceModal, SiteFooter, Hooper, Slide, HooperNavigation },
     data: () => ({
       hooperNoEvents: {
@@ -275,7 +276,15 @@
       }
     },
     created() {
-      this.profileRequest(this.$route.params.id);
+      this.profileRequest(this.$route.params.id).catch(error => {
+        this.serverError = error;
+
+        if (this.statusCode === 404) {
+          this.$router.push({ name: '404' })
+        } else {
+          this.handleServerError(error)
+        }
+      });
     },
     mounted() {
       window.scrollTo(0, 0);

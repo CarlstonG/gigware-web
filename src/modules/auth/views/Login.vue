@@ -85,7 +85,7 @@
             if (this.statusCode === 401) {
               this.toast('Authentication is failed. Please check your credentials')
             } else {
-              return Promise.reject(error);
+              this.handleServerError(error);
             }
           })
       },
