@@ -1,6 +1,6 @@
 <template>
-  <div>
-    <b-container fluid="sm" class="provider-profile">
+  <div class="provider-profile">
+    <b-container fluid="sm">
       <div class="content" v-if="!isLoading && profile">
         <section>
           <div class="icon-card">
@@ -285,9 +285,6 @@
           this.handleServerError(error)
         }
       });
-    },
-    mounted() {
-      window.scrollTo(0, 0);
     }
   }
 </script>

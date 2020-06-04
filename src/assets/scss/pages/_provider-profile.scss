@@ -1,8 +1,5 @@
 .provider-profile {
   background-size: cover;
-  min-height: 600px;
-  justify-content: center;
-  padding: 50px 0;
 
   :focus { // remove all focus
     outline: none;
@@ -15,30 +12,36 @@
     background-size: 842px 1078px, 842px 1078px;
   }
 
-  > .content > section {
-    padding: 0 22px;
+  > div {
+    min-height: 100vh;
+    justify-content: center;
+    padding: 50px 0;
 
-    .title {
-      font-size: 1.4rem;
-      font-weight: bold;
-      margin-bottom: .25rem;
-    }
-
-    .description {
-      margin-bottom: 1rem;
-    }
-
-    @include media-breakpoint-up(md) {
-      padding: 0 50px;
+    > .content > section {
+      padding: 0 22px;
 
       .title {
-        font-size: 2rem;
-        margin-bottom: 1rem;
+        font-size: 1.4rem;
+        font-weight: bold;
+        margin-bottom: .25rem;
       }
 
       .description {
-        font-size: 1.25rem;
-        margin-bottom: 2rem;
+        margin-bottom: 1rem;
+      }
+
+      @include media-breakpoint-up(md) {
+        padding: 0 50px;
+
+        .title {
+          font-size: 2rem;
+          margin-bottom: 1rem;
+        }
+
+        .description {
+          font-size: 1.25rem;
+          margin-bottom: 2rem;
+        }
       }
     }
 
