@@ -3,6 +3,6 @@ module.exports = {
     devServer: {
         disableHostCheck: true
     },
-    outputDir: "/var/www/frontend_build/html_tml",
+    outputDir: "/var/www/frontend_build/html_tmp",
     productionSourceMap: false
 }
