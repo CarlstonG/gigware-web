@@ -32,7 +32,6 @@
             :loading="formLocked"
             :state="formState"
             :optional="true"
-            next-btn-text="Send & Next"
             @skip="goToNextStep"
         />
       </b-form>

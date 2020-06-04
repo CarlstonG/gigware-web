@@ -56,7 +56,8 @@
       nextBtnTextFromMeta() {
         return this.nextBtnText !== nextBtnDefaultText ?
           this.nextBtnText :
-          this.$route.matched.find(r => r.meta.nextBtnText)?.meta?.nextBtnText || this.nextBtnText
+          this.$route.matched.slice().reverse().find(r => r.meta.nextBtnText)?.meta?.nextBtnText
+          || this.nextBtnText
       }
     },
     methods: {

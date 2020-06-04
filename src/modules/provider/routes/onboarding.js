@@ -92,6 +92,7 @@ export default [
         component: RatingsAndReviews,
         meta: {
           step: 7,
+          nextBtnText: 'Send & Next',
           nextRedirect: { name: 'provider.onboarding.confirmation' },
           title: 'Ratings & Reviews',
           subtitle:

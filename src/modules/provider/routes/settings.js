@@ -94,6 +94,7 @@ export default [
           title: 'Ratings & Reviews',
           subtitle:
             'Make your profile shine, get some gold stars from former customers.',
+          nextBtnText: 'Send',
         },
       },
       {
