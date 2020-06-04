@@ -2,8 +2,9 @@
 /* tslint:disable */
 // @ts-ignore
 import icon from 'vue-svgicon'
+
 icon.register({
-  'icon_proof _of_insurance_disabled': {
+  'icon_proof_of_insurance_disabled': {
     width: 54.324,
     height: 54.324,
     viewBox: '0 0 54.324 54.324',

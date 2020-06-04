@@ -96,7 +96,7 @@
               <div class="icon-card">
                 <svg-icon name="icon_verified_credentials" class="icon-card-icon"/>
                 <div>
-                  <div class="title">{{profile.certificates.data.length}}
+                  <div class="title">0
                     <span class="muted">/{{profile.certificates.data.length}}</span>
                   </div>
                   <div class="subtitle">
@@ -203,10 +203,17 @@
         <section class="verified-credentials" v-if="profile.certificates.data.length">
           <div class="title">Verified Credentials</div>
 
-          <div class="icon-card" v-for="item in profile.certificates.data" :key="item.id">
-            <div>{{item.team_members_count}} / {{profile.team_size}} hold {{item.name}} license</div>
-            <svg-icon name="icon_proof_of_insurance" class="icon-card-icon"/>
-          </div>
+          <b-row v-for="item in profile.certificates.data" :key="item.id">
+            <b-col cols="10" lg="6" xl="5">
+              <div class="icon-card">
+                <div>{{item.team_members_count}} / {{profile.team_size}} hold {{item.name}} license</div>
+              </div>
+            </b-col>
+            <b-col class="icon-col" cols="2" lg="2">
+              <svg-icon name="icon_proof_of_insurance_disabled" class="icon-card-icon"/>
+              <!--            <svg-icon name="icon_proof_of_insurance" class="icon-card-icon"/>-->
+            </b-col>
+          </b-row>
 
           <div class="back-top">
             <div class="icon-card">

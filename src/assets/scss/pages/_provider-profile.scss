@@ -137,7 +137,8 @@
         padding: 1rem 0;
       }
     }
-      @include media-breakpoint-up(md) {
+
+    @include media-breakpoint-up(md) {
       svg {
         @include size(48px !important);
         margin-right: 21px;
@@ -388,16 +389,12 @@
       margin-bottom: 2rem !important;
     }
 
-    > .icon-card {
+    .icon-card {
       margin-bottom: 1rem;
+    }
 
-      > div {
-        flex-grow: 1;
-      }
-
-      svg.icon-card-icon {
-        @include size(32px);
-      }
+    .icon-col .icon-card-icon {
+      @include size(32px);
     }
 
     .back-top {
