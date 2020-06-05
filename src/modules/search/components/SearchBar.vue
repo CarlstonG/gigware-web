@@ -35,6 +35,7 @@
 
       <!--      todo: check "go" on mobile keyboard working-->
       <b-form-input id="search-input" class="search-input" type="search"
+                    @keyup.enter.native="submit"
                     :placeholder="innerFilterSelected.placeholder"
                     v-model="searchQuery.search.text"/>
 
@@ -96,6 +97,9 @@
       },
       setInnerFilter(item) {
         this.updateSearchQueryFilters({ ...this.searchQuery, search: { field: item.value } });
+      },
+      fireSearchEvent(e) {
+        console.log('fireSearchEvent', e);
       }
     },
     computed: {
