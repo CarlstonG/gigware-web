@@ -6,7 +6,7 @@
         <b-col lg="4">
           <h4>Quick Links</h4>
           <p>
-            <router-link :to="{ name: 'contact-us' }">Support/Contact US</router-link>
+            <router-link :to="{ name: 'contact-us' }">Support</router-link>
           </p>
           <p>
             <router-link to="/faq">FAQ</router-link>
