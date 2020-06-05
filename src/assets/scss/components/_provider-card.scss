@@ -49,6 +49,14 @@
       letter-spacing: 0;
       margin-bottom: .5rem;
 
+      @include media-breakpoint-up(sm) {
+        font-size: 1.35rem;
+      }
+
+      @include media-breakpoint-up(md) {
+        font-size: 1.5rem;
+      }
+
       @include media-breakpoint-up(xl) {
         margin-bottom: 1rem;
         font-size: 1.85rem;
@@ -56,7 +64,7 @@
     }
 
     > .icon-card-icon {
-      margin-right: 1.5rem;
+      margin-right: 1rem;
     }
 
     .icon-card {
@@ -66,12 +74,17 @@
 
     svg.icon-card-icon {
       @include size(22px);
-      margin-right: 10px;
+      margin-right: 6px;
     }
 
     .label {
       font-family: $font-family-alternative;
       font-size: 1rem;
+    }
+
+    .label-miles {
+      color: $text-muted;
+      margin-left: .25rem;
     }
 
     .phone-button {
@@ -89,6 +102,18 @@
         z-index: 5;
         margin: 0;
         padding: 1rem 0;
+      }
+    }
+
+    @include media-breakpoint-up(md) {
+      .label {
+        font-size: 1.25rem;
+      }
+    }
+
+    @include media-breakpoint-up(lg) {
+      .label {
+        font-size: 1rem;
       }
     }
 

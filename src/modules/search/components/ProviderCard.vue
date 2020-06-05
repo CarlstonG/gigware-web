@@ -4,7 +4,7 @@
       <div class="icon-card-icon">
         <b-avatar
             :src="profileAvatarUrl"
-            :size="$screens({ default: '54', lg: '108' })"
+            :size="$screens({ default: '54', sm: '64', md: '96', lg: '108' })"
         />
       </div>
       <div>
@@ -13,8 +13,8 @@
           <svg-icon name="icon_location" class="icon-card-icon"/>
           <div v-if="profile.address">
             <span class="label">{{ profile.address.street_address }}</span>
-            <span class="label muted ml-3" v-if="currentGeoLocation && profile.address.lat">
-              <span class="mr-3">+{{getDistanceTo([profile.address.lat, profile.address.lng])}}mi</span>
+            <span class="label label-miles" v-if="currentGeoLocation && profile.address.lat">
+              +{{getDistanceTo([profile.address.lat, profile.address.lng])}}mi
             </span>
           </div>
         </div>
