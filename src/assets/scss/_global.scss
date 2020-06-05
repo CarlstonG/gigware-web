@@ -6,6 +6,11 @@
   background-color: $color-gray-lighter;
 }
 
+.page.container {
+  min-height: 100vh;
+  padding: 2rem 1rem;
+}
+
 .navbar-brand {
   margin-right: 0;
   @include media-breakpoint-up(xs) {

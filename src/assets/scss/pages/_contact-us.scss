@@ -1,0 +1,53 @@
+.contact-us {
+  justify-content: center;
+
+  @include media-breakpoint-up(md) {
+    background: url('/images/contact-us-support.png') fixed no-repeat right bottom;
+    background-size: 220px;
+  }
+
+  @include media-breakpoint-up(lg) {
+    background-size: 440px;
+  }
+
+  @include media-breakpoint-up(xl) {
+    background-size: 500px;
+  }
+
+  .page {
+    @include media-breakpoint-up(md) {
+      padding-top: 3rem
+    }
+  }
+
+  h2.title {
+    margin-bottom: 2rem;
+  }
+
+  .contacts {
+    margin-top: 3rem;
+
+    @include media-breakpoint-up(md) {
+      margin-top: 0;
+    }
+
+    &-group {
+      margin-bottom: 2rem;
+
+      &-title {
+        font-weight: bold;
+        line-height: 1.75;
+      }
+    }
+  }
+
+  .message-sent {
+    font-size: 1.25rem;
+    margin-top: 3rem;
+
+    @include media-breakpoint-up(md) {
+      font-size: 2rem;
+      margin-top: 5rem;
+    }
+  }
+}

@@ -5,11 +5,15 @@
         <b-col lg="4"><svg-icon name="logo" width="205" height="49" /></b-col>
         <b-col lg="4">
           <h4>Quick Links</h4>
-          <p>Support/Contact US</p>
+          <p>
+            <router-link :to="{ name: 'contact-us' }">Support/Contact US</router-link>
+          </p>
           <p>
             <router-link to="/faq">FAQ</router-link>
           </p>
-          <p><router-link to="/terms">Terms of Service</router-link></p>
+          <p>
+            <router-link to="/terms">Terms of Service</router-link>
+          </p>
           <p>Privacy Policy</p>
         </b-col>
         <b-col lg="4">

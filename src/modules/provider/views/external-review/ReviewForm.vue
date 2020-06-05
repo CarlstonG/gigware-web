@@ -95,15 +95,6 @@
             this.$emit('reviewSent', this.profile);
           })
       },
-      formData() {
-        let formData = new FormData()
-        formData.append('first_name', this.form.first_name)
-        formData.append('last_name', this.form.last_name)
-        formData.append('rating', this.form.rating)
-        formData.append('review', this.form.review)
-
-        return formData
-      }
     },
     created() {
       const token = this.$route.params.token;
