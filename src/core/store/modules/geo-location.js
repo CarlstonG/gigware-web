@@ -37,14 +37,20 @@ export default {
       VueGeolocation.getLocation(geoOptions)
         .then(coordinates => {
           console.log('$getLocation', coordinates);
-          commit('SET_CURRENT_GEO_LOCATION', coordinates);
+          commit('SET_CURRENT_GEO_LOCATION', [coordinates.lat, coordinates.lng]);
+        })
+        .catch(err => {
+          console.log('geoLocation error:', err)
         });
 
       VueGeolocation.watchLocation(geoOptions)
         .then(coordinates => {
           console.log('$watchLocation', coordinates);
-          commit('SET_CURRENT_GEO_LOCATION', coordinates);
+          commit('SET_CURRENT_GEO_LOCATION', [coordinates.lat, coordinates.lng]);
         })
+        .catch(err => {
+          console.log('geoLocation error:', err)
+        });
     },
   },
   mutations: {
