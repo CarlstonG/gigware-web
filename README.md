@@ -1,8 +1,7 @@
 # web
-
-## Project setup
+### run first
 ```
-npm install
+make help
 ```
 
 ### Compiles and hot-reloads for development
@@ -11,16 +10,6 @@ Environment params:
 * `VUE_APP_GOOGLE_MAPS_API_KEY=`
 ```
 npm run serve
-```
-
-### Compiles and minifies for production
-```
-npm run build
-```
-
-### Lints and fixes files
-```
-npm run lint
 ```
 
 ### How to build frontend on production
