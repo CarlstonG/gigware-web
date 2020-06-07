@@ -3,7 +3,7 @@ all: deps lint build
 
 
 .PHONY: deps # Install dependencies
-build:
+deps:
 	npm install
 
 .PHONY: build # Compiles and minifies for production
