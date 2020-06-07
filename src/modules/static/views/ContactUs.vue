@@ -19,7 +19,8 @@
                           :disabled="formLocked"
                           class="required"
                       >
-                        <b-form-input v-model.trim.lazy="form.first_name"/>
+                        <b-form-input v-model.trim.lazy="form.first_name"
+                                      :placeholder="placeholders.first_name"/>
                       </validated-b-form-group>
                       <validated-b-form-group
                           name="last_name"
@@ -27,7 +28,8 @@
                           :disabled="formLocked"
                           class="required"
                       >
-                        <b-form-input v-model.trim.lazy="form.last_name"/>
+                        <b-form-input v-model.trim.lazy="form.last_name"
+                                      :placeholder="placeholders.last_name"/>
                       </validated-b-form-group>
                       <validated-b-form-group
                           name="email"
@@ -35,7 +37,8 @@
                           :disabled="formLocked"
                           class="required"
                       >
-                        <b-form-input v-model.trim.lazy="form.email"/>
+                        <b-form-input v-model.trim.lazy="form.email"
+                                      :placeholder="placeholders.email"/>
                       </validated-b-form-group>
                       <validated-b-form-group
                           name="message"
@@ -43,7 +46,8 @@
                           :disabled="formLocked"
                           class="required"
                       >
-                        <b-form-textarea v-model.trim.lazy="form.message" rows="5"/>
+                        <b-form-textarea v-model.trim.lazy="form.message" rows="5"
+                                         :placeholder="placeholders.contact_us_message"/>
                       </validated-b-form-group>
 
                       <div class="mt-5 d-flex justify-content-end">
@@ -83,6 +87,7 @@
   import { required } from "vuelidate/lib/validators";
   import maxLength from "vuelidate/lib/validators/maxLength";
   import validateFormMixin from '@/core/mixins/validate-form-mixin'
+  import placeholders from '@/core/constants/placeholders'
   import contacts from '@/core/constants/site-data'
   import http from '@/core/services/drivers/app-http-driver'
 
@@ -98,7 +103,8 @@
         last_name: '',
         email: '',
         message: '',
-      }
+      },
+      placeholders: placeholders,
     }),
     validations: {
       form: {

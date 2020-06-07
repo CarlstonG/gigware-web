@@ -9,7 +9,8 @@
               :disabled="formLocked"
               class="required"
           >
-            <b-form-input v-model.trim.lazy="form.first_name"/>
+            <b-form-input v-model.trim.lazy="form.first_name"
+                          :placeholder="placeholders.first_name"/>
           </validated-b-form-group>
           <validated-b-form-group
               name="last_name"
@@ -17,7 +18,8 @@
               :disabled="formLocked"
               class="required"
           >
-            <b-form-input v-model.trim.lazy="form.last_name"/>
+            <b-form-input v-model.trim.lazy="form.last_name"
+                          :placeholder="placeholders.last_name"/>
           </validated-b-form-group>
           <validated-b-form-group
               name="phone_number"
@@ -25,7 +27,8 @@
               :disabled="formLocked"
               class="required"
           >
-            <b-form-input v-model.trim.lazy="form.phone_number"/>
+            <b-form-input v-model.trim.lazy="form.phone_number"
+                          :placeholder="placeholders.phone_number"/>
           </validated-b-form-group>
           <validated-b-form-group
               name="company_name"
@@ -33,7 +36,8 @@
               :disabled="formLocked"
               class="required"
           >
-            <b-form-input v-model.trim.lazy="form.company_name"/>
+            <b-form-input v-model.trim.lazy="form.company_name"
+                          :placeholder="placeholders.company_name"/>
           </validated-b-form-group>
           <validated-b-form-group
               name="zip_code"
@@ -41,7 +45,8 @@
               :disabled="formLocked"
               class="required"
           >
-            <b-form-input v-model.trim.lazy="form.zip_code"/>
+            <b-form-input v-model.trim.lazy="form.zip_code"
+                          :placeholder="placeholders.zip_code"/>
           </validated-b-form-group>
         </b-col>
         <b-col lg="5" offset-lg="1" sm="6" offset-sm="3">
@@ -115,6 +120,7 @@
 <script>
   import validations from '../../services/validations'
   import validateFormMixin from '@/core/mixins/validate-form-mixin'
+  import placeholders from '@/core/constants/placeholders'
   import { mapActions, mapGetters } from 'vuex'
   import ImageUpload from "../../../../core/components/images/ImageUpload";
 
@@ -130,6 +136,7 @@
         zip_code: '',
         profile_image: null,
       },
+      placeholders: placeholders,
     }),
     validations: validations.settings,
     methods: {

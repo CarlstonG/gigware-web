@@ -4,16 +4,16 @@
       <b-row>
         <b-col lg="6" class="pr-5">
           <validated-b-form-group
-            name="rates_per_run"
-            label="At a minimum, what does your team charge per cable run?"
-            :disabled="formLocked"
-            class="required"
+              name="rates_per_run"
+              label="At a minimum, what does your team charge per cable run?"
+              :disabled="formLocked"
+              class="required"
           >
             <div class="d-flex align-items-center">
               <span class="mr-2">$</span>
               <b-form-input
-                v-model.trim.lazy="form.rates_per_run"
-                placeholder="X.XX"
+                  v-model.trim.lazy="form.rates_per_run"
+                  :placeholder="placeholders.rates_per_run"
               />
             </div>
           </validated-b-form-group>
@@ -24,28 +24,30 @@
               class="required"
           >
             <b-form-input
-              v-model.trim.lazy="form.address.city"
-              ref="autocomplete"
+                v-model.trim.lazy="form.address.city"
+                :placeholder="placeholders.city"
+                ref="autocomplete"
             />
           </validated-b-form-group>
           <validated-b-form-group
-            name="work_radius"
-            label="What mile radius beyond your city will your team work?"
-            :disabled="formLocked"
-            class="required"
+              name="work_radius"
+              label="What mile radius beyond your city will your team work?"
+              :disabled="formLocked"
+              class="required"
           >
             <div class="d-flex align-items-center">
               <b-form-input
-                v-model.trim.lazy="form.work_radius"
-                @change="drawCircle"
-                class="w-25 mr-2"
+                  v-model.trim.lazy="form.work_radius"
+                  :placeholder="placeholders.work_radius"
+                  @change="drawCircle"
+                  class="w-25 mr-2"
               />
               miles
             </div>
           </validated-b-form-group>
           <div
-            ref="map"
-            style="height: 215px; width: 100%; border: 1px solid #A0AEC0"
+              ref="map"
+              style="height: 215px; width: 100%; border: 1px solid #A0AEC0"
           ></div>
         </b-col>
         <b-col lg="6" class="pl-5">
@@ -55,33 +57,37 @@
               label="Street Address"
               :disabled="formLocked"
           >
-            <b-form-input v-model.trim.lazy="form.address.street_address" />
+            <b-form-input v-model.trim.lazy="form.address.street_address"
+                          :placeholder="placeholders.street_address"/>
           </validated-b-form-group>
           <validated-b-form-group
               name="address.suite"
               label="Suite or #"
               :disabled="formLocked"
           >
-            <b-form-input v-model.trim.lazy="form.address.suite" />
+            <b-form-input v-model.trim.lazy="form.address.suite"
+                          :placeholder="placeholders.address_suite"/>
           </validated-b-form-group>
           <validated-b-form-group
               name="address.zip_code"
               label="Zip Code"
               :disabled="formLocked"
           >
-            <b-form-input v-model.trim.lazy="form.address.zip_code" />
+            <b-form-input v-model.trim.lazy="form.address.zip_code"
+                          :placeholder="placeholders.zip_code"/>
           </validated-b-form-group>
         </b-col>
       </b-row>
-      <steps-footer @next="submit" :loading="formLocked" :state="formState" />
+      <steps-footer @next="submit" :loading="formLocked" :state="formState"/>
     </b-form>
   </validated-b-form-wrapper>
 </template>
 
 <script>
   import GoogleMapsApiLoader from 'google-maps-api-loader'
-  import validations from '../../services/validations'
+  import validations from '@/modules/provider/services/validations'
   import validateFormMixin from '@/core/mixins/validate-form-mixin'
+  import placeholders from '@/core/constants/placeholders'
   import settingsSaveMixin from '@/modules/provider/mixins/settings-save-behaviour'
   import { default as StepsFooter } from '@/modules/provider/components/onboarding/Footer'
   import { mapActions, mapGetters } from 'vuex'
@@ -102,6 +108,7 @@
           lng: 0,
         },
       },
+      placeholders: placeholders,
       google: null,
       map: null,
       marker: null,
