@@ -1,0 +1,58 @@
+@import 'src/assets/scss/local-styles-includes';
+
+.search-wrapper {
+  .members-counter {
+    display: inline-block;
+    align-self: start;
+    color: $white;
+    text-align: right;
+    margin-right: 2rem;
+    font-weight: bold;
+    line-height: 1;
+
+    .title {
+      font-size: 3.2rem;
+      margin-top: -.4rem;
+    }
+
+    .label {
+      font-size: .75rem;
+      text-transform: uppercase;
+    }
+  }
+
+  .info-msg {
+    display: flex;
+    align-items: center;
+    color: $white;
+    font-size: 1.25rem;
+    margin-top: 1rem;
+
+    .caution-icon {
+      margin-right: 1rem;
+    }
+  }
+
+
+}
+
+.caution-icon {
+  display: inline-flex;
+  border: 1px solid #ebcccc;
+  border-radius: 99px;
+  background-color: #fff6f6;
+  color: $error;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.25rem;
+  width: 36px;
+  height: 36px;
+}
+
+.provider-card {
+  .caution-icon {
+    position: absolute;
+    top: 2rem;
+    right: 1.5rem;
+  }
+}

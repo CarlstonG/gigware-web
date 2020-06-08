@@ -1,16 +1,11 @@
 <template>
-  <div>
-    <navbar />
-    <router-view />
-  </div>
+  <router-view/>
 </template>
 
 <script>
-  import Navbar from '@/core/components/global/Navbar'
-  import { mapGetters, mapActions } from 'vuex'
+  import { mapActions, mapGetters } from "vuex";
 
   export default {
-    components: { Navbar },
     methods: mapActions('auth', ['checkAuth']),
     computed: mapGetters('auth', ['isLoggedIn']),
     created() {

@@ -1,7 +1,7 @@
 <template>
   <div class="provider-profile">
     <b-container fluid="sm">
-      <div class="content" v-if="!isLoading && profile">
+      <div class="page content" v-if="!isLoading && profile">
         <section>
           <div class="icon-card">
             <div class="icon-card-icon">

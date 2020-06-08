@@ -26,7 +26,7 @@
         </div>
       </b-col>
       <b-col lg="6">
-        <img src="/images/home_image.png" class="img-fluid" alt="Gigwire" />
+        <img src="/images/home_image.png" class="img-fluid" alt="Gig Wire"/>
       </b-col>
     </b-row>
     <b-row class="connect-your-team" style="background-color: #FAFAFB" no-gutters>
@@ -175,7 +175,7 @@
         </div>
       </b-col>
       <b-col lg="6">
-        <img src="/images/home_image_3.png" class="img-fluid" alt="Gigwire" />
+        <img src="/images/home_image_3.png" class="img-fluid" alt="Gig Wire"/>
       </b-col>
     </b-row>
     <site-footer />

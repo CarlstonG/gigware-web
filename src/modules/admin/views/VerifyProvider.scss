@@ -1,0 +1,132 @@
+@import 'src/assets/scss/local-styles-includes';
+
+.verify-provider {
+  &-container {
+    min-height: 100vh;
+    justify-content: center;
+    padding: 50px 0;
+  }
+
+  > .content > section {
+    padding: 0 22px;
+
+    .title {
+      font-size: 1.4rem;
+      font-weight: bold;
+      margin-bottom: .25rem;
+    }
+
+    .description {
+      margin-bottom: 1rem;
+    }
+
+    @include media-breakpoint-up(md) {
+      padding: 0 50px;
+
+      .title {
+        font-size: 2rem;
+        margin-bottom: 1rem;
+      }
+
+      .description {
+        font-size: 1.25rem;
+        margin-bottom: 2rem;
+      }
+    }
+  }
+
+  .editable-icon {
+    cursor: pointer;
+    margin-top: -.25rem;
+    margin-left: 1rem;
+
+    @include media-breakpoint-up(md) {
+      margin-top: -.5rem;
+      margin-left: 2rem;
+    }
+  }
+
+  .badge {
+    display: inline-block;
+    position: relative;
+    top: 2px;
+    margin-right: .5rem;
+    border-radius: 100px;
+    padding: 0;
+  }
+
+  .b-avatar {
+    margin-top: -.25rem;
+    background-color: $color-gray-lighter;
+
+    @include media-breakpoint-up(md) {
+      margin-top: -1rem;
+    }
+
+    img {
+      width: 100%;
+      height: 100%;
+    }
+  }
+
+  .company-title {
+    text-align: left;
+    font-size: 1.2rem;
+    font-family: $font-family-alternative;
+    font-weight: bold;
+    letter-spacing: 0;
+    margin-bottom: .5rem;
+
+    @include media-breakpoint-up(md) {
+      margin-bottom: 1rem;
+      font-size: 2rem;
+    }
+  }
+
+  .profile-data {
+    .icon-card {
+      margin-bottom: .5rem;
+    }
+
+    svg {
+      @include size(22px);
+      margin-right: 10px;
+    }
+
+    .label {
+      font-family: $font-family-alternative;
+      font-size: 1rem;
+    }
+
+    .phone-button {
+      margin-top: 1rem;
+      padding: 1.5rem 3.5rem;
+    }
+
+    @include media-breakpoint-down(md) {
+      .phone-button {
+        position: fixed;
+        left: 1.5rem;
+        right: 1.5rem;
+        bottom: 2.5rem;
+        box-shadow: 0 5px 10px #71809683;
+        z-index: 5;
+        margin: 0;
+        padding: 1rem 0;
+      }
+    }
+
+    @include media-breakpoint-up(md) {
+      margin-left: 2rem;
+
+      svg {
+        @include size(48px !important);
+        margin-right: 21px;
+      }
+
+      .label {
+        font-size: 1.75rem;
+      }
+    }
+  }
+}

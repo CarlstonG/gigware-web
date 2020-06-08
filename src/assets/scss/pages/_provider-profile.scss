@@ -57,16 +57,6 @@
     }
   }
 
-  hr {
-    margin: 1.25rem .1rem;
-    border: 0;
-    border-top: 1px solid rgba($color-gray-light, 0.5);
-
-    @include media-breakpoint-up(md) {
-      margin: 2.25rem .1rem;
-    }
-  }
-
   .badge {
     display: inline-block;
     position: relative;

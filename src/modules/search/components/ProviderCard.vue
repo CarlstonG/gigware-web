@@ -1,5 +1,5 @@
 <template>
-  <b-card class="provider-card" @click="goToProfile(profile.id)">
+  <b-card class="provider-card" @click="routeTo">
     <div class="icon-card profile-data">
       <div class="icon-card-icon">
         <b-avatar
@@ -19,6 +19,7 @@
           </div>
         </div>
       </div>
+      <slot name="append-profile-data"/>
     </div>
 
     <hr>
@@ -54,12 +55,14 @@
 
     <!--  Card Footer-->
     <template v-slot:footer>
-      <b-button variant="light">
-        <div class="icon-card">
-          <svg-icon name="eye" class="icon-card-icon"/>
-          <span>View Profile</span>
-        </div>
-      </b-button>
+      <slot name="footer">
+        <b-button variant="light">
+          <div class="icon-card">
+            <svg-icon name="eye" class="icon-card-icon"/>
+            <span>View Profile</span>
+          </div>
+        </b-button>
+      </slot>
     </template>
   </b-card>
 </template>
@@ -75,7 +78,8 @@
       value: {
         type: Object,
         default: null
-      }
+      },
+      to: [String, Object]
     },
     data() {
       return {
@@ -99,8 +103,10 @@
       }
     },
     methods: {
-      goToProfile(id) {
-        this.$router.push({ name: 'provider.profile', params: { id } });
+      routeTo() {
+        if (this.to) {
+          this.$router.push(this.to);
+        }
       }
     }
   }
