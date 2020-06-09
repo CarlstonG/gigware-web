@@ -127,6 +127,8 @@
     'CommScope Certification',
     'Certified Cabling Test Technician - Copper',
     'Certified Cabling Test Technician - Fiber',
+    'Security License',
+    'Fire Alarm Installation License',
   ]
 
   export default {

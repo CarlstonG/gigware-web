@@ -7,7 +7,7 @@ export default {
   phone_number: "713 -555-0675",
   company_name: "Alamo Cable Installation LLC",
   about_us: "In business for 15+ years, Alamo Cable Installation LLC is here to meet your requirements. With a unique team of 9 members, we have the experience for the job.",
-  rates_per_run: 90.00,
+  rates_per_run: '90.00',
   city: "Houston, TX",
   street_address: "",
   address_suite: "",
