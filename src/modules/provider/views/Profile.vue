@@ -144,38 +144,7 @@
           <div class="title">Completed Jobs</div>
         </section>
 
-        <div class="completed_jobs-gallery" v-if="profile.experiences.data.length">
-          <b-row>
-            <b-col cols="12" lg="4" class="completed_jobs-gallery-data">
-              <hooper group="group1" :settings="hooperNoEvents">
-                <slide v-for="item in profile.experiences.data" :key="item.id">
-                  <h3 class="title">{{item.job_location}},</h3>
-                  <div class="description">{{item.job_description}}</div>
-                  <h3 class="employer-name">{{item.employer_name}}</h3>
-                  <div class="employer-title muted">{{item.employer_title}}</div>
-                  <div class="icon-card">
-                    <svg-icon name="icon_contact_phone" class="icon-card-icon"/>
-                    <div class="muted">{{item.employer_phone}}</div>
-                  </div>
-                </slide>
-
-                <hooper-navigation slot="hooper-addons">
-                  <svg-icon name="arrow_prev" slot="hooper-prev"/>
-                  <svg-icon name="arrow_next" slot="hooper-next"/>
-                </hooper-navigation>
-              </hooper>
-            </b-col>
-            <b-col cols="12" lg="8" class="completed_jobs-gallery-images">
-              <div class="completed_jobs-gallery-images-container">
-                <hooper group="group1" :itemsToShow="$screens({ default: 1.5, lg: 2.25 })">
-                  <slide v-for="item in profile.experiences.data" :key="item.id">
-                    <div class="bg-image" :style="item.image.url | bgImage"></div>
-                  </slide>
-                </hooper>
-              </div>
-            </b-col>
-          </b-row>
-        </div>
+        <experiences-slider class="completed_jobs-gallery" :value="profile.experiences.data"/>
 
         <a id="reviews-anchor"/>
         <hr v-if="profileExternalReviewsCount"/>
@@ -235,24 +204,16 @@
 <script>
   import { default as SiteFooter } from '@/core/components/global/Footer'
   import { mapActions, mapGetters, mapState } from "vuex";
-  import { Hooper, Navigation as HooperNavigation, Slide } from 'hooper';
-  import 'hooper/dist/hooper.css';
   import ProofOfInsuarenceModal from "../components/ProofOfInsuranceModal";
   import geoLocationMixin from "@/core/mixins/geo-location";
   import validateFormMixin from '@/core/mixins/validate-form-mixin'
   import AvailabilityPicker from "../../../core/components/forms/AvailabilityPicker";
+  import ExperiencesSlider from "../components/ExperiencesSlider";
 
   export default {
     mixins: [geoLocationMixin, validateFormMixin],
-    components: { AvailabilityPicker, ProofOfInsuarenceModal, SiteFooter, Hooper, Slide, HooperNavigation },
+    components: { ExperiencesSlider, AvailabilityPicker, ProofOfInsuarenceModal, SiteFooter },
     data: () => ({
-      hooperNoEvents: {
-        mouseDrag: false,
-        touchDrag: false,
-        wheelControl: false,
-        keysControl: false,
-        shortDrag: false,
-      },
       proofOfInsuranceData: null,
       reviewsToShow: 3,
     }),
@@ -283,7 +244,9 @@
       }
     },
     created() {
-      this.profileRequest(this.$route.params.id).catch(error => {
+      this.profileRequest(this.$route.params.id).then(() => {
+        console.log('profile.experiences.data', this.profile.experiences.data, this.profile)
+      }).catch(error => {
         this.serverError = error;
 
         if (this.statusCode === 404) {

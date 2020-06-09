@@ -1,0 +1,46 @@
+.images-uploader {
+  display: flex;
+  flex-direction: column-reverse;
+  justify-content: center;
+
+  .upload-btn-wrapper {
+    margin-top: 1rem;
+  }
+
+  .images-container {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    background-color: $dirty-white;
+    border: 1px solid $color-gray-lighter;
+    border-radius: .25rem;
+    padding: .25rem;
+    width: 100%;
+    min-height: 200px;
+  }
+
+  .image-wrapper {
+    position: relative;
+    display: flex;
+    max-height: 300px;
+    flex-basis: 33%;
+    padding: .25rem;
+
+    img {
+      width: 100%;
+      height: auto;
+    }
+  }
+
+  .remove-image {
+    position: absolute;
+    top: .5rem;
+    right: .5rem;
+    display: flex;
+    border-radius: 99px;
+    padding: .4rem;
+    background-color: rgba(0, 0, 0, .5);
+    width: 1.5rem;
+    height: 1.5rem;
+  }
+}

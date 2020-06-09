@@ -17,7 +17,7 @@
               <div class="card-header-title">{{ title }}</div>
               <div class="card-header-subtitle">{{ subtitle }}</div>
             </b-card-header>
-            <div class="p-5">
+            <div class="settings-form">
               <router-view/>
             </div>
           </b-card>

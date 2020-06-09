@@ -1,5 +1,13 @@
 $settings-left-circle-border-color: #718096;
 
+.settings-form {
+  padding: 1rem;
+
+  @include media-breakpoint-up(lg) {
+    padding: 2rem;
+  }
+}
+
 .settings {
   background: url('/images/onboarding_background.png') fixed no-repeat center;
   background-size: cover;

@@ -1,0 +1,13 @@
+form {
+  .col-left {
+    @include media-breakpoint-up(lg) {
+      padding-right: 2rem;
+    }
+  }
+
+  .col-right {
+    @include media-breakpoint-up(lg) {
+      padding-left: 2rem;
+    }
+  }
+}
