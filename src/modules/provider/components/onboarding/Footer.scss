@@ -1,0 +1,55 @@
+@import "src/assets/scss/local-styles-includes";
+
+$transparent-button-color: #224F81;
+
+.btn {
+  display: flex;
+  align-items: center;
+  font-size: .75rem;
+  padding: .75rem 1rem;
+
+  .right-icon {
+    margin-left: 1.5rem;
+    margin-right: -.5rem;
+  }
+
+  .left-icon {
+    margin-right: 1rem;
+    margin-left: -.5rem;
+  }
+
+  @include media-breakpoint-up(sm) {
+    font-size: .9rem;
+
+    .right-icon {
+      margin-left: 2.5rem;
+    }
+
+    .left-icon {
+      margin-right: 1.5rem;
+    }
+  }
+}
+
+.btn-primary {
+  margin-left: 1rem;
+
+  @include media-breakpoint-up(sm) {
+    margin-left: 2.5rem;
+  }
+}
+
+
+.btn-transparent {
+  color: $transparent-button-color;
+
+  @include hover-focus-active() {
+    opacity: .75;
+  }
+}
+
+.btn-back {
+  padding: .75rem 1rem .75rem .5rem;
+}
+
+
