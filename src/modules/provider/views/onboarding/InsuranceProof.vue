@@ -169,6 +169,7 @@
       // todo: optimize this
       if (this.userProviderProfileId) {
         const _this = this;
+        this.formState = 'loading';
 
         this.profileRequest(this.userProviderProfileId).then(data => {
           const insurance = data?.insurance;
@@ -180,6 +181,8 @@
             end_date: new Date(insurance.end_date),
             image: insurance.image || null,
           };
+
+          _this.formState = 'default';
         })
       }
     },

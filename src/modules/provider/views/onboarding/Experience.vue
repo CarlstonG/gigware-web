@@ -277,9 +277,11 @@
       // todo: optimize this
       if (this.userProviderProfileId) {
         const _this = this;
+        this.formState = 'loading';
 
         this.profileRequest(this.userProviderProfileId).then(data => {
           _this.userExperiencesDataToForms(data?.experiences?.data)
+          _this.formState = 'default';
         })
       } else {
         this.addForm()
