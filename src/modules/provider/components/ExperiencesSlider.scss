@@ -8,7 +8,7 @@
   height: auto;
 
   &-navigation {
-    //margin-top: 1rem;
+    margin-top: 1rem;
 
     @include media-breakpoint-up(md) {
       position: relative;
