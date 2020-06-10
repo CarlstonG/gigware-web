@@ -45,33 +45,83 @@
           </div>
         </section>
 
-        <hr>
+        <section v-if="profile.certificates.data.length">
+          <hr>
 
-        <section>
+          <h2 class="title">Verify Licenses,Certifications or Training</h2>
 
+          <div v-for="item in profile.certificates.data" :key="item.id">
+            <div class="certificates">
+              <div class="certificate-title" v-if="item.images.data.length">
+                {{item.team_members_count}} / {{profile.team_size}} team members hold {{item.name}} license
+              </div>
+              <div class="certificate-title" v-else>
+                <verify-input>{{item.team_members_count}} / {{profile.team_size}} team members hold {{item.name}}
+                  license
+                </verify-input>
+              </div>
+
+              <div class="certificate-images">
+                <verify-input column v-for="img in item.images.data" :key="img.id">
+                  <div class="img-wrapper"
+                       @click="showImg(img)"
+                       :style="img.url | bgImage"/>
+                </verify-input>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section v-if="profile.insurance">
+          <hr>
+
+          <h2 class="title">Verify Proof of Insurance</h2>
+
+          <div class="certificate-images">
+            <verify-input column>
+              <div class="img-wrapper"
+                   @click="showImg(insuranceImage)"
+                   :style="insuranceImage.url | bgImage"/>
+            </verify-input>
+          </div>
         </section>
       </div>
     </b-container>
+
+    <image-popup :value="imagePopupData"/>
+
+    <site-footer/>
   </div>
 </template>
 <style scoped lang="scss" src="./VerifyProvider.scss"></style>
 
 <script>
   import SubNavbar from "../components/SubNavbar";
+  import SiteFooter from '@/core/components/global/Footer'
   import { mapActions, mapGetters, mapState } from "vuex";
   import VerifyInput from "../components/VerifyInput";
+  import ImagePopup from "../components/ImagePopup";
 
   export default {
-    methods: {
-      ...mapActions('provider', ['profileRequest']),
-    },
-    components: { VerifyInput, SubNavbar },
+    data: () => ({
+      imagePopupData: null,
+    }),
+    components: { ImagePopup, VerifyInput, SubNavbar, SiteFooter },
     computed: {
       ...mapState('provider', ['provider_profile']),
       ...mapGetters('provider', ['isLoading', 'profileAvatarUrl', 'profileAvailabilityDates', 'profileExternalReviewsCount', 'profileExternalReviewsAverage']),
       profile() {
         return this.provider_profile
       },
+      insuranceImage() {
+        return this.profile?.insurance?.image || {};
+      }
+    },
+    methods: {
+      ...mapActions('provider', ['profileRequest']),
+      showImg(img) {
+        this.imagePopupData = JSON.parse(JSON.stringify(img));
+      }
     },
     created() {
       this.profileRequest(this.$route.params.id).catch(error => {

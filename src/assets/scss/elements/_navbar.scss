@@ -1,3 +1,9 @@
+.modal-open {
+  .navbar-wrapper {
+    padding-right: 15px; // scrolling compensation
+  }
+}
+
 .navbar-holder {
   height: 48px;
 
