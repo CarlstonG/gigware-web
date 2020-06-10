@@ -127,6 +127,8 @@
     'CommScope Certification',
     'Certified Cabling Test Technician - Copper',
     'Certified Cabling Test Technician - Fiber',
+    'Security License',
+    'Fire Alarm Installation License',
   ]
 
   export default {
@@ -230,9 +232,11 @@
       // todo: optimize this
       if (this.userProviderProfileId) {
         const _this = this;
+        this.formState = 'loading';
 
         this.profileRequest(this.userProviderProfileId).then(data => {
-          _this.initCertificates(data?.certificates?.data || [])
+          _this.initCertificates(data?.certificates?.data || []);
+          _this.formState = 'default';
         })
       } else {
         this.initCertificates()

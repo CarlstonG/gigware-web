@@ -49,7 +49,7 @@
           </validated-b-form-group>
           <validated-b-form-group
               name="description"
-              label="About Us"
+              label="About You - show your customers you're a good fit by telling them about yourself"
               :disabled="formLocked"
               class="required"
           >

@@ -1,0 +1,135 @@
+@import "src/assets/scss/local-styles-includes";
+
+.row {
+  margin: 0;
+}
+
+::v-deep .hooper {
+  height: auto;
+
+  &-navigation {
+    margin-top: 1rem;
+
+    @include media-breakpoint-up(md) {
+      position: relative;
+      top: -32px; // icon size
+      left: 22px;
+    }
+  }
+
+  &-next, &-prev {
+    display: inline-block;
+    position: relative;
+    top: 0;
+    padding: 22px;
+
+    svg {
+      @include size(16px);
+
+      @include media-breakpoint-up(md) {
+        @include size(32px);
+      }
+    }
+  }
+}
+
+.data {
+  font-size: 1rem;
+  padding: 0;
+
+  @include media-breakpoint-up(md) {
+    font-size: 1.25rem;
+  }
+
+  .hooper-slide {
+    padding: 0 22px;
+    @include media-breakpoint-up(md) {
+      padding: 0 0 0 50px;
+      height: 569px;
+    }
+  }
+
+  .title {
+    font-weight: bold;
+    margin-bottom: 2rem;
+  }
+
+  .description {
+    margin-bottom: 2rem;
+  }
+
+  .employer-name {
+    font-weight: bold;
+    margin-bottom: 0;
+    color: $color-job-employer-name;
+  }
+
+  .icon-card {
+    margin: 2rem 0;
+
+    svg.icon-card-icon {
+      @include size(24px);
+      @include media-breakpoint-up(md) {
+        @include size(34px);
+      }
+    }
+  }
+}
+
+.images {
+  padding: 0;
+
+  &-container {
+    padding-left: 22px;
+    @include media-breakpoint-up(md) {
+      padding-left: 50px;
+    }
+  }
+
+  .main-slider {
+    > .hooper-list {
+      margin-left: -.25rem;
+      width: calc(100% + .25rem);
+    }
+
+    height: 225px;
+
+    @media (min-width: 375px) {
+      height: 337px;
+    }
+
+    @include media-breakpoint-up(md) {
+      height: 569px;
+    }
+  }
+
+  .inner-slider {
+    > .hooper-list {
+      .hooper-slide {
+        height: 225px;
+        padding: 0 .25rem;
+
+        @media (min-width: 375px) {
+          height: 337px;
+          padding: 0 .5rem;
+        }
+
+        @include media-breakpoint-up(md) {
+          height: 569px;
+          padding: 0 .5rem;
+        }
+      }
+    }
+  }
+
+  .bg-image-empty,
+  .bg-image {
+    height: 100%;
+    width: 100%;
+    background-size: cover;
+  }
+
+  .bg-image-empty {
+    background-color: $color-gray-lighter;
+  }
+}

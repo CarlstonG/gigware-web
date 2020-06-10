@@ -1,29 +1,39 @@
 <template>
   <div class="mt-5 d-flex justify-content-between">
-    <b-button @click="$router.go(-1)" variant="link" size="lg" class="p-0">
-      {{ isFirstStep || isSettingsType ? '' : 'Back' }}
+    <b-button v-if="!isFirstStep && !isSettingsType"
+              @click="$router.go(-1)" size="lg" variant="transparent" class="btn-back">
+      <svg-icon name="arrow_prev"
+                class="left-icon"
+                :width="$screens({ default: '11' })"/>
+      Back
     </b-button>
-    <div>
+    <span v-else>&nbsp;</span>
+    <div class="d-flex">
       <b-button
           @click="onSkip($event)"
-          variant="link"
-          class="p-0"
+          variant="transparent"
           size="lg"
           v-if="optional && !isSettingsType"
       >
         Skip
       </b-button>
       <b-progress-button
-          class="ml-5"
           size="lg"
           :disabled="loading"
           :state="state"
           :default-text="nextBtnTextFromMeta"
-          loading-text="Loading..."
-      />
+          loading-text="Loading...">
+        <template v-if="!isSettingsType && state === 'default'" v-slot:icon>
+          <svg-icon name="next_page"
+                    class="right-icon"
+                    :width="$screens({ default: '11'})"/>
+        </template>
+      </b-progress-button>
     </div>
   </div>
 </template>
+<style scoped lang="scss" src="./Footer.scss"></style>
+
 
 <script>
   const nextBtnDefaultText = 'Next';

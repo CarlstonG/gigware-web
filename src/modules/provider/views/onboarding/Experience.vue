@@ -2,15 +2,15 @@
   <validated-b-form-wrapper :validator="$v.forms">
     <b-form @submit.prevent="submit">
       <b-row class="mb-5" v-for="(form, index) in forms" :key="index">
-        <b-col lg="6" class="pr-5">
+        <b-col lg="6" class="col-left">
           <validated-b-form-group
-            :name="`$each.${index}.job_location`"
-            label="Job Location"
-            :disabled="formLocked"
+              :name="`$each.${index}.job_location`"
+              label="Job Location"
+              :disabled="formLocked"
           >
             <b-form-input
-              v-model.trim.lazy="form.job_location"
-              placeholder="Utopia Highschool"
+                v-model.trim.lazy="form.job_location"
+                placeholder="Utopia Highschool"
             />
           </validated-b-form-group>
           <validated-b-form-group
@@ -55,17 +55,17 @@
             />
           </validated-b-form-group>
         </b-col>
-        <b-col lg="6" class="pl-5">
+        <b-col lg="6" class="col-right">
           <b-row>
             <b-col lg="6">
               <validated-b-form-group
-                :name="`$each.${index}.start_date`"
-                label="Start Date"
-                :disabled="formLocked"
+                  :name="`$each.${index}.start_date`"
+                  label="Start Date"
+                  :disabled="formLocked"
               >
                 <v-date-picker
-                  v-model.trim.lazy="form.start_date"
-                  :input-props="{
+                    v-model.trim.lazy="form.start_date"
+                    :input-props="{
                     placeholder: 'MM/DD/YYYY',
                     class: 'form-control',
                   }"
@@ -89,57 +89,67 @@
             </b-col>
           </b-row>
           <validated-b-form-group
-            :name="`$each.${index}.image`"
-            label="Upload Images of Your Work"
-            :disabled="formLocked"
+              :name="`$each.${index}.image`"
+              label="Upload Images of Your Work"
+              :disabled="formLocked"
           >
-            <image-upload
-                v-model="form.image"
-                :img-src="form.image ? form.image.url : ''"
-                class="text-center rounded bg-light border position-relative"
-            >
+
+            <multiple-image-upload v-model="form.images" class="images-uploader">
               <template #no-image="{ openFileDialog }">
-                <div class="pt-5 pb-5">
-                  <div class="mb-2">
-                    <svg-icon name="upload_icon" width="30"/>
-                  </div>
-                  <div class="mb-3">Drag an Image to upload</div>
-                  <b-button variant="primary" size="sm" @click="openFileDialog">
+                <div class="upload-btn-wrapper">
+                  <b-button
+                      variant="primary"
+                      @click="openFileDialog">
+                    <svg-icon name="upload_icon" :width="$screens({default: '16', lg: '21'})"/>
                     Choose an Image
                   </b-button>
                 </div>
               </template>
-              <template #image="{ imgSrc, openFileDialog }">
-                <img
-                    :src="imgSrc"
-                    class="w-100 h-auto"
-                    style="object-fit: contain; max-height: 200px"
-                />
-                <b-button
-                    variant="primary"
-                    size="sm"
-                    @click="openFileDialog"
-                    style="position: absolute; left: 0; bottom: -50px;"
-                >
-                  Choose an Image
-                </b-button>
+              <template #image="{ removeImage, openFileDialog }">
+                <div class="upload-btn-wrapper">
+                  <b-button
+                      variant="primary"
+                      @click="openFileDialog">
+                    <svg-icon name="caret" :width="$screens({default: '16', lg: '21'})"/>
+                    Choose an Image
+                  </b-button>
+                </div>
+                <div class="images-container">
+                  <div
+                      v-for="(image, index) in form.images"
+                      :key="index"
+                      class="image-wrapper"
+                  >
+                    <img :src="image.src || image.url"/>
+                    <b-link class="remove-image" @click="removeImage(index)">
+                      <svg-icon name="close_icon" width="100%"/>
+                    </b-link>
+                  </div>
+                </div>
               </template>
-              <template #image-uploaded="{ src, openFileDialog }">
-                <img
-                    :src="src"
-                    class="w-100 h-auto"
-                    style="object-fit: contain; max-height: 200px"
-                />
-                <b-button
-                    variant="primary"
-                    size="sm"
-                    @click="openFileDialog"
-                  style="position: absolute; left: 0; bottom: -50px;"
-                >
-                  Choose an Image
-                </b-button>
+              <template #image-uploaded="{ removeImage, openFileDialog }">
+                <div class="upload-btn-wrapper">
+                  <b-button
+                      variant="primary"
+                      @click="openFileDialog">
+                    <svg-icon name="caret" :width="$screens({default: '16', lg: '21'})"/>
+                    Choose an Image
+                  </b-button>
+                </div>
+                <div class="images-container">
+                  <div
+                      v-for="(image, index) in form.images"
+                      :key="index"
+                      class="image-wrapper"
+                  >
+                    <img :src="image.src || image.url"/>
+                    <b-link class="remove-image" @click="removeImage(index)">
+                      <svg-icon name="close_icon" width="100%"/>
+                    </b-link>
+                  </div>
+                </div>
               </template>
-            </image-upload>
+            </multiple-image-upload>
           </validated-b-form-group>
           <div style="margin-top: 60px">
             <b-link @click="addForm" v-show="forms.length == index + 1">
@@ -162,13 +172,13 @@
   import validations from '../../services/validations'
   import validateFormMixin from '@/core/mixins/validate-form-mixin'
   import settingsSaveMixin from '@/modules/provider/mixins/settings-save-behaviour'
-  import ImageUpload from '@/core/components/images/ImageUpload'
+  import MultipleImageUpload from '@/core/components/images/MultipleImageUpload'
   import { default as StepsFooter } from '@/modules/provider/components/onboarding/Footer'
   import { mapActions, mapGetters } from 'vuex'
 
   export default {
     mixins: [validateFormMixin, settingsSaveMixin],
-    components: { ImageUpload, StepsFooter },
+    components: { MultipleImageUpload, StepsFooter },
     data: () => ({
       forms: [],
     }),
@@ -220,7 +230,9 @@
             `experiences[${index}][end_date]`,
             form.end_date.toISOString(),
           )
-          formData.append(`experiences[${index}][image]`, form.image)
+          form.images.map(image => {
+            formData.append(`experiences[${index}][images][]`, image.file || image.id)
+          })
         })
 
         return formData
@@ -234,7 +246,7 @@
           employer_phone: '',
           start_date: null,
           end_date: null,
-          image: null,
+          images: [],
         })
       },
       userExperiencesDataToForms(data) {
@@ -254,7 +266,7 @@
           employer_phone: userJob.employer_phone,
           start_date: new Date(userJob.start_date),
           end_date: new Date(userJob.end_date),
-          image: userJob.image,
+          images: userJob.images?.data || [],
         })
       }
     },
@@ -265,9 +277,11 @@
       // todo: optimize this
       if (this.userProviderProfileId) {
         const _this = this;
+        this.formState = 'loading';
 
         this.profileRequest(this.userProviderProfileId).then(data => {
           _this.userExperiencesDataToForms(data?.experiences?.data)
+          _this.formState = 'default';
         })
       } else {
         this.addForm()

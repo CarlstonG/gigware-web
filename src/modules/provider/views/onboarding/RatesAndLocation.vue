@@ -56,6 +56,7 @@
               name="address.street_address"
               label="Street Address"
               :disabled="formLocked"
+              class="required"
           >
             <b-form-input v-model.trim.lazy="form.address.street_address"
                           :placeholder="placeholders.street_address"/>
@@ -64,6 +65,7 @@
               name="address.suite"
               label="Suite or #"
               :disabled="formLocked"
+              class="required"
           >
             <b-form-input v-model.trim.lazy="form.address.suite"
                           :placeholder="placeholders.address_suite"/>
@@ -72,6 +74,7 @@
               name="address.zip_code"
               label="Zip Code"
               :disabled="formLocked"
+              class="required"
           >
             <b-form-input v-model.trim.lazy="form.address.zip_code"
                           :placeholder="placeholders.zip_code"/>

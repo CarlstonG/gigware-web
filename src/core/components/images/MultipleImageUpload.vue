@@ -32,6 +32,11 @@
         images: this.value,
       }
     },
+    watch: {
+      value(v) {
+        this.images = v;
+      },
+    },
     computed: {
       srcImages() {
         return this.images.filter(img => !(img instanceof File))
@@ -51,7 +56,7 @@
         this.$emit('image-removed', index)
       },
       filesUploaded(event) {
-        if (event.target.files.length == 0) return
+        if (event.target.files.length === 0) return
 
         event.target.files.forEach(file => {
           this.readUploadedFile(file)
