@@ -1,0 +1,15 @@
+@import 'src/assets/scss/local-styles-includes';
+
+.provider-card {
+  .caution-icon {
+    position: absolute;
+    top: 2rem;
+    right: 1.5rem;
+  }
+
+  .profile-type {
+    position: absolute;
+    top: 1rem;
+    right: 4rem;
+  }
+}

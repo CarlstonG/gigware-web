@@ -27,19 +27,7 @@
 
       <b-row class="cards" v-if="search_result && search_result.length">
         <b-col cols="12" lg="6" v-for="item in search_result" :key="item.id">
-          <provider-card :value="item" :to="{ name: 'admin.verify-provider', params: { id: item.id } }">
-            <template v-slot:append-profile-data>
-              <span class="caution-icon">!</span>
-            </template>
-            <template v-slot:footer>
-              <b-button variant="light">
-                <div class="icon-card">
-                  <svg-icon name="eye" class="icon-card-icon"/>
-                  <span>View Profile</span>
-                </div>
-              </b-button>
-            </template>
-          </provider-card>
+          <profile-card :value="item"/>
         </b-col>
       </b-row>
 
@@ -62,7 +50,7 @@
     <site-footer/>
   </div>
 </template>
-<style scoped lang="scss" src="./VerifiableProviderList.scss"></style>
+<style scoped lang="scss" src="./SearchProfileList.scss"></style>
 
 <script>
   import { default as SiteFooter } from '@/core/components/global/Footer'
@@ -70,12 +58,12 @@
   import geoLocationMixin from "@/core/mixins/geo-location";
   import SearchBar from "@/modules/search/components/SearchBar";
   import SearchFilterTags from "@/modules/search/components/SearchFilterTags";
-  import ProviderCard from "@/modules/search/components/ProviderCard";
   import SearchPagination from "@/modules/search/components/SearchPagination";
+  import ProfileCard from "../components/ProfileCard";
 
   export default {
     mixins: [geoLocationMixin],
-    components: { SearchPagination, ProviderCard, SearchBar, SearchFilterTags, SiteFooter },
+    components: { ProfileCard, SearchPagination, SearchBar, SearchFilterTags, SiteFooter },
     methods: {
       ...mapActions('admin/searchVerifiableProfiles', ['fetchPartnersSearchRequest', 'fetchPartnersSearchNextPageRequest', 'clearSearchQueryFilters']),
       nextPage() {

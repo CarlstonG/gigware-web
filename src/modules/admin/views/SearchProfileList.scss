@@ -36,7 +36,7 @@
 
 }
 
-.caution-icon {
+::v-deep .caution-icon {
   display: inline-flex;
   border: 1px solid #ebcccc;
   border-radius: 99px;
@@ -47,12 +47,4 @@
   font-size: 1.25rem;
   width: 36px;
   height: 36px;
-}
-
-.provider-card {
-  .caution-icon {
-    position: absolute;
-    top: 2rem;
-    right: 1.5rem;
-  }
 }

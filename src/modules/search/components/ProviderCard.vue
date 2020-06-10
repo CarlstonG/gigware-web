@@ -9,9 +9,12 @@
       </div>
       <div>
         <h2 class="company-title title">{{ profile.company_name }}</h2>
-        <div class="icon-card">
+        <strong v-if="profile.first_name || profile.last_name">
+          {{profile.first_name}} {{profile.last_name}}
+        </strong>
+        <div class="icon-card" v-if="profile.address">
           <svg-icon name="icon_location" class="icon-card-icon"/>
-          <div v-if="profile.address">
+          <div>
             <span class="label">{{ profile.address.street_address }}</span>
             <span class="label label-miles" v-if="currentGeoLocation && profile.address.lat">
               +{{getDistanceTo([profile.address.lat, profile.address.lng])}}mi
@@ -24,7 +27,7 @@
 
     <hr>
 
-    <b-row class="props">
+    <b-row class="props" v-if="hasProps">
       <b-col cols="4" class="col">
         <div class="icon-card">
           <svg-icon name="icon_per_run" class="icon-card-icon"/>
@@ -100,6 +103,9 @@
         const float = this.profile?.reviews_avg_rating || 0;
         const int = Math.round(float);
         return float - int > 0 ? float : int;
+      },
+      hasProps() {
+        return this.profile?.rates_per_run !== undefined && this.profile?.team_size !== undefined && this.profile?.reviews_avg_rating !== undefined
       }
     },
     methods: {
