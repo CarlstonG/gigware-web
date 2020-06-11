@@ -21,7 +21,7 @@
           <p>info@gigwire.com</p>
           <p>713-300-0575</p>
           <p>
-            <b-link class="mr-3">
+            <b-link class="mr-3" href="https://www.facebook.com/gigwireteam/" target="_blank">
               <svg-icon name="facebook_footer" width="30" height="30" />
             </b-link>
             <b-link class="mr-3">

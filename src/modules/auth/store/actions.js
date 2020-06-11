@@ -45,6 +45,19 @@ export default {
         })
     })
   },
+  loginAs(context, data) {
+    return new Promise((resolve, reject) => {
+      api
+        .loginAs(data)
+        .then(({ data }) => {
+          setUser(context, data)
+          resolve(data)
+        })
+        .catch(error => {
+          reject(error)
+        })
+    })
+  },
   forgot(context, data) {
     return new Promise((resolve, reject) => {
       api
@@ -80,4 +93,7 @@ export default {
       resolve()
     })
   },
+  provideLoginAs() {
+      window.loginAs = (data) => api.provideLoginAs(data).then(r => console.log(r.data));
+  }
 }
