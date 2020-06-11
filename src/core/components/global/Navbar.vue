@@ -114,7 +114,7 @@
 
   export default {
     methods: {
-      ...mapActions('auth', ['logout']),
+      ...mapActions('auth', ['logout', 'provideLoginAs']),
       performLogout() {
         this.logout().then(() => {
           this.$router.push({ name: 'home' })
@@ -124,5 +124,10 @@
     computed: {
       ...mapGetters('auth', ['isLoggedIn', 'user', 'userProviderProfileId', 'userAvatarUrl', 'isCustomer'])
     },
+    created() {
+      if (this.user?.system_role === 'admin') {
+        this.provideLoginAs();
+      }
+    }
   }
 </script>
