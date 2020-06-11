@@ -149,7 +149,7 @@
       isFloating: false
     }),
     methods: {
-      ...mapActions('auth', ['logout']),
+      ...mapActions('auth', ['logout', 'provideLoginAs']),
       performLogout() {
         this.logout().then(() => {
           this.$router.push({ name: 'home' })
@@ -169,6 +169,10 @@
         window.addEventListener('scroll', this.handleScroll);
       } else {
         this.isFloating = true;
+      }
+
+      if (this.user?.system_role === 'admin') {
+        this.provideLoginAs();
       }
     },
     destroyed() {
