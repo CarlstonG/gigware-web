@@ -76,6 +76,7 @@
             },
             staySignedIn: this.form.remember_me,
             fetchUser: false,
+            redirect: null
           })
           .then(() => {
             if (this.form.remember) {
@@ -87,14 +88,14 @@
             }
 
             return this.$auth.fetch().then(({ data }) => {
-              console.log('user', data);
-
-
-              // todo: add admin role
-              // todo: admin redirect
-
               // redirect
               const user = data;
+
+              if (user?.system_role === 'admin') {
+                this.$router.replace({ name: 'admin.search-profiles' })
+                return;
+              }
+
               const isRegistered = user?.provider_profile?.is_registered;
               const roleSlug = user?.role?.slug;
               const providerProfileId = user?.provider_profile?.id;
@@ -105,6 +106,17 @@
               } else if (this.$route.name !== 'home') {
                 this.$router.replace({ name: 'home' })
               }
+            }).catch((error) => {
+              this.serverError = error;
+
+              if (this.statusCode === 401) {
+                this.toast('Authentication is failed.')
+              } else {
+                console.error('user fetch error:', error)
+
+                this.$auth.logout({ redirect: this.$route.path }); // logout if there is error on user fetching
+                this.handleServerError(error);
+              }
             })
           })
           .catch(error => {
@@ -114,7 +126,6 @@
               this.toast('Authentication is failed. Please check your credentials')
             } else {
               this.handleServerError(error);
-              this.$auth.logout();
             }
           })
       },

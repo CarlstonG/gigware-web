@@ -1,15 +1,26 @@
 import VueAuth from '@websanova/vue-auth';
+import processTransitionEach from "./drivers/vue-router-process-transition-each";
+import { compareRoles } from "./vue-auth/roles";
 
 const __defaultOptions = {
+  rolesKey: '_roles',
   // External
-  storeUserFn: () => {
-  }
+  storeUserFn: (user) => {
+    return user; // stub
+  },
+  getStoreUserFn: () => {
+    return null;
+  },
+  // router
+  processTransitionEach
 };
+
+let __auth = null;
 
 export default function (Vue, options) {
   VueAuth(Vue, Object.assign(__defaultOptions, options));
 
-  const __auth = Vue.auth;
+  __auth = Vue.auth;
 
   /*
    * initial extended state
@@ -23,6 +34,11 @@ export default function (Vue, options) {
       });
     }
   });
+
+  // preset stored user
+  if (__auth.token()) {
+    __auth.user(__auth.options.getStoreUserFn())
+  }
 
   /*
    * override functions
@@ -51,6 +67,22 @@ export default function (Vue, options) {
 
     return _fetch(data)
       .then((res) => {
+        // assign roles to the right place
+        if (__auth.$vm.data) {
+          const roles = [];
+
+          roles.push(__auth.$vm.data.system_role);
+          roles.push(__auth.$vm.data.role?.slug);
+
+          switch (__auth.$vm.data.role?.slug) {
+            case 'customer-integrator':
+            case 'customer-end-user':
+              roles.push('customer'); // general role
+              break;
+          }
+
+          __auth.$vm.data[__auth.options.rolesKey] = roles;
+        }
         __auth.options.storeUserFn(
           __auth.$vm.data
         );
@@ -72,6 +104,19 @@ export default function (Vue, options) {
     return _user(data);
   }
 
+  // multiple roles support
+  __auth.check = (role, key) => {
+    if (__auth.$vm.authenticated === true) {
+      if (role) {
+        return compareRoles(role, (__auth.$vm.data || {})[key || __auth.options.rolesKey]);
+      }
+
+      return true;
+    }
+
+    return false;
+  }
+
   /*
    * new functions
    */
@@ -91,4 +136,8 @@ export default function (Vue, options) {
       }, 50);
     });
   }
+}
+
+export function getAuth() {
+  return __auth;
 }

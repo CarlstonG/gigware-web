@@ -40,7 +40,12 @@ const routes = [
     path: "",
     component: Default,
     children: [
-      { path: "*", name: "404", component: PageNotFound },
+      {
+        path: "/404",
+        alias: '*',
+        name: "404",
+        component: PageNotFound
+      },
     ]
   }
 ]
