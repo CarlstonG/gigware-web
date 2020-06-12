@@ -41,6 +41,29 @@ export default function (Vue, options) {
   }
 
   /*
+   * local functions
+   */
+
+  // assign roles to the right place
+  function _processRoles() {
+    if (__auth.$vm.data) {
+      const roles = [];
+
+      roles.push(__auth.$vm.data.system_role);
+      roles.push(__auth.$vm.data.role?.slug);
+
+      switch (__auth.$vm.data.role?.slug) {
+        case 'customer-integrator':
+        case 'customer-end-user':
+          roles.push('customer'); // general role
+          break;
+      }
+
+      __auth.$vm.data[__auth.options.rolesKey] = roles;
+    }
+  }
+
+  /*
    * override functions
    */
   const _login = __auth.login;
@@ -67,22 +90,7 @@ export default function (Vue, options) {
 
     return _fetch(data)
       .then((res) => {
-        // assign roles to the right place
-        if (__auth.$vm.data) {
-          const roles = [];
-
-          roles.push(__auth.$vm.data.system_role);
-          roles.push(__auth.$vm.data.role?.slug);
-
-          switch (__auth.$vm.data.role?.slug) {
-            case 'customer-integrator':
-            case 'customer-end-user':
-              roles.push('customer'); // general role
-              break;
-          }
-
-          __auth.$vm.data[__auth.options.rolesKey] = roles;
-        }
+        _processRoles();
         __auth.options.storeUserFn(
           __auth.$vm.data
         );
@@ -101,7 +109,10 @@ export default function (Vue, options) {
       __auth.$vm.fetched = true;
     }
 
-    return _user(data);
+    const res = _user(data);
+    _processRoles();
+
+    return res;
   }
 
   // multiple roles support
