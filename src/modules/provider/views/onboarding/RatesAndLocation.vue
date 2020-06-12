@@ -151,7 +151,9 @@
           zoom: 4,
           center: { lat: 41.22988, lng: -103.257203 },
           disableDefaultUI: true,
-        })
+          zoomControl: true
+        });
+        window.gmap = this.map;
         this.marker = new this.google.maps.Marker({ map: this.map })
       },
       createAutocomplete() {
@@ -191,28 +193,15 @@
         this.circle = new this.google.maps.Circle({
           strokeColor: '#1994DB',
           strokeOpacity: 0.9,
-          strokeWeight: 1,
+          strokeWeight: 3,
           fillOpacity: 0,
           map: this.map,
           center: {
             lat: this.place.geometry.location.lat(),
             lng: this.place.geometry.location.lng(),
           },
-          radius: (parseInt(this.form.work_radius) - 0.25) * 1000 * 0.621371, // Convert to kilometers, then to miles
-        })
-
-        this.circle = new this.google.maps.Circle({
-          strokeColor: '#1994DB',
-          strokeOpacity: 0.9,
-          strokeWeight: 1,
-          fillOpacity: 0,
-          map: this.map,
-          center: {
-            lat: this.place.geometry.location.lat(),
-            lng: this.place.geometry.location.lng(),
-          },
-          radius: parseInt(this.form.work_radius) * 1000 * 0.621371, // Convert to kilometers, then to miles
-        })
+          radius: parseInt(this.form.work_radius) * 1609.344, // Convert to kilometers, then to miles
+        });
       },
     },
     computed: {
