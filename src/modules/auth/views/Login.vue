@@ -6,18 +6,18 @@
         <validated-b-form-wrapper :validator="$v.form">
           <b-form @submit.prevent="submit">
             <validated-b-form-group
-              name="email"
-              label="Email"
-              :disabled="formLocked"
+                name="email"
+                label="Email"
+                :disabled="formLocked"
             >
-              <b-form-input v-model.trim.lazy="form.email" />
+              <b-form-input v-model.trim.lazy="form.email"/>
             </validated-b-form-group>
             <validated-b-form-group
-              name="password"
-              label="Password"
-              :disabled="formLocked"
+                name="password"
+                label="Password"
+                :disabled="formLocked"
             >
-              <b-form-input v-model.trim.lazy="form.password" type="password" />
+              <b-form-input v-model.trim.lazy="form.password" type="password"/>
             </validated-b-form-group>
             <div class="d-flex justify-content-between">
               <b-form-checkbox v-model="form.remember_me">
@@ -27,10 +27,10 @@
             </div>
             <b-form-row class="justify-content-end mt-5">
               <b-progress-button
-                size="lg"
-                :disabled="formLocked"
-                :state="formState"
-                default-text="Submit"
+                  size="lg"
+                  :disabled="formLocked"
+                  :state="formState"
+                  default-text="Submit"
               />
             </b-form-row>
           </b-form>
@@ -42,7 +42,7 @@
         </div>
       </div>
     </div>
-    <site-footer />
+    <site-footer/>
   </div>
 </template>
 
@@ -51,6 +51,7 @@
   import validations from '../services/validations'
   import validateFormMixin from '@/core/mixins/validate-form-mixin'
   import { mapActions } from 'vuex'
+  // import User from "@/core/classes/user";
 
   export default {
     components: { SiteFooter },
@@ -66,18 +67,45 @@
     methods: {
       ...mapActions('auth', ['login']),
       sendRequest() {
-        return this.login(this.form)
-          .then((user) => {
-            const isRegistered = user?.provider_profile?.is_registered;
-            const roleSlug = user?.role?.slug;
-            const userProviderProfileId = user?.provider_profile?.id;
-            if (isRegistered && userProviderProfileId) {
-              this.$router.push({ name: 'provider.profile', params: { id: userProviderProfileId } }); // todo: implement routes history ignoring and send before login
-            } else if (!isRegistered && roleSlug === 'provider') {
-              this.$router.push({ name: 'provider.onboarding.basic-information' });
+        return this.$auth
+          .login({
+            data: {
+              email: this.form.email,
+              password: this.form.password,
+              remember_me: this.form.remember_me
+            },
+            staySignedIn: this.form.remember_me,
+            fetchUser: false,
+          })
+          .then(() => {
+            if (this.form.remember) {
+              this.$auth.remember(JSON.stringify({
+                name: this.$auth.user().first_name
+              }));
             } else {
-              this.$router.push({ name: 'home' })
+              this.$auth.unremember();
             }
+
+            return this.$auth.fetch().then(({ data }) => {
+              console.log('user', data);
+
+
+              // todo: add admin role
+              // todo: admin redirect
+
+              // redirect
+              const user = data;
+              const isRegistered = user?.provider_profile?.is_registered;
+              const roleSlug = user?.role?.slug;
+              const providerProfileId = user?.provider_profile?.id;
+              if (isRegistered && providerProfileId) {
+                this.$router.replace({ name: 'provider.profile', params: { id: providerProfileId } }); // todo: implement routes history ignoring and send before login
+              } else if (!isRegistered && roleSlug === 'provider') {
+                this.$router.replace({ name: 'provider.onboarding.basic-information' });
+              } else if (this.$route.name !== 'home') {
+                this.$router.replace({ name: 'home' })
+              }
+            })
           })
           .catch(error => {
             this.serverError = error;
@@ -86,9 +114,10 @@
               this.toast('Authentication is failed. Please check your credentials')
             } else {
               this.handleServerError(error);
+              this.$auth.logout();
             }
           })
       },
-    },
+    }
   }
 </script>

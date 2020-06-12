@@ -11,6 +11,6 @@ export default {
     ...mapGetters('geoLocator', ["getDistanceTo", "currentGeoLocation"]),
   },
   created() {
-    this.$store.dispatch("geoLocator/initialize");
+    this.$store?.dispatch("geoLocator/initialize");
   }
 }

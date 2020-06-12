@@ -223,18 +223,18 @@
       }
     },
     computed: {
-      ...mapGetters('auth', ['user', 'userProviderProfileId']),
+      ...mapGetters('auth', ['user', 'providerProfileId']),
       checkedCertificates() {
         return this.certificates.filter(certificate => certificate.checked)
       },
     },
     created() {
       // todo: optimize this
-      if (this.userProviderProfileId) {
+      if (this.providerProfileId) {
         const _this = this;
         this.formState = 'loading';
 
-        this.profileRequest(this.userProviderProfileId).then(data => {
+        this.profileRequest(this.providerProfileId).then(data => {
           _this.initCertificates(data?.certificates?.data || []);
           _this.formState = 'default';
         })

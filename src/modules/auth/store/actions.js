@@ -1,8 +1,8 @@
+import Vue from '../../../main'
 import api from '@/modules/auth/services/auth.api'
 
 const setUser = ({ commit }, data) => {
   commit('SET_USER', data)
-  commit('SET_TOKEN', data.token)
 }
 
 export default {
@@ -11,6 +11,7 @@ export default {
       api.register
         .provider(form)
         .then(({ data }) => {
+          Vue.$auth.user(data); // token is set in interceptor
           setUser(context, data)
           resolve(data)
         })
@@ -24,19 +25,7 @@ export default {
       api.register
         .customer(data)
         .then(({ data }) => {
-          setUser(context, data)
-          resolve(data)
-        })
-        .catch(error => {
-          reject(error)
-        })
-    })
-  },
-  login(context, data) {
-    return new Promise((resolve, reject) => {
-      api
-        .login(data)
-        .then(({ data }) => {
+          Vue.$auth.user(data); // token is set in interceptor
           setUser(context, data)
           resolve(data)
         })
@@ -50,7 +39,10 @@ export default {
       api
         .loginAs(data)
         .then(({ data }) => {
-          setUser(context, data)
+          Vue.$auth.fetch().then(({ data }) => { // token is set in interceptor
+            setUser(context, data)
+          })
+
           resolve(data)
         })
         .catch(error => {
@@ -61,39 +53,31 @@ export default {
   forgot(context, data) {
     return new Promise((resolve, reject) => {
       api
-          .forgot(data)
-          .then(({ data }) => {
-            resolve(data)
-          })
-          .catch(error => {
-            reject(error)
-          })
+        .forgot(data)
+        .then(({ data }) => {
+          resolve(data)
+        })
+        .catch(error => {
+          reject(error)
+        })
     })
   },
   newPassword(context, data) {
     return new Promise((resolve, reject) => {
       api
-          .newPassword(data)
-          .then(({ data }) => {
-            resolve(data)
-          })
-          .catch(error => {
-            reject(error)
-          })
+        .newPassword(data)
+        .then(({ data }) => {
+          resolve(data)
+        })
+        .catch(error => {
+          reject(error)
+        })
     })
   },
-  checkAuth() {
-    api.checkAuth()
-  },
-  logout({ commit }) {
-    return new Promise(resolve => {
-      commit('SET_USER', null)
-      commit('SET_TOKEN', '')
-
-      resolve()
-    })
-  },
+  /**
+   * data: { email: email (or) id: userId }
+   */
   provideLoginAs() {
-      window.loginAs = (data) => api.provideLoginAs(data).then(r => console.log(r.data));
+    window.loginAs = (data) => api.provideLoginAs(data).then(r => console.log(r.data));
   }
 }
