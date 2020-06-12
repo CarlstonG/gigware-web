@@ -20,27 +20,27 @@ export default {
 
         return dispatch('fetchPartnersSearchRequest', prevPage);
       },
-      fetchPartnersSearchRequest(context, page = 1) {
+      fetchPartnersSearchRequest({ commit, getters }, page = 1) {
         return new Promise((resolve, reject) => {
-          if (context.getters.isLoading) {
+          if (getters.isLoading) {
             reject({ message: 'search is loading' });
             return;
           }
-          context.commit('SET_PARTNERS_SEARCH_SEARCH_STATE', true);
+          commit('SET_PARTNERS_SEARCH_SEARCH_STATE', true);
+          commit('SET_SEARCH_QUERY_PAGE', page);
 
-          const searchQuery = context.getters.searchQuery;
-          searchQuery.page = page;
+          const searchQuery = getters.searchQuery;
           api.searchApiRequest(searchQuery)
             .then(({ data }) => {
-              context.commit('SET_PARTNERS_SEARCH_RESULT', data)
-              context.commit('SET_PARTNERS_SEARCH_SEARCH_QUERY_SUCCEED', searchQuery)
+              commit('SET_PARTNERS_SEARCH_RESULT', data)
+              commit('SET_PARTNERS_SEARCH_SEARCH_QUERY_SUCCEED', searchQuery)
               resolve(data)
             })
             .catch(error => {
               reject(error)
             })
             .finally(() => {
-              context.commit('SET_PARTNERS_SEARCH_SEARCH_STATE', false);
+              commit('SET_PARTNERS_SEARCH_SEARCH_STATE', false);
             })
         })
       }

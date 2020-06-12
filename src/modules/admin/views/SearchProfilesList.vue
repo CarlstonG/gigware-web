@@ -1,7 +1,7 @@
 <template>
   <div class="partners-search">
     <b-container fluid="" class="search">
-      <search-bar namespace="admin/searchVerifiableProfiles">
+      <search-bar :namespace="searchNamespace">
         <template v-slot:left-filter>
           <div class="members-counter" v-if="searchPagination">
             <div class="title">{{searchPagination.total}}</div>
@@ -21,8 +21,8 @@
       <div class="search-info">
         <div class="search-result-info" v-if="lastSearchQueryText || queryFiltersCount">Results for <span
             class="search-text">{{lastSearchQueryText}}</span></div>
-        <search-filter-tags/>
-        <search-pagination/>
+        <search-filter-tags :namespace="searchNamespace"/>
+        <search-pagination :namespace="searchNamespace"/>
       </div>
 
       <b-row class="cards" v-if="search_result && search_result.length">
@@ -64,6 +64,9 @@
   export default {
     mixins: [geoLocationMixin],
     components: { ProfileCard, SearchPagination, SearchBar, SearchFilterTags, SiteFooter },
+    data: () => ({
+      searchNamespace: 'admin/searchVerifiableProfiles',
+    }),
     methods: {
       ...mapActions('admin/searchVerifiableProfiles', ['fetchPartnersSearchRequest', 'fetchPartnersSearchNextPageRequest', 'clearSearchQueryFilters']),
       nextPage() {

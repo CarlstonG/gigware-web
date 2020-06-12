@@ -1,60 +1,64 @@
 <template>
   <b-card class="provider-card" @click="routeTo">
-    <div class="icon-card profile-data">
-      <div class="icon-card-icon">
-        <b-avatar
-            :src="profileAvatarUrl"
-            :size="$screens({ default: '54', sm: '64', md: '96', lg: '108' })"
-        />
-      </div>
-      <div>
-        <h2 class="company-title title">{{ profile.company_name }}</h2>
-        <strong v-if="profile.first_name || profile.last_name">
-          {{profile.first_name}} {{profile.last_name}}
-        </strong>
-        <div class="icon-card" v-if="profile.address">
-          <svg-icon name="icon_location" class="icon-card-icon"/>
-          <div>
-            <span class="label">{{ profile.address.street_address }}</span>
-            <span class="label label-miles" v-if="currentGeoLocation && profile.address.lat">
+    <slot name="profile-data">
+      <div class="icon-card profile-data">
+        <div class="icon-card-icon">
+          <b-avatar
+              :src="profileAvatarUrl"
+              :size="$screens({ default: '54', sm: '64', md: '96', lg: '108' })"
+          />
+        </div>
+        <div>
+          <h2 class="company-title title">{{ profile.company_name }}</h2>
+          <strong v-if="profile.first_name || profile.last_name">
+            {{profile.first_name}} {{profile.last_name}}
+          </strong>
+          <div class="icon-card" v-if="profile.address">
+            <svg-icon name="icon_location" class="icon-card-icon"/>
+            <div>
+              <span class="label">{{ profile.address.street_address }}</span>
+              <span class="label label-miles" v-if="currentGeoLocation && profile.address.lat">
               +{{getDistanceTo([profile.address.lat, profile.address.lng])}}mi
             </span>
+            </div>
           </div>
         </div>
+        <slot name="append-profile-data"/>
       </div>
-      <slot name="append-profile-data"/>
-    </div>
 
-    <hr>
+      <hr>
+    </slot>
 
-    <b-row class="props" v-if="hasProps">
-      <b-col cols="4" class="col">
-        <div class="icon-card">
-          <svg-icon name="icon_per_run" class="icon-card-icon"/>
-          <div>
-            <span class="title">${{profile.rates_per_run}}</span>
-            <span class="subtitle">Per run</span>
+    <slot name="props">
+      <b-row class="props" v-if="hasProps">
+        <b-col cols="4" class="col">
+          <div class="icon-card">
+            <svg-icon name="icon_per_run" class="icon-card-icon"/>
+            <div>
+              <span class="title">${{profile.rates_per_run}}</span>
+              <span class="subtitle">Per run</span>
+            </div>
           </div>
-        </div>
-      </b-col>
-      <b-col cols="4" class="col">
-        <div class="icon-card">
-          <svg-icon name="icon_cabling_pros" class="icon-card-icon"/>
-          <div>
-            <span class="title">{{profile.team_size}}</span>
-            <span class="subtitle">Cabling Pros</span>
+        </b-col>
+        <b-col cols="4" class="col">
+          <div class="icon-card">
+            <svg-icon name="icon_cabling_pros" class="icon-card-icon"/>
+            <div>
+              <span class="title">{{profile.team_size}}</span>
+              <span class="subtitle">Cabling Pros</span>
+            </div>
           </div>
-        </div>
-      </b-col>
-      <b-col cols="4" class="col">
-        <div class="icon-card">
-          <svg-icon name="icon_reviews" class="icon-card-icon"/>
-          <div>
-            <span class="title">{{reviewsAvg}}<span class="muted">/5</span></span>
+        </b-col>
+        <b-col cols="4" class="col">
+          <div class="icon-card">
+            <svg-icon name="icon_reviews" class="icon-card-icon"/>
+            <div>
+              <span class="title">{{reviewsAvg}}<span class="muted">/5</span></span>
+            </div>
           </div>
-        </div>
-      </b-col>
-    </b-row>
+        </b-col>
+      </b-row>
+    </slot>
 
     <!--  Card Footer-->
     <template v-slot:footer>
