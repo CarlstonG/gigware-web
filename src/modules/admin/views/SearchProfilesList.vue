@@ -25,14 +25,14 @@
         <search-pagination :namespace="searchNamespace"/>
       </div>
 
-      <b-row class="cards" v-if="search_result && search_result.length">
-        <b-col cols="12" lg="6" v-for="item in search_result" :key="item.id">
+      <b-row class="cards" v-if="result && result.length">
+        <b-col cols="12" lg="6" v-for="item in result" :key="item.id">
           <profile-card :value="item"/>
         </b-col>
       </b-row>
 
       <div class="next-page-btn-wrapper"
-           v-if="!search_result || isLoading || (searchPagination && searchPagination.total_pages > 1)">
+           v-if="!result || isLoading || (searchPagination && searchPagination.total_pages > 1)">
         <b-button variant="primary"
                   :disabled="isLoading || (searchPagination && searchPagination.total_pages === searchPagination.current_page)"
                   @click="nextPage">
@@ -54,7 +54,7 @@
 
 <script>
   import { default as SiteFooter } from '@/core/components/global/Footer'
-  import { mapActions, mapGetters, mapState } from "vuex";
+  import { mapActions, mapGetters } from "vuex";
   import geoLocationMixin from "@/core/mixins/geo-location";
   import SearchBar from "@/modules/search/components/SearchBar";
   import SearchFilterTags from "@/modules/search/components/SearchFilterTags";
@@ -76,11 +76,10 @@
       }
     },
     computed: {
-      ...mapState('admin/searchVerifiableProfiles', ['search_result']),
-      ...mapGetters('admin/searchVerifiableProfiles', ['queryFiltersCount', 'isLoading', 'lastSearchQuery', 'lastSearchQueryText', 'searchPagination']),
+      ...mapGetters('admin/searchVerifiableProfiles', ['result', 'queryFiltersCount', 'isLoading', 'lastSearchQuery', 'lastSearchQueryText', 'searchPagination']),
     },
     mounted() {
-      if (!this.isLoading && !this.search_result?.length) {
+      if (!this.isLoading && !this.result?.length) {
         this.fetchPartnersSearchRequest();
       }
     }
