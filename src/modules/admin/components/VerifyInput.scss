@@ -1,0 +1,29 @@
+@import 'src/assets/scss/local-styles-includes';
+
+.verify-input {
+  display: inline-flex;
+  align-items: center;
+
+  &:not(.flex-column) .elem-wrapper {
+    margin-right: 1rem;
+    flex-grow: 1;
+  }
+
+  &.flex-column .elem-wrapper {
+    margin-bottom: .25rem;
+  }
+
+  > .btn-group {
+    > .btn {
+      font-size: .5rem;
+
+      @include media-breakpoint-up(sm) {
+        font-size: .65rem;
+      }
+
+      @include media-breakpoint-up(md) {
+        font-size: .75rem;
+      }
+    }
+  }
+}

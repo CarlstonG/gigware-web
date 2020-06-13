@@ -1,4 +1,5 @@
 export default {
+  result: (state) => state.search_result,
   searchQuery: (state) => state.search_query,
   searchQueryFilter: (state) => state.search_query.filter,
   lastSearchQuery: (state) => state.search_query_succeed,

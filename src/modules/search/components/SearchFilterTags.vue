@@ -13,7 +13,7 @@
 </template>
 
 <script>
-  import { mapActions, mapGetters } from "vuex";
+  import { mapActions, mapState } from "vuex";
   import leftFilterOptions from "../consts/left-filter-options"
 
   export default {
@@ -22,6 +22,10 @@
       value: {
         type: Object,
         default: null
+      },
+      namespace: {
+        type: String,
+        default: 'search'
       },
       options: {
         type: Array,
@@ -34,10 +38,27 @@
       }
     },
     computed: {
-      ...mapGetters('search', ['searchQuery', 'queryFiltersCount', 'queryFiltersChange']),
+      ...mapState({
+        searchQuery(state, getters) {
+          return getters[this.namespace + '/searchQuery']
+        },
+        queryFiltersCount(state, getters) {
+          return getters[this.namespace + '/queryFiltersCount']
+        },
+        queryFiltersChange(state, getters) {
+          return getters[this.namespace + '/queryFiltersChange']
+        },
+      }),
     },
     methods: {
-      ...mapActions('search', ['updateSearchQueryFilters', 'clearSearchQueryFilters']),
+      ...mapActions({
+        clearSearchQueryFilters(dispatch,) {
+          return dispatch(this.namespace + '/clearSearchQueryFilters')
+        },
+        updateFilters(dispatch, payload) {
+          return dispatch(this.namespace + '/updateSearchQueryFilters', payload)
+        }
+      }),
       updateTags(filter) {
         const _this = this;
         const tags = [];

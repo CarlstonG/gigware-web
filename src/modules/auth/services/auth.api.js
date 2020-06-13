@@ -1,11 +1,10 @@
-import http from '@/core/services/drivers/app-http-driver'
+import http from 'axios'
 
 export default {
   register: {
     provider: data => http.post('auth/provider-registration', data),
     customer: data => http.post('auth/customer-registration', data),
   },
-  login: data => http.post('auth/login', data),
   forgot: data => http.post('auth/forgot', data),
   newPassword: data => http.post('auth/new-password', data),
   checkAuth: () => http.get('auth/check-auth'),

@@ -7,8 +7,6 @@
 
   hr {
     margin: .5rem .75rem;
-    border: 0;
-    border-top: 1px solid rgba($color-gray-light, 0.5);
 
     @include media-breakpoint-up(xl) {
       margin: 1rem 1rem;
@@ -20,6 +18,7 @@
   }
 
   .profile-data {
+    position: relative;
     padding: 1.5rem .75rem 0;
 
     @include media-breakpoint-up(xl) {

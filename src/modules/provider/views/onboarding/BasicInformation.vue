@@ -43,9 +43,9 @@
               name="team_size"
               label="Team Size"
               :disabled="formLocked"
-              class="w-25 required"
+              class="required"
           >
-            <b-form-input v-model.trim.lazy="form.team_size"/>
+            <b-form-input class="w-25" v-model.trim.lazy="form.team_size"/>
           </validated-b-form-group>
           <validated-b-form-group
               name="description"
@@ -67,7 +67,7 @@
           >
             <image-upload
                 v-model="form.profile_image"
-                :img-src="userAvatarUrl"
+                :img-src="avatarUrl"
                 class="text-center rounded bg-light border position-relative"
             >
               <template #no-image="{ openFileDialog }">
@@ -171,23 +171,30 @@
       }
     },
     computed: {
-      ...mapGetters('auth', ['user', 'userAvatarUrl']),
+      ...mapGetters('auth', ['user', 'avatarUrl']),
     },
     created() {
-      if (this.user?.provider_profile) {
-        const user = this.user;
-        const profile = user.provider_profile;
+      const _this = this;
+      this.formState = 'loading';
 
-        this.form = Object.assign(this.form, {
-          first_name: user.first_name,
-          last_name: user.last_name,
-          phone_number: profile.phone,
-          company_name: profile.company_name,
-          team_size: profile.team_size,
-          description: profile.description,
-          profile_image: this.userAvatarUrl,
-        });
-      }
+      this.$auth.userFetched().then(() => {
+        if (_this.user?.provider_profile) {
+          const user = _this.user;
+          const profile = user.provider_profile;
+
+          _this.form = Object.assign(_this.form, {
+            first_name: user.first_name,
+            last_name: user.last_name,
+            phone_number: profile.phone,
+            company_name: profile.company_name,
+            team_size: profile.team_size,
+            description: profile.description,
+            profile_image: _this.avatarUrl,
+          });
+        }
+      }).finally(() => {
+        _this.formState = 'default';
+      })
     }
   }
 </script>

@@ -1,7 +1,7 @@
 <template>
   <div class="provider-profile">
     <b-container fluid="sm">
-      <div class="content" v-if="!isLoading && profile">
+      <div class="page content" v-if="!isLoading && profile">
         <section>
           <div class="icon-card">
             <div class="icon-card-icon">
@@ -202,7 +202,7 @@
 </template>
 
 <script>
-  import { default as SiteFooter } from '@/core/components/global/Footer'
+  import SiteFooter from '@/core/components/global/Footer'
   import { mapActions, mapGetters, mapState } from "vuex";
   import ProofOfInsuarenceModal from "../components/ProofOfInsuranceModal";
   import geoLocationMixin from "@/core/mixins/geo-location";
@@ -226,7 +226,8 @@
       showProofOfInsurance(e) {
         e.preventDefault();
         // send new observer each time
-        this.proofOfInsuranceData = this.profile?.insurance || {};
+        const insurance = this.profile?.insurance;
+        this.proofOfInsuranceData = insurance ? JSON.parse(JSON.stringify(insurance)) : {};
       },
       showAllReviews() {
         this.reviewsToShow = this.profileExternalReviewsCount;

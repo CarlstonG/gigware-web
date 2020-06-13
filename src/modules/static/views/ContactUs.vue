@@ -89,7 +89,7 @@
   import validateFormMixin from '@/core/mixins/validate-form-mixin'
   import placeholders from '@/core/constants/placeholders'
   import contacts from '@/core/constants/site-data'
-  import http from '@/core/services/drivers/app-http-driver'
+  import http from 'axios'
 
   export default {
     mixins: [validateFormMixin],

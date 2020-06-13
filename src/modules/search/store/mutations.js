@@ -8,6 +8,10 @@ export default {
     state.search_query = Object.assign({}, newValue);
   },
 
+  SET_SEARCH_QUERY_PAGE(state, page) {
+    state.search_query.page = page;
+  },
+
   CLEAR_SEARCH_QUERY_FILTERS(state) {
     Object.keys(state.search_query.filter).forEach((k) => state.search_query.filter[k] = '');
   },

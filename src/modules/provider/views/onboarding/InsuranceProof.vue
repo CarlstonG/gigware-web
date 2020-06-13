@@ -163,15 +163,15 @@
       },
     },
     computed: {
-      ...mapGetters('auth', ['user', 'userProviderProfileId']),
+      ...mapGetters('auth', ['user', 'providerProfileId']),
     },
     created() {
       // todo: optimize this
-      if (this.userProviderProfileId) {
+      if (this.providerProfileId) {
         const _this = this;
         this.formState = 'loading';
 
-        this.profileRequest(this.userProviderProfileId).then(data => {
+        this.profileRequest(this.providerProfileId).then(data => {
           const insurance = data?.insurance;
           if (!insurance) return;
 
