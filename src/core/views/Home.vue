@@ -111,7 +111,7 @@
       </b-row>
         <div class="view-partners">
           <b-button :to="{ name: 'search-partners' }">
-            <span>Find my Cabling Partner</span>
+            <span>View Partners</span>
             <svg-icon name="arrow_right" :width="$screens({ default: '12', lg: '15'})"/>
           </b-button>
         </div>
