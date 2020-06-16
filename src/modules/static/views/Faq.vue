@@ -27,7 +27,7 @@
                 <b-tab title="Second" v-if="questions.cable.length">
                     <template v-slot:title>
                         <span class="title-content">
-                            Cable Partners <br>
+                            Security Partners <br>
                             Questions
                         </span>
                     </template>
@@ -71,7 +71,7 @@
 
 <script>
     import { default as SiteFooter } from '@/core/components/global/Footer'
-    import { default as PicturedTitle} from '../components/PicturedTitle'
+    import { default as PicturedTitle } from '../components/PicturedTitle'
 
     export default {
         components: {
@@ -83,11 +83,11 @@
                 general: [
                     {
                         question: "What is Gig Wire?",
-                        answer: "Gig Wire is a platform designed to connect cable installers with customers. Gig wire lets our Cable Partners post their contact information, rates, credentials and more for free."
+                        answer: "Gig Wire is a platform designed to connect security installers with customers. Gig wire lets our Security Partners post their contact information, rates, credentials and more for free."
                     },
                     {
                         question: "How does Gig Wire work?",
-                        answer: "Both Installers and customers can create an account using the sign-up button at the top of the home page to create an account. Cable Partners can post and update their information in their profile. Whereas customers can view the profiles to connect with our Cable Partners"
+                        answer: "Both Installers and customers can create an account using the sign-up button at the top of the home page to create an account. Security Partners can post and update their information in their profile. Whereas customers can view the profiles to connect with our Security Partners"
                     }
                 ],
                 cable: [

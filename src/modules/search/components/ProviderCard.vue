@@ -45,7 +45,7 @@
             <svg-icon name="icon_cabling_pros" class="icon-card-icon"/>
             <div>
               <span class="title">{{profile.team_size}}</span>
-              <span class="subtitle">Cabling Pros</span>
+              <span class="subtitle">Security Pros</span>
             </div>
           </div>
         </b-col>
