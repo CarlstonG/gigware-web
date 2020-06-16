@@ -276,13 +276,13 @@
     created() {
       // todo: optimize this
       if (this.providerProfileId) {
-        const _this = this;
         this.formState = 'loading';
 
-        this.profileRequest(this.providerProfileId).then(data => {
-          _this.userExperiencesDataToForms(data?.experiences?.data)
-          _this.formState = 'default';
-        })
+        this.profileRequest(this.providerProfileId)
+          .then(data => {
+            this.userExperiencesDataToForms(data?.experiences?.data)
+          })
+          .finally(() => this.formState = 'default')
       } else {
         this.addForm()
       }

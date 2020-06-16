@@ -168,22 +168,21 @@
     created() {
       // todo: optimize this
       if (this.providerProfileId) {
-        const _this = this;
         this.formState = 'loading';
 
-        this.profileRequest(this.providerProfileId).then(data => {
-          const insurance = data?.insurance;
-          if (!insurance) return;
+        this.profileRequest(this.providerProfileId)
+          .then(data => {
+            const insurance = data?.insurance;
+            if (!insurance) return;
 
-          _this.form = {
-            insurance_provider_name: insurance.insurance_provider_name,
-            start_date: new Date(insurance.start_date),
-            end_date: new Date(insurance.end_date),
-            image: insurance.image || null,
-          };
-
-          _this.formState = 'default';
-        })
+            this.form = {
+              insurance_provider_name: insurance.insurance_provider_name,
+              start_date: new Date(insurance.start_date),
+              end_date: new Date(insurance.end_date),
+              image: insurance.image || null,
+            };
+          })
+          .finally(() => this.formState = 'default')
       }
     },
   }

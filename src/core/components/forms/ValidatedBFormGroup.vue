@@ -1,10 +1,10 @@
 <template>
   <b-form-group
-    :invalid-feedback="errorMessage"
-    :state="isFullyValid"
-    :label="label"
+      :invalid-feedback="errorMessage"
+      :state="isFullyValid"
+      :label="label"
   >
-    <slot :attrs="{ state: isFullyValid }" />
+    <slot :attrs="{ state: isFullyValid }"/>
   </b-form-group>
 </template>
 <script>
@@ -18,9 +18,15 @@
         type: Array,
         default: () => [],
       },
+      showErrorMessage: {
+        type: Boolean,
+        default: () => true,
+      }
     },
     computed: {
       errorMessage() {
+        if (!this.showErrorMessage) return;
+
         if (this.hasErrors) {
           return this.firstErrorMessage
         }
