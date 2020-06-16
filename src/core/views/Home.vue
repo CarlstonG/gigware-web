@@ -37,7 +37,7 @@
         <div class="text-block block-text-right">
           <div>
             <div class="title">
-              <p>Connect your cable team</p>
+              <p>Connect your security team</p>
               <p>with more business.</p>
             </div>
             <div class="subtitle mt-4 mb-4">

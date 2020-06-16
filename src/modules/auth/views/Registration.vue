@@ -2,7 +2,7 @@
   <div>
     <div class="auth">
       <div class="form-card">
-        <p>Connect your cable team</p>
+        <p>Connect your security team</p>
         <p>with more business.</p>
         <b-form-radio-group
           class="mt-5"

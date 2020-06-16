@@ -83,7 +83,7 @@
                 general: [
                     {
                         question: "What is Gig Wire?",
-                        answer: "Gig Wire is a platform designed to connect cable installers with customers. Gig wire lets our Security Partners post their contact information, rates, credentials and more for free."
+                        answer: "Gig Wire is a platform designed to connect security installers with customers. Gig wire lets our Security Partners post their contact information, rates, credentials and more for free."
                     },
                     {
                         question: "How does Gig Wire work?",
