@@ -87,7 +87,7 @@
                     },
                     {
                         question: "How does Gig Wire work?",
-                        answer: "Both Installers and customers can create an account using the sign-up button at the top of the home page to create an account. Security Partners can post and update their information in their profile. Whereas customers can view the profiles to connect with our Cable Partners"
+                        answer: "Both Installers and customers can create an account using the sign-up button at the top of the home page to create an account. Security Partners can post and update their information in their profile. Whereas customers can view the profiles to connect with our Security Partners"
                     }
                 ],
                 cable: [
