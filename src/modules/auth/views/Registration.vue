@@ -32,8 +32,8 @@
     components: { SiteFooter, ProviderRegistrationForm, CustomerRegistrationForm },
     data: () => ({
       roles: [
-        { text: 'I am a Cable Partner. I want to get Gigs', value: 1 },
-        { text: 'I am a customer. I am looking for Cable Partners', value: 2 },
+        { text: 'I am a Security Partner. I want to get Gigs', value: 1 },
+        { text: 'I am a customer. I am looking for Security Partners', value: 2 },
       ],
       selectedRole: 1,
     }),

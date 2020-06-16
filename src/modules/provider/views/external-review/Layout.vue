@@ -7,8 +7,7 @@
             <h2 class="title">Thank you for reviewing {{reviewHasBeenSentToProfile.company_name}}</h2>
             <div class="success-description">
               <p>We have notified {{reviewHasBeenSentToProfile.company_name}} about your review!</p>
-              <p>Looking to find more Cabling Pros? Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam
-                nonumy eirmod tempor invidunt ut labore.</p>
+              <p>Looking to find more Cabling Pros?</p>
             </div>
             <b-button variant="primary" :to="{ name: 'search-partners' }">View Partners</b-button>
           </div>
