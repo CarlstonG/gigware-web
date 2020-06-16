@@ -14,7 +14,9 @@
           <p>
             <router-link to="/terms">Terms of Service</router-link>
           </p>
-          <p>Privacy Policy</p>
+          <p>
+            <router-link to="/policy">Privacy Policy</router-link>
+          </p>
         </b-col>
         <b-col lg="4">
           <h4>Contact us</h4>
