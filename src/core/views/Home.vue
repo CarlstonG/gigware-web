@@ -12,12 +12,12 @@
               </p>
               <p>
                 <span class="text-primary">Reliable</span>
-                Cabling Partners
+                Security Partners
               </p>
             </div>
             <search-bar no-left-filter @onSearch="$router.push({ name: 'search-partners'})"/>
             <p class="subtitle">
-              Want to become a Cabling Partner?
+              Want to become a Security Partner?
               <b-link :to="{ name: 'register' }">
                 Build a Profile
               </b-link>
@@ -37,7 +37,7 @@
         <div class="text-block block-text-right">
           <div>
             <div class="title">
-              <p>Connect your cable team</p>
+              <p>Connect your security team</p>
               <p>with more business.</p>
             </div>
             <div class="subtitle mt-4 mb-4">
@@ -48,12 +48,12 @@
             </div>
             <div class="content">
               <p class="pb-4">
-                With Gig Wire, our Cabling Partners post their contact
+                With Gig Wire, our Security Partners post their contact
                 information, rates, credentials and more for free.
               </p>
               <p class="pb-4">
                 Teams are discovered and get extra work while integrators find
-                reliable Cabling Professionals.
+                reliable Security Professionals.
               </p>
             </div>
             <b-button :to="{ name: 'register' }" variant="primary" size="lg">
