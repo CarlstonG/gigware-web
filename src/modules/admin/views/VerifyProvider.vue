@@ -290,7 +290,8 @@
           })
           .finally(() => this.formState = 'default');
       },
-      deactivateAccount() {
+      deactivateAccount(e) {
+        e.preventDefault();
         throw new Error('Implement me')
       }
     },
