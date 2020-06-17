@@ -169,26 +169,25 @@
       ...mapGetters('auth', ['user', 'avatarUrl']),
     },
     created() {
-      const _this = this;
       this.formState = 'loading';
 
-      this.$auth.userFetched().then(() => {
-        if (_this.user?.profile) {
-          const user = _this.user;
-          const profile = user.profile;
+      this.$auth.userFetched()
+        .then(() => {
+          if (this.user?.profile) {
+            const user = this.user;
+            const profile = user.profile;
 
-          _this.form = Object.assign(_this.form, {
-            first_name: user.first_name || profile.first_name,
-            last_name: user.last_name || profile.last_name,
-            phone_number: profile.phone_number,
-            company_name: profile.company_name,
-            zip_code: profile.zip_code,
-            profile_image: _this.avatarUrl,
-          });
-        }
-      }).finally(() => {
-        _this.formState = 'default';
-      })
+            this.form = Object.assign(this.form, {
+              first_name: user.first_name || profile.first_name,
+              last_name: user.last_name || profile.last_name,
+              phone_number: profile.phone_number,
+              company_name: profile.company_name,
+              zip_code: profile.zip_code,
+              profile_image: this.avatarUrl,
+            });
+          }
+        })
+        .finally(() => this.formState = 'default')
     }
   }
 </script>

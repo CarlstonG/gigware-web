@@ -174,27 +174,26 @@
       ...mapGetters('auth', ['user', 'avatarUrl']),
     },
     created() {
-      const _this = this;
       this.formState = 'loading';
 
-      this.$auth.userFetched().then(() => {
-        if (_this.user?.provider_profile) {
-          const user = _this.user;
-          const profile = user.provider_profile;
+      this.$auth.userFetched()
+        .then(() => {
+          if (this.user?.provider_profile) {
+            const user = this.user;
+            const profile = user.provider_profile;
 
-          _this.form = Object.assign(_this.form, {
-            first_name: user.first_name,
-            last_name: user.last_name,
-            phone_number: profile.phone,
-            company_name: profile.company_name,
-            team_size: profile.team_size,
-            description: profile.description,
-            profile_image: _this.avatarUrl,
-          });
-        }
-      }).finally(() => {
-        _this.formState = 'default';
-      })
+            this.form = Object.assign(this.form, {
+              first_name: user.first_name,
+              last_name: user.last_name,
+              phone_number: profile.phone,
+              company_name: profile.company_name,
+              team_size: profile.team_size,
+              description: profile.description,
+              profile_image: this.avatarUrl,
+            });
+          }
+        })
+        .finally(() => this.formState = 'default')
     }
   }
 </script>
