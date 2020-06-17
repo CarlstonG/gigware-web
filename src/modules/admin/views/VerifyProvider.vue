@@ -254,8 +254,10 @@
               verifiable_type: 'provider_certificate'
             }),
             images: cert.images?.data?.length ?
-              cert.images?.data?.map(item => this.makeVerification(item.verification, {
-                verifiable_id: item.id, verifiable_type: 'image'
+              cert.images?.data?.map(item => ({
+                verification: this.makeVerification(item.verification, {
+                  verifiable_id: item.id, verifiable_type: 'image'
+                })
               }))
               : null
           })) : [],

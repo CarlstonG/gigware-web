@@ -85,8 +85,8 @@
       },
       hasCaution(item) {
         const queue = this.pendingQueueData;
-        return (item.provider_profile && queue.some(el => el.verifiable_type === 'provider_profile' && el.verifiable_id === item.id))
-          || (item.customer_profile && queue.some(el => el.verifiable_type === 'customer_profile' && el.verifiable_id === item.id));
+        return (item.provider_profile && queue.some(el => el.verifiable_type === 'provider_profile' && el.verifiable_id === item.provider_profile.id))
+          || (item.customer_profile && queue.some(el => el.verifiable_type === 'customer_profile' && el.verifiable_id === item.customer_profile.id));
       }
     },
     computed: {
