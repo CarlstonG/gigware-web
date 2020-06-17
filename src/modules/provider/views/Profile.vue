@@ -96,7 +96,7 @@
               <div class="icon-card">
                 <svg-icon name="icon_verified_credentials" class="icon-card-icon"/>
                 <div>
-                  <div class="title">0
+                  <div class="title">{{verifiedCertificateCount}}
                     <span class="muted">/{{profile.certificates.data.length}}</span>
                   </div>
                   <div class="subtitle">
@@ -175,12 +175,12 @@
           <b-row v-for="item in profile.certificates.data" :key="item.id">
             <b-col cols="10" lg="6" xl="5">
               <div class="icon-card">
-                <div>{{item.team_members_count}} / {{profile.team_size}} hold {{item.name}} license</div>
+                <div>{{item.team_members_count}} / {{profile.team_size}} team members hold a {{item.name}} license</div>
               </div>
             </b-col>
             <b-col class="icon-col" cols="2" lg="2">
-              <svg-icon name="icon_proof_of_insurance_disabled" class="icon-card-icon"/>
-              <!--            <svg-icon name="icon_proof_of_insurance" class="icon-card-icon"/>-->
+              <svg-icon name="icon_proof_of_insurance" class="icon-card-icon" v-if="item.is_verified"/>
+              <svg-icon name="icon_proof_of_insurance_disabled" class="icon-card-icon" v-else/>
             </b-col>
           </b-row>
 
@@ -242,6 +242,9 @@
       },
       isAccountProfile() {
         return this.user && this.provider_profile && this.user?.provider_profile?.id === this.provider_profile?.id;
+      },
+      verifiedCertificateCount() {
+        return (this.profile?.certificates?.data || []).filter(item => item.is_verified).length
       }
     },
     created() {
