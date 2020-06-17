@@ -9,9 +9,13 @@
             </b-nav-text>
           </template>
           <template v-slot:right-side>
-            <b-button variant="light">
-              Deactivate account
-            </b-button>
+            <b-progress-button
+                variant="light"
+                :disabled="formLocked"
+                :state="formState"
+                @click="deactivateAccount"
+                default-text="Deactivate account"
+            />
             <b-progress-button
                 :disabled="formLocked"
                 :state="formState"
@@ -285,6 +289,9 @@
             }
           })
           .finally(() => this.formState = 'default');
+      },
+      deactivateAccount() {
+        throw new Error('Implement me')
       }
     },
     created() {
