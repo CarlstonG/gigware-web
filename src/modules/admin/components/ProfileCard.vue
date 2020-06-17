@@ -3,7 +3,7 @@
     <provider-card v-if="userData.provider_profile"
                    :value="getProfileDataWithUser(userData.provider_profile)"
                    :to="{ name: 'admin.verify-provider', params: { id: userData.provider_profile.id } }">
-      <template v-slot:append-profile-data>
+      <template v-slot:append-profile-data v-if="hasCaution">
         <span class="caution-icon">!</span>
       </template>
       <template v-slot:footer>
@@ -17,7 +17,7 @@
     </provider-card>
     <provider-card v-else-if="userData.customer_profile"
                    :value="getProfileDataWithUser(userData.customer_profile)">
-      <template v-slot:append-profile-data>
+      <template v-slot:append-profile-data v-if="hasCaution">
         <span class="caution-icon">!</span>
       </template>
       <template v-slot:footer>
@@ -72,7 +72,11 @@
         type: Object,
         default: null
       },
-      to: [String, Object]
+      to: [String, Object],
+      hasCaution: {
+        type: Boolean,
+        default: false
+      }
     },
     data() {
       return {
