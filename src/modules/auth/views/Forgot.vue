@@ -55,8 +55,8 @@
                 return this.forgot(this.form)
                     .then(() => {
                         that.isSuccess = true;
-                    }).catch(() => {
-                        this.toast('No user with such email was found')
+                    }).catch((e) => {
+                        this.toast(e.response?.data?.error || 'No user with such email was found')
                     })
             },
         },
