@@ -1,5 +1,5 @@
 <template>
-  <div class="el-container">
+  <div :class="'el-container' + (userData.deleted_at ? ' deactivated' : '')">
     <provider-card v-if="userData.provider_profile"
                    :value="getProfileDataWithUser(userData.provider_profile)"
                    :to="{ name: 'admin.verify-provider', params: { id: userData.provider_profile.id } }">

@@ -4,6 +4,18 @@
   display: flex;
   flex-direction: column;
   height: 100%;
+
+  &.deactivated {
+    .provider-card {
+      border-color: $error;
+      background-color: rgba($error, .25);
+
+      .card-footer .btn {
+        background-color: rgba($error, .35);
+        color: $error;
+      }
+    }
+  }
 }
 
 .provider-card {

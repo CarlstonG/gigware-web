@@ -196,6 +196,7 @@
         })
           .then(() => {
             this.form.user.deleted_at = this.form.user.deleted_at ? null : true;
+            this.$store.commit('admin/searchVerifiableProfiles/RESET_SEARCH_RESULT');
           })
           .finally(() => {
             this.deleteState = 'default';
