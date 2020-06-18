@@ -17,11 +17,10 @@
                     @click="deleteUserRequest()"
                     v-if="form && form.user"
                     :disabled="formLocked"
-                    :state="formState"
-            >
-              <span v-if="!(form.user.deleted_at)">Deactivate account</span>
-              <span v-if="(form.user.deleted_at)">Activate account</span>
-            </b-progress-button>
+                    :state="deleteState"
+                    type="button"
+                    :default-text="(form.user.deleted_at) ? 'Activate account' : 'Deactivate account'"
+            />
             <b-progress-button
                 :disabled="formLocked"
                 :state="formState"
@@ -168,7 +167,8 @@
     mixins: [validateFormMixin],
     data: () => ({
       imagePopupData: null,
-      form: {}
+      form: {},
+      deleteState: 'default'
     }),
     validations: { form: {} },
     components: { ImagePopup, VerifyInput, SubNavbar, SiteFooter },
@@ -189,12 +189,16 @@
         this.imagePopupData = JSON.parse(JSON.stringify(img));
       },
       deleteUserRequest() {
+        this.deleteState = 'loading';
         this.deleteUser({
           id: this.form?.user?.id,
           action: (this.form?.user?.deleted_at) ? 'on' : 'off'
         }).then(() => {
+          this.deleteState = 'default';
           this.form.user.deleted_at = this.form.user.deleted_at ? null : true;
-        });
+        }).catch(() => {
+          this.deleteState = 'default';
+        })
       },
       sendRequest() {
         return this.submitVerification(this.form)
@@ -306,10 +310,6 @@
           })
           .finally(() => this.formState = 'default');
       },
-      deactivateAccount(e) {
-        e.preventDefault();
-        throw new Error('Implement me')
-      }
     },
     created() {
       this.loadProfileData();
