@@ -74,6 +74,14 @@ export default {
         })
     })
   },
+  deactivateAccount() {
+    return new Promise((resolve, reject) => {
+      api
+        .deactivateAccount()
+        .then(() => resolve())
+        .catch(error => reject(error))
+    })
+  },
   /**
    * data: { email: email (or) id: userId }
    */

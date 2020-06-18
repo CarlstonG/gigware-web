@@ -10,4 +10,5 @@ export default {
   checkAuth: () => http.get('auth/check-auth'),
   provideLoginAs: (data) => http.post('admin/login-as-request', data),
   loginAs: (data) => http.post('auth/login-as', data),
+  deactivateAccount: () => http.post('auth/user/deactivate'),
 }

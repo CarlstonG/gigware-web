@@ -6,7 +6,7 @@ import Licenses from "../views/onboarding/Licenses";
 import Experience from "../views/onboarding/Experience";
 import InsuranceProof from "../views/onboarding/InsuranceProof";
 import RatingsAndReviews from "../views/onboarding/RatingsAndReviews";
-import DeactivateAccount from "../views/settings/AccauntDeactivation";
+import DeactivateAccount from "../views/settings/AccountDeactivation";
 import { getAuth } from "../../../plugins/auth/vue-auth-extension";
 
 export default [
