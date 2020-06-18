@@ -248,17 +248,16 @@
       }
     },
     created() {
-      this.profileRequest(this.$route.params.id).then(() => {
-        console.log('profile.experiences.data', this.profile.experiences.data, this.profile)
-      }).catch(error => {
-        this.serverError = error;
+      this.profileRequest(this.$route.params.id)
+        .catch(error => {
+          this.serverError = error;
 
-        if (this.statusCode === 404) {
-          this.$router.push({ name: '404' })
-        } else {
-          this.handleServerError(error)
-        }
-      });
+          if (this.statusCode === 404) {
+            this.$router.push({ name: '404' })
+          } else {
+            this.handleServerError(error)
+          }
+        });
     }
   }
 </script>
