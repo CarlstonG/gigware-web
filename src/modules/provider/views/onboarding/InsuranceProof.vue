@@ -126,6 +126,7 @@
         start_date: '',
         end_date: '',
         image: null,
+        verification: {}
       },
     }),
     validations: validations.onboarding.insurance,
@@ -134,7 +135,7 @@
       sendRequest() {
         const _this = this;
         return this.createInsurance(this.formData())
-          .then(({ data }) => {
+          .then(data => {
             _this.form = Object.assign(_this.form, data)
 
             _this.afterSubmit()
@@ -149,7 +150,7 @@
       formData() {
         let formData = new FormData()
 
-        formData.append('id', this.form.id || '')
+        formData.append('id', this.form.id || 0)
         formData.append(
           'insurance_provider_name',
           this.form.insurance_provider_name,
@@ -178,6 +179,7 @@
             if (!insurance) return;
 
             this.form = {
+              id: insurance.id,
               insurance_provider_name: insurance.insurance_provider_name,
               start_date: new Date(insurance.start_date),
               end_date: new Date(insurance.end_date),
