@@ -4,39 +4,41 @@
       <div
           v-for="(certificate, index) in certificates"
           :key="index"
-          class="mb-2 form-inline"
+          class="form-inline"
       >
-        <b-form-checkbox
-            v-model="certificate.checked"
-            class="mr-5 justify-content-start"
-            style="min-width: 320px"
-        >
-          <div v-if="certificate.isCustom" class="position-relative">
-            <b-form-input
-                v-model.trim.lazy="certificate.name"
-                class="mr-2 w-100"
-                :disabled="!certificate.checked"
-            />
-            <b-link @click="removeCertificate(index)" style="position: absolute; top: 5px; right: -20px;">
-              <svg-icon name="close_icon" color="red" width="8" height="8"/>
-            </b-link>
-          </div>
-          <span v-else>{{ certificate.name }}</span>
-        </b-form-checkbox>
+        <verification-tooltip show :value="certificate.verification">
+          <b-form-checkbox
+              v-model="certificate.checked"
+              class="mr-5 justify-content-start d-flex align-items-center"
+              style="min-width: 320px"
+          >
+            <div v-if="certificate.isCustom" class="position-relative">
+              <b-form-input
+                  v-model.trim.lazy="certificate.name"
+                  class="mr-2 w-100"
+                  :disabled="!certificate.checked"
+              />
+              <b-link @click="removeCertificate(index)" style="position: absolute; top: 5px; right: -20px;">
+                <svg-icon name="close_icon" color="red" width="8" height="8"/>
+              </b-link>
+            </div>
+            <span v-else>{{ certificate.name }}</span>
+          </b-form-checkbox>
 
-        <label :for="`team-members-${index}`" class="mr-2">Is held by</label>
-        <b-form-input
-            :id="`team-members-${index}`"
-            v-model.trim.lazy="certificate.team_members_count"
-            class="mr-2"
-            style="max-width: 94px"
-            :disabled="!certificate.checked"
-        />
-        <span class="mr-5">
-          team members
-        </span>
+          <label :for="`team-members-${index}`" class="mr-2">Is held by</label>
+          <b-form-input
+              :id="`team-members-${index}`"
+              v-model.trim.lazy="certificate.team_members_count"
+              class="mr-2"
+              style="max-width: 94px"
+              :disabled="!certificate.checked"
+          />
+          <span class="d-flex align-items-center">
+            team members
+          </span>
+        </verification-tooltip>
 
-        <multiple-image-upload v-model="certificate.images">
+        <multiple-image-upload v-model="certificate.images" class="images-uploader">
           <template #no-image="{ openFileDialog }">
             <b-button
                 variant="primary"
@@ -57,14 +59,13 @@
               <svg-icon name="caret" width="21" class="mr-4"/>
               Upload Certificate
             </b-button>
-            <div
+            <verification-tooltip
                 v-for="(image, index) in certificate.images"
                 :key="index"
-                class="d-inline-block position-relative"
-            >
+                :value="image.verification || {}"
+                class="position-relative">
               <img
                   :src="image.src || image.url"
-                  class="mr-1"
                   style="object-fit: cover; width: 24px; height: 33px"
               />
               <b-link
@@ -73,7 +74,7 @@
               >
                 <svg-icon name="close_icon" width="4" height="4"/>
               </b-link>
-            </div>
+            </verification-tooltip>
           </template>
           <template #image-uploaded="{ removeImage, openFileDialog }">
             <b-button
@@ -85,14 +86,13 @@
               <svg-icon name="caret" width="21" class="mr-4"/>
               Upload Certificate
             </b-button>
-            <div
+            <verification-tooltip
                 v-for="(image, index) in certificate.images"
                 :key="index"
-                class="d-inline-block position-relative"
-            >
+                :value="image.verification || {}"
+                class="position-relative">
               <img
                   :src="image.src || image.url"
-                  class="mr-1"
                   style="object-fit: cover; width: 24px; height: 33px"
               />
               <b-link
@@ -101,15 +101,16 @@
               >
                 <svg-icon name="close_icon" width="4" height="4"/>
               </b-link>
-            </div>
+            </verification-tooltip>
           </template>
         </multiple-image-upload>
       </div>
-      <b-link @click="addCustomCertificate">+ Add New Certificate</b-link>
+      <b-link @click="addCustomCertificate" v-show="!formLocked">+ Add New Certificate</b-link>
       <steps-footer :loading="formLocked" :state="formState"/>
     </b-form>
   </div>
 </template>
+<style scoped lang="scss" src="./Licenses.scss"></style>
 
 <script>
   import { default as StepsFooter } from '@/modules/provider/components/onboarding/Footer'
@@ -117,6 +118,7 @@
   import settingsSaveMixin from '@/modules/provider/mixins/settings-save-behaviour'
   import MultipleImageUpload from '@/core/components/images/MultipleImageUpload'
   import { mapActions, mapGetters } from 'vuex'
+  import VerificationTooltip from "../../../../core/components/forms/VerificationTooltip";
 
   const CERTIFICATES = [
     'Hubbell Certification',
@@ -129,11 +131,12 @@
     'Certified Cabling Test Technician - Fiber',
     'Security License',
     'Fire Alarm Installation License',
+    'Class B',
   ]
 
   export default {
     mixins: [validateFormMixin, settingsSaveMixin],
-    components: { StepsFooter, MultipleImageUpload },
+    components: { VerificationTooltip, StepsFooter, MultipleImageUpload },
     data: () => ({
       certificates: [],
     }),
@@ -200,6 +203,7 @@
           team_members_count: 0,
           images: [],
           isCustom: false,
+          verification: {}
         }
       },
       userCertificate(userCert, isCustom = false) {
@@ -210,6 +214,7 @@
           team_members_count: userCert.team_members_count,
           images: userCert.images?.data || [],
           isCustom: isCustom,
+          verification: userCert.verification
         }
       },
       addCustomCertificate() {
@@ -231,13 +236,12 @@
     created() {
       // todo: optimize this
       if (this.providerProfileId) {
-        const _this = this;
         this.formState = 'loading';
 
-        this.profileRequest(this.providerProfileId).then(data => {
-          _this.initCertificates(data?.certificates?.data || []);
-          _this.formState = 'default';
-        })
+        this.profileRequest(this.providerProfileId)
+          .then(data => {
+            this.initCertificates(data?.certificates?.data || []);
+          }).finally(() => this.formState = 'default')
       } else {
         this.initCertificates()
       }

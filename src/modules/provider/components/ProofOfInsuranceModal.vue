@@ -11,7 +11,7 @@
           <div class="line"><strong>Proof of insurance:</strong>{{prof.insurance_provider_name}}</div>
           <div class="line"><strong>Policy period:</strong>{{prof.start_date}}<span class="dash">&ndash;</span>{{prof.end_date}}
           </div>
-          <div class="icon-card" v-if="false">
+          <div class="icon-card" v-if="prof.is_verified">
             <svg-icon name="icon_proof_of_insurance" class="icon-card-icon"/>
             <div class="align-self-center">Verified by our team</div>
           </div>

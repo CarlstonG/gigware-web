@@ -26,4 +26,31 @@
       }
     }
   }
+
+  &:not(.flex-column) > .reason {
+    margin-left: .5rem;
+
+    span {
+      margin-right: .5rem;
+    }
+  }
+
+  &.flex-column > .reason {
+    margin-top: .5rem;
+    max-width: 200px;
+
+    strong {
+      display: block;
+    }
+  }
+
+  > .reason {
+    font-size: .75rem;
+    max-width: 100%;
+
+    span {
+      font-weight: normal;
+      color: $error;
+    }
+  }
 }

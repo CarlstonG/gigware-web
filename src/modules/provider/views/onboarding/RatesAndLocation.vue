@@ -211,22 +211,19 @@
       this.loadGoogle()
     },
     created() {
-      const _this = this;
       this.formState = 'loading';
 
       this.$auth.userFetched().then(() => {
-        if (_this.providerProfileId) {
-          const profile = _this.user.provider_profile;
+        if (this.providerProfileId) {
+          const profile = this.user.provider_profile;
 
-          this.form = Object.assign(_this.form, {
+          this.form = Object.assign(this.form, {
             rates_per_run: profile.rates_per_run,
             work_radius: profile.work_radius,
-            address: Object.assign(_this.form.address, profile.address)
+            address: Object.assign(this.form.address, profile.address)
           });
         }
-      }).finally(() => {
-        _this.formState = 'default';
-      })
+      }).finally(() => this.formState = 'default')
     }
   }
 </script>

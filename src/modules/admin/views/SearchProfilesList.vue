@@ -11,8 +11,16 @@
         <template v-slot:inner-filter/>
         <template v-slot:info-msg>
           <div class="info-msg">
-            <span class="caution-icon">!</span>
-            2 teams pending verification
+            <template v-if="pendingQueueLoading">
+              <b-spinner type="grow"/>
+              <b-spinner type="grow"/>
+              <b-spinner type="grow"/>
+            </template>
+            <template v-else-if="pendingVerificationProviderProfilesCount">
+              <span class="caution-icon">!</span>
+              {{ pendingVerificationProviderProfilesCount }}
+              team{{pendingVerificationProviderProfilesCount > 1 ? 's' : '' }} pending verification
+            </template>
           </div>
         </template>
       </search-bar>
@@ -27,7 +35,7 @@
 
       <b-row class="cards" v-if="result && result.length">
         <b-col cols="12" lg="6" v-for="item in result" :key="item.id">
-          <profile-card :value="item"/>
+          <profile-card :value="item" :has-caution="hasCaution(item)"/>
         </b-col>
       </b-row>
 
@@ -69,18 +77,47 @@
     }),
     methods: {
       ...mapActions('admin/searchVerifiableProfiles', ['fetchPartnersSearchRequest', 'fetchPartnersSearchNextPageRequest', 'clearSearchQueryFilters']),
+      ...mapActions('admin/pendingVerificationQueue', { 'fetchPendingQueue': 'fetch' }),
       nextPage() {
         this.fetchPartnersSearchNextPageRequest().then(() => {
           document.getElementById('search-result').scrollIntoView();
         })
+      },
+      hasCaution(item) {
+        const queue = this.pendingQueueData || [];
+        return (item.provider_profile && queue.some(el => el.verifiable_type === 'provider_profile' && el.verifiable_id === item.provider_profile.id))
+          || (item.customer_profile && queue.some(el => el.verifiable_type === 'customer_profile' && el.verifiable_id === item.customer_profile.id));
       }
     },
     computed: {
-      ...mapGetters('admin/searchVerifiableProfiles', ['result', 'queryFiltersCount', 'isLoading', 'lastSearchQuery', 'lastSearchQueryText', 'searchPagination']),
+      ...mapGetters('admin/searchVerifiableProfiles', { 'searchResult': 'result', 'searchLoading': 'isLoading' }),
+      ...mapGetters('admin/searchVerifiableProfiles', ['queryFiltersCount', 'lastSearchQuery', 'lastSearchQueryText', 'searchPagination']),
+      ...mapGetters('admin/pendingVerificationQueue', {
+        'pendingQueueData': 'data',
+        'pendingQueueLoading': 'isLoading'
+      }),
+      result() {
+        return this.searchResult
+      },
+      isLoading() {
+        return this.searchLoading;
+      },
+      pendingVerificationProviderProfilesCount() {
+        return (this.pendingQueueData || []).filter(item => item.verifiable_type === 'provider_profile').length
+      }
     },
-    mounted() {
+    created() {
+      this.$store.subscribeAction((action) => {
+        if (action.type === 'admin/searchVerifiableProfiles/fetchPartnersSearchRequest' && !this.pendingQueueLoading) {
+          this.fetchPendingQueue();
+        }
+      });
+
       if (!this.isLoading && !this.result?.length) {
         this.fetchPartnersSearchRequest();
+      } else {
+        // update on each page reload
+        this.fetchPendingQueue();
       }
     }
   }
