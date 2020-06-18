@@ -13,13 +13,13 @@
               Account deactivated
             </div>
             <b-progress-button
-                    variant="light"
-                    @click="deleteUserRequest()"
-                    v-if="form && form.user"
-                    :disabled="formLocked"
-                    :state="deleteState"
-                    type="button"
-                    :default-text="(form.user.deleted_at) ? 'Activate account' : 'Deactivate account'"
+                variant="light"
+                @click="deleteUserRequest()"
+                v-if="form && form.user"
+                :disabled="formLocked"
+                :state="deleteState"
+                type="button"
+                :default-text="(form.user.deleted_at) ? 'Activate account' : 'Deactivate account'"
             />
             <b-progress-button
                 :disabled="formLocked"
@@ -193,12 +193,13 @@
         this.deleteUser({
           id: this.form?.user?.id,
           action: (this.form?.user?.deleted_at) ? 'on' : 'off'
-        }).then(() => {
-          this.deleteState = 'default';
-          this.form.user.deleted_at = this.form.user.deleted_at ? null : true;
-        }).catch(() => {
-          this.deleteState = 'default';
         })
+          .then(() => {
+            this.form.user.deleted_at = this.form.user.deleted_at ? null : true;
+          })
+          .finally(() => {
+            this.deleteState = 'default';
+          })
       },
       sendRequest() {
         return this.submitVerification(this.form)
