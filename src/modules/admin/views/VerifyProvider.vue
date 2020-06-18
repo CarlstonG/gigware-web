@@ -261,16 +261,15 @@
           user: {
             verification: this.makeVerification(data.user.verification,
               { verifiable_id: data.user.id, verifiable_type: 'user' }, { 'full_name': this.makeVerification() }),
-            avatar: {
-              verification: data.user?.images?.data?.length ?
+            avatar: data.user?.images?.data?.length ? {
+              verification:
                 this.makeVerification(
                   data.user.images.data[data.user.images.data.length - 1].verification, {
                     verifiable_id: data.user.images.data[data.user.images.data.length - 1].id,
                     verifiable_type: 'image'
                   }
                 )
-                : this.makeVerification()
-            },
+            } : null,
             deleted_at: data.user?.deleted_at,
             id: data.user?.id
           },
