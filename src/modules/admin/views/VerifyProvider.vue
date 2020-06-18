@@ -9,13 +9,19 @@
             </b-nav-text>
           </template>
           <template v-slot:right-side>
+            <div v-if="form && form.user && form.user.deleted_at" class="ml-2 mr-2 p-1 bg-danger">
+              Account deactivated
+            </div>
             <b-progress-button
-                variant="light"
-                :disabled="formLocked"
-                :state="formState"
-                @click="deactivateAccount"
-                default-text="Deactivate account"
-            />
+                    variant="light"
+                    @click="deleteUserRequest()"
+                    v-if="form && form.user"
+                    :disabled="formLocked"
+                    :state="formState"
+            >
+              <span v-if="!(form.user.deleted_at)">Deactivate account</span>
+              <span v-if="(form.user.deleted_at)">Activate account</span>
+            </b-progress-button>
             <b-progress-button
                 :disabled="formLocked"
                 :state="formState"
@@ -178,9 +184,17 @@
     },
     methods: {
       ...mapActions('provider', ['profileRequest']),
-      ...mapActions('admin/verifyProviderProfile', ['submitVerification']),
+      ...mapActions('admin/verifyProviderProfile', ['submitVerification', 'deleteUser']),
       showImg(img) {
         this.imagePopupData = JSON.parse(JSON.stringify(img));
+      },
+      deleteUserRequest() {
+        this.deleteUser({
+          id: this.form?.user?.id,
+          action: (this.form?.user?.deleted_at) ? 'on' : 'off'
+        }).then(() => {
+          this.form.user.deleted_at = this.form.user.deleted_at ? null : true;
+        });
       },
       sendRequest() {
         return this.submitVerification(this.form)
@@ -250,7 +264,9 @@
                   }
                 )
                 : this.makeVerification()
-            }
+            },
+            deleted_at: data.user?.deleted_at,
+            id: data.user?.id
           },
           certificates: data.certificates?.data?.length ? data.certificates.data.map(cert => ({
             verification: this.makeVerification(cert.verification, {
