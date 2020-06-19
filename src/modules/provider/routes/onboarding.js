@@ -13,6 +13,11 @@ export default [
     path: '/onboarding',
     component: Layout,
     redirect: { name: 'provider.onboarding.basic-information' },
+    meta: {
+      auth: {
+        roles: ['provider', 'admin']
+      },
+    },
     children: [
       {
         path: 'basic-information',

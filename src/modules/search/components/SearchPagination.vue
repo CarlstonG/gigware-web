@@ -11,13 +11,13 @@
 
     <b-button variant="transparent"
               class="search-pagination-navigation"
-              @click="fetchPartnersSearchPrevPageRequest"
+              @click="prevPageRequest"
               :disabled="isLoading || searchPagination.current_page === 1">
       <svg-icon name="arrow_prev" width="16"/>
     </b-button>
     <b-button variant="transparent"
               class="search-pagination-navigation"
-              @click="fetchPartnersSearchNextPageRequest"
+              @click="nextPageRequest"
               :disabled="isLoading || searchPagination.current_page === searchPagination.total_pages">
       <svg-icon name="arrow_next" width="16"/>
     </b-button>
@@ -25,15 +25,35 @@
 </template>
 
 <script>
-  import { mapActions, mapGetters } from "vuex";
+  import { mapActions, mapState } from "vuex";
 
   export default {
     name: "SearchPagination",
+    props: {
+      namespace: {
+        type: String,
+        default: 'search'
+      },
+    },
     computed: {
-      ...mapGetters('search', ['isLoading', 'searchPagination']),
+      ...mapState({
+        isLoading(state, getters) {
+          return getters[this.namespace + '/isLoading']
+        },
+        searchPagination(state, getters) {
+          return getters[this.namespace + '/searchPagination']
+        }
+      }),
     },
     methods: {
-      ...mapActions('search', ['fetchPartnersSearchPrevPageRequest', 'fetchPartnersSearchNextPageRequest']),
+      ...mapActions({
+        prevPageRequest(dispatch,) {
+          return dispatch(this.namespace + '/fetchPartnersSearchPrevPageRequest')
+        },
+        nextPageRequest(dispatch,) {
+          return dispatch(this.namespace + '/fetchPartnersSearchNextPageRequest')
+        }
+      }),
     }
   }
 </script>

@@ -1,0 +1,56 @@
+@import 'src/assets/scss/local-styles-includes';
+
+.verify-input {
+  display: inline-flex;
+  align-items: center;
+
+  &:not(.flex-column) .elem-wrapper {
+    margin-right: 1rem;
+    flex-grow: 1;
+  }
+
+  &.flex-column .elem-wrapper {
+    margin-bottom: .25rem;
+  }
+
+  > .btn-group {
+    > .btn {
+      font-size: .5rem;
+
+      @include media-breakpoint-up(sm) {
+        font-size: .65rem;
+      }
+
+      @include media-breakpoint-up(md) {
+        font-size: .75rem;
+      }
+    }
+  }
+
+  &:not(.flex-column) > .reason {
+    margin-left: .5rem;
+
+    span {
+      margin-right: .5rem;
+    }
+  }
+
+  &.flex-column > .reason {
+    margin-top: .5rem;
+    max-width: 200px;
+
+    strong {
+      display: block;
+    }
+  }
+
+  > .reason {
+    font-size: .75rem;
+    max-width: 100%;
+
+    span {
+      font-weight: normal;
+      color: $error;
+    }
+  }
+}

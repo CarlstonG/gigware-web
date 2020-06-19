@@ -2,68 +2,20 @@ import Vue from 'vue'
 import App from '@/App'
 import router from '@/core/router'
 import store from '@/core/store'
-import { BootstrapVue } from 'bootstrap-vue'
-import Vuelidate from 'vuelidate'
-import VuelidateErrorExtractor, { templates } from 'vuelidate-error-extractor'
-import ValidatedBFormGroup from '@/core/components/forms/ValidatedBFormGroup'
-import BProgressButton from '@/core/components/forms/BProgressButton'
-import VCalendar from 'v-calendar'
-import VueCropper from 'vue-cropperjs'
-import * as VueSVGIcon from 'vue-svgicon'
+// plugins
+import './plugins/axios' // should be before vue-auth
+import './plugins/auth/vue-auth'
+import './plugins/misc'
+import './plugins/vue-bootstrap'
+import './plugins/vuelidate'
+// filters
+import './filters/images'
+// styles
+import '@/assets/scss/main.scss'
 
-import './core/icons/index'
-import './assets/scss/main.scss'
-import 'cropperjs/dist/cropper.css'
-
-Vue.use(BootstrapVue)
-Vue.use(VueSVGIcon, {
-  tagName: 'svg-icon',
-  classPrefix: 'gigwire',
-  isOriginalDefault: true,
-})
-Vue.use(Vuelidate)
-Vue.use(VuelidateErrorExtractor, {
-  template: templates.singleErrorExtractor.bootstrap4,
-  messages: {
-    required: 'The {attribute} field is required',
-    email: 'The {attribute} field must be valid',
-    minLength: 'The {attribute} field must be {min} characters or more',
-    maxLength: 'The {attribute} field must be {max} characters or less',
-    minValue: 'The {attribute} field must be equal or greater than {min}',
-    maxValue: 'The {attribute} field must be equal or less than {max}',
-    integer: 'The {attribute} field must be a non-decimal number',
-    sameAsPassword: 'The passwords do not match',
-    contactPhoneRegex: 'The {attribute} field must be a valid phone number',
-    between: "The {attribute} field is not in range from {min} to {max}",
-  },
-  attributes: {
-    email: 'email address',
-    password_confirmation: 'confirm password',
-    name: 'name',
-    first_name: 'first name',
-    last_name: 'last name',
-    company_name: 'company',
-    phone_number: 'phone number',
-    zip_code: 'zip code',
-    'address.street_address': 'address',
-    'address.city': 'city',
-    'address.suite': 'suite',
-    'address.zip_code': 'zip code',
-  },
-})
-
-Vue.component('ValidatedBFormWrapper', templates.FormWrapper)
-Vue.component('ValidatedBFormGroup', ValidatedBFormGroup)
-Vue.component('BProgressButton', BProgressButton)
-Vue.use(VCalendar)
-Vue.component('VueCropper', VueCropper)
-
-/*
- * Filters
- */
-Vue.filter('bgImage', function (value) {
-  return 'background-image: url(' + value + ');';
-})
+// global mixins
+// import geoLocationMixin from "@/core/mixins/geo-location";
+// Vue.mixin(geoLocationMixin);
 
 Vue.config.productionTip = false
 

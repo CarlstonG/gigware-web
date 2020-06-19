@@ -1,7 +1,7 @@
 <template>
   <div class="provider-profile">
     <b-container fluid="sm">
-      <div class="content" v-if="!isLoading && profile">
+      <div class="page content" v-if="!isLoading && profile">
         <section>
           <div class="icon-card">
             <div class="icon-card-icon">
@@ -96,7 +96,7 @@
               <div class="icon-card">
                 <svg-icon name="icon_verified_credentials" class="icon-card-icon"/>
                 <div>
-                  <div class="title">0
+                  <div class="title">{{verifiedCertificateCount}}
                     <span class="muted">/{{profile.certificates.data.length}}</span>
                   </div>
                   <div class="subtitle">
@@ -175,12 +175,12 @@
           <b-row v-for="item in profile.certificates.data" :key="item.id">
             <b-col cols="10" lg="6" xl="5">
               <div class="icon-card">
-                <div>{{item.team_members_count}} / {{profile.team_size}} hold {{item.name}} license</div>
+                <div>{{item.team_members_count}} / {{profile.team_size}} team members hold a {{item.name}} license</div>
               </div>
             </b-col>
             <b-col class="icon-col" cols="2" lg="2">
-              <svg-icon name="icon_proof_of_insurance_disabled" class="icon-card-icon"/>
-              <!--            <svg-icon name="icon_proof_of_insurance" class="icon-card-icon"/>-->
+              <svg-icon name="icon_proof_of_insurance" class="icon-card-icon" v-if="item.is_verified"/>
+              <svg-icon name="icon_proof_of_insurance_disabled" class="icon-card-icon" v-else/>
             </b-col>
           </b-row>
 
@@ -202,7 +202,7 @@
 </template>
 
 <script>
-  import { default as SiteFooter } from '@/core/components/global/Footer'
+  import SiteFooter from '@/core/components/global/Footer'
   import { mapActions, mapGetters, mapState } from "vuex";
   import ProofOfInsuarenceModal from "../components/ProofOfInsuranceModal";
   import geoLocationMixin from "@/core/mixins/geo-location";
@@ -226,7 +226,8 @@
       showProofOfInsurance(e) {
         e.preventDefault();
         // send new observer each time
-        this.proofOfInsuranceData = this.profile?.insurance || {};
+        const insurance = this.profile?.insurance;
+        this.proofOfInsuranceData = insurance ? JSON.parse(JSON.stringify(insurance)) : {};
       },
       showAllReviews() {
         this.reviewsToShow = this.profileExternalReviewsCount;
@@ -241,20 +242,22 @@
       },
       isAccountProfile() {
         return this.user && this.provider_profile && this.user?.provider_profile?.id === this.provider_profile?.id;
+      },
+      verifiedCertificateCount() {
+        return (this.profile?.certificates?.data || []).filter(item => item.is_verified).length
       }
     },
     created() {
-      this.profileRequest(this.$route.params.id).then(() => {
-        console.log('profile.experiences.data', this.profile.experiences.data, this.profile)
-      }).catch(error => {
-        this.serverError = error;
+      this.profileRequest(this.$route.params.id)
+        .catch(error => {
+          this.serverError = error;
 
-        if (this.statusCode === 404) {
-          this.$router.push({ name: '404' })
-        } else {
-          this.handleServerError(error)
-        }
-      });
+          if (this.statusCode === 404) {
+            this.$router.push({ name: '404' })
+          } else {
+            this.handleServerError(error)
+          }
+        });
     }
   }
 </script>

@@ -1,4 +1,4 @@
-import http from '@/core/services/drivers/app-http-driver'
+import http from 'axios'
 
 export default {
   updateSettings: form => http.post('customer/onboarding/basic-information', form),

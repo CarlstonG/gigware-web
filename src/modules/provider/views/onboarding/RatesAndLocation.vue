@@ -128,8 +128,8 @@
         return this.createRatesAndLocation(this.form)
           .then(() => {
             // update data
-            if (_this.userProviderProfileId) {
-              _this.$store.commit('auth/SET_USER_PROVIDER_PROFILE', Object.assign(_this.user.provider_profile, _this.form));
+            if (_this.providerProfileId) {
+              _this.$store.commit('auth/SET_USER_PROVIDER_PROFILE', _this.form);
             }
 
             _this.afterSubmit()
@@ -205,21 +205,25 @@
       },
     },
     computed: {
-      ...mapGetters('auth', ['user', 'userProviderProfileId']),
+      ...mapGetters('auth', ['user', 'providerProfileId']),
     },
     mounted() {
       this.loadGoogle()
     },
     created() {
-      if (this.userProviderProfileId) {
-        const profile = this.user.provider_profile;
+      this.formState = 'loading';
 
-        this.form = Object.assign(this.form, {
-          rates_per_run: profile.rates_per_run,
-          work_radius: profile.work_radius,
-          address: Object.assign(this.form.address, profile.address)
-        });
-      }
+      this.$auth.userFetched().then(() => {
+        if (this.providerProfileId) {
+          const profile = this.user.provider_profile;
+
+          this.form = Object.assign(this.form, {
+            rates_per_run: profile.rates_per_run,
+            work_radius: profile.work_radius,
+            address: Object.assign(this.form.address, profile.address)
+          });
+        }
+      }).finally(() => this.formState = 'default')
     }
   }
 </script>

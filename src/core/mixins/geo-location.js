@@ -1,4 +1,4 @@
-import { mapActions, mapGetters } from "vuex";
+import { mapGetters } from "vuex";
 
 /*
  * GeoLocation
@@ -7,14 +7,10 @@ import { mapActions, mapGetters } from "vuex";
  */
 
 export default {
-  methods: {
-    ...mapActions('geoLocator', ["initialize"]),
-  },
   computed: {
     ...mapGetters('geoLocator', ["getDistanceTo", "currentGeoLocation"]),
   },
   created() {
-    this.initialize();
-
+    this.$store?.dispatch("geoLocator/initialize");
   }
 }

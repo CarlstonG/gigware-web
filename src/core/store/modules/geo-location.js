@@ -32,7 +32,7 @@ export default {
   actions: {
     initialize({ state, commit }) {
       if (state.initialized) return;
-      state.initialized = true;
+      commit('SET_INITIALIZED');
 
       VueGeolocation.getLocation(geoOptions)
         .then(coordinates => {
@@ -56,6 +56,9 @@ export default {
   mutations: {
     SET_CURRENT_GEO_LOCATION(state, point) {
       state.current_geo_location = point;
+    },
+    SET_INITIALIZED(state) {
+      state.initialized = true;
     }
   }
 }

@@ -6,15 +6,28 @@ import Licenses from "../views/onboarding/Licenses";
 import Experience from "../views/onboarding/Experience";
 import InsuranceProof from "../views/onboarding/InsuranceProof";
 import RatingsAndReviews from "../views/onboarding/RatingsAndReviews";
-import DeactivateAccount from "../views/settings/AccauntDeactivation";
+import DeactivateAccount from "../views/settings/AccountDeactivation";
+import { getAuth } from "../../../plugins/auth/vue-auth-extension";
 
 export default [
   {
     path: '/settings',
     component: Layout,
     name: 'provider.settings',
-    redirect: { name: 'provider.settings.basic-information' },
+    redirect: () => {
+      const $auth = getAuth();
+      const user = $auth.user();
+      return $auth.check('customer') ?
+        { name: 'customer.settings' } :
+        $auth.check('provider') ?
+          user?.provider_profile?.is_registered ? { name: 'provider.settings.basic-information' } :
+            { name: 'provider.onboarding.basic-information' } :
+          { name: 'home' }
+    },
     meta: {
+      auth: {
+        roles: ['provider', 'admin']
+      },
       type: 'settings',
       nextBtnText: 'Save',
     },

@@ -59,7 +59,7 @@ export default {
       })
     },
     handleServerError(serverError) {
-      this.serverError = serverError
+      this.serverError = serverError;
 
       if (!serverError.response && serverError.message) {
         this.handleConnectionError(serverError.message)
@@ -86,9 +86,7 @@ export default {
       return this.formState === 'loading'
     },
     statusCode() {
-      return this.serverError && this.serverError.response
-        ? this.serverError.response.status
-        : null
+      return this.serverError?.response?.status
     },
   },
 }
