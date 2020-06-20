@@ -18,9 +18,12 @@ const __defaultOptions = {
 let __auth = null;
 
 export default function (Vue, options) {
+  // init vue-auth
   VueAuth(Vue, Object.assign(__defaultOptions, options));
 
   __auth = Vue.auth;
+  __auth.authRedirect = __auth.options.authRedirect; // fix parent mistake
+  __auth.options.refreshData.enabled = false; // disable this because it's overridden with an axios interceptor
 
   /*
    * initial extended state
