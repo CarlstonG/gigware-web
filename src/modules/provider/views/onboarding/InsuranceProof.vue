@@ -9,6 +9,7 @@
               :disabled="formLocked"
           >
             <b-form-input v-model.trim.lazy="form.insurance_provider_name"/>
+            <verification-message :value="form.verification"/>
           </validated-b-form-group>
           <b-row>
             <b-col>
@@ -114,16 +115,18 @@
   import ImageUpload from '@/core/components/images/ImageUpload'
   import { default as StepsFooter } from '@/modules/provider/components/onboarding/Footer'
   import { mapActions, mapGetters } from 'vuex'
+  import VerificationMessage from "../../../../core/components/forms/VerificationMessage";
 
   export default {
     mixins: [validateFormMixin, settingsSaveMixin],
-    components: { ImageUpload, StepsFooter },
+    components: { VerificationMessage, ImageUpload, StepsFooter },
     data: () => ({
       form: {
         insurance_provider_name: '',
         start_date: '',
         end_date: '',
         image: null,
+        verification: {}
       },
     }),
     validations: validations.onboarding.insurance,
@@ -132,7 +135,7 @@
       sendRequest() {
         const _this = this;
         return this.createInsurance(this.formData())
-          .then(({ data }) => {
+          .then(data => {
             _this.form = Object.assign(_this.form, data)
 
             _this.afterSubmit()
@@ -147,7 +150,7 @@
       formData() {
         let formData = new FormData()
 
-        formData.append('id', this.form.id || '')
+        formData.append('id', this.form.id || 0)
         formData.append(
           'insurance_provider_name',
           this.form.insurance_provider_name,
@@ -163,27 +166,28 @@
       },
     },
     computed: {
-      ...mapGetters('auth', ['user', 'userProviderProfileId']),
+      ...mapGetters('auth', ['user', 'providerProfileId']),
     },
     created() {
       // todo: optimize this
-      if (this.userProviderProfileId) {
-        const _this = this;
+      if (this.providerProfileId) {
         this.formState = 'loading';
 
-        this.profileRequest(this.userProviderProfileId).then(data => {
-          const insurance = data?.insurance;
-          if (!insurance) return;
+        this.profileRequest(this.providerProfileId)
+          .then(data => {
+            const insurance = data?.insurance;
+            if (!insurance) return;
 
-          _this.form = {
-            insurance_provider_name: insurance.insurance_provider_name,
-            start_date: new Date(insurance.start_date),
-            end_date: new Date(insurance.end_date),
-            image: insurance.image || null,
-          };
-
-          _this.formState = 'default';
-        })
+            this.form = {
+              id: insurance.id,
+              insurance_provider_name: insurance.insurance_provider_name,
+              start_date: new Date(insurance.start_date),
+              end_date: new Date(insurance.end_date),
+              image: insurance.image || null,
+              verification: insurance.verification
+            };
+          })
+          .finally(() => this.formState = 'default')
       }
     },
   }

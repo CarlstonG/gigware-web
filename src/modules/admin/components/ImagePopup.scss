@@ -1,0 +1,33 @@
+@import 'src/assets/scss/local-styles-includes';
+
+::v-deep .image-modal {
+  display: flex;
+  align-items: center;
+
+  .modal-dialog {
+    max-width: 100%;
+  }
+
+  .modal-content {
+    border: none;
+    background-color: transparent;
+  }
+
+  .modal-header,
+  .modal-footer {
+    display: none;
+  }
+
+  .img-wrapper {
+    display: flex;
+    padding: 0;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+
+    img {
+      max-height: 90vh;
+      width: auto;
+    }
+  }
+}

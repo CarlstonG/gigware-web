@@ -14,44 +14,44 @@
             />
           </validated-b-form-group>
           <validated-b-form-group
-            :name="`$each.${index}.job_description`"
-            label="Job Description"
-            :disabled="formLocked"
+              :name="`$each.${index}.job_description`"
+              label="Job Description"
+              :disabled="formLocked"
           >
             <b-textarea
-              v-model.trim.lazy="form.job_description"
-              placeholder="The team completed 15 runs for a new computer facility on campus"
-              rows="4"
+                v-model.trim.lazy="form.job_description"
+                placeholder="The team completed 15 runs for a new computer facility on campus"
+                rows="4"
             />
           </validated-b-form-group>
           <validated-b-form-group
-            :name="`$each.${index}.employer_name`"
-            label="Employer's Name"
-            :disabled="formLocked"
+              :name="`$each.${index}.employer_name`"
+              label="Employer's Name"
+              :disabled="formLocked"
           >
             <b-form-input
-              v-model.trim.lazy="form.employer_name"
-              placeholder="John Smith"
+                v-model.trim.lazy="form.employer_name"
+                placeholder="John Smith"
             />
           </validated-b-form-group>
           <validated-b-form-group
-            :name="`$each.${index}.employer_title`"
-            label="Employer's Title"
-            :disabled="formLocked"
+              :name="`$each.${index}.employer_title`"
+              label="Employer's Title"
+              :disabled="formLocked"
           >
             <b-form-input
-              v-model.trim.lazy="form.employer_title"
-              placeholder="Assistant Superintendent"
+                v-model.trim.lazy="form.employer_title"
+                placeholder="Assistant Superintendent"
             />
           </validated-b-form-group>
           <validated-b-form-group
-            :name="`$each.${index}.employer_phone`"
-            label="Employer’s Phone Number"
-            :disabled="formLocked"
+              :name="`$each.${index}.employer_phone`"
+              label="Employer’s Phone Number"
+              :disabled="formLocked"
           >
             <b-form-input
-              v-model.trim.lazy="form.employer_phone"
-              placeholder="xxx-xxx-xxxx"
+                v-model.trim.lazy="form.employer_phone"
+                placeholder="xxx-xxx-xxxx"
             />
           </validated-b-form-group>
         </b-col>
@@ -74,13 +74,13 @@
             </b-col>
             <b-col lg="6">
               <validated-b-form-group
-                :name="`$each.${index}.end_date`"
-                label="End Date"
-                :disabled="formLocked"
+                  :name="`$each.${index}.end_date`"
+                  label="End Date"
+                  :disabled="formLocked"
               >
                 <v-date-picker
-                  v-model.trim.lazy="form.end_date"
-                  :input-props="{
+                    v-model.trim.lazy="form.end_date"
+                    :input-props="{
                     placeholder: 'MM/DD/YYYY',
                     class: 'form-control',
                   }"
@@ -159,10 +159,10 @@
         </b-col>
       </b-row>
       <steps-footer
-        :loading="formLocked"
-        :state="formState"
-        :optional="true"
-        @skip="goToNextStep"
+          :loading="formLocked"
+          :state="formState"
+          :optional="true"
+          @skip="goToNextStep"
       />
     </b-form>
   </validated-b-form-wrapper>
@@ -271,18 +271,18 @@
       }
     },
     computed: {
-      ...mapGetters('auth', ['user', 'userProviderProfileId']),
+      ...mapGetters('auth', ['user', 'providerProfileId']),
     },
     created() {
       // todo: optimize this
-      if (this.userProviderProfileId) {
-        const _this = this;
+      if (this.providerProfileId) {
         this.formState = 'loading';
 
-        this.profileRequest(this.userProviderProfileId).then(data => {
-          _this.userExperiencesDataToForms(data?.experiences?.data)
-          _this.formState = 'default';
-        })
+        this.profileRequest(this.providerProfileId)
+          .then(data => {
+            this.userExperiencesDataToForms(data?.experiences?.data)
+          })
+          .finally(() => this.formState = 'default')
       } else {
         this.addForm()
       }

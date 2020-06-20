@@ -1,0 +1,27 @@
+@import 'src/assets/scss/local-styles-includes';
+
+::v-deep .verification-tooltip .wrapper {
+  padding: 0 .5rem;
+  margin-right: 2rem;
+}
+
+.images-uploader {
+  display: inline-flex;
+  flex-direction: row;
+  align-items: center;
+  padding: .25rem 0;
+
+  ::v-deep .verification-tooltip {
+    margin-right: .35rem;
+
+    .wrapper {
+      padding: 0;
+      margin: 0;
+
+      &.active {
+        border: 1px solid darken(red, 5%);
+        box-shadow: 0 0 0 0.15rem rgba($error, 0.90);
+      }
+    }
+  }
+}

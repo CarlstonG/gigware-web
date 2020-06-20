@@ -1,0 +1,10 @@
+@import 'src/assets/scss/local-styles-includes';
+
+.verification-message {
+  font-size: 75%;
+  color: $error;
+
+  .reason .label {
+    color: $text-color;
+  }
+}

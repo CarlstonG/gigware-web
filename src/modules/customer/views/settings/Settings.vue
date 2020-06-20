@@ -59,7 +59,7 @@
           >
             <image-upload
                 v-model="form.profile_image"
-                :img-src="userAvatarUrl"
+                :img-src="avatarUrl"
                 class="text-center rounded bg-light border position-relative"
             >
               <template #no-image="{ openFileDialog }">
@@ -166,22 +166,28 @@
       }
     },
     computed: {
-      ...mapGetters('auth', ['user', 'userAvatarUrl']),
+      ...mapGetters('auth', ['user', 'avatarUrl']),
     },
     created() {
-      if (this.user?.profile) {
-        const user = this.user;
-        const profile = user.profile;
+      this.formState = 'loading';
 
-        this.form = Object.assign(this.form, {
-          first_name: user.first_name || profile.first_name,
-          last_name: user.last_name || profile.last_name,
-          phone_number: profile.phone_number,
-          company_name: profile.company_name,
-          zip_code: profile.zip_code,
-          profile_image: this.userAvatarUrl,
-        });
-      }
+      this.$auth.userFetched()
+        .then(() => {
+          if (this.user?.profile) {
+            const user = this.user;
+            const profile = user.profile;
+
+            this.form = Object.assign(this.form, {
+              first_name: user.first_name || profile.first_name,
+              last_name: user.last_name || profile.last_name,
+              phone_number: profile.phone_number,
+              company_name: profile.company_name,
+              zip_code: profile.zip_code,
+              profile_image: this.avatarUrl,
+            });
+          }
+        })
+        .finally(() => this.formState = 'default')
     }
   }
 </script>

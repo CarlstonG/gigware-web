@@ -1,0 +1,105 @@
+.sub-navbar-holder,
+.sub-navbar-holder .navbar {
+  min-height: 74px;
+
+  @include media-breakpoint-up(lg) {
+    min-height: 92px;
+  }
+}
+
+.sub-navbar-wrapper {
+  position: fixed;
+  top: 48px;
+  left: 0;
+  right: 0;
+  background-color: $dirty-white;
+  z-index: 25;
+
+  @include media-breakpoint-up(md) {
+    top: 76px;
+  }
+
+  .navbar {
+    display: block;
+
+    @include media-breakpoint-up(sm) {
+      display: flex;
+    }
+
+    .navbar-nav {
+      display: flex;
+      font-size: .75rem;
+
+      &.left-side,
+      &.right-side {
+        align-items: center;
+      }
+
+      &.left-side {
+        .navbar-text {
+          padding-top: 0;
+        }
+      }
+
+      &.right-side {
+        flex-direction: row;
+        justify-content: center;
+      }
+    }
+
+    @include media-breakpoint-up(sm) {
+      .navbar-nav {
+
+        &.left-side,
+        &.right-side {
+          display: inline-flex;
+        }
+
+        &.left-side {
+          margin-left: 18px;
+
+          .navbar-text {
+            padding-top: .5rem;
+          }
+        }
+
+        &.right-side {
+          margin-left: auto;
+        }
+      }
+    }
+
+    @include media-breakpoint-up(md) {
+      .navbar-nav {
+        font-size: 1rem;
+      }
+    }
+  }
+
+  .btn {
+    font-size: .75rem;
+    margin-right: .5rem;
+
+    @include media-breakpoint-up(md) {
+      font-size: 1rem;
+      padding: .75rem 2.5rem;
+      margin-right: 1rem;
+    }
+
+    &:last-child {
+      margin-right: 0;
+
+      @include media-breakpoint-up(lg) {
+        margin-right: 1.5rem;
+      }
+    }
+
+    &-light {
+      color: $primary;
+
+      &:not(:disabled):not(.disabled):active {
+        color: $primary;
+      }
+    }
+  }
+}

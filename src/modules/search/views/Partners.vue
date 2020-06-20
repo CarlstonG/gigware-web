@@ -3,7 +3,7 @@
     <b-container fluid="" class="search">
       <search-bar/>
     </b-container>
-    <b-container id="search-result" fluid="lg" class="content">
+    <b-container id="search-result" fluid="lg" class="page content">
       <div class="search-info">
         <div class="search-result-info" v-if="lastSearchQueryText || queryFiltersCount">Results for <span
             class="search-text">{{lastSearchQueryText}}</span></div>
@@ -13,7 +13,7 @@
 
       <b-row class="cards" v-if="search_result && search_result.length">
         <b-col cols="12" lg="6" v-for="item in search_result" :key="item.id">
-          <provider-card :value="item"></provider-card>
+          <provider-card :value="item" :to="{ name: 'provider.profile', params: { id: item.id } }"></provider-card>
         </b-col>
       </b-row>
 
@@ -40,7 +40,6 @@
 <script>
   import { default as SiteFooter } from '@/core/components/global/Footer'
   import { mapActions, mapGetters, mapState } from "vuex";
-  import 'hooper/dist/hooper.css';
   import geoLocationMixin from "@/core/mixins/geo-location";
   import SearchBar from "../components/SearchBar";
   import SearchFilterTags from "../components/SearchFilterTags";

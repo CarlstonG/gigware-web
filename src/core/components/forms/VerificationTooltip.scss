@@ -1,0 +1,13 @@
+@import 'src/assets/scss/local-styles-includes';
+
+.verification-tooltip {
+  display: inline-flex;
+
+  .wrapper {
+    display: inline-flex;
+
+    &.active {
+      box-shadow: 0 0 0 0.1rem rgba($error, 0.75);
+    }
+  }
+}

@@ -4,8 +4,18 @@ export default {
     state.search_pagination = data?.meta?.pagination
   },
 
+  RESET_SEARCH_RESULT(state) {
+    state.search_result = null;
+    state.search_pagination = null;
+    state.search_state = null;
+  },
+
   UPDATE_SEARCH_QUERY_FILTERS(state, newValue) {
     state.search_query = Object.assign({}, newValue);
+  },
+
+  SET_SEARCH_QUERY_PAGE(state, page) {
+    state.search_query.page = page;
   },
 
   CLEAR_SEARCH_QUERY_FILTERS(state) {

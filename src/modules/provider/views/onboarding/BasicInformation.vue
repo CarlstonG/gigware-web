@@ -11,6 +11,7 @@
           >
             <b-form-input v-model.trim.lazy="form.first_name"
                           :placeholder="placeholders.first_name"/>
+            <verification-message :value="user.verification" name="first_name" alias="last_name"/>
           </validated-b-form-group>
           <validated-b-form-group
               name="last_name"
@@ -20,6 +21,7 @@
           >
             <b-form-input v-model.trim.lazy="form.last_name"
                           :placeholder="placeholders.last_name"/>
+            <verification-message :value="user.verification" name="last_name" alias="first_name"/>
           </validated-b-form-group>
           <validated-b-form-group
               name="phone_number"
@@ -38,14 +40,17 @@
           >
             <b-form-input v-model.trim.lazy="form.company_name"
                           :placeholder="placeholders.company_name"/>
+            <verification-message v-if="user.provider_profile"
+                                  :value="user.provider_profile.verification"
+                                  name="company_name"/>
           </validated-b-form-group>
           <validated-b-form-group
               name="team_size"
               label="Team Size"
               :disabled="formLocked"
-              class="w-25 required"
+              class="required"
           >
-            <b-form-input v-model.trim.lazy="form.team_size"/>
+            <b-form-input class="w-25" v-model.trim.lazy="form.team_size"/>
           </validated-b-form-group>
           <validated-b-form-group
               name="description"
@@ -67,7 +72,7 @@
           >
             <image-upload
                 v-model="form.profile_image"
-                :img-src="userAvatarUrl"
+                :img-src="avatarUrl"
                 class="text-center rounded bg-light border position-relative"
             >
               <template #no-image="{ openFileDialog }">
@@ -113,6 +118,7 @@
               <strong>Tip:</strong>
               Customers prefer clear photos with a smiling face.
             </div>
+            <verification-message :value="avatarModel.verification"/>
           </validated-b-form-group>
         </b-col>
       </b-row>
@@ -129,10 +135,11 @@
   import ImageUpload from '@/core/components/images/ImageUpload'
   import { default as StepsFooter } from '@/modules/provider/components/onboarding/Footer'
   import { mapActions, mapGetters } from 'vuex'
+  import VerificationMessage from "../../../../core/components/forms/VerificationMessage";
 
   export default {
     mixins: [validateFormMixin, settingsSaveMixin],
-    components: { ImageUpload, StepsFooter },
+    components: { VerificationMessage, ImageUpload, StepsFooter },
     data: () => ({
       form: {
         first_name: '',
@@ -171,23 +178,32 @@
       }
     },
     computed: {
-      ...mapGetters('auth', ['user', 'userAvatarUrl']),
+      ...mapGetters('auth', ['user', 'avatarUrl']),
+      avatarModel() {
+        return this.user.images?.data?.length ? this.user.images.data[this.user.images.data.length - 1] : { verification: {} }
+      }
     },
     created() {
-      if (this.user?.provider_profile) {
-        const user = this.user;
-        const profile = user.provider_profile;
+      this.formState = 'loading';
 
-        this.form = Object.assign(this.form, {
-          first_name: user.first_name,
-          last_name: user.last_name,
-          phone_number: profile.phone,
-          company_name: profile.company_name,
-          team_size: profile.team_size,
-          description: profile.description,
-          profile_image: this.userAvatarUrl,
-        });
-      }
+      this.$auth.userFetched()
+        .then(() => {
+          if (this.user?.provider_profile) {
+            const user = this.user;
+            const profile = user.provider_profile;
+
+            this.form = Object.assign(this.form, {
+              first_name: user.first_name,
+              last_name: user.last_name,
+              phone_number: profile.phone,
+              company_name: profile.company_name,
+              team_size: profile.team_size,
+              description: profile.description,
+              profile_image: this.avatarUrl,
+            });
+          }
+        })
+        .finally(() => this.formState = 'default')
     }
   }
 </script>
