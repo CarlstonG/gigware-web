@@ -29,7 +29,8 @@
             <b-dropdown no-caret variant="light" class="inner-filter">
               <template v-slot:button-content>
                 <span class="select-text">{{innerFilterSelected.option}}</span>
-                <svg-icon name="search_carret" :width="$screens({ default: '8', md: '10' })"></svg-icon>
+                <svg-icon class="caret-icon" name="search_caret"
+                          :width="$screens({ default: '8', md: '10' })"></svg-icon>
               </template>
               <b-dropdown-item v-for="item in innerOptions" :key="item.value" @click="setInnerFilter(item)">
                 {{item.option}}

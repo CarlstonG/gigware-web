@@ -2,8 +2,9 @@
 /* tslint:disable */
 // @ts-ignore
 import icon from 'vue-svgicon'
+
 icon.register({
-  'search_carret': {
+  'search_caret': {
     width: 7.617,
     height: 7.444,
     viewBox: '0 0 7.617 7.444',

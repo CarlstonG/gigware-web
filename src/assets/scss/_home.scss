@@ -19,17 +19,6 @@
       .submit-sm {
         border-color: #9aafc5;
       }
-
-      .dropdown-item {
-        color: $text-muted;
-        font-size: .75rem;
-        padding: 14px 0 14px 18px;
-
-        &:hover {
-          background-color: $primary;
-          color: $white;
-        }
-      }
     }
 
     &.block-text-left {

@@ -9,23 +9,32 @@
     margin: 0 1rem 0 0;
   }
 
-  .input-group:focus-within {
-    border-radius: .25rem;
-    box-shadow: 0 0 0 0.2rem rgba(25, 148, 219, 0.25);
+  .input-group {
+    height: 2.5rem;
 
-    .dropdown .dropdown-toggle,
-    .form-control {
-      border-color: #83c9f1;
-      z-index: 0;
+    @include media-breakpoint-up(md) {
+      height: 3.5rem;
     }
 
-    .form-control {
-      border-left: none;
-      border-right: none;
-    }
+    &:focus-within {
+      border-radius: .25rem;
+      box-shadow: 0 0 0 0.2rem rgba(25, 148, 219, 0.25);
 
-    .inner-filter {
-      z-index: 2;
+      .dropdown .dropdown-toggle,
+      .form-control,
+      .submit-sm {
+        border-color: #83c9f1;
+      }
+
+      .form-control {
+        border-left: none;
+        border-right: none;
+        z-index: 0;
+      }
+
+      .inner-filter {
+        z-index: 2;
+      }
     }
   }
 
@@ -97,6 +106,28 @@
     .dropdown-menu {
       padding-top: .5rem;
       padding-bottom: 1rem;
+      top: 4px !important;
+
+      &:after { // triangle
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 1.5rem;
+        margin-left: -10px;
+        margin-top: -10px;
+        width: 0;
+        height: 0;
+        z-index: 1;
+        border-bottom: solid 10px #FFF; /* Creates the arrow pointing up, to change to a notch instead user border-top */
+        border-left: solid 7px transparent;
+        border-right: solid 7px transparent;
+
+        @include media-breakpoint-up(md) {
+          left: 1.9rem;
+          border-left: solid 10px transparent;
+          border-right: solid 10px transparent;
+        }
+      }
 
       .header {
         margin: 1.5rem 0 1rem;
@@ -126,6 +157,10 @@
   .inner-filter {
     &.show > .dropdown-toggle {
       box-shadow: none;
+
+      .caret-icon {
+        transform: rotate(180deg);
+      }
     }
 
     .btn {
@@ -159,15 +194,41 @@
         }
       }
     }
+
+    .dropdown-menu {
+      padding: 0;
+
+      > li {
+        &:first-child .dropdown-item {
+          border-radius: .25rem .25rem 0 0;
+        }
+
+        &:last-child .dropdown-item {
+          border-radius: 0 0 .25rem .25rem;
+        }
+      }
+    }
+
+    .dropdown-item {
+      color: $text-muted;
+      font-size: .75rem;
+      padding: 14px 0 14px 18px;
+
+      &:hover {
+        background-color: $primary;
+        color: $white;
+      }
+    }
   }
 
   .search-input {
     font-size: .75rem;
-    height: 2.5rem;
+    height: 100%;
     padding-left: 1rem;
+    border-color: #f8f9fa;
 
-    @include media-breakpoint-up(md) {
-      height: 3.5rem;
+    &:hover {
+      border-color: #dae0e5;
     }
   }
 
