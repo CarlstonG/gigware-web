@@ -1,5 +1,5 @@
 <template>
-  <div class="d-inline-flex">
+  <div class="navbar-item-account">
     <b-nav-item v-if="isSigningIn && !user">
       <b-spinner variant="primary"/>
     </b-nav-item>
