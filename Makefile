@@ -22,7 +22,7 @@ lint:
 prod:
 	git fetch && git pull origin master && git pull origin production
 	git checkout production
-	git merge master
+	git merge origin master
 	git push origin production
 	git checkout master
 
