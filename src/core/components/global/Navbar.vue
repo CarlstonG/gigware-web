@@ -1,7 +1,40 @@
 <template>
   <div class="navbar-holder">
     <div :class="'navbar-wrapper' + (isFloating ? ' navbar-wrapper-floating' : '')">
-      <b-navbar toggleable="lg" type="light" class="container">
+      <!-- mobile navbar -->
+      <b-navbar toggleable="lg" type="light" class="mobile">
+        <div class="top-wrapper">
+          <div class="container">
+            <b-navbar-toggle class="border-0 p-0" target="nav-collapse"/>
+            <b-navbar-brand :to="{ name: 'home' }">
+              <img src="/images/logo-white.png" alt="Gig Wire"/>
+            </b-navbar-brand>
+          </div>
+        </div>
+        <div class="collapse-wrapper">
+          <div class="container">
+            <b-collapse id="nav-collapse" is-nav>
+              <b-navbar-nav class="ml-auto align-items-center">
+                <b-nav-item class="with-space" :to="{name: 'faq'}" v-if="!isAdmin">
+                  FAQ
+                </b-nav-item>
+                <navbar-item-account/>
+
+                <template v-if="!isAdmin">
+                  <b-nav-item></b-nav-item>
+                  <b-nav-item :to="{ name: 'register' }" v-if="!user">Build a profile</b-nav-item>
+                  <b-nav-item class="text-primary with-space" v-if="user" :to="{ name: 'search-partners' }">
+                    View Partners
+                  </b-nav-item>
+                </template>
+              </b-navbar-nav>
+            </b-collapse>
+          </div>
+        </div>
+      </b-navbar>
+
+      <!-- desktop navbar -->
+      <b-navbar toggleable="lg" type="light" class="container desktop">
         <b-navbar-toggle class="border-0 p-0" target="nav-collapse"/>
         <b-navbar-brand :to="{ name: 'home' }">
           <img src="/images/logo-white.png" alt="Gig Wire"/>
@@ -19,17 +52,13 @@
               <b-button
                   variant="primary"
                   size="lg"
-                  class="d-none d-lg-block ml-lg-4"
+                  class="ml-lg-4"
                   v-if="user"
                   :to="{ name: 'search-partners' }"
               >
                 <!-- for signed in only -->
                 View Partners
               </b-button>
-              <b-nav-item class="mt-3 mt-lg-0 d-sm-block d-lg-none text-primary" v-if="user"
-                          :to="{ name: 'search-partners' }">
-                View Partners
-              </b-nav-item>
             </template>
           </b-navbar-nav>
         </b-collapse>
