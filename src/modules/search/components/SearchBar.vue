@@ -24,8 +24,8 @@
 
     <div class="d-flex flex-column flex-grow-1">
       <b-input-group>
-        <slot name="inner-filter">
-          <template v-slot:prepend v-if="innerOptions && innerOptions.length">
+        <template v-slot:prepend v-if="innerOptions && innerOptions.length">
+          <slot name="inner-filter">
             <b-dropdown no-caret variant="light" class="inner-filter">
               <template v-slot:button-content>
                 <span class="select-text">{{innerFilterSelected.option}}</span>
@@ -35,8 +35,8 @@
                 {{item.option}}
               </b-dropdown-item>
             </b-dropdown>
-          </template>
-        </slot>
+          </slot>
+        </template>
 
         <b-form-input id="search-input" class="search-input" type="search"
                       @keyup.enter.native="submit"
