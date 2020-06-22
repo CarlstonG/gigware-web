@@ -1,8 +1,8 @@
 const bearer = {
   request: function (req, token) {
-    this.http.setHeaders.call(this, req, {
-      Authorization: 'Bearer ' + token
-    });
+    // aggressive way to set headers, it is needed for repeating unauthenticated request
+    req.headers.Authorization = 'Bearer ' + token;
+    this.http.setHeaders.call(this, req, {});
   },
   response: function (res) {
     const headers = this.http.getHeaders.call(this, res);

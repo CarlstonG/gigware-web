@@ -3,7 +3,7 @@ import VueAuth from './vue-auth-extension';
 import router from '@/core/router';
 import store from '@/core/store'
 import authBearer from "./drivers/bearer";
-import authAxios from "@websanova/vue-auth/dist/drivers/http/axios.1.x";
+import authAxios from "./drivers/vue-axios.1.x";
 import routerVueRouter from "./drivers/vue-router";
 
 Vue.router = router;
@@ -33,8 +33,7 @@ Vue.use(VueAuth, {
     url: 'auth/user/',
   },
   refreshData: {
-    url: 'auth/refresh-token/',
-    enabled: false,
+    url: 'auth/refresh-token/', // to disable @see "./drivers/vue-axios.1.x.js"
   },
   authRedirect: { name: 'login' },
   notFoundRedirect: { name: '404' },
