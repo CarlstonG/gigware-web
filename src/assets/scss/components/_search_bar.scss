@@ -9,8 +9,28 @@
     margin: 0 1rem 0 0;
   }
 
-  :focus { // remove all focus
-    outline: none;
+  .input-group:focus-within {
+    border-radius: .25rem;
+    box-shadow: 0 0 0 0.2rem rgba(25, 148, 219, 0.25);
+
+    .dropdown .dropdown-toggle,
+    .form-control {
+      border-color: #83c9f1;
+      z-index: 0;
+    }
+
+    .form-control {
+      border-left: none;
+      border-right: none;
+    }
+
+    .inner-filter {
+      z-index: 2;
+    }
+  }
+
+  .form-control:focus {
+    box-shadow: none;
   }
 
   .left-filter {
