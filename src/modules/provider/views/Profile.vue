@@ -16,7 +16,7 @@
                 <svg-icon name="icon_team_lead" class="icon-card-icon"/>
                 <span class="label">{{ profile.user.first_name }} {{ profile.user.last_name }}</span>
               </div>
-              <div class="icon-card">
+              <div class="icon-card" v-if="profile.address">
                 <svg-icon name="icon_location" class="icon-card-icon"/>
                 <div>
                   <span class="label">{{ profile.address.street_address }}</span>
@@ -41,7 +41,8 @@
                 <div>
                   <div class="title">{{profileExternalReviewsAverage}}<span class="muted">/5</span></div>
                   <div class="subtitle" v-if="profileExternalReviewsCount">
-                    <a href="#reviews-anchor">Reviews {{profileExternalReviewsCount}}</a>
+                    <a href="#reviews-anchor" v-smooth-scroll="{updateHistory: false}">Reviews
+                      {{profileExternalReviewsCount}}</a>
                   </div>
                   <div class="subtitle" v-else>
                     No reviews
@@ -72,7 +73,8 @@
                 <svg-icon name="icon_completed_jobs" class="icon-card-icon"/>
                 <div>
                   <div class="title">{{profile.experiences.data.length}}</div>
-                  <div class="subtitle"><a href="#completed-jobs-anchor">Completed jobs</a></div>
+                  <div class="subtitle"><a href="#completed-jobs-anchor" v-smooth-scroll="{updateHistory: false}">Completed
+                    jobs</a></div>
                 </div>
               </div>
             </b-col>
@@ -100,7 +102,8 @@
                     <span class="muted">/{{profile.certificates.data.length}}</span>
                   </div>
                   <div class="subtitle">
-                    <a href="#verified-credentials-anchor">Verified Credentials</a>
+                    <a href="#verified-credentials-anchor" v-smooth-scroll="{updateHistory: false}">Verified
+                      Credentials</a>
                   </div>
                 </div>
               </div>
@@ -221,6 +224,10 @@
       ...mapActions('provider', ['profileRequest']),
       scrollToTop(e) {
         e.preventDefault();
+        this.$smoothScroll({
+          scrollTo: window.document.getElementsByTagName('body')[0],
+          updateHistory: false
+        })
         window.scrollTo(0, 0);
       },
       showProofOfInsurance(e) {
