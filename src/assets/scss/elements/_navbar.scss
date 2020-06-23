@@ -75,7 +75,7 @@ $navbar-y-padding: 0.5rem;
     height: 100%;
 
     &.collapsed {
-      left: 0;
+      left: 15px;
 
       .navbar-toggler-icon {
         background-image: url("/images/menu_mobile.svg");
@@ -85,7 +85,7 @@ $navbar-y-padding: 0.5rem;
     }
 
     &.not-collapsed {
-      right: 0;
+      right: 15px;
 
       .navbar-toggler-icon {
         background-image: url("/images/menu_close_mobile.svg");
