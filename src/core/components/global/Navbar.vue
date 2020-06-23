@@ -41,24 +41,31 @@
         </b-navbar-brand>
         <b-collapse id="nav-collapse" is-nav>
           <b-navbar-nav class="ml-auto align-items-center">
-            <b-nav-item :to="{name: 'faq'}" v-if="!isAdmin">
+            <b-nav-item :to="{ name: 'faq' }" v-if="!isAdmin && !user">
               FAQ
             </b-nav-item>
+            <template v-if="!isAdmin && user">
+              <b-nav-item :to="{ name: 'contact-us' }">
+                Support
+              </b-nav-item>
+              <b-nav-item :to="{ name: 'search-partners' }">
+                View Partners
+              </b-nav-item>
+            </template>
             <navbar-item-account/>
 
             <template v-if="!isAdmin">
-              <b-nav-item></b-nav-item>
               <b-nav-item :to="{ name: 'register' }" v-if="!user">Build a profile</b-nav-item>
-              <b-button
-                  variant="primary"
-                  size="lg"
-                  class="ml-lg-4"
-                  v-if="user"
-                  :to="{ name: 'search-partners' }"
-              >
-                <!-- for signed in only -->
-                View Partners
-              </b-button>
+              <!--              <b-button-->
+              <!--                  variant="primary"-->
+              <!--                  size="lg"-->
+              <!--                  class="ml-lg-4"-->
+              <!--                  v-if="user"-->
+              <!--                  :to="{ name: 'search-partners' }"-->
+              <!--              >-->
+              <!--                &lt;!&ndash; for signed in only &ndash;&gt;-->
+              <!--                View Partners-->
+              <!--              </b-button>-->
             </template>
           </b-navbar-nav>
         </b-collapse>

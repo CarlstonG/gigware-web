@@ -44,10 +44,46 @@ $navbar-y-padding: 0.5rem;
   @include media-breakpoint-up(lg) {
     &.desktop {
       display: flex;
-      padding: 0.15rem 0;
+      padding: 0;
 
       .navbar-collapse {
-        margin-right: 1rem;
+        height: 76px;
+
+        .navbar-nav {
+          height: 100%;
+
+          .navbar-item-account {
+            height: 100%;
+          }
+
+          .nav-item {
+            height: 100%;
+            margin: 0 1.25rem;
+
+            .nav-link {
+              display: flex;
+              position: relative;
+              align-items: center;
+              height: 100%;
+              padding: 0 .25rem;
+
+              &.router-link-active {
+                color: $color-active-link;
+
+                &:before {
+                  content: "";
+                  position: absolute;
+                  bottom: 0;
+                  left: 0;
+                  right: 0;
+                  background: $color-active-highlight;
+                  height: 5px;
+                  border-radius: .25rem .25rem 0 0;
+                }
+              }
+            }
+          }
+        }
       }
     }
   }
@@ -215,7 +251,7 @@ $navbar-y-padding: 0.5rem;
           content: '';
           position: absolute;
           top: 0;
-          right: 3rem;
+          right: 1.75rem;
           margin-left: -10px;
           margin-top: -10px;
           width: 0;
