@@ -86,7 +86,7 @@
     },
     methods: {
       isMenuLinkDisabled(index) {
-        return index > 0 && !this.user?.provider_profile || index > 1 && !this.user?.provider_profile?.is_registered
+        return index > 0 && !this.user?.provider_profile || index > 1 && !this.user?.provider_profile?.address
       }
     }
   }
