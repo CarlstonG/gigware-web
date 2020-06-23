@@ -17,19 +17,97 @@
   top: 0;
   left: 0;
   right: 0;
-  background-color: $white;
   z-index: 50;
+  transition: box-shadow 0.3s ease-in-out;
+
+  @include media-breakpoint-up(lg) {
+    background: $white;
+  }
 
   &-floating {
     box-shadow: 0 3px 6px #71809633;
   }
 }
 
-.navbar {
-  padding: 0.5rem 0;
+$navbar-y-padding: 0.5rem;
 
-  @include media-breakpoint-up(md) {
-    padding: 0.15rem 0;
+.navbar {
+  display: none;
+
+  @include media-breakpoint-down(md) {
+    &.mobile {
+      display: block;
+      padding: 0;
+    }
+  }
+
+  @include media-breakpoint-up(lg) {
+    &.desktop {
+      display: flex;
+      padding: 0.15rem 0;
+
+      .navbar-collapse {
+        margin-right: 1rem;
+      }
+    }
+  }
+
+  .top-wrapper {
+    display: flex;
+    padding: $navbar-y-padding 0;
+    background-color: $white;
+
+    .container {
+      position: relative;
+    }
+  }
+
+  .collapse-wrapper {
+    background-color: rgba($white, .95);
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
+  }
+}
+
+.navbar-light {
+  .navbar-toggler {
+    position: absolute;
+    top: 0;
+    height: 100%;
+
+    &.collapsed {
+      left: 15px;
+
+      .navbar-toggler-icon {
+        background-image: url("/images/menu_mobile.svg");
+        background-size: 25px;
+        background-position: left;
+      }
+    }
+
+    &.not-collapsed {
+      right: 15px;
+
+      .navbar-toggler-icon {
+        background-image: url("/images/menu_close_mobile.svg");
+        background-size: 14px;
+        background-position: center;
+      }
+    }
+  }
+
+  .navbar-collapse {
+    .navbar-nav {
+      min-height: 100vh;
+
+      @include media-breakpoint-up(lg) {
+        min-height: auto;
+      }
+
+      .with-space {
+        margin-top: 4rem;
+      }
+    }
   }
 }
 
@@ -53,11 +131,24 @@
 }
 
 .navbar-nav {
+  @include media-breakpoint-down(md) {
+    display: block;
+  }
+
+  .navbar-item-account {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
   .nav-item {
+    text-align: center;
+
     .nav-link {
       font-size: 18px;
       padding-top: 0;
       padding-bottom: 0;
+      line-height: 2;
     }
 
     &.btn {
@@ -85,7 +176,8 @@
         display: flex;
         align-items: center;
         font-family: $font-family-sans-serif;
-        font-size: 14px;
+        font-size: 16px;
+        margin: 2rem 0 1rem;
 
         .b-avatar {
           margin-right: .75rem;
@@ -99,8 +191,6 @@
       }
 
       &.menu-link .nav-link {
-        padding: 1rem 1rem;
-
         .icon-card {
           display: flex;
           align-items: center;
@@ -117,8 +207,25 @@
       width: 392px;
       border: none;
       box-shadow: 0 5px 10px $box-shadow-color;
-      top: 95%;
+      top: 100%;
       padding: 0;
+
+      &.dropdown-menu {
+        &:after { // triangle
+          content: '';
+          position: absolute;
+          top: 0;
+          right: 3rem;
+          margin-left: -10px;
+          margin-top: -10px;
+          width: 0;
+          height: 0;
+          z-index: 1;
+          border-bottom: solid 10px #FFF; /* Creates the arrow pointing up, to change to a notch instead user border-top */
+          border-left: solid 10px transparent;
+          border-right: solid 10px transparent;
+        }
+      }
 
       .dropdown-item:active {
         background: $color-gray-lighter;

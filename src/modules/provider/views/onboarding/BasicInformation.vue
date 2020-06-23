@@ -155,13 +155,13 @@
     validations: validations.onboarding.basicInformation,
     methods: {
       ...mapActions('provider', ['createBasicInformation']),
-      sendRequest() {
-        return this.createBasicInformation(this.formData())
+      async sendRequest() {
+        return this.createBasicInformation(await this.formData())
           .then(() => {
             this.afterSubmit()
           })
       },
-      formData() {
+      async formData() {
         let formData = new FormData()
         formData.append('first_name', this.form.first_name)
         formData.append('last_name', this.form.last_name)
@@ -170,8 +170,16 @@
         formData.append('team_size', this.form.team_size)
         formData.append('description', this.form.description)
 
-        if (this.form.profile_image instanceof File) {
-          formData.append('profile_image', this.form.profile_image)
+        if (this.form.profile_image instanceof File && this.$refs.cropper) {
+          let blob = await (async () => {
+            return new Promise(resolve => {
+              this.$refs.cropper
+                      .getCroppedCanvas()
+                      .toBlob(blob => resolve(blob));
+            });
+          })();
+          // formData.append('profile_image', this.form.profile_image)
+          formData.append('profile_image', blob);
         }
 
         return formData

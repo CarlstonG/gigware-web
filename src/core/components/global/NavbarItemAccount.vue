@@ -1,12 +1,12 @@
 <template>
-  <div class="d-inline-flex">
+  <div class="navbar-item-account">
     <b-nav-item v-if="isSigningIn && !user">
       <b-spinner variant="primary"/>
     </b-nav-item>
     <b-nav-item :to="{ name: 'login' }" v-else-if="!authenticated">Log In</b-nav-item>
     <template v-else>
       <template v-if="isAdmin">
-        <b-nav-item class="account-phone menu-link d-lg-none"
+        <b-nav-item class="account-phone menu-link with-space d-lg-none"
                     :to="{ name: 'admin.search-profiles' }">
                   <span class="icon-card">
                     <svg-icon name="navbar_settings" width="32" class="icon-card-icon"></svg-icon>

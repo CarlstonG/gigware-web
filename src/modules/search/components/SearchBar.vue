@@ -24,19 +24,20 @@
 
     <div class="d-flex flex-column flex-grow-1">
       <b-input-group>
-        <slot name="inner-filter">
-          <template v-slot:prepend v-if="innerOptions && innerOptions.length">
+        <template v-slot:prepend v-if="innerOptions && innerOptions.length">
+          <slot name="inner-filter">
             <b-dropdown no-caret variant="light" class="inner-filter">
               <template v-slot:button-content>
                 <span class="select-text">{{innerFilterSelected.option}}</span>
-                <svg-icon name="search_carret" :width="$screens({ default: '8', md: '12' })"></svg-icon>
+                <svg-icon class="caret-icon" name="search_caret"
+                          :width="$screens({ default: '8', md: '10' })"></svg-icon>
               </template>
               <b-dropdown-item v-for="item in innerOptions" :key="item.value" @click="setInnerFilter(item)">
                 {{item.option}}
               </b-dropdown-item>
             </b-dropdown>
-          </template>
-        </slot>
+          </slot>
+        </template>
 
         <b-form-input id="search-input" class="search-input" type="search"
                       @keyup.enter.native="submit"

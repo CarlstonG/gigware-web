@@ -1,3 +1,14 @@
 .dropdown-menu {
   min-width: $dropdown-menu-min-width;
+  border: none;
+  box-shadow: 0 3px 6px #7180964F;
+
+  // desktop
+  @include media-breakpoint-up(md) {
+    box-shadow: 0 5px 10px #71809650;
+  }
+
+  .b-dropdown-form:focus {
+    outline: none !important;
+  }
 }
