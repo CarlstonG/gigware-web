@@ -76,7 +76,21 @@
     data: () => ({
       isFloating: false
     }),
+    watch: {
+      $route() {
+        this.initFloatingDetection();
+      }
+    },
     methods: {
+      initFloatingDetection() {
+        window.removeEventListener('scroll', this.handleScroll);
+        const subNavbar = window.document.getElementsByClassName('sub-navbar-holder');
+        if (!subNavbar || !subNavbar.length) {
+          window.addEventListener('scroll', this.handleScroll);
+        } else {
+          this.isFloating = true;
+        }
+      },
       handleScroll() {
         this.isFloating = window.scrollY > 10
       }
@@ -84,13 +98,8 @@
     computed: {
       ...mapGetters('auth', ['user', 'isAdmin'])
     },
-    created() {
-      const subNavbar = window.document.getElementsByClassName('.sub-navbar-holder');
-      if (!subNavbar) {
-        window.addEventListener('scroll', this.handleScroll);
-      } else {
-        this.isFloating = true;
-      }
+    mounted() {
+      this.initFloatingDetection();
     },
     destroyed() {
       window.removeEventListener('scroll', this.handleScroll);

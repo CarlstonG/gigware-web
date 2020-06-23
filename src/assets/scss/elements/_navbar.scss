@@ -18,6 +18,7 @@
   left: 0;
   right: 0;
   z-index: 50;
+  transition: box-shadow 0.3s ease-in-out;
 
   @include media-breakpoint-up(lg) {
     background: $white;
@@ -75,7 +76,7 @@ $navbar-y-padding: 0.5rem;
     height: 100%;
 
     &.collapsed {
-      left: 0;
+      left: 15px;
 
       .navbar-toggler-icon {
         background-image: url("/images/menu_mobile.svg");
@@ -85,7 +86,7 @@ $navbar-y-padding: 0.5rem;
     }
 
     &.not-collapsed {
-      right: 0;
+      right: 15px;
 
       .navbar-toggler-icon {
         background-image: url("/images/menu_close_mobile.svg");
@@ -206,8 +207,25 @@ $navbar-y-padding: 0.5rem;
       width: 392px;
       border: none;
       box-shadow: 0 5px 10px $box-shadow-color;
-      top: 95%;
+      top: 100%;
       padding: 0;
+
+      &.dropdown-menu {
+        &:after { // triangle
+          content: '';
+          position: absolute;
+          top: 0;
+          right: 3rem;
+          margin-left: -10px;
+          margin-top: -10px;
+          width: 0;
+          height: 0;
+          z-index: 1;
+          border-bottom: solid 10px #FFF; /* Creates the arrow pointing up, to change to a notch instead user border-top */
+          border-left: solid 10px transparent;
+          border-right: solid 10px transparent;
+        }
+      }
 
       .dropdown-item:active {
         background: $color-gray-lighter;
