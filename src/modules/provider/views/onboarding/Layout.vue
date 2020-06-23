@@ -9,7 +9,7 @@
                 v-for="(step, index) in steps"
                 :key="index"
                 :to="step.route"
-                :disabled="index > 0 && !user.provider_profile"
+                :disabled="isMenuLinkDisabled(index)"
                 :class="{ done: index + 1 < $route.meta.step }"
             >
               {{ step.label }}
@@ -82,7 +82,12 @@
       },
       currentStep() {
         return this.$route.meta.step
-      },
+      }
     },
+    methods: {
+      isMenuLinkDisabled(index) {
+        return index > 0 && !this.user?.provider_profile || index > 1 && !this.user?.provider_profile?.is_registered
+      }
+    }
   }
 </script>

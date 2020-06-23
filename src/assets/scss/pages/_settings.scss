@@ -30,6 +30,10 @@ $settings-left-circle-border-color: #718096;
     margin-bottom: 1.5rem;
     color: $text-color;
 
+    &.disabled {
+      opacity: 0.5;
+    }
+
     .marker {
       display: block;
       position: absolute;

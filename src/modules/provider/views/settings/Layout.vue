@@ -5,7 +5,10 @@
         <b-col lg="2">
           <div class="settings-header">Settings</div>
           <b-list-group>
-            <b-list-group-item v-for="(step, index) in steps" :key="index" :to="step.route">
+            <b-list-group-item v-for="(step, index) in steps"
+                               :key="index"
+                               :to="step.route"
+                               :disabled="isMenuLinkDisabled(index)">
               <span class="marker"><span class="marker-inner"></span></span>
               {{ step.label }}
             </b-list-group-item>
@@ -28,6 +31,8 @@
 </template>
 
 <script>
+  import { mapGetters } from "vuex";
+
   export default {
     data: () => ({
       steps: [
@@ -66,6 +71,7 @@
       ],
     }),
     computed: {
+      ...mapGetters('auth', ['user']),
       title() {
         return this.$route.meta.title
       },
@@ -76,5 +82,10 @@
         return this.$route.meta.step
       },
     },
+    methods: {
+      isMenuLinkDisabled(index) {
+        return index > 0 && !this.user?.provider_profile || index > 1 && !this.user?.provider_profile?.is_registered
+      }
+    }
   }
 </script>
