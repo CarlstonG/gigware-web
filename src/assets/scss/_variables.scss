@@ -17,7 +17,6 @@ $search-pagination-border: #A0AEC0;
 $color-dropdown-nav-border: #A0AEC0;
 
 $titles-color: #070f18de;
-$link-color: #0f4f85;
 $text-info-color: #0f4f85;
 
 $color-active-highlight: #F6B54F;
@@ -38,6 +37,9 @@ $error: #973937;
 $dirty-white: #F7FAFC;
 $light-blue: #D0F3FF;
 $input-label: #4A5568;
+
+$link-color: $primary;
+$dark-link-color: #0f4f85;
 
 $box-shadow-color: #7180964F;
 $content-shaded-color: #EDF2F7;
