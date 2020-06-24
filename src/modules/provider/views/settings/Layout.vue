@@ -4,7 +4,20 @@
       <b-row>
         <b-col lg="2">
           <div class="settings-header">Settings</div>
-          <b-list-group>
+          <b-dropdown no-caret variant="light" class="dropdown-nav d-lg-none">
+            <template v-slot:button-content>
+              <span class="select-text">{{currentStepLabel}}</span>
+              <svg-icon class="caret-icon" name="search_caret"
+                        width="11"></svg-icon>
+            </template>
+            <b-dropdown-item v-for="(step, index) in steps"
+                             :key="index"
+                             :to="step.route"
+                             :disabled="isMenuLinkDisabled(index)">
+              {{ step.label }}
+            </b-dropdown-item>
+          </b-dropdown>
+          <b-list-group class="d-none d-lg-block">
             <b-list-group-item v-for="(step, index) in steps"
                                :key="index"
                                :to="step.route"
@@ -80,6 +93,9 @@
       },
       currentStep() {
         return this.$route.meta.step
+      },
+      currentStepLabel() {
+        return this.steps.find(item => item.route.name === this.$route.name)?.label
       },
     },
     methods: {
