@@ -38,6 +38,7 @@ export default [
         meta: {
           step: 2,
           nextRedirect: { name: 'provider.onboarding.availability' },
+          backRedirect: { name: 'provider.onboarding.basic-information' },
           title: 'Rates and Location',
           subtitle:
             'Let your customers know how much you charge and where your willing to work.',
@@ -50,6 +51,7 @@ export default [
         meta: {
           step: 3,
           nextRedirect: { name: 'provider.onboarding.licenses' },
+          backRedirect: { name: 'provider.onboarding.rates-and-location' },
           title: 'Availability',
           subtitle:
             'Let your customers know when your team is available to work.',
@@ -62,6 +64,7 @@ export default [
         meta: {
           step: 4,
           nextRedirect: { name: 'provider.onboarding.experience' },
+          backRedirect: { name: 'provider.onboarding.availability' },
           title: 'Licenses, Certifications and Training',
           subtitle:
             'What licenses/certifications does your team hold? This helps your customer know you’re qualified.',
@@ -74,6 +77,7 @@ export default [
         meta: {
           step: 5,
           nextRedirect: { name: 'provider.onboarding.proof-of-insurance' },
+          backRedirect: { name: 'provider.onboarding.licenses' },
           title: 'Experience',
           subtitle:
             'Tell us about your team’s experience. Show your customer you’ve done similar work.',
@@ -86,6 +90,7 @@ export default [
         meta: {
           step: 6,
           nextRedirect: { name: 'provider.onboarding.ratings-and-reviews' },
+          backRedirect: { name: 'provider.onboarding.experience' },
           title: 'Proof of Insurance',
           subtitle:
             'Showing proof of insurance helps build trust with your customer.',
@@ -97,8 +102,8 @@ export default [
         component: RatingsAndReviews,
         meta: {
           step: 7,
-          nextBtnText: 'Send & Next',
           nextRedirect: { name: 'provider.onboarding.confirmation' },
+          backRedirect: { name: 'provider.onboarding.proof-of-insurance' },
           title: 'Ratings & Reviews',
           subtitle:
             'Make your profile shine, get some gold stars from former customers.',

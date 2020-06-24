@@ -15,10 +15,13 @@ $settings-left-circle-border-color: #718096;
   background-color: transparent;
   border: none;
   align-items: center;
-  padding: 0;
-  padding-left: 2.2rem;
+  padding: 0 0 0 2.2rem;
   margin-bottom: 1.5rem;
   color: $text-color;
+
+  @include hover-focus-active() {
+    background-color: transparent;
+  }
 
   &.disabled {
     opacity: 0.5;
@@ -55,8 +58,12 @@ $settings-left-circle-border-color: #718096;
       }
     }
   }
+}
 
-  &.onboarding {
+.list-group.onboarding {
+  .list-group-item {
+    color: $text-muted;
+
     &::before {
       content: url('/images/steps_current_step_icon.svg');
       position: absolute;
@@ -65,6 +72,8 @@ $settings-left-circle-border-color: #718096;
     }
 
     &.router-link-active {
+      color: $primary;
+
       &::before {
         content: url('/images/steps_current_step_icon.svg');
       }

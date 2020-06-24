@@ -13,7 +13,24 @@
             >
               <b-form-input v-model.trim.lazy="current.email"/>
             </validated-b-form-group>
-            <b-link @click="addEmail">+ Add New Email</b-link>
+            <b-button variant="transparent"
+                      size="lg"
+                      @click="addEmail"
+                      class="add-button"
+                      :disabled="formLocked">
+              <span class="plus"></span> Add New Email
+            </b-button>
+            <div class="text-right">
+              <b-progress-button
+                  class="send-request-btn"
+                  size="sm"
+                  :disabled="formLocked"
+                  :state="formState"
+                  @click="sendReviewRequest"
+                  default-text="Send Request"
+                  loading-text="Sending...">
+              </b-progress-button>
+            </div>
           </b-col>
           <b-col lg="6" class="col-right">
             <validated-b-form-group
@@ -38,6 +55,7 @@
     </validated-b-form-wrapper>
   </div>
 </template>
+<style scoped lang="scss" src="./RatingsAndReviews.scss"></style>
 
 <script>
   import validations from '../../services/validations'
@@ -59,8 +77,25 @@
     validations: validations.onboarding.ratingsAndReviews,
     methods: {
       ...mapActions('provider', ['createReviewRequest']),
+      sendReviewRequest() {
+        this.validate(() => {
+          this.createReviewRequest(this.prepareData())
+            .then(() => {
+              this.$root.$bvToast.toast('Your request has been sent.', {
+                toaster: 'b-toaster-top-right',
+                variant: 'primary',
+              })
+            })
+            .catch(error => {
+              this.handleServerError(error)
+            })
+            .finally(() => {
+              this.setDefaultState()
+            })
+        });
+      },
       sendRequest() {
-        return this.createReviewRequest(this.prepareData()).then(() => {
+        return Promise.resolve().then(() => {
           this.afterSubmit()
         })
       },

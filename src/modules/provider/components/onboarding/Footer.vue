@@ -1,7 +1,7 @@
 <template>
   <div class="mt-5 d-flex justify-content-between">
     <b-button v-if="!isFirstStep && !isSettingsType"
-              @click="$router.go(-1)" size="lg" variant="transparent" class="btn-back">
+              @click="goBack" size="lg" variant="transparent" class="btn-back">
       <svg-icon name="arrow_prev"
                 class="left-icon"
                 :width="$screens({ default: '11' })"/>
@@ -76,6 +76,12 @@
       },
       onSkip(e) {
         this.$emit('skip', e)
+      },
+      goBack() {
+        const backRedirect = this.$route.matched.find(r => r.meta.backRedirect)?.meta?.backRedirect;
+        if (backRedirect) {
+          this.$router.push(backRedirect)
+        }
       }
     }
   }

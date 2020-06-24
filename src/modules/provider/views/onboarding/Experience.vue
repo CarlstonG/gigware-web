@@ -152,9 +152,13 @@
             </multiple-image-upload>
           </validated-b-form-group>
           <div style="margin-top: 60px">
-            <b-link @click="addForm" v-show="forms.length == index + 1">
-              + Add new job
-            </b-link>
+            <b-button variant="transparent"
+                      size="lg"
+                      @click="addForm"
+                      class="add-button"
+                      v-show="!formLocked && forms.length === index + 1">
+              <span class="plus"></span> Add New Job
+            </b-button>
           </div>
         </b-col>
       </b-row>

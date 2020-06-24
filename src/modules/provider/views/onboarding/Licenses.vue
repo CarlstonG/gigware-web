@@ -101,7 +101,13 @@
           </template>
         </multiple-image-upload>
       </div>
-      <b-link @click="addCustomCertificate" v-show="!formLocked">+ Add New Certificate</b-link>
+      <b-button variant="transparent"
+                size="lg"
+                @click="addCustomCertificate"
+                class="add-button"
+                v-show="!formLocked">
+        <span class="plus"></span> Add New Certificate
+      </b-button>
       <steps-footer :loading="formLocked" :state="formState"/>
     </b-form>
   </div>
