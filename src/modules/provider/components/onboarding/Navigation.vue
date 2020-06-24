@@ -1,6 +1,9 @@
 <template>
   <div>
-    <b-dropdown no-caret variant="light" class="dropdown-nav d-lg-none">
+    <b-dropdown v-if="!onboarding"
+                no-caret
+                variant="light"
+                class="dropdown-nav d-lg-none">
       <template v-slot:button-content>
         <span class="select-text">{{currentStepLabel}}</span>
         <svg-icon class="caret-icon" name="search_caret"

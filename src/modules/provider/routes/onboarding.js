@@ -78,6 +78,7 @@ export default [
           step: 5,
           nextRedirect: { name: 'provider.onboarding.proof-of-insurance' },
           backRedirect: { name: 'provider.onboarding.licenses' },
+          skipAllowed: true,
           title: 'Experience',
           subtitle:
             'Tell us about your team’s experience. Show your customer you’ve done similar work.',
@@ -91,6 +92,7 @@ export default [
           step: 6,
           nextRedirect: { name: 'provider.onboarding.ratings-and-reviews' },
           backRedirect: { name: 'provider.onboarding.experience' },
+          skipAllowed: true,
           title: 'Proof of Insurance',
           subtitle:
             'Showing proof of insurance helps build trust with your customer.',
@@ -104,6 +106,7 @@ export default [
           step: 7,
           nextRedirect: { name: 'provider.onboarding.confirmation' },
           backRedirect: { name: 'provider.onboarding.proof-of-insurance' },
+          skipAllowed: true,
           title: 'Ratings & Reviews',
           subtitle:
             'Make your profile shine, get some gold stars from former customers.',

@@ -13,7 +13,7 @@
           @click="onSkip($event)"
           variant="transparent"
           size="lg"
-          v-if="optional && !isSettingsType"
+          v-if="skipAllowed"
       >
         Skip
       </b-button>
@@ -41,9 +41,6 @@
 
   export default {
     props: {
-      optional: {
-        default: false,
-      },
       nextBtnText: {
         type: String,
         default: nextBtnDefaultText,
@@ -69,6 +66,9 @@
           this.nextBtnText :
           this.$route.matched.slice().reverse().find(r => r.meta.nextBtnText)?.meta?.nextBtnText
           || this.nextBtnText
+      },
+      skipAllowed() {
+        return this.$route.matched.slice().reverse().find(r => r.meta.skipAllowed)?.meta?.skipAllowed && !this.isSettingsType;
       }
     },
     methods: {

@@ -3,11 +3,11 @@
     <b-container>
       <b-row>
         <b-col lg="2">
-          <div class="settings-header">Steps {{ currentStep }} of 8</div>
+          <div class="settings-header d-none d-lg-block">Step {{ currentStep }} of 8</div>
           <navigation onboarding :value="steps"/>
         </b-col>
         <b-col lg="10">
-          <settings-form>
+          <settings-form onboarding>
             <router-view/>
           </settings-form>
         </b-col>

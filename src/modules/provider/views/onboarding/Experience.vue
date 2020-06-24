@@ -165,7 +165,6 @@
       <steps-footer
           :loading="formLocked"
           :state="formState"
-          :optional="true"
           @skip="goToNextStep"
       />
     </b-form>
