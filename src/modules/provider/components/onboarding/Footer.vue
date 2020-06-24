@@ -4,7 +4,7 @@
               @click="goBack" size="lg" variant="transparent" class="btn-back">
       <svg-icon name="arrow_prev"
                 class="left-icon"
-                :width="$screens({ default: '11' })"/>
+                :width="$screens({ default: '14' })"/>
       Back
     </b-button>
     <span v-else>&nbsp;</span>
@@ -27,7 +27,7 @@
         <template v-if="!isSettingsType && state === 'default'" v-slot:icon>
           <svg-icon name="next_page"
                     class="right-icon"
-                    :width="$screens({ default: '11'})"/>
+                    :width="$screens({ default: '14'})"/>
         </template>
       </b-progress-button>
     </div>
