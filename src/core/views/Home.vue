@@ -64,53 +64,56 @@
       </b-col>
     </b-row>
     <div class="text-block why-us">
-      <div class="title">
-        Why Choose Gig Wire
-      </div>
-      <b-row class="why-us-items">
-        <b-col sm="12" md="6">
-          <div class="icon-card">
-            <svg-icon class="icon-card-icon" name="more_work" :width="$screens({ default: '24', md: '32', lg: '48'})"/>
-            <div>
-              <div class="title">Get More Work</div>
-              <p>Gig Wire helps you advertise, increases</p>
-              <p>market access, and leads to new jobs.</p>
+      <b-container fluid="md">
+        <div class="title">
+          Why Choose Gig Wire
+        </div>
+        <b-row class="why-us-items">
+          <b-col sm="12" md="6">
+            <div class="icon-card">
+              <svg-icon class="icon-card-icon" name="more_work"
+                        :width="$screens({ default: '24', md: '32', lg: '48'})"/>
+              <div>
+                <div class="title">Get More Work</div>
+                <p>Gig Wire helps you advertise, increases</p>
+                <p>market access, and leads to new jobs.</p>
+              </div>
             </div>
-          </div>
-        </b-col>
-        <b-col sm="12" md="6">
-          <div class="icon-card">
-            <svg-icon class="icon-card-icon" name="money" :width="$screens({ default: '24', md: '32', lg: '48'})"/>
-            <div>
-              <div class="title">Make More Money</div>
-              <p>Set your own rates, find consistent work, and</p>
-              <p>increase your earning potential.</p>
+          </b-col>
+          <b-col sm="12" md="6">
+            <div class="icon-card">
+              <svg-icon class="icon-card-icon" name="money" :width="$screens({ default: '24', md: '32', lg: '48'})"/>
+              <div>
+                <div class="title">Make More Money</div>
+                <p>Set your own rates, find consistent work, and</p>
+                <p>increase your earning potential.</p>
+              </div>
             </div>
-          </div>
-        </b-col>
-        <b-col sm="12" md="6">
-          <div class="icon-card">
-            <svg-icon class="icon-card-icon" name="build_trust"
-                      :width="$screens({ default: '24', md: '32', lg: '48'})"/>
-            <div>
-              <div class="title">Build Customer Trust</div>
-              <p>Gig Wire partners show they’re ready for the job</p>
-              <p>by providing the important information upfront.</p>
+          </b-col>
+          <b-col sm="12" md="6">
+            <div class="icon-card">
+              <svg-icon class="icon-card-icon" name="build_trust"
+                        :width="$screens({ default: '24', md: '32', lg: '48'})"/>
+              <div>
+                <div class="title">Build Customer Trust</div>
+                <p>Gig Wire partners show they’re ready for the job</p>
+                <p>by providing the important information upfront.</p>
+              </div>
             </div>
-          </div>
-        </b-col>
-        <b-col sm="12" md="6">
-          <div class="icon-card">
-            <svg-icon class="icon-card-icon" name="schedule_management"
-                      :width="$screens({ default: '24', md: '32', lg: '48'})"/>
-            <div>
-              <div class="title">Schedule Management</div>
-              <p>With access to more projects, you build a schedule</p>
-              <p>around your team’s needs—to work when you want.</p>
+          </b-col>
+          <b-col sm="12" md="6">
+            <div class="icon-card">
+              <svg-icon class="icon-card-icon" name="schedule_management"
+                        :width="$screens({ default: '24', md: '32', lg: '48'})"/>
+              <div>
+                <div class="title">Schedule Management</div>
+                <p>With access to more projects, you build a schedule</p>
+                <p>around your team’s needs—to work when you want.</p>
+              </div>
             </div>
-          </div>
-        </b-col>
-      </b-row>
+          </b-col>
+        </b-row>
+      </b-container>
       <div class="view-partners">
         <b-button class="button" :to="{ name: 'search-partners' }">
           <span>Find my Security Partner</span>
@@ -181,7 +184,7 @@
              class="img-fluid" alt="Gig Wire"/>
       </b-col>
     </b-row>
-    <site-footer />
+    <site-footer/>
   </div>
 </template>
 
