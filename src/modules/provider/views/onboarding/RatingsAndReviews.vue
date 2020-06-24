@@ -50,6 +50,7 @@
             :state="formState"
             :optional="true"
             @skip="goToNextStep"
+            @click="goToNextStep"
         />
       </b-form>
     </validated-b-form-wrapper>

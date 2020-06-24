@@ -19,6 +19,7 @@
       </b-button>
       <b-progress-button
           size="lg"
+          @click="onClick($event)"
           :disabled="loading"
           :state="state"
           :default-text="nextBtnTextFromMeta"

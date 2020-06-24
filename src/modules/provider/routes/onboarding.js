@@ -115,6 +115,8 @@ export default [
         component: Confirmation,
         meta: {
           step: 8,
+          nextBtnText: 'My Profile',
+          backRedirect: { name: 'provider.onboarding.ratings-and-reviews' },
           title: 'Confirmation',
           subtitle: '',
         },

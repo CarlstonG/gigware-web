@@ -81,7 +81,7 @@
           </validated-b-form-group>
         </b-col>
       </b-row>
-      <steps-footer @next="submit" :loading="formLocked" :state="formState"/>
+      <steps-footer :loading="formLocked" :state="formState"/>
     </b-form>
   </validated-b-form-wrapper>
 </template>
