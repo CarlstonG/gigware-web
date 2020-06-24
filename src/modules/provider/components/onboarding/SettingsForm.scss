@@ -1,0 +1,122 @@
+@import "src/assets/scss/local-styles-includes";
+
+.card-header {
+  background-color: $dark-blue;
+  color: $white;
+  padding: 1.5rem 1rem 0;
+  border: 0;
+
+  @include media-breakpoint-up(md) {
+    padding: 1.5rem 3rem 0;
+  }
+
+  .card-header-title {
+    font-size: 1.3rem;
+    color: $dirty-white;
+    margin-bottom: 0.75rem;
+  }
+
+  .card-header-subtitle {
+    color: $light-blue;
+    padding-bottom: 1.5rem;
+
+    @include media-breakpoint-up(md) {
+      padding-bottom: 3rem;
+    }
+  }
+
+  .card-header-steps {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-bottom: 1rem;
+
+    .steps {
+      color: $lighter-blue;
+      font-size: 75%;
+    }
+
+    .btn {
+      font-size: 90%;
+      padding: .75rem .5rem;
+
+      &:focus {
+        background: transparent;
+        box-shadow: none;
+        color: $white;
+      }
+
+      &:active {
+        background: $white;
+        color: $text-dark;
+      }
+    }
+  }
+}
+
+::v-deep .settings-form {
+  padding: 1.5rem 1rem;
+
+  @include media-breakpoint-up(lg) {
+    padding: 2rem;
+  }
+
+  .col-left {
+    @include media-breakpoint-up(lg) {
+      padding-right: 2rem;
+    }
+  }
+
+  .col-right {
+    @include media-breakpoint-up(lg) {
+      padding-left: 2rem;
+    }
+  }
+
+  .add-button {
+    color: $primary;
+    font-size: 90%;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    padding: .75rem .5rem .75rem 0;
+
+    @include hover-focus-active() {
+      box-shadow: none !important;
+      background: transparent;
+    }
+
+    .plus {
+      display: inline-block;
+      position: relative;
+      width: 16px;
+      height: 16px;
+      margin-top: -4px;
+      margin-right: 1.5rem;
+
+      &:before,
+      &:after {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        background: $primary;
+        border-radius: 99px;
+      }
+
+      &:before {
+        right: 0;
+        height: 2px;
+        margin-top: 7px;
+      }
+
+      &:after {
+        bottom: 0;
+        width: 2px;
+        margin-left: 7px;
+      }
+    }
+  }
+}
+
+

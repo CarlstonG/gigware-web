@@ -81,6 +81,7 @@
     <site-footer/>
   </div>
 </template>
+<style scoped lang="scss" src="./ContactUs.scss"></style>
 
 <script>
   import { default as SiteFooter } from '@/core/components/global/Footer'

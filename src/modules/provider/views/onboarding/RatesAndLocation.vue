@@ -2,7 +2,7 @@
   <validated-b-form-wrapper :validator="$v.form">
     <b-form @submit.prevent="submit">
       <b-row>
-        <b-col lg="6" class="pr-5">
+        <b-col lg="6" class="col-left">
           <validated-b-form-group
               name="rates_per_run"
               label="At a minimum, what does your team charge per installation run?"
@@ -50,7 +50,7 @@
               style="height: 215px; width: 100%; border: 1px solid #A0AEC0"
           ></div>
         </b-col>
-        <b-col lg="6" class="pl-5">
+        <b-col lg="6" class="col-right">
           <p class="font-weight-bold">Business Address:</p>
           <validated-b-form-group
               name="address.street_address"
@@ -81,7 +81,7 @@
           </validated-b-form-group>
         </b-col>
       </b-row>
-      <steps-footer @next="submit" :loading="formLocked" :state="formState"/>
+      <steps-footer :loading="formLocked" :state="formState"/>
     </b-form>
   </validated-b-form-wrapper>
 </template>

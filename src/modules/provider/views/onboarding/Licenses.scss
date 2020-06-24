@@ -1,15 +1,102 @@
 @import 'src/assets/scss/local-styles-includes';
 
-::v-deep .verification-tooltip .wrapper {
-  padding: 0 .5rem;
-  margin-right: 2rem;
+.form-inline {
+  display: flex;
+  align-items: center;
+  margin-bottom: 1rem;
+  font-size: 16px;
+
+  .custom-checkbox {
+    display: flex;
+    flex: 0 0 100%;
+    justify-content: left;
+
+    @include media-breakpoint-up(sm) {
+      flex: 0 0 50%;
+    }
+
+    @include media-breakpoint-up(md) {
+      flex: 0 0 60%;
+    }
+  }
+
+  .held-by {
+    display: flex;
+    flex: 0 0 100%;
+    align-items: center;
+    margin: 1rem 0;
+
+    @include media-breakpoint-up(sm) {
+      flex: 0 0 50%;
+      margin: 0;
+    }
+
+    @include media-breakpoint-up(md) {
+      flex: 0 0 40%;
+      margin: 0;
+    }
+
+    label,
+    span {
+      color: $input-label;
+      white-space: nowrap;
+      margin: 0;
+      font-size: 90%;
+    }
+
+    .form-control {
+      background-color: $dirty-white;
+      flex-shrink: 2;
+      margin: 0 .5rem;
+      max-width: 3rem;
+    }
+  }
+}
+
+::v-deep .certificate-verification.verification-tooltip {
+  display: flex;
+  flex: 1 1 100%;
+
+  @include media-breakpoint-up(sm) {
+    margin-bottom: .5rem;
+  }
+
+  @include media-breakpoint-up(xl) {
+    flex: 1 1 60%;
+  }
+
+  > .wrapper {
+    display: flex;
+    flex: 1 1 100%;
+    flex-wrap: wrap;
+  }
 }
 
 .images-uploader {
-  display: inline-flex;
-  flex-direction: row;
+  display: flex;
+  flex: 1 1 100%;
   align-items: center;
-  padding: .25rem 0;
+  flex-direction: row;
+  justify-content: flex-end;
+  flex-wrap: wrap;
+
+  @include media-breakpoint-up(xl) {
+    flex: 0 0 40%;
+  }
+
+  @include media-breakpoint-up(sm) {
+    margin-bottom: .5rem;
+  }
+
+  .images-wrapper {
+    margin-top: .5rem;
+    text-align: left;
+
+    @include media-breakpoint-up(sm) {
+      display: flex;
+      margin: .5rem 0 .5rem 1rem;
+    }
+  }
 
   ::v-deep .verification-tooltip {
     margin-right: .35rem;

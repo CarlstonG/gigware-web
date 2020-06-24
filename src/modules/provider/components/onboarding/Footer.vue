@@ -1,10 +1,10 @@
 <template>
   <div class="mt-5 d-flex justify-content-between">
     <b-button v-if="!isFirstStep && !isSettingsType"
-              @click="$router.go(-1)" size="lg" variant="transparent" class="btn-back">
+              @click="goBack" size="lg" variant="transparent" class="btn-back">
       <svg-icon name="arrow_prev"
                 class="left-icon"
-                :width="$screens({ default: '11' })"/>
+                :width="$screens({ default: '14' })"/>
       Back
     </b-button>
     <span v-else>&nbsp;</span>
@@ -13,12 +13,13 @@
           @click="onSkip($event)"
           variant="transparent"
           size="lg"
-          v-if="optional && !isSettingsType"
+          v-if="skipAllowed"
       >
         Skip
       </b-button>
       <b-progress-button
           size="lg"
+          @click="onClick($event)"
           :disabled="loading"
           :state="state"
           :default-text="nextBtnTextFromMeta"
@@ -26,7 +27,7 @@
         <template v-if="!isSettingsType && state === 'default'" v-slot:icon>
           <svg-icon name="next_page"
                     class="right-icon"
-                    :width="$screens({ default: '11'})"/>
+                    :width="$screens({ default: '14'})"/>
         </template>
       </b-progress-button>
     </div>
@@ -40,9 +41,6 @@
 
   export default {
     props: {
-      optional: {
-        default: false,
-      },
       nextBtnText: {
         type: String,
         default: nextBtnDefaultText,
@@ -68,6 +66,9 @@
           this.nextBtnText :
           this.$route.matched.slice().reverse().find(r => r.meta.nextBtnText)?.meta?.nextBtnText
           || this.nextBtnText
+      },
+      skipAllowed() {
+        return this.$route.matched.slice().reverse().find(r => r.meta.skipAllowed)?.meta?.skipAllowed && !this.isSettingsType;
       }
     },
     methods: {
@@ -76,6 +77,12 @@
       },
       onSkip(e) {
         this.$emit('skip', e)
+      },
+      goBack() {
+        const backRedirect = this.$route.matched.find(r => r.meta.backRedirect)?.meta?.backRedirect;
+        if (backRedirect) {
+          this.$router.push(backRedirect)
+        }
       }
     }
   }

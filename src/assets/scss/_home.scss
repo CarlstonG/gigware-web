@@ -227,7 +227,7 @@
           padding-left: .5rem;
           padding-right: .5rem;
           margin-top: 0;
-          color: $link-color;
+          color: $dark-link-color;
 
           span {
             margin-right: 1rem;
@@ -310,14 +310,10 @@
       color: $text-muted;
 
       a {
-        color: $link-color;
+        color: $dark-link-color;
         font-weight: bold;
         margin-left: .5rem;
       }
-
-      //@include media-breakpoint-down(sm) {
-      //  font-size: 9px;
-      //}
     }
 
     .content {
