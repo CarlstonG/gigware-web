@@ -1,0 +1,49 @@
+@import "src/assets/scss/local-styles-includes";
+
+.form-card {
+  .title {
+    margin-bottom: 2rem;
+  }
+
+  .description {
+    @include media-breakpoint-up(md) {
+      font-size: 22px;
+      margin-bottom: 3rem;
+    }
+  }
+
+  .back-btn-wrapper {
+    margin: 5rem 0 3rem;
+  }
+}
+
+.btn {
+  display: flex;
+  align-items: center;
+  padding: .75rem 1rem;
+  font-size: 95%;
+
+  .left-icon {
+    margin-right: 1rem;
+    margin-left: -.5rem;
+  }
+
+  @include media-breakpoint-up(sm) {
+    .left-icon {
+      margin-right: 1.5rem;
+    }
+  }
+}
+
+.btn-transparent {
+  @include hover-focus-active() {
+    color: $dark-blue;
+  }
+}
+
+.btn-back {
+  color: $primary;
+  padding: .75rem 1rem .75rem .5rem;
+}
+
+
