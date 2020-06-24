@@ -1,21 +1,16 @@
 <template>
   <div>
     <b-form @submit.prevent="submit">
-      <div
-          v-for="(certificate, index) in certificates"
-          :key="index"
-          class="form-inline"
+      <p>What of the following Certificates does your team have?</p>
+      <div v-for="(certificate, index) in certificates"
+           :key="index"
+           class="form-inline"
       >
-        <verification-tooltip show :value="certificate.verification">
-          <b-form-checkbox
-              v-model="certificate.checked"
-              class="mr-5 justify-content-start d-flex align-items-center"
-              style="min-width: 320px"
-          >
+        <verification-tooltip show :value="certificate.verification" class="certificate-verification">
+          <b-form-checkbox v-model="certificate.checked">
             <div v-if="certificate.isCustom" class="position-relative">
               <b-form-input
                   v-model.trim.lazy="certificate.name"
-                  class="mr-2 w-100"
                   :disabled="!certificate.checked"
               />
               <b-link @click="removeCertificate(index)" style="position: absolute; top: 5px; right: -20px;">
@@ -24,21 +19,20 @@
             </div>
             <span v-else>{{ certificate.name }}</span>
           </b-form-checkbox>
-
-          <label :for="`team-members-${index}`" class="mr-2">Is held by</label>
-          <b-form-input
-              :id="`team-members-${index}`"
-              v-model.trim.lazy="certificate.team_members_count"
-              class="mr-2"
-              style="max-width: 94px"
-              :disabled="!certificate.checked"
-          />
-          <span class="d-flex align-items-center">
-            team members
-          </span>
+          <div v-if="certificate.checked" class="held-by">
+            <label :for="`team-members-${index}`">Is held by</label>
+            <b-form-input
+                :id="`team-members-${index}`"
+                v-model.trim.lazy="certificate.team_members_count"
+                :disabled="!certificate.checked"
+            />
+            <span>
+                  team members
+                </span>
+          </div>
         </verification-tooltip>
 
-        <multiple-image-upload v-model="certificate.images" class="images-uploader">
+        <multiple-image-upload v-model="certificate.images" class="images-uploader" v-if="certificate.checked">
           <template #no-image="{ openFileDialog }">
             <b-button
                 variant="primary"
@@ -53,55 +47,57 @@
             <b-button
                 variant="primary"
                 @click="openFileDialog"
-                class="mr-3"
                 :disabled="!certificate.checked"
             >
               <svg-icon name="caret" width="21" class="mr-4"/>
               Upload Certificate
             </b-button>
-            <verification-tooltip
-                v-for="(image, index) in certificate.images"
-                :key="index"
-                :value="image.verification || {}"
-                class="position-relative">
-              <img
-                  :src="image.src || image.url"
-                  style="object-fit: cover; width: 24px; height: 33px"
-              />
-              <b-link
-                  style="position: absolute; top: 2px; right: 6px; line-height: 0;"
-                  @click="removeImage(index)"
-              >
-                <svg-icon name="close_icon" width="4" height="4"/>
-              </b-link>
-            </verification-tooltip>
+            <div class="images-wrapper">
+              <verification-tooltip
+                  v-for="(image, index) in certificate.images"
+                  :key="index"
+                  :value="image.verification || {}"
+                  class="position-relative">
+                <img
+                    :src="image.src || image.url"
+                    style="object-fit: cover; width: 24px; height: 33px"
+                />
+                <b-link
+                    style="position: absolute; top: 2px; right: 6px; line-height: 0;"
+                    @click="removeImage(index)"
+                >
+                  <svg-icon name="close_icon" width="4" height="4"/>
+                </b-link>
+              </verification-tooltip>
+            </div>
           </template>
           <template #image-uploaded="{ removeImage, openFileDialog }">
             <b-button
                 variant="primary"
                 @click="openFileDialog"
-                class="mr-3"
                 :disabled="!certificate.checked"
             >
               <svg-icon name="caret" width="21" class="mr-4"/>
               Upload Certificate
             </b-button>
-            <verification-tooltip
-                v-for="(image, index) in certificate.images"
-                :key="index"
-                :value="image.verification || {}"
-                class="position-relative">
-              <img
-                  :src="image.src || image.url"
-                  style="object-fit: cover; width: 24px; height: 33px"
-              />
-              <b-link
-                  style="position: absolute; top: 2px; right: 6px; line-height: 0px;"
-                  @click="removeImage(index)"
-              >
-                <svg-icon name="close_icon" width="4" height="4"/>
-              </b-link>
-            </verification-tooltip>
+            <div class="images-wrapper">
+              <verification-tooltip
+                  v-for="(image, index) in certificate.images"
+                  :key="index"
+                  :value="image.verification || {}"
+                  class="position-relative">
+                <img
+                    :src="image.src || image.url"
+                    style="object-fit: cover; width: 24px; height: 33px"
+                />
+                <b-link
+                    style="position: absolute; top: 2px; right: 6px; line-height: 0px;"
+                    @click="removeImage(index)"
+                >
+                  <svg-icon name="close_icon" width="4" height="4"/>
+                </b-link>
+              </verification-tooltip>
+            </div>
           </template>
         </multiple-image-upload>
       </div>

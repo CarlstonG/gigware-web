@@ -1,44 +1,15 @@
 <template>
-  <div class="onboarding">
+  <div class="onboarding settings">
     <b-container>
       <b-row>
         <b-col lg="2">
-          <div class="steps-header">Steps {{ currentStep }} of 8</div>
-          <b-dropdown no-caret variant="light" class="dropdown-nav d-lg-none">
-            <template v-slot:button-content>
-              <span class="select-text">{{currentStepLabel}}</span>
-              <svg-icon class="caret-icon" name="search_caret"
-                        width="11"></svg-icon>
-            </template>
-            <b-dropdown-item v-for="(step, index) in steps"
-                             :key="index"
-                             :to="step.route"
-                             :disabled="isMenuLinkDisabled(index)">
-              {{ step.label }}
-            </b-dropdown-item>
-          </b-dropdown>
-          <b-list-group class="d-none d-lg-block">
-            <b-list-group-item
-                v-for="(step, index) in steps"
-                :key="index"
-                :to="step.route"
-                :disabled="isMenuLinkDisabled(index)"
-                :class="{ done: index + 1 < $route.meta.step }"
-            >
-              {{ step.label }}
-            </b-list-group-item>
-          </b-list-group>
+          <div class="settings-header">Steps {{ currentStep }} of 8</div>
+          <navigation onboarding :value="steps"/>
         </b-col>
         <b-col lg="10">
-          <b-card no-body class="border-0">
-            <b-card-header class="pt-4 pb-4 pl-5 pr-5">
-              <div class="card-header-title">{{ title }}</div>
-              <div class="card-header-subtitle">{{ subtitle }}</div>
-            </b-card-header>
-            <div class="settings-form">
-              <router-view/>
-            </div>
-          </b-card>
+          <settings-form>
+            <router-view/>
+          </settings-form>
         </b-col>
       </b-row>
     </b-container>
@@ -46,9 +17,11 @@
 </template>
 
 <script>
-  import { mapGetters } from "vuex";
+  import Navigation from "../../components/onboarding/Navigation";
+  import SettingsForm from "../../components/onboarding/SettingsForm";
 
   export default {
+    components: { SettingsForm, Navigation },
     data: () => ({
       steps: [
         {
@@ -86,24 +59,9 @@
       ],
     }),
     computed: {
-      ...mapGetters('auth', ['user']),
-      title() {
-        return this.$route.meta.title
-      },
-      subtitle() {
-        return this.$route.meta.subtitle
-      },
       currentStep() {
         return this.$route.meta.step
       },
-      currentStepLabel() {
-        return this.steps.find(item => item.route.name === this.$route.name)?.label
-      },
     },
-    methods: {
-      isMenuLinkDisabled(index) {
-        return index > 0 && !this.user?.provider_profile || index > 1 && !this.user?.provider_profile?.address
-      }
-    }
   }
 </script>

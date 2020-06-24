@@ -3,7 +3,7 @@
     <validated-b-form-wrapper :validator="$v.form">
       <b-form @submit.prevent="submit">
         <b-row>
-          <b-col lg="6" class="pr-5">
+          <b-col lg="6" class="col-left">
             <validated-b-form-group
                 :name="`emails.$each.${index}.email`"
                 :label="index === 0 ? 'Email address of your former customer:' : ''"
@@ -15,7 +15,7 @@
             </validated-b-form-group>
             <b-link @click="addEmail">+ Add New Email</b-link>
           </b-col>
-          <b-col lg="6" class="pl-5">
+          <b-col lg="6" class="col-right">
             <validated-b-form-group
                 name="email_template"
                 label="Email template:"

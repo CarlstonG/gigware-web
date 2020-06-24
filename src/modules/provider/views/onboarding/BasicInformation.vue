@@ -2,7 +2,7 @@
   <validated-b-form-wrapper :validator="$v.form">
     <b-form @submit.prevent="submit">
       <b-row>
-        <b-col lg="6" class="pr-5">
+        <b-col lg="6" class="col-left">
           <validated-b-form-group
               name="first_name"
               label="First Name"
@@ -62,7 +62,7 @@
                              :placeholder="placeholders.about_us"/>
           </validated-b-form-group>
         </b-col>
-        <b-col lg="6" class="pl-5">
+        <b-col lg="6" class="col-right">
           <!--      todo: fix image cropping -->
           <validated-b-form-group
               name="profile_image"

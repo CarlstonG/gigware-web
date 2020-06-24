@@ -1,13 +1,3 @@
-$settings-left-circle-border-color: #718096;
-
-.settings-form {
-  padding: 1rem;
-
-  @include media-breakpoint-up(lg) {
-    padding: 2rem;
-  }
-}
-
 .settings {
   background: url('/images/onboarding_background.png') fixed no-repeat center;
   background-size: cover;
@@ -26,78 +16,6 @@ $settings-left-circle-border-color: #718096;
 
     @include media-breakpoint-up(lg) {
       margin-bottom: 2rem;
-    }
-  }
-
-  .dropdown-nav {
-    width: 100%;
-    margin-bottom: 1rem;
-
-    .dropdown-toggle {
-      padding: .75rem 1.5rem .75rem 1rem;
-    }
-  }
-
-  .list-group-item {
-    background-color: transparent;
-    border: none;
-    align-items: center;
-    padding: 0;
-    padding-left: 2.2rem;
-    margin-bottom: 1.5rem;
-    color: $text-color;
-
-    &.disabled {
-      opacity: 0.5;
-    }
-
-    .marker {
-      display: block;
-      position: absolute;
-      top: 3px;
-      left: 0;
-      @include size(15px);
-      background-color: $content-shaded-color;
-      border: 1px solid $settings-left-circle-border-color;
-      border-radius: 99px;
-      padding: 1px;
-    }
-
-    .marker-inner {
-      display: none;
-      background-color: $primary;
-      width: 100%;
-      height: 100%;
-      border-radius: 99px;
-    }
-
-    &.router-link-active {
-      color: $primary;
-
-      .marker {
-        border-color: $primary;
-
-        &-inner {
-          display: block;
-        }
-      }
-    }
-  }
-
-  .card-header {
-    background-color: $dark-blue;
-    color: $white;
-    padding: 1.5rem 3rem;
-    border: 0;
-
-    .card-header-title {
-      font-size: 1.3rem;
-      color: $dirty-white;
-      margin-bottom: 0.75rem;
-    }
-
-    .card-header-subtitle {
-      color: $light-blue;
     }
   }
 }

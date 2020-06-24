@@ -7,7 +7,7 @@
     display: inline-flex;
 
     &.active {
-      box-shadow: 0 0 0 0.1rem rgba($error, 0.75);
+      color: $error;
     }
   }
 }
