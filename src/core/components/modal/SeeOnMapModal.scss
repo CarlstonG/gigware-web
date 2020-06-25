@@ -1,0 +1,66 @@
+@import 'src/assets/scss/local-styles-includes';
+
+::v-deep .google-map-modal {
+  padding: 0 1rem;
+
+  .modal-dialog {
+    max-width: 100%;
+    width: 100%;
+  }
+
+  .modal-content {
+    border: none;
+    background-color: transparent;
+  }
+
+  .modal-header {
+    background: $white;
+    padding: .75rem 1rem .25rem;
+    border-top-left-radius: calc(0.5rem - 1px);
+    border-top-right-radius: calc(0.5rem - 1px);
+    position: relative;
+    border-bottom: none;
+
+    &:after {
+      content: "";
+      position: absolute;
+      top: -1px;
+      left: 0;
+      right: 0;
+      height: .5rem;
+      background: $color-blue-borders;
+      border-radius: .3rem .3rem 0 0;
+      z-index: 2;
+    }
+
+    .close {
+      font-weight: normal;
+      opacity: 1;
+
+      &:hover {
+        opacity: 0.75;
+      }
+    }
+  }
+
+  .modal-body {
+    padding: 0;
+  }
+
+  .modal-footer {
+    display: none;
+  }
+
+  .google-map-wrapper {
+    display: flex;
+    padding: 0;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+
+    .google-map {
+      height: 70vh;
+      width: 100%;
+    }
+  }
+}

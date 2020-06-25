@@ -18,12 +18,12 @@
               </div>
               <div class="icon-card" v-if="profile.address">
                 <svg-icon name="icon_location" class="icon-card-icon"/>
-                <div>
+                <div class="address-wrapper">
                   <span class="label">{{ profile.address.street_address }}</span>
-                  <span class="label muted ml-3" v-if="currentGeoLocation && profile.address.lat">
-                    <span class="mr-3">+{{getDistanceTo([profile.address.lat, profile.address.lng])}}mi</span>
-                    <a class="small" href="#">#See on Map</a>
+                  <span class="label muted distance" v-if="currentGeoLocation && profile.address.lat">
+                    <span>+{{getDistanceTo([profile.address.lat, profile.address.lng])}}mi</span>
                   </span>
+                  <b-link class="see-on-map" href="#" @click="seeOnMap($event)">See on Map</b-link>
                 </div>
               </div>
               <a :href="'tel:' + profile.phone" class="btn btn-primary phone-button">Contact|{{ profile.phone }}</a>
@@ -199,10 +199,12 @@
     </b-container>
 
     <proof-of-insuarence-modal v-model="proofOfInsuranceData"/>
+    <see-on-map-modal v-model="seeOnMapData"/>
 
     <site-footer/>
   </div>
 </template>
+<style scoped lang="scss" src="./Profile.scss"></style>
 
 <script>
   import SiteFooter from '@/core/components/global/Footer'
@@ -212,12 +214,14 @@
   import validateFormMixin from '@/core/mixins/validate-form-mixin'
   import AvailabilityPicker from "../../../core/components/forms/AvailabilityPicker";
   import ExperiencesSlider from "../components/ExperiencesSlider";
+  import SeeOnMapModal from "../../../core/components/modal/SeeOnMapModal";
 
   export default {
     mixins: [geoLocationMixin, validateFormMixin],
-    components: { ExperiencesSlider, AvailabilityPicker, ProofOfInsuarenceModal, SiteFooter },
+    components: { SeeOnMapModal, ExperiencesSlider, AvailabilityPicker, ProofOfInsuarenceModal, SiteFooter },
     data: () => ({
       proofOfInsuranceData: null,
+      seeOnMapData: null,
       reviewsToShow: 3,
     }),
     methods: {
@@ -235,6 +239,14 @@
         // send new observer each time
         const insurance = this.profile?.insurance;
         this.proofOfInsuranceData = insurance ? JSON.parse(JSON.stringify(insurance)) : {};
+      },
+      seeOnMap(e) {
+        e.preventDefault();
+        this.seeOnMapData = {
+          lat: this.profile.address.lat,
+          lng: this.profile.address.lng,
+          work_radius: this.profile.work_radius,
+        };
       },
       showAllReviews() {
         this.reviewsToShow = this.profileExternalReviewsCount;
