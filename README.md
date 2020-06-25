@@ -14,7 +14,7 @@ npm run serve
 
 ### How to build frontend on production
 ```
-docker-compose up gw_frontend && docker exec -it gw_nginx sh
+docker-compose up gw-frontend && docker exec -it gw-nginx bash
 docker(gw_nginx): cd /var/www/frontend_build && rm -rf html && mv html_tmp html
 ```
 
