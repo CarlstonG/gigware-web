@@ -39,7 +39,7 @@
               <b-form-input
                   v-model.trim.lazy="form.work_radius"
                   :placeholder="placeholders.work_radius"
-                  @change="drawCircle"
+                  @input="drawCircle"
                   class="w-25 mr-2"
               />
               miles
@@ -87,7 +87,7 @@
 </template>
 
 <script>
-  import GoogleMapsApiLoader from 'google-maps-api-loader'
+  import GoogleMapsApi from "@/core/misc/GoogleMapApi"
   import validations from '@/modules/provider/services/validations'
   import validateFormMixin from '@/core/mixins/validate-form-mixin'
   import placeholders from '@/core/constants/placeholders'
@@ -116,6 +116,7 @@
       map: null,
       marker: null,
       autocomplete: null,
+      autocompleteListener: null,
       place: null,
       circle: null,
     }),
@@ -136,20 +137,23 @@
           })
       },
       loadGoogle() {
-        GoogleMapsApiLoader({
-          libraries: ['places'],
-          apiKey: process.env.VUE_APP_GOOGLE_MAPS_API_KEY,
-        }).then(google => {
+        GoogleMapsApi.then(google => {
           this.google = google
 
           this.createMap()
           this.createAutocomplete()
+          this.drawCircle()
         })
       },
       createMap() {
         this.map = new this.google.maps.Map(this.$refs.map, {
-          zoom: 4,
-          center: { lat: 41.22988, lng: -103.257203 },
+          zoom: this.form?.address?.lat ? 8 : 4,
+          center: this.form?.address?.lat ?
+            {
+              lat: parseFloat(this.form.address.lat),
+              lng: parseFloat(this.form.address.lng)
+            }
+            : { lat: 41.22988, lng: -103.257203 },
           disableDefaultUI: true,
           zoomControl: true
         });
@@ -164,7 +168,10 @@
         this.addListener()
       },
       addListener() {
-        this.autocomplete.addListener('place_changed', this.placeChanged)
+        this.autocompleteListener = this.autocomplete.addListener('place_changed', this.placeChanged)
+      },
+      removeListener() {
+        this.autocompleteListener?.remove();
       },
       placeChanged() {
         this.place = this.autocomplete.getPlace()
@@ -186,9 +193,9 @@
         this.drawCircle()
       },
       drawCircle() {
+        if (this.circle) this.circle.setMap(null)
         if (!this.form.address.city) return
         if (!this.form.work_radius) return
-        if (this.circle) this.circle.setMap(null)
 
         this.circle = new this.google.maps.Circle({
           strokeColor: '#1994DB',
@@ -197,8 +204,8 @@
           fillOpacity: 0,
           map: this.map,
           center: {
-            lat: this.place.geometry.location.lat(),
-            lng: this.place.geometry.location.lng(),
+            lat: parseFloat(this.form.address.lat),
+            lng: parseFloat(this.form.address.lng)
           },
           radius: parseInt(this.form.work_radius) * 1609.344, // Convert to kilometers, then to miles
         });
@@ -208,9 +215,6 @@
       ...mapGetters('auth', ['user', 'providerProfileId']),
     },
     mounted() {
-      this.loadGoogle()
-    },
-    created() {
       this.formState = 'loading';
 
       this.$auth.userFetched().then(() => {
@@ -223,7 +227,13 @@
             address: Object.assign(this.form.address, profile.address)
           });
         }
-      }).finally(() => this.formState = 'default')
+      }).finally(() => {
+        this.formState = 'default';
+        this.loadGoogle()
+      })
+    },
+    destroyed() {
+      this.removeListener();
     }
   }
 </script>
