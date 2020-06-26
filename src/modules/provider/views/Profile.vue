@@ -224,8 +224,25 @@
       seeOnMapData: null,
       reviewsToShow: 3,
     }),
+    watch: {
+      '$route.params.id': function () {
+        this.loadContent();
+      }
+    },
     methods: {
       ...mapActions('provider', ['profileRequest']),
+      loadContent() {
+        this.profileRequest(this.$route.params.id)
+          .catch(error => {
+            this.serverError = error;
+
+            if (this.statusCode === 404) {
+              this.$router.push({ name: '404' })
+            } else {
+              this.handleServerError(error)
+            }
+          });
+      },
       scrollToTop(e) {
         e.preventDefault();
         this.$smoothScroll({
@@ -267,16 +284,7 @@
       }
     },
     created() {
-      this.profileRequest(this.$route.params.id)
-        .catch(error => {
-          this.serverError = error;
-
-          if (this.statusCode === 404) {
-            this.$router.push({ name: '404' })
-          } else {
-            this.handleServerError(error)
-          }
-        });
+      this.loadContent();
     }
   }
 </script>
