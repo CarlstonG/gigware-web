@@ -36,28 +36,24 @@
   background-color: $color-availability-start;
 }
 
-// todo: does not work in some cases
-.day-from-end-1 {
-  .vc-highlight.vc-rounded-full {
-    background-color: $color-availability;
-
-    // todo: fix focus color
-    &:focus {
-      background-color: $color-availability;
-    }
-  }
-
-  .vc-day-content {
-    color: $text-color;
-  }
-}
-
+.is-last-day .vc-highlight.vc-highlight-base-start,
+.is-last-day .vc-highlight.vc-highlight-base-end,
+.weekday-7 .vc-highlight.vc-highlight-base-start,
+.weekday-7.vc-highlight.vc-highlight-base-end,
+.is-last-day .vc-highlight.vc-highlight-base-middle,
 .weekday-7 .vc-highlight.vc-highlight-base-middle {
-  border-radius: 0 100px 100px 0 !important;
+  border-top-right-radius: 100px !important;
+  border-bottom-right-radius: 100px !important;
 }
 
+.is-first-day .vc-highlight.vc-highlight-base-start,
+.is-first-day .vc-highlight.vc-highlight-base-end,
+.weekday-1 .vc-highlight.vc-highlight-base-start,
+.weekday-1 .vc-highlight.vc-highlight-base-end,
+.is-first-day .vc-highlight.vc-highlight-base-middle,
 .weekday-1 .vc-highlight.vc-highlight-base-middle {
-  border-radius: 100px 0 0 100px !important;
+  border-top-left-radius: 100px !important;
+  border-bottom-left-radius: 100px !important;
 }
 
 //.vc-highlight {

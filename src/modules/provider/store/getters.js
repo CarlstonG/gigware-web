@@ -1,3 +1,5 @@
+import { convertDatesToSpans } from "@/core/misc/convert-dates-to-spans";
+
 export default {
   profile: (state) => state.provider_profile,
   profileAvatarUrl: state => state.provider_profile?.user?.images?.data?.length ?
@@ -14,15 +16,8 @@ export default {
     return f - n > 0 ? f : n;
   },
   profileAvailabilityDates: (state) => {
-    const dates = state.provider_profile?.unavailabilities?.data;
-
-    if (dates?.length > 1) {
-      const start = new Date(dates[dates.length - 1].date);
-      const end = new Date(dates[dates.length - 2].date);
-
-      return { start, end };
-    } else
-      return {};
+    const dates = state.provider_profile?.unavailabilities?.data.map(date => date.date);
+    return convertDatesToSpans(dates);
   },
   isLoading: (state) => state.provider_profile_state === 'loading'
 }
