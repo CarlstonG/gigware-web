@@ -1,0 +1,17 @@
+@import 'src/assets/scss/local-styles-includes';
+
+::v-deep .image-upload {
+  .image-container {
+    .state-image {
+      img {
+        border-radius: 50%;
+        max-height: 30vh;
+      }
+    }
+
+    .cropper-view-box,
+    .cropper-face {
+      border-radius: 50%;
+    }
+  }
+}

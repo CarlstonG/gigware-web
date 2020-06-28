@@ -1,7 +1,7 @@
 <template>
   <validated-b-form-wrapper :validator="$v.form">
     <b-form @submit.prevent="submit">
-      <b-row>
+      <b-row v-if="initialized">
         <b-col lg="6">
           <validated-b-form-group
               name="insurance_provider_name"
@@ -49,52 +49,10 @@
               :disabled="formLocked"
           >
             <image-upload
-                v-model="form.image"
+                ref="imageUpload"
                 :img-src="form.image ? form.image.url : ''"
-                class="text-center rounded bg-light border position-relative"
-            >
-              <template #no-image="{ openFileDialog }">
-                <div class="pt-5 pb-5">
-                  <div class="mb-2">
-                    <svg-icon name="upload_icon" width="30"/>
-                  </div>
-                  <div class="mb-3">Drag an Image to upload</div>
-                  <b-button variant="primary" size="sm" @click="openFileDialog">
-                    Choose an Image
-                  </b-button>
-                </div>
-              </template>
-              <template #image="{ imgSrc, openFileDialog }">
-                <img
-                    :src="imgSrc"
-                    class="w-100 h-auto"
-                    style="object-fit: contain; max-height: 200px"
-                />
-                <b-button
-                    variant="primary"
-                    size="sm"
-                    @click="openFileDialog"
-                    style="position: absolute; left: 0; bottom: -50px;"
-                >
-                  Choose an Image
-                </b-button>
-              </template>
-              <template #image-uploaded="{ src, openFileDialog }">
-                <img
-                    :src="src"
-                    class="w-100 h-auto"
-                    style="object-fit: contain; max-height: 200px"
-                />
-                <b-button
-                    variant="primary"
-                    size="sm"
-                    @click="openFileDialog"
-                    style="position: absolute; left: 0; bottom: -50px;"
-                >
-                  Choose an Image
-                </b-button>
-              </template>
-            </image-upload>
+                :tips="{'uploaded': 'Drag the frame to adjust image'}"
+            />
           </validated-b-form-group>
         </b-col>
       </b-row>
@@ -114,7 +72,8 @@
   import ImageUpload from '@/core/components/images/ImageUpload'
   import { default as StepsFooter } from '@/modules/provider/components/onboarding/Footer'
   import { mapActions, mapGetters } from 'vuex'
-  import VerificationMessage from "../../../../core/components/forms/VerificationMessage";
+  import VerificationMessage from "@/core/components/forms/VerificationMessage";
+  import { documentCroppedBlobOptions } from "@/core/constants/cropped-blob-options";
 
   export default {
     mixins: [validateFormMixin, settingsSaveMixin],
@@ -127,26 +86,27 @@
         image: null,
         verification: {}
       },
+      initialized: false,
     }),
     validations: validations.onboarding.insurance,
     methods: {
       ...mapActions('provider', ['createInsurance', 'profileRequest']),
-      sendRequest() {
+      async sendRequest() {
         const _this = this;
-        return this.createInsurance(this.formData())
+        return this.createInsurance(await this.formData())
           .then(data => {
-            _this.form = Object.assign(_this.form, data)
+            _this.$refs.imageUpload?.resetUploadedFile();
+            _this.newFormFromData(data);
 
             _this.afterSubmit()
           })
           .catch(error => {
-            // todo: process 422 errors correct way(no images)
             Object.entries(error?.response?.data?.errors || {}).forEach(item => {
               this.toast(item?.[1]?.[0])
             })
           })
       },
-      formData() {
+      async formData() {
         let formData = new FormData()
 
         formData.append('id', this.form.id || 0)
@@ -157,12 +117,24 @@
 
         formData.append('start_date', this.form.start_date.toISOString())
         formData.append('end_date', this.form.end_date.toISOString())
-        if (this.form.image instanceof File) {
-          formData.append('image', this.form.image)
+
+        const blob = await this.$refs.imageUpload?.getCroppedBlob(documentCroppedBlobOptions);
+        if (blob) {
+          formData.append('image', blob);
         }
 
         return formData
       },
+      newFormFromData(data) {
+        this.form = {
+          id: data.id,
+          insurance_provider_name: data.insurance_provider_name,
+          start_date: new Date(data.start_date),
+          end_date: new Date(data.end_date),
+          image: data.image || null,
+          verification: data.verification
+        };
+      }
     },
     computed: {
       ...mapGetters('auth', ['user', 'providerProfileId']),
@@ -177,16 +149,14 @@
             const insurance = data?.insurance;
             if (!insurance) return;
 
-            this.form = {
-              id: insurance.id,
-              insurance_provider_name: insurance.insurance_provider_name,
-              start_date: new Date(insurance.start_date),
-              end_date: new Date(insurance.end_date),
-              image: insurance.image || null,
-              verification: insurance.verification
-            };
+            this.newFormFromData(insurance);
           })
-          .finally(() => this.formState = 'default')
+          .finally(() => {
+            this.formState = 'default';
+            this.initialized = true;
+          })
+      } else {
+        this.initialized = true;
       }
     },
   }
