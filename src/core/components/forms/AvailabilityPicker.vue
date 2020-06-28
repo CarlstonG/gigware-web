@@ -12,6 +12,7 @@
       v-on:input="onInput"
   />
 </template>
+<style scoped lang="scss" src="./AvailabilityPicker.scss"></style>
 
 <script>
   import { addDays } from "@/core/misc/convert-dates-to-spans";
