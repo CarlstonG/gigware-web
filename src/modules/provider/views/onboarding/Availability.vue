@@ -1,11 +1,9 @@
 <template>
   <div>
     <div class="mb-4 d-flex align-items-center">
-      <div class="d-flex align-items-center">
-        <div class="vc-bg-blue-200"
-             style="width: 54px; height: 19px; border-radius: 10px; margin-right: 20px;"
-        ></div>
-        <div style="font-size: 22px">Unavailable</div>
+      <div class="availability-label">
+        <div class="badge"></div>
+        <div class="label">Unavailable</div>
       </div>
       <div class="ml-auto">
         <b-button variant="light" @click="cleanUpDates">
@@ -19,13 +17,14 @@
             name="dates"
             :disabled="formLocked"
         >
-          <availability-picker v-model="form.dates"/>
+          <availability-picker v-model="form.dates" :columns="$screens({  default: 1, md: 2, xl: 3  })"/>
         </validated-b-form-group>
         <steps-footer :loading="formLocked" :state="formState"/>
       </b-form>
     </validated-b-form-wrapper>
   </div>
 </template>
+<style scoped lang="scss" src="./Availability.scss"></style>
 
 <script>
   import { default as StepsFooter } from '@/modules/provider/components/onboarding/Footer'
@@ -33,6 +32,7 @@
   import AvailabilityPicker from "@/core/components/forms/AvailabilityPicker";
   import validateFormMixin from '@/core/mixins/validate-form-mixin'
   import settingsSaveMixin from '@/modules/provider/mixins/settings-save-behaviour'
+  import { convertDatesToSpans, datesToUTC } from "@/core/misc/convert-dates-to-spans";
 
   export default {
     mixins: [validateFormMixin, settingsSaveMixin],
@@ -40,7 +40,7 @@
     data: () => ({
       form: {
         dates: [],
-      },
+      }
     }),
     validations: { form: {} },
     methods: {
@@ -48,7 +48,7 @@
       sendRequest() {
         const _this = this;
 
-        return this.createUnavailabilities(this.form)
+        return this.createUnavailabilities({ ...this.form, dates: datesToUTC(this.form.dates) })
           .then(({ data }) => {
             if (_this.user?.provider_profile) {
               _this.user.provider_profile = { ..._this.user.provider_profile, unavailabilities: { data: data || [] } };
@@ -67,11 +67,10 @@
     },
     created() {
       if (this.user?.provider_profile?.unavailabilities?.data?.length > 1) {
-        const dates = this.user?.provider_profile?.unavailabilities.data;
-        const start = new Date(dates[dates.length - 1].date);
-        const end = new Date(dates[dates.length - 2].date);
+        const dates = this.user?.provider_profile?.unavailabilities.data.map(date => date.date);
+        const spans = convertDatesToSpans(dates);
 
-        this.form = { ...this.form, dates: { start, end } };
+        this.form = { ...this.form, dates: spans };
       }
     }
   }
