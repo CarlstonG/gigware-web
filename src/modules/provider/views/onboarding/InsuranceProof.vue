@@ -49,6 +49,7 @@
               :disabled="formLocked"
           >
             <image-upload
+                v-model="form.image"
                 ref="imageUpload"
                 :img-src="form.image ? form.image.url : ''"
                 :tips="{'uploaded': 'Drag the frame to adjust image'}"

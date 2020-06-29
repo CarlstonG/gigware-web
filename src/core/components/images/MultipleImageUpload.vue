@@ -10,7 +10,7 @@
     <input
         class="d-none"
         type="file"
-        accept="image/jpeg, image/png"
+        accept="image/jpeg, image/png, application/pdf"
         ref="fileInput"
         @change="filesUploaded"
         multiple
