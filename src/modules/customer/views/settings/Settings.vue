@@ -59,48 +59,15 @@
           >
             <image-upload
                 v-model="form.profile_image"
+                ref="imageUpload"
                 :img-src="avatarUrl"
-                class="text-center rounded bg-light border position-relative"
-            >
-              <template #no-image="{ openFileDialog }">
-                <div class="pt-5 pb-5">
-                  <div class="mb-2">
-                    <svg-icon name="upload_icon" width="30"/>
-                  </div>
-                  <div class="mb-3">Drag an Image to upload</div>
-                  <b-button variant="primary" size="sm" @click="openFileDialog">
-                    Choose an Image
-                  </b-button>
-                </div>
-              </template>
-              <template #image="{ imgSrc, openFileDialog }">
-                <div @click="openFileDialog">
-                  <img :src="imgSrc" class="img-fluid img-thumbnail" alt="" style="max-width: 100px"/>
-                </div>
-                <b-button variant="primary" size="sm" @click="openFileDialog">
-                  Choose an Image
-                </b-button>
-              </template>
-              <template #image-uploaded="{ src, openFileDialog }">
-                <vue-cropper
-                    ref="cropper"
-                    :src="src"
-                    :img-style="{ 'obect-fit': 'contain', 'max-height': '200px' }"
-                    :modal="false"
-                    :guides="false"
-                    :background="false"
-                    :aspect-ratio="1"
-                />
-                <b-button
-                    variant="primary"
-                    size="sm"
-                    @click="openFileDialog"
-                    style="position: absolute; left: 0; bottom: -70px;"
-                >
-                  Choose an Image
-                </b-button>
-              </template>
-            </image-upload>
+                :cropperImageStyle="{ 'object-fit': 'contain', 'max-height': '30vh' }"
+                :cropperAspectRatio="1"
+                :tips="{
+                  'no-image': 'Customers prefer clear photos with a smiling face',
+                  'uploaded': 'Drag the frame to adjust image'
+                }"
+            />
           </validated-b-form-group>
         </b-col>
       </b-row>
@@ -116,13 +83,15 @@
     </b-form>
   </validated-b-form-wrapper>
 </template>
+<style scoped lang="scss" src="./Settings.scss"></style>
 
 <script>
   import validations from '../../services/validations'
   import validateFormMixin from '@/core/mixins/validate-form-mixin'
   import placeholders from '@/core/constants/placeholders'
   import { mapActions, mapGetters } from 'vuex'
-  import ImageUpload from "../../../../core/components/images/ImageUpload";
+  import ImageUpload from "@/core/components/images/ImageUpload";
+  import { avatarCroppedBlobOptions } from "@/core/constants/cropped-blob-options";
 
   export default {
     components: { ImageUpload },
@@ -141,16 +110,17 @@
     validations: validations.settings,
     methods: {
       ...mapActions('customer', ['updateCustomerSettings']),
-      sendRequest() {
-        return this.updateCustomerSettings(this.formData())
+      async sendRequest() {
+        return this.updateCustomerSettings(await this.formData())
           .then(() => {
+            this.$refs.imageUpload?.resetUploadedFile();
             this.$root.$bvToast.toast('Your changes have been saved.', {
               toaster: 'b-toaster-top-right',
               variant: 'primary',
             })
           })
       },
-      formData() {
+      async formData() {
         let formData = new FormData()
         formData.append('first_name', this.form.first_name)
         formData.append('last_name', this.form.last_name)
@@ -158,8 +128,9 @@
         formData.append('zip_code', this.form.zip_code)
         formData.append('phone_number', this.form.phone_number)
 
-        if (this.form.profile_image instanceof File) {
-          formData.append('profile_image', this.form.profile_image)
+        const blob = await this.$refs.imageUpload?.getCroppedBlob(avatarCroppedBlobOptions);
+        if (blob) {
+          formData.append('profile_image', blob);
         }
 
         return formData

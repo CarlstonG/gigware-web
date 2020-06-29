@@ -1,0 +1,40 @@
+@import "src/assets/scss/local-styles-includes";
+
+.image-upload {
+  .image-container {
+    position: relative;
+    background-color: $dirty-white;
+    border: 1px solid $border-color;
+    border-radius: 0.25rem;
+    text-align: center;
+
+    &.dragging {
+      box-shadow: 0 0 0 0.2rem rgba($color-gray, 0.25);
+    }
+
+    .state-no-image {
+      padding: 3rem;
+      font-size: 90%;
+      color: $text-muted;
+
+      .info {
+        margin: 1rem 0;
+      }
+    }
+
+    .state-image {
+      img {
+        max-height: 50vh;
+      }
+    }
+  }
+
+  .tip-container {
+    color: $text-muted;
+    margin-top: .5rem;
+  }
+
+  .button-container {
+    margin-top: 1.5rem;
+  }
+}
