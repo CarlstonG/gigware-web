@@ -32,7 +32,7 @@
           </div>
         </verification-tooltip>
 
-        <multiple-image-upload v-model="certificate.images" class="images-uploader" v-if="certificate.checked">
+        <multiple-file-upload v-model="certificate.images" class="images-uploader" v-if="certificate.checked">
           <template #no-image="{ openFileDialog }">
             <b-button
                 variant="primary"
@@ -103,7 +103,7 @@
               </verification-tooltip>
             </div>
           </template>
-        </multiple-image-upload>
+        </multiple-file-upload>
       </div>
       <b-button variant="transparent"
                 size="lg"
@@ -122,7 +122,7 @@
   import { default as StepsFooter } from '@/modules/provider/components/onboarding/Footer'
   import validateFormMixin from '@/core/mixins/validate-form-mixin'
   import settingsSaveMixin from '@/modules/provider/mixins/settings-save-behaviour'
-  import MultipleImageUpload from '@/core/components/images/MultipleImageUpload'
+  import MultipleFileUpload from '@/core/components/file/MultipleFileUpload'
   import { mapActions, mapGetters } from 'vuex'
   import VerificationTooltip from "../../../../core/components/forms/VerificationTooltip";
 
@@ -142,7 +142,7 @@
 
   export default {
     mixins: [validateFormMixin, settingsSaveMixin],
-    components: { VerificationTooltip, StepsFooter, MultipleImageUpload },
+    components: { VerificationTooltip, StepsFooter, MultipleFileUpload },
     data: () => ({
       certificates: [],
     }),
