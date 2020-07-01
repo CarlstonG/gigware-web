@@ -11,7 +11,6 @@ export default {
       api.register
         .provider(form)
         .then(({ data }) => {
-          Vue.$auth.user(data); // token is set in interceptor
           setUser(context, data)
           resolve(data)
         })
@@ -25,7 +24,6 @@ export default {
       api.register
         .customer(data)
         .then(({ data }) => {
-          Vue.$auth.user(data); // token is set in interceptor
           setUser(context, data)
           resolve(data)
         })
