@@ -58,10 +58,12 @@
                   :key="index"
                   :value="image.verification || {}"
                   class="position-relative">
-                <img
-                    :src="image.src || image.url"
-                    style="object-fit: cover; width: 24px; height: 33px"
-                />
+                <a :href="getImageUrl(image)" target="_blank">
+                  <img
+                      :src="getImageIcon(image)"
+                      style="object-fit: cover; width: 24px; height: 33px"
+                  />
+                </a>
                 <b-link
                     style="position: absolute; top: 2px; right: 6px; line-height: 0;"
                     @click="removeImage(index)"
@@ -86,10 +88,12 @@
                   :key="index"
                   :value="image.verification || {}"
                   class="position-relative">
-                <img
-                    :src="image.src || image.url"
-                    style="object-fit: cover; width: 24px; height: 33px"
-                />
+                <a :href="getImageUrl(image)" target="_blank">
+                  <img
+                      :src="getImageIcon(image)"
+                      style="object-fit: cover; width: 24px; height: 33px"
+                  />
+                </a>
                 <b-link
                     style="position: absolute; top: 2px; right: 6px; line-height: 0px;"
                     @click="removeImage(index)"
@@ -227,6 +231,15 @@
       },
       removeCertificate(index) {
         this.certificates.splice(index, 1)
+      },
+      getImageIcon(image) {
+        if (image.ext === 'pdf' || image?.file?.type === 'application/pdf') {
+          return '/images/pdf.svg';
+        }
+        return image.src || image.url
+      },
+      getImageUrl(image) {
+        return image.src || image.url;
       }
     },
     computed: {
@@ -247,6 +260,6 @@
       } else {
         this.initCertificates()
       }
-    },
+    }
   }
 </script>

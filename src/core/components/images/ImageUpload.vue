@@ -4,24 +4,34 @@
          @drop.stop.prevent="fileDropped"
          @dragover.prevent="dragging=true"
          @dragleave="dragging=false">
-      <slot v-if="src" name="image-uploaded" v-bind="{ src, openFileDialog, fileDropped }">
+      <slot v-if="src && getImageType() !== 'pdf'" name="image-uploaded" v-bind="{ src, openFileDialog, fileDropped }">
         <vue-cropper
-            ref="cropper"
-            :src="src"
-            :img-style="cropperImageStyle"
-            :modal="true"
-            :guides="false"
-            :background="true"
-            :dragMode="'move'"
-            :autoCropArea="1"
-            :aspect-ratio="cropperAspectRatio"
+                ref="cropper"
+                :src="src"
+                :img-style="cropperImageStyle"
+                :modal="true"
+                :guides="false"
+                :background="true"
+                :dragMode="'move'"
+                :autoCropArea="1"
+                :aspect-ratio="cropperAspectRatio"
         />
       </slot>
 
       <slot v-else-if="imgSrc" name="image" v-bind="{ imgSrc, openFileDialog, fileDropped }">
-        <div class="state-image" @click="openFileDialog">
-          <img :src="imgSrc" class="img-fluid img-thumbnail" alt=""/>
-        </div>
+        <a :href="getImageUrl()" target="_blank">
+          <div class="state-image" @click="openFileDialog">
+            <img :src="getImageIcon()" class="img-fluid img-thumbnail" alt=""/>
+          </div>
+        </a>
+      </slot>
+
+      <slot v-else-if="getImageType() === 'pdf'" name="image" v-bind="{ imgSrc, openFileDialog, fileDropped }">
+        <a :href="getImageUrl()" target="_blank">
+          <div class="state-image" @click="openFileDialog">
+            <img :src="getImageIcon()" class="img-fluid img-thumbnail" alt=""/>
+          </div>
+        </a>
       </slot>
 
       <slot v-else name="no-image" v-bind="{ openFileDialog, fileDropped }">
@@ -42,20 +52,20 @@
     </div>
     <div class="button-container" v-if="src || imgSrc">
       <b-button
-          variant="primary"
-          size="sm"
-          @click="openFileDialog"
+              variant="primary"
+              size="sm"
+              @click="openFileDialog"
       >
         Choose an Image
       </b-button>
     </div>
 
     <input
-        class="d-none"
-        type="file"
-        accept="image/jpeg, image/png"
-        ref="fileInput"
-        @change="fileUploaded"
+            class="d-none"
+            type="file"
+            accept="image/jpeg, image/png, application/pdf"
+            ref="fileInput"
+            @change="fileUploaded"
     />
   </div>
 </template>
@@ -109,6 +119,8 @@
         this.readUploadedFile()
       },
       readUploadedFile() {
+        if (!(this.file instanceof File))
+          return
         let reader = new FileReader()
         reader.onload = event => {
           this.src = event.target.result
@@ -127,15 +139,47 @@
         this.$emit('input', this.file);
       },
       async getCroppedBlob(options = {}) {
-        if (this.file instanceof File && this.$refs.cropper) {
-          return new Promise(resolve => {
-            this.$refs.cropper
-              .getCroppedCanvas(options)
-              .toBlob(blob => resolve(blob), 'image/jpeg', 0.8);
-          });
+        if (this.file instanceof File) {
+          if (this.$refs.cropper) {
+            return new Promise(resolve => {
+              this.$refs.cropper
+                      .getCroppedCanvas(options)
+                      .toBlob(blob => resolve(blob), 'image/jpeg', 0.8);
+            });
+          } else {
+            return new Promise(resolve => {
+              resolve(this.file);
+            });
+          }
         }
         return Promise.resolve();
       },
+      getImageIcon() {
+        if (this.getImageType() === 'pdf') {
+          return '/images/pdf.svg'
+        } else {
+          return this.imgSrc
+        }
+      },
+      getImageUrl() {
+        return this.imgSrc;
+      },
+      getImageType() {
+        let imageSrc = this.imgSrc;
+        if (imageSrc) {
+          if (imageSrc.match(/.*\.pdf$/)) {
+            return 'pdf'
+          } else {
+            return 'image'
+          }
+        } else if (this.file){
+          if (this.file?.type === 'application/pdf') {
+            return 'pdf'
+          } else {
+            return 'imahe'
+          }
+        }
+      }
     },
     computed: {
       imgState() {
