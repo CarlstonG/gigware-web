@@ -1,5 +1,6 @@
 <template>
   <v-date-picker
+      v-bind="$attrs"
       v-bind:value="selectValue"
       v-on:input="onInput"
   />
