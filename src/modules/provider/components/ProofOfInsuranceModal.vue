@@ -3,7 +3,9 @@
     <svg-icon width="16" height="16" name="modal_close_icon" slot="modal-header-close"/>
     <b-row>
       <b-col cols="12" lg="6" class="justify-contents-center d-flex">
-        <img class="cert-img img-fluid" :src="imageUrl" alt="" />
+        <div class="cert-img-wrapper">
+          <img class="cert-img" :src="imageUrl" alt=""/>
+        </div>
       </b-col>
       <b-col cols="12" lg="6" class="proof-of-insurance">
         <h4 class="title">Proof of insurance</h4>
