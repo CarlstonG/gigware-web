@@ -100,12 +100,7 @@
             _this.newFormFromData(data);
 
             _this.afterSubmit()
-          })
-          .catch(error => {
-            Object.entries(error?.response?.data?.errors || {}).forEach(item => {
-              this.toast(item?.[1]?.[0])
-            })
-          })
+          });
       },
       async formData() {
         let formData = new FormData()
@@ -116,8 +111,8 @@
           this.form.insurance_provider_name,
         )
 
-        formData.append('start_date', this.form.start_date.toISOString())
-        formData.append('end_date', this.form.end_date.toISOString())
+        if (this.form.start_date) formData.append('start_date', this.form.start_date.toISOString())
+        if (this.form.end_date) formData.append('end_date', this.form.end_date?.toISOString())
 
         const blob = await this.$refs.fileUpload?.getCroppedBlob(documentCroppedBlobOptions);
         if (blob) {
