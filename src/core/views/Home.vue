@@ -2,22 +2,15 @@
   <div class="home">
     <b-row no-gutters>
       <b-col md="6">
-        <div class="text-block block-text-left first-block">
+        <div class="text-block block-text-left">
           <div class="w-100">
-            <div class="title">
-              <p>Your Source for</p>
-              <p>
-                <span class="text-primary">Accountable</span>
-                and
-              </p>
-              <p>
-                <span class="text-primary">Reliable</span>
-                Security Partners
-              </p>
+            <div class="display-title">
+              Your Source for <br/><span class="text-primary">Accountable</span> and <br/>
+              <span class="text-primary">Reliable</span> Security Partners
             </div>
             <search-bar no-left-filter @onSearch="$router.push({ name: 'search-partners'})"/>
             <p class="subtitle">
-              Want to become a Security Partner?
+              <span>Want to become a Security Partner?</span>
               <b-link :to="{ name: 'register' }">
                 Build a Profile
               </b-link>
@@ -36,12 +29,12 @@
       <b-col sm="6">
         <div class="text-block block-text-right">
           <div>
-            <div class="title">
-              <p>Connect your <span class="text-nowrap">security team</span></p>
-              <p>with more business.</p>
+            <div class="display-title">
+              Connect your <span class="text-nowrap">security team</span><br/>
+              with more business.
             </div>
             <div class="subtitle">
-              How do we do it?
+              <span>How do we do it?</span>
               <b-link :to="{ name: 'register' }">
                 Free advertising.
               </b-link>
@@ -56,7 +49,7 @@
                 <em>reliable Security Professionals</em>.
               </p>
             </div>
-            <b-button class="button" :to="{ name: 'register' }" variant="primary" size="lg">
+            <b-button class="button" :to="{ name: 'register' }" variant="primary">
               Build a Profile
             </b-button>
           </div>
@@ -65,7 +58,7 @@
     </b-row>
     <div class="text-block why-us">
       <b-container fluid="md">
-        <div class="title">
+        <div class="display-title">
           Why Choose Gig Wire
         </div>
         <b-row class="why-us-items">
@@ -126,9 +119,9 @@
         <div class="text-block block-text-left">
           <div>
             <div class="w-100">
-              <div class="title">
-                <p>Advertise for free</p>
-                <p>by sharing:</p>
+              <div class="display-title">
+                Advertise for free<br/>
+                by sharing:
               </div>
               <b-row class="content">
                 <b-col cols="6">
@@ -173,7 +166,7 @@
                 </b-col>
               </b-row>
             </div>
-            <b-button class="button" :to="{ name: 'register' }" variant="primary" size="lg">
+            <b-button class="button" :to="{ name: 'register' }" variant="primary">
               Build a Profile
             </b-button>
           </div>

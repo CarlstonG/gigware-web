@@ -81,11 +81,11 @@
   export default {
     components: { NavbarItemAccount },
     data: () => ({
-      isFloating: false
+      isFloating: true // always has the box-shadow
     }),
     watch: {
       $route() {
-        this.initFloatingDetection();
+        // this.initFloatingDetection();
       }
     },
     methods: {
@@ -106,10 +106,10 @@
       ...mapGetters('auth', ['user', 'isAdmin'])
     },
     mounted() {
-      this.initFloatingDetection();
+      // this.initFloatingDetection();
     },
     destroyed() {
-      window.removeEventListener('scroll', this.handleScroll);
+      //window.removeEventListener('scroll', this.handleScroll);
     },
   }
 </script>
