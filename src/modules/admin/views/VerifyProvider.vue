@@ -60,7 +60,7 @@
                     </validated-b-form-group>
                   </h2>
                   <validated-b-form-group
-                      name="user.verification.details.first_name.is_accepted"
+                      name="user.verification.details.full_name.is_accepted"
                       :show-error-message="false"
                       :disabled="formLocked"
                   >
@@ -217,11 +217,13 @@
                 variant: 'primary',
               })
             }
-          }).catch(() => {
+          }).catch((error) => {
             this.$root.$bvToast.toast('All fields must be in accepted or declined state. Empty verification is not allowed.', {
               toaster: 'b-toaster-top-right',
               variant: 'danger',
             })
+
+            throw error;
           });
       },
       makeVerification(verification, parent, details) {
