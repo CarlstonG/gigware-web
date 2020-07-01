@@ -1,5 +1,5 @@
 <template>
-  <div class="image-upload">
+  <div class="file-upload">
     <div :class="'image-container' + (dragging ? ' dragging' : '')"
          @drop.stop.prevent="fileDropped"
          @dragover.prevent="dragging=true"
@@ -69,11 +69,11 @@
     />
   </div>
 </template>
-<style scoped lang="scss" src="./ImageUpload.scss"></style>
+<style scoped lang="scss" src="./FileUpload.scss"></style>
 
 <script>
   export default {
-    name: 'ImageUpload',
+    name: 'FileUpload',
     props: {
       imgSrc: {
         type: String,
