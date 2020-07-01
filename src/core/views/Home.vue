@@ -108,7 +108,7 @@
         </b-row>
       </b-container>
       <div class="view-partners">
-        <b-button class="button" :to="{ name: 'search-partners' }">
+        <b-button class="button" variant="light" :to="{ name: 'search-partners' }">
           <span>Find my Security Partner</span>
           <svg-icon name="arrow_right" :width="$screens({ default: '10', sm: '12', lg: '15'})"/>
         </b-button>
