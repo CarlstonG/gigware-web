@@ -1,8 +1,5 @@
-import Vue from "../../../main";
-
 export default {
   SET_USER(state, user) {
-    Vue.$auth.user(user); // sync user with $auth
     state.user = user
   },
   SET_USER_IMAGES(state, images) {
