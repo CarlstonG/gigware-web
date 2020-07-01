@@ -57,10 +57,10 @@
               :disabled="formLocked"
               class=""
           >
-            <image-upload
+            <file-upload
                 v-model="form.profile_image"
-                ref="imageUpload"
-                :img-src="avatarUrl"
+                ref="fileUpload"
+                :file-src="avatarUrl"
                 :cropperImageStyle="{ 'object-fit': 'contain', 'max-height': '30vh' }"
                 :cropperAspectRatio="1"
                 :tips="{
@@ -90,11 +90,11 @@
   import validateFormMixin from '@/core/mixins/validate-form-mixin'
   import placeholders from '@/core/constants/placeholders'
   import { mapActions, mapGetters } from 'vuex'
-  import ImageUpload from "@/core/components/images/ImageUpload";
+  import FileUpload from "@/core/components/file/FileUpload";
   import { avatarCroppedBlobOptions } from "@/core/constants/cropped-blob-options";
 
   export default {
-    components: { ImageUpload },
+    components: { FileUpload },
     mixins: [validateFormMixin],
     data: () => ({
       form: {
@@ -113,7 +113,7 @@
       async sendRequest() {
         return this.updateCustomerSettings(await this.formData())
           .then(() => {
-            this.$refs.imageUpload?.resetUploadedFile();
+            this.$refs.fileUpload?.resetUploadedFile();
             this.$root.$bvToast.toast('Your changes have been saved.', {
               toaster: 'b-toaster-top-right',
               variant: 'primary',
@@ -128,7 +128,7 @@
         formData.append('zip_code', this.form.zip_code)
         formData.append('phone_number', this.form.phone_number)
 
-        const blob = await this.$refs.imageUpload?.getCroppedBlob(avatarCroppedBlobOptions);
+        const blob = await this.$refs.fileUpload?.getCroppedBlob(avatarCroppedBlobOptions);
         if (blob) {
           formData.append('profile_image', blob);
         }

@@ -69,9 +69,9 @@
               :disabled="formLocked"
               class=""
           >
-            <image-upload v-model="form.profile_image"
-                          ref="imageUpload"
-                          :img-src="avatarUrl"
+            <file-upload v-model="form.profile_image"
+                          ref="fileUpload"
+                          :file-src="avatarUrl"
                           :cropperImageStyle="{ 'object-fit': 'contain', 'max-height': '30vh' }"
                           :cropperAspectRatio="1"
                           :tips="{
@@ -94,7 +94,7 @@
   import validateFormMixin from '@/core/mixins/validate-form-mixin'
   import placeholders from '@/core/constants/placeholders'
   import settingsSaveMixin from '@/modules/provider/mixins/settings-save-behaviour'
-  import ImageUpload from '@/core/components/images/ImageUpload'
+  import FileUpload from '@/core/components/file/FileUpload'
   import { default as StepsFooter } from '@/modules/provider/components/onboarding/Footer'
   import { mapActions, mapGetters } from 'vuex'
   import VerificationMessage from "@/core/components/forms/VerificationMessage";
@@ -102,7 +102,7 @@
 
   export default {
     mixins: [validateFormMixin, settingsSaveMixin],
-    components: { VerificationMessage, ImageUpload, StepsFooter },
+    components: { VerificationMessage, FileUpload, StepsFooter },
     data: () => ({
       form: {
         first_name: '',
@@ -121,7 +121,7 @@
       async sendRequest() {
         return this.createBasicInformation(await this.formData())
           .then(() => {
-            this.$refs.imageUpload?.resetUploadedFile();
+            this.$refs.fileUpload?.resetUploadedFile();
             this.afterSubmit()
           })
       },
@@ -134,7 +134,7 @@
         formData.append('team_size', this.form.team_size)
         formData.append('description', this.form.description)
 
-        const blob = await this.$refs.imageUpload?.getCroppedBlob(avatarCroppedBlobOptions);
+        const blob = await this.$refs.fileUpload?.getCroppedBlob(avatarCroppedBlobOptions);
         if (blob) {
           formData.append('profile_image', blob);
         }

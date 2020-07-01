@@ -1,0 +1,29 @@
+.pdf-large {
+  position: relative;
+  .arrows {
+    $size: 1.7rem;
+    position: absolute;
+    display: block;
+    top: 45%;
+    width: 100%;
+    height: $size;
+    .arrow {
+      position: absolute;
+      z-index: 100;
+      display: inline-block;
+      height: $size;
+      width: $size;
+      background-image: url("/images/right_arrow.svg");
+      background-repeat: no-repeat;
+      background-size: contain;
+      cursor: pointer;
+      &.right {
+        right: 0;
+      }
+      &.left {
+        left: 0;
+        transform: rotate(180deg);
+      }
+    }
+  }
+}

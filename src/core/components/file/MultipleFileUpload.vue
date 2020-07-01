@@ -20,7 +20,7 @@
 
 <script>
   export default {
-    name: 'MultipleImageUpload',
+    name: 'MultipleFileUpload',
     props: {
       value: {
         type: Array,

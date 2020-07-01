@@ -1,5 +1,5 @@
 <template>
-  <div class="image-upload">
+  <div class="file-upload">
     <div :class="'image-container' + (dragging ? ' dragging' : '')"
          @drop.stop.prevent="fileDropped"
          @dragover.prevent="dragging=true"
@@ -18,7 +18,14 @@
         />
       </slot>
 
-      <slot v-else-if="imgSrc" name="image" v-bind="{ imgSrc, openFileDialog, fileDropped }">
+      <slot v-else-if="getImageType() === 'pdf'" name="image" v-bind="{ fileSrc, openFileDialog, fileDropped }">
+        <pdf-large
+          :file-src="this.fileSrc || this.src"
+          :with-controls="true"
+        />
+      </slot>
+
+      <slot v-else-if="fileSrc" name="image" v-bind="{ fileSrc, openFileDialog, fileDropped }">
         <a :href="getImageUrl()" target="_blank">
           <div class="state-image" @click="openFileDialog">
             <img :src="getImageIcon()" class="img-fluid img-thumbnail" alt=""/>
@@ -26,13 +33,7 @@
         </a>
       </slot>
 
-      <slot v-else-if="getImageType() === 'pdf'" name="image" v-bind="{ imgSrc, openFileDialog, fileDropped }">
-        <a :href="getImageUrl()" target="_blank">
-          <div class="state-image" @click="openFileDialog">
-            <img :src="getImageIcon()" class="img-fluid img-thumbnail" alt=""/>
-          </div>
-        </a>
-      </slot>
+
 
       <slot v-else name="no-image" v-bind="{ openFileDialog, fileDropped }">
         <div class="state-no-image">
@@ -50,32 +51,36 @@
       <strong>Tip:</strong>
       {{ tips[imgState] }}
     </div>
-    <div class="button-container" v-if="src || imgSrc">
+    <div class="button-container" v-if="src || fileSrc">
       <b-button
               variant="primary"
               size="sm"
               @click="openFileDialog"
       >
-        Choose an Image
+        Choose a File
       </b-button>
     </div>
 
     <input
             class="d-none"
             type="file"
-            accept="image/jpeg, image/png, application/pdf"
+            :accept="inputAccept"
             ref="fileInput"
             @change="fileUploaded"
     />
   </div>
 </template>
-<style scoped lang="scss" src="./ImageUpload.scss"></style>
+<style scoped lang="scss" src="./FileUpload.scss"></style>
 
 <script>
+  import PdfLarge from './viewer/PdfLarge'
   export default {
-    name: 'ImageUpload',
+    name: 'FileUpload',
+    components: {
+      PdfLarge
+    },
     props: {
-      imgSrc: {
+      fileSrc: {
         type: String,
         default: null
       },
@@ -90,6 +95,10 @@
       tips: {
         type: Object,
         default: () => ({})
+      },
+      acceptableFormats: {
+        type: String,
+        default: 'image'
       }
     },
     data: () => ({
@@ -158,14 +167,14 @@
         if (this.getImageType() === 'pdf') {
           return '/images/pdf.svg'
         } else {
-          return this.imgSrc
+          return this.fileSrc
         }
       },
       getImageUrl() {
-        return this.imgSrc;
+        return this.fileSrc;
       },
       getImageType() {
-        let imageSrc = this.imgSrc;
+        let imageSrc = this.fileSrc;
         if (imageSrc) {
           if (imageSrc.match(/.*\.pdf$/)) {
             return 'pdf'
@@ -183,7 +192,15 @@
     },
     computed: {
       imgState() {
-        return this.src ? 'uploaded' : this.imgSrc ? 'image' : 'no-image';
+        return this.src ? 'uploaded' : this.fileSrc ? 'image' : 'no-image';
+      },
+      inputAccept() {
+        let formats = this.acceptableFormats.split(',').map((s) => s.trim());
+        let mimes = {
+          'image': 'image/jpeg, image/png',
+          'pdf': 'application/pdf'
+        };
+        return formats.map(s => mimes[s]).filter(e => e).join(',')
       }
     }
   }

@@ -18,7 +18,7 @@
                   label="Policy Start Date"
                   :disabled="formLocked"
               >
-                <v-date-picker
+                <utc-date-picker
                     v-model.trim.lazy="form.start_date"
                     :input-props="{
                     placeholder: 'MM/DD/YYYY',
@@ -33,7 +33,7 @@
                   label="Policy End Date"
                   :disabled="formLocked"
               >
-                <v-date-picker
+                <utc-date-picker
                     v-model.trim.lazy="form.end_date"
                     :input-props="{
                     placeholder: 'MM/DD/YYYY',
@@ -48,11 +48,12 @@
               label="Upload Insurance Certificate"
               :disabled="formLocked"
           >
-            <image-upload
+            <file-upload
                 v-model="form.image"
-                ref="imageUpload"
-                :img-src="form.image ? form.image.url : ''"
+                ref="fileUpload"
+                :file-src="form.image ? form.image.url : ''"
                 :tips="{'uploaded': 'Drag the frame to adjust image'}"
+                :acceptable-formats="'image, pdf'"
             />
           </validated-b-form-group>
         </b-col>
@@ -70,7 +71,7 @@
   import validations from '../../services/validations'
   import validateFormMixin from '@/core/mixins/validate-form-mixin'
   import settingsSaveMixin from '@/modules/provider/mixins/settings-save-behaviour'
-  import ImageUpload from '@/core/components/images/ImageUpload'
+  import FileUpload from '@/core/components/file/FileUpload'
   import { default as StepsFooter } from '@/modules/provider/components/onboarding/Footer'
   import { mapActions, mapGetters } from 'vuex'
   import VerificationMessage from "@/core/components/forms/VerificationMessage";
@@ -78,7 +79,7 @@
 
   export default {
     mixins: [validateFormMixin, settingsSaveMixin],
-    components: { VerificationMessage, ImageUpload, StepsFooter },
+    components: { VerificationMessage, FileUpload, StepsFooter },
     data: () => ({
       form: {
         insurance_provider_name: '',
@@ -96,16 +97,11 @@
         const _this = this;
         return this.createInsurance(await this.formData())
           .then(data => {
-            _this.$refs.imageUpload?.resetUploadedFile();
+            _this.$refs.fileUpload?.resetUploadedFile();
             _this.newFormFromData(data);
 
             _this.afterSubmit()
-          })
-          .catch(error => {
-            Object.entries(error?.response?.data?.errors || {}).forEach(item => {
-              this.toast(item?.[1]?.[0])
-            })
-          })
+          });
       },
       async formData() {
         let formData = new FormData()
@@ -116,10 +112,10 @@
           this.form.insurance_provider_name,
         )
 
-        formData.append('start_date', this.form.start_date.toISOString())
-        formData.append('end_date', this.form.end_date.toISOString())
+        if (this.form.start_date) formData.append('start_date', this.form.start_date.toISOString())
+        if (this.form.end_date) formData.append('end_date', this.form.end_date?.toISOString())
 
-        const blob = await this.$refs.imageUpload?.getCroppedBlob(documentCroppedBlobOptions);
+        const blob = await this.$refs.fileUpload?.getCroppedBlob(documentCroppedBlobOptions);
         if (blob) {
           formData.append('image', blob);
         }

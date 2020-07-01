@@ -12,6 +12,8 @@ import './plugins/vuelidate'
 import './filters/images'
 // styles
 import '@/assets/scss/main.scss'
+// extensions
+require('./plugins/extensions/index')
 
 // global mixins
 // import geoLocationMixin from "@/core/mixins/geo-location";

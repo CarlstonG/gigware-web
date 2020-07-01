@@ -15,8 +15,6 @@
 <style scoped lang="scss" src="./AvailabilityPicker.scss"></style>
 
 <script>
-  import { addDays } from "@/core/misc/convert-dates-to-spans";
-
   export default {
     name: "AvailabilityPicker",
     inheritAttrs: false,
@@ -36,7 +34,7 @@
     },
     methods: {
       onInput(e) {
-        if (e.start === undefined) return;
+        if (!e || e.start === undefined) return;
 
         let merged = false;
         const obj = this.attrs[0].dates;
@@ -80,7 +78,7 @@
         dateSpan1 = this._toDateSpan(dateSpan1);
         dateSpan2 = this._toDateSpan(dateSpan2);
 
-        const dateSpan2Ext = { start: addDays(dateSpan2.start, -1), end: addDays(dateSpan2.end, +1) }
+        const dateSpan2Ext = { start: dateSpan2.start.addDays(-1), end: dateSpan2.end.addDays(+1) }
 
         /* --1---2-- */
         if (this._lessOrEqualDates(dateSpan1.start, dateSpan2Ext.start) && this._greaterOrEqualDates(dateSpan1.end, dateSpan2Ext.start)) {

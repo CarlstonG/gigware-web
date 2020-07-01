@@ -217,6 +217,11 @@
                 variant: 'primary',
               })
             }
+          }).catch(() => {
+            this.$root.$bvToast.toast('All fields must be in accepted or declined state. Empty verification is not allowed.', {
+              toaster: 'b-toaster-top-right',
+              variant: 'danger',
+            })
           });
       },
       makeVerification(verification, parent, details) {
