@@ -94,7 +94,7 @@
               :disabled="formLocked"
           >
 
-            <multiple-image-upload v-model="form.images" class="images-uploader">
+            <multiple-file-upload v-model="form.images" class="images-uploader">
               <template #no-image="{ openFileDialog }">
                 <div class="upload-btn-wrapper">
                   <b-button
@@ -149,7 +149,7 @@
                   </div>
                 </div>
               </template>
-            </multiple-image-upload>
+            </multiple-file-upload>
           </validated-b-form-group>
           <div style="margin-top: 60px">
             <b-button variant="transparent"
@@ -175,13 +175,13 @@
   import validations from '../../services/validations'
   import validateFormMixin from '@/core/mixins/validate-form-mixin'
   import settingsSaveMixin from '@/modules/provider/mixins/settings-save-behaviour'
-  import MultipleImageUpload from '@/core/components/images/MultipleImageUpload'
+  import MultipleFileUpload from '@/core/components/file/MultipleFileUpload'
   import { default as StepsFooter } from '@/modules/provider/components/onboarding/Footer'
   import { mapActions, mapGetters } from 'vuex'
 
   export default {
     mixins: [validateFormMixin, settingsSaveMixin],
-    components: { MultipleImageUpload, StepsFooter },
+    components: { MultipleFileUpload, StepsFooter },
     data: () => ({
       forms: [],
     }),
