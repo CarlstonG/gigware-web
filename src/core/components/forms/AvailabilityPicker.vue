@@ -36,7 +36,7 @@
     },
     methods: {
       onInput(e) {
-        if (e.start === undefined) return;
+        if (!e || e.start === undefined) return;
 
         let merged = false;
         const obj = this.attrs[0].dates;
