@@ -51,8 +51,9 @@
             <file-upload
                 v-model="form.image"
                 ref="fileUpload"
-                :img-src="form.image ? form.image.url : ''"
+                :file-src="form.image ? form.image.url : ''"
                 :tips="{'uploaded': 'Drag the frame to adjust image'}"
+                :acceptable-formats="'image, pdf'"
             />
           </validated-b-form-group>
         </b-col>
