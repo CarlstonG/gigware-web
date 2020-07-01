@@ -5,3 +5,12 @@
 .muted {
   color: $text-muted;
 }
+
+.display-title {
+  font-family: $font-family-alternative-bold;
+  font-weight: bold;
+  @include font-size(66px);
+  letter-spacing: 0;
+  line-height: 1.4;
+  color: $titles-color;
+}

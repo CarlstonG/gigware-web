@@ -40,9 +40,15 @@
   }
 
   .modal-body {
-    .cert-img {
+    .cert-img-wrapper {
       border: 1px solid $color-gray;
-      margin: 0 auto;
+      margin: auto;
+    }
+
+    .cert-img {
+      max-width: 100%;
+      height: auto;
+      margin: 0;
     }
 
     .proof-of-insurance {

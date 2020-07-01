@@ -1,7 +1,8 @@
+import Vue from "../../../main";
 import api from '@/modules/provider/services/provider.api'
 
 export default {
-  createBasicInformation({ commit }, form) {
+  createBasicInformation(context, form) {
     return new Promise((resolve, reject) => {
       api.onboarding
         .saveBasicInformation(form)
@@ -9,7 +10,7 @@ export default {
           if (!res) return reject('error');
 
           const user = res.data;
-          commit('auth/SET_USER', user, { root: true });
+          Vue.$auth.user(user);
 
           resolve(user)
         })

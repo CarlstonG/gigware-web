@@ -1,29 +1,6 @@
 .home {
-
-  .first-block {
-    .title {
-      margin-top: 2rem;
-    }
-
-    .search-wrapper {
-      font-size: 12px;
-    }
-
-    .subtitle {
-      @include media-breakpoint-down(sm) {
-        font-size: 9px;
-      }
-    }
-
-    @include media-breakpoint-up(lg) {
-      .subtitle {
-        font-size: 16px;
-      }
-
-      .search-wrapper {
-        font-size: 16px;
-      }
-    }
+  .display-title {
+    margin-top: 2rem;
   }
 
   .connect-your-team {
@@ -38,14 +15,6 @@
 
     .subtitle {
       margin: 1rem 0;
-
-      @include media-breakpoint-up(md) {
-        font-size: 14px;
-      }
-
-      @include media-breakpoint-up(lg) {
-        font-size: 18px;
-      }
     }
 
     .col-image {
@@ -78,7 +47,7 @@
         padding-bottom: 4rem;
       }
 
-      .title {
+      .display-title {
         margin-bottom: 2rem;
       }
 
@@ -94,7 +63,6 @@
           }
 
           @media (min-width: 372px) {
-            font-size: .85rem;
             margin-bottom: 1.5rem;
 
             svg {
@@ -104,7 +72,6 @@
           }
 
           @include media-breakpoint-up(sm) {
-            font-size: 1rem;
             margin-bottom: 2rem;
 
             svg {
@@ -127,7 +94,6 @@
     display: flex;
     align-items: center;
     height: 100%;
-    font-size: 12px;
 
     .search-wrapper {
       margin: 1.5rem 0 1rem 0;
@@ -190,9 +156,8 @@
         padding: 7rem 2rem;
       }
 
-      .title {
+      .display-title {
         color: $white;
-        font-family: $font-family-alternative-bold;
       }
 
       .why-us-items {
@@ -210,11 +175,11 @@
         }
 
         .title {
-          font-size: 1.1rem;
+          color: $white;
+          @include font-size(1.25rem);
         }
 
         p {
-          font-size: .75rem;
           margin: 0;
         }
       }
@@ -254,14 +219,6 @@
           .icon-card-icon {
             margin-right: 2rem;
           }
-
-          .title {
-            font-size: 18px;
-          }
-
-          p {
-            font-size: 16px;
-          }
         }
       }
 
@@ -274,79 +231,30 @@
           .icon-card-icon {
             margin-right: 2rem;
           }
-
-          .title {
-            font-size: 24px;
-          }
-
-          p {
-            font-size: 22px;
-          }
         }
-      }
-    }
-
-    .title {
-      font-family: $font-family-alternative-bold;
-      font-weight: 700;
-      font-size: 35px;
-      letter-spacing: 0;
-      line-height: 1.4;
-      color: #070f18de;
-
-      p {
-        margin-bottom: 0;
-      }
-
-      @include media-breakpoint-up(md) {
-        font-size: 48px;
-      }
-      @include media-breakpoint-up(xl) {
-        font-size: 66px;
       }
     }
 
     .subtitle {
       color: $text-muted;
 
+      span {
+        margin-right: .5rem;
+      }
+
       a {
         color: $dark-link-color;
         font-weight: bold;
-        margin-left: .5rem;
-      }
-    }
-
-    .content {
-      font-size: 12px;
-
-      @include media-breakpoint-up(sm) {
-        font-size: 1rem;
-      }
-
-      @include media-breakpoint-up(lg) {
-        font-size: 1.25rem;
-      }
-
-      @include media-breakpoint-up(xl) {
-        font-size: 1.5rem;
+        white-space: nowrap;
       }
     }
 
     .button {
       margin-top: 1rem;
       padding: .75rem 3rem;
-      font-size: .75rem;
-
-      @include media-breakpoint-up(sm) {
-        font-size: 1rem;
-      }
 
       @include media-breakpoint-up(md) {
         padding: 1rem 3rem;
-      }
-
-      @include media-breakpoint-up(lg) {
-        font-size: 1.25rem;
       }
     }
   }

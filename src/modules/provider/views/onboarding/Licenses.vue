@@ -32,7 +32,7 @@
           </div>
         </verification-tooltip>
 
-        <multiple-image-upload v-model="certificate.images" class="images-uploader" v-if="certificate.checked">
+        <multiple-file-upload v-model="certificate.images" class="images-uploader" v-if="certificate.checked">
           <template #no-image="{ openFileDialog }">
             <b-button
                 variant="primary"
@@ -58,10 +58,12 @@
                   :key="index"
                   :value="image.verification || {}"
                   class="position-relative">
-                <img
-                    :src="image.src || image.url"
-                    style="object-fit: cover; width: 24px; height: 33px"
-                />
+                <a :href="getImageUrl(image)" target="_blank">
+                  <img
+                      :src="getImageIcon(image)"
+                      style="object-fit: cover; width: 24px; height: 33px"
+                  />
+                </a>
                 <b-link
                     style="position: absolute; top: 2px; right: 6px; line-height: 0;"
                     @click="removeImage(index)"
@@ -86,10 +88,12 @@
                   :key="index"
                   :value="image.verification || {}"
                   class="position-relative">
-                <img
-                    :src="image.src || image.url"
-                    style="object-fit: cover; width: 24px; height: 33px"
-                />
+                <a :href="getImageUrl(image)" target="_blank">
+                  <img
+                      :src="getImageIcon(image)"
+                      style="object-fit: cover; width: 24px; height: 33px"
+                  />
+                </a>
                 <b-link
                     style="position: absolute; top: 2px; right: 6px; line-height: 0px;"
                     @click="removeImage(index)"
@@ -99,7 +103,7 @@
               </verification-tooltip>
             </div>
           </template>
-        </multiple-image-upload>
+        </multiple-file-upload>
       </div>
       <b-button variant="transparent"
                 size="lg"
@@ -118,7 +122,7 @@
   import { default as StepsFooter } from '@/modules/provider/components/onboarding/Footer'
   import validateFormMixin from '@/core/mixins/validate-form-mixin'
   import settingsSaveMixin from '@/modules/provider/mixins/settings-save-behaviour'
-  import MultipleImageUpload from '@/core/components/images/MultipleImageUpload'
+  import MultipleFileUpload from '@/core/components/file/MultipleFileUpload'
   import { mapActions, mapGetters } from 'vuex'
   import VerificationTooltip from "../../../../core/components/forms/VerificationTooltip";
 
@@ -138,7 +142,7 @@
 
   export default {
     mixins: [validateFormMixin, settingsSaveMixin],
-    components: { VerificationTooltip, StepsFooter, MultipleImageUpload },
+    components: { VerificationTooltip, StepsFooter, MultipleFileUpload },
     data: () => ({
       certificates: [],
     }),
@@ -227,6 +231,15 @@
       },
       removeCertificate(index) {
         this.certificates.splice(index, 1)
+      },
+      getImageIcon(image) {
+        if (image.ext === 'pdf' || image?.file?.type === 'application/pdf') {
+          return '/images/pdf.svg';
+        }
+        return image.src || image.url
+      },
+      getImageUrl(image) {
+        return image.src || image.url;
       }
     },
     computed: {
@@ -247,6 +260,6 @@
       } else {
         this.initCertificates()
       }
-    },
+    }
   }
 </script>

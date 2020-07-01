@@ -26,7 +26,8 @@
                   <b-link class="see-on-map" href="#" @click="seeOnMap($event)">See on Map</b-link>
                 </div>
               </div>
-              <a :href="'tel:' + profile.phone" class="btn btn-primary phone-button">Contact|{{ profile.phone }}</a>
+              <a href="#" class="btn btn-primary phone-button">Contact|(XXX)-XXX-XXXX</a>
+              <!--              <a :href="'tel:' + profile.phone" class="btn btn-primary phone-button">Contact|{{ profile.phone }}</a>-->
             </div>
           </div>
         </section>

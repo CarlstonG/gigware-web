@@ -44,7 +44,7 @@ Vue.use(VueAuth, {
   storeUserFn: function (user) {
     Vue.store.commit('auth/SET_USER', user);
   },
-  getStoreUserFn: function () {
+  getStoredUserFn: function () {
     return Vue.store.getters['auth/user'];
   }
 });

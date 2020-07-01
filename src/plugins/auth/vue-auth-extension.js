@@ -8,7 +8,7 @@ const __defaultOptions = {
   storeUserFn: (user) => {
     return user; // stub
   },
-  getStoreUserFn: () => {
+  getStoredUserFn: () => {
     return null;
   },
   // router
@@ -40,7 +40,7 @@ export default function (Vue, options) {
 
   // preset stored user
   if (__auth.token()) {
-    __auth.user(__auth.options.getStoreUserFn())
+    __auth.user(__auth.options.getStoredUserFn())
   }
 
   /*
@@ -114,6 +114,11 @@ export default function (Vue, options) {
 
     const res = _user(data);
     _processRoles();
+    if (data) {
+      __auth.options.storeUserFn(
+        __auth.$vm.data
+      );
+    }
 
     return res;
   }

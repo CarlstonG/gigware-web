@@ -63,61 +63,22 @@
           </validated-b-form-group>
         </b-col>
         <b-col lg="6" class="col-right">
-          <!--      todo: fix image cropping -->
           <validated-b-form-group
               name="profile_image"
               label="Upload Profile Image"
               :disabled="formLocked"
               class=""
           >
-            <image-upload
-                v-model="form.profile_image"
-                :img-src="avatarUrl"
-                class="text-center rounded bg-light border position-relative"
-            >
-              <template #no-image="{ openFileDialog }">
-                <div class="pt-5 pb-5">
-                  <div class="mb-2">
-                    <svg-icon name="upload_icon" width="30"/>
-                  </div>
-                  <div class="mb-3">Drag an Image to upload</div>
-                  <b-button variant="primary" size="sm" @click="openFileDialog">
-                    Choose an Image
-                  </b-button>
-                </div>
-              </template>
-              <template #image="{ imgSrc, openFileDialog }">
-                <div @click="openFileDialog">
-                  <img :src="imgSrc" class="img-fluid img-thumbnail" alt="" style="max-width: 100px"/>
-                </div>
-                <b-button variant="primary" size="sm" @click="openFileDialog">
-                  Choose an Image
-                </b-button>
-              </template>
-              <template #image-uploaded="{ src, openFileDialog }">
-                <vue-cropper
-                    ref="cropper"
-                    :src="src"
-                    :img-style="{ 'obect-fit': 'contain', 'max-height': '200px' }"
-                    :modal="false"
-                    :guides="false"
-                    :background="false"
-                    :aspect-ratio="1"
-                />
-                <b-button
-                    variant="primary"
-                    size="sm"
-                    @click="openFileDialog"
-                    style="position: absolute; left: 0; bottom: -70px;"
-                >
-                  Choose an Image
-                </b-button>
-              </template>
-            </image-upload>
-            <div class="mt-2 mb-2">
-              <strong>Tip:</strong>
-              Customers prefer clear photos with a smiling face.
-            </div>
+            <file-upload v-model="form.profile_image"
+                          ref="fileUpload"
+                          :file-src="avatarUrl"
+                          :cropperImageStyle="{ 'object-fit': 'contain', 'max-height': '30vh' }"
+                          :cropperAspectRatio="1"
+                          :tips="{
+                            'no-image': 'Customers prefer clear photos with a smiling face',
+                            'uploaded': 'Drag the frame to adjust image'
+                          }"
+            />
             <verification-message :value="avatarModel.verification"/>
           </validated-b-form-group>
         </b-col>
@@ -126,20 +87,22 @@
     </b-form>
   </validated-b-form-wrapper>
 </template>
+<style scoped lang="scss" src="./BasicInformation.scss"></style>
 
 <script>
   import validations from '@/modules/provider/services/validations'
   import validateFormMixin from '@/core/mixins/validate-form-mixin'
   import placeholders from '@/core/constants/placeholders'
   import settingsSaveMixin from '@/modules/provider/mixins/settings-save-behaviour'
-  import ImageUpload from '@/core/components/images/ImageUpload'
+  import FileUpload from '@/core/components/file/FileUpload'
   import { default as StepsFooter } from '@/modules/provider/components/onboarding/Footer'
   import { mapActions, mapGetters } from 'vuex'
-  import VerificationMessage from "../../../../core/components/forms/VerificationMessage";
+  import VerificationMessage from "@/core/components/forms/VerificationMessage";
+  import { avatarCroppedBlobOptions } from "@/core/constants/cropped-blob-options";
 
   export default {
     mixins: [validateFormMixin, settingsSaveMixin],
-    components: { VerificationMessage, ImageUpload, StepsFooter },
+    components: { VerificationMessage, FileUpload, StepsFooter },
     data: () => ({
       form: {
         first_name: '',
@@ -158,6 +121,7 @@
       async sendRequest() {
         return this.createBasicInformation(await this.formData())
           .then(() => {
+            this.$refs.fileUpload?.resetUploadedFile();
             this.afterSubmit()
           })
       },
@@ -170,15 +134,8 @@
         formData.append('team_size', this.form.team_size)
         formData.append('description', this.form.description)
 
-        if (this.form.profile_image instanceof File && this.$refs.cropper) {
-          let blob = await (async () => {
-            return new Promise(resolve => {
-              this.$refs.cropper
-                      .getCroppedCanvas()
-                      .toBlob(blob => resolve(blob));
-            });
-          })();
-          // formData.append('profile_image', this.form.profile_image)
+        const blob = await this.$refs.fileUpload?.getCroppedBlob(avatarCroppedBlobOptions);
+        if (blob) {
           formData.append('profile_image', blob);
         }
 

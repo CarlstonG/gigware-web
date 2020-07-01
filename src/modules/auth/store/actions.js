@@ -1,18 +1,13 @@
 import Vue from '../../../main'
 import api from '@/modules/auth/services/auth.api'
 
-const setUser = ({ commit }, data) => {
-  commit('SET_USER', data)
-}
-
 export default {
   registerProvider(context, form) {
     return new Promise((resolve, reject) => {
       api.register
         .provider(form)
         .then(({ data }) => {
-          Vue.$auth.user(data); // token is set in interceptor
-          setUser(context, data)
+          Vue.$auth.user(data); // will commit to the store
           resolve(data)
         })
         .catch(error => {
@@ -25,8 +20,7 @@ export default {
       api.register
         .customer(data)
         .then(({ data }) => {
-          Vue.$auth.user(data); // token is set in interceptor
-          setUser(context, data)
+          Vue.$auth.user(data); // will commit to the store
           resolve(data)
         })
         .catch(error => {
@@ -39,10 +33,7 @@ export default {
       api
         .loginAs(data)
         .then(({ data }) => {
-          Vue.$auth.fetch().then(({ data }) => { // token is set in interceptor
-            setUser(context, data)
-          })
-
+          Vue.$auth.fetch(); // token is set in interceptor, it will commit the user to the store
           resolve(data)
         })
         .catch(error => {
