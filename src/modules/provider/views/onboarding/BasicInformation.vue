@@ -71,7 +71,7 @@
           >
             <file-upload v-model="form.profile_image"
                           ref="fileUpload"
-                          :img-src="avatarUrl"
+                          :file-src="avatarUrl"
                           :cropperImageStyle="{ 'object-fit': 'contain', 'max-height': '30vh' }"
                           :cropperAspectRatio="1"
                           :tips="{
