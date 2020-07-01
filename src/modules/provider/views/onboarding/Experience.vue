@@ -63,7 +63,7 @@
                   label="Start Date"
                   :disabled="formLocked"
               >
-                <v-date-picker
+                <utc-date-picker
                     v-model.trim.lazy="form.start_date"
                     :input-props="{
                     placeholder: 'MM/DD/YYYY',
@@ -78,7 +78,7 @@
                   label="End Date"
                   :disabled="formLocked"
               >
-                <v-date-picker
+                <utc-date-picker
                     v-model.trim.lazy="form.end_date"
                     :input-props="{
                     placeholder: 'MM/DD/YYYY',

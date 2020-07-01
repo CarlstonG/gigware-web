@@ -18,7 +18,7 @@
                   label="Policy Start Date"
                   :disabled="formLocked"
               >
-                <v-date-picker
+                <utc-date-picker
                     v-model.trim.lazy="form.start_date"
                     :input-props="{
                     placeholder: 'MM/DD/YYYY',
@@ -33,7 +33,7 @@
                   label="Policy End Date"
                   :disabled="formLocked"
               >
-                <v-date-picker
+                <utc-date-picker
                     v-model.trim.lazy="form.end_date"
                     :input-props="{
                     placeholder: 'MM/DD/YYYY',
@@ -49,7 +49,6 @@
               :disabled="formLocked"
           >
             <image-upload
-                v-model="form.image"
                 ref="imageUpload"
                 :img-src="form.image ? form.image.url : ''"
                 :tips="{'uploaded': 'Drag the frame to adjust image'}"
