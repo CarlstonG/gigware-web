@@ -21,7 +21,8 @@ export default {
         address: {
           street_address: { required },
           city: { required },
-          suite: { required },
+          //suite # should not be required 
+          suite: {  },
           zip_code: { required },
         },
       },
