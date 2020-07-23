@@ -21,7 +21,7 @@ export default {
         address: {
           street_address: { required },
           city: { required },
-          //suite # should not be required 
+          //suite # should not be required  Dev: Carlston G.
           suite: {  },
           zip_code: { required },
         },
