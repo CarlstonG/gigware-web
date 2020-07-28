@@ -1,5 +1,6 @@
 import { email, integer, required } from 'vuelidate/lib/validators'
 import maxLength from "vuelidate/lib/validators/maxLength";
+import minLength from "vuelidate/lib/validators/minLength";
 import between from "vuelidate/lib/validators/between";
 
 export default {
@@ -9,7 +10,7 @@ export default {
         first_name: { required },
         last_name: { required },
         company_name: { required },
-        phone_number: { required },
+        phone_number: { required, minLength : minLength(10) },
         team_size: { integer },
         description: { required },
       },
