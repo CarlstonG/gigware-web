@@ -7,6 +7,13 @@ export default {
       password: { required },
     },
   },
+  trackerLogin: {
+    form: {
+      company_name: { required },
+      email: { required, email },
+      password: { required },
+    },
+  },
   providerRegistration: {
     form: {
       email: { required, email },
@@ -30,6 +37,17 @@ export default {
       company_name: { required },
       zip_code: { required },
       phone_number: { required },
+    },
+  },
+  trackerRegistration: {
+    form: {
+      email: { required, email },
+      password: { required, minLength: minLength(6) },
+      password_confirmation: {
+        required,
+        sameAsPassword: sameAs('password'),
+      },
+      company_name: { required },
     },
   },
   forgot: {

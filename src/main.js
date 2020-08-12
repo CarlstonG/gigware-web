@@ -8,6 +8,8 @@ import './plugins/auth/vue-auth'
 import './plugins/misc'
 import './plugins/vue-bootstrap'
 import './plugins/vuelidate'
+require('./plugins/google-map')
+
 // filters
 import './filters/images'
 // styles

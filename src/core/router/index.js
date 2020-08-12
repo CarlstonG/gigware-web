@@ -10,6 +10,7 @@ import customerRoutes from '@/modules/customer/routes'
 import providerRoutes from '@/modules/provider/routes'
 import searchRoutes from '@/modules/search/routes'
 import staticRoutes from '@/modules/static/routes'
+import trackerRoutes from '@/modules/tracker/routes'
 import Default from "../layouts/Default";
 
 Vue.use(VueRouter)
@@ -30,6 +31,7 @@ const routes = [
       ...providerRoutes,
       ...searchRoutes,
       ...staticRoutes,
+      ...trackerRoutes,
 
       ...adminRoutes,
     ],
