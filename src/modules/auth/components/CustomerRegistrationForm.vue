@@ -63,7 +63,9 @@
           :disabled="formLocked"
       >
         <b-form-input v-model.trim.lazy="form.phone_number"
-                      :placeholder="placeholders.phone_number"/>
+                      :placeholder="placeholders.phone_number"
+                      v-on:keyup="formatPhoneNumber()"
+                      maxlength="10"/>
       </validated-b-form-group>
       <validated-b-form-group name="role" label="I am a" :disabled="formLocked">
         <b-form-select v-model.trim.lazy="form.role" :options="roles"/>
@@ -120,6 +122,10 @@
             this.$router.push({ name: 'home' })
           })
       },
+      formatPhoneNumber() {
+        let x = this.form.phone_number;
+        return this.form.phone_number = x.replace(/\D+/g, '').replace(/(\d{3})(\d{3})(\d{4})/,'($1)-$2-$3');
+      }
     },
   }
 </script>
