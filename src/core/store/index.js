@@ -8,6 +8,7 @@ import customer from '@/modules/customer/store'
 import provider from '@/modules/provider/store'
 import search from '@/modules/search/store'
 import admin from '@/modules/admin/store'
+import tracker from '@/modules/tracker/store'
 
 Vue.use(Vuex)
 
@@ -19,6 +20,7 @@ export default new Vuex.Store({
     provider,
     search,
     admin,
+    tracker,
 
     // core
     geoLocator

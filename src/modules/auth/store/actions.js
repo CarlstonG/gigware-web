@@ -78,5 +78,32 @@ export default {
    */
   provideLoginAs() {
     window.loginAs = (data) => api.provideLoginAs(data).then(r => console.log(r.data));
-  }
+  },
+
+
+  // Tracker
+  registerTracker(context, form) {
+    return new Promise((resolve, reject) => {
+      api.register
+        .tracker(form)
+        .then(({ data }) => {
+          resolve(data)
+        })
+        .catch(error => {
+          reject(error)
+        })
+    })
+  },
+
+  loginTracker(context, form) {
+    return new Promise((resolve, reject) => {
+      api.trackerLogin(form)
+        .then(({ data }) => {
+          resolve(data)
+        })
+        .catch(error => {
+          reject(error)
+        })
+    })
+  },
 }

@@ -27,6 +27,7 @@
     "vue-pdf": "^4.1.0",
     "vue-router": "^3.3.4",
     "vue-svgicon": "^3.2.8",
+    "vue2-google-maps": "^0.10.7",
     "vue2-smooth-scroll": "^1.4.2",
     "vuelidate": "^0.7.5",
     "vuelidate-error-extractor": "^2.4.1",
