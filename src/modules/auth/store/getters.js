@@ -1,6 +1,6 @@
 export default {
   user: state => state.user,
-  trackerUser: state => state.trackerUser,
+  tracker: state => state.trackerUser,
   // todo: allow user upload only one image
   avatarUrl: state => state.user?.images?.data?.length ? state.user.images.data[state.user.images.data.length - 1].url : null,
   isAdmin: (state) => state.user?.system_role === 'admin',

@@ -13,4 +13,7 @@ export default {
     let oldData = JSON.parse(JSON.stringify(state.user.profile || {}));
     state.user.profile = Object.assign(oldData, newData);
   },
+  SET_TRACKER(state, tracker) {
+    state.tracker = tracker
+  },
 }

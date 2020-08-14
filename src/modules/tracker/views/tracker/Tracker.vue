@@ -16,8 +16,12 @@
       </b-col>
     </b-row>
     <b-tabs content-class="mt-3" lazy>
-      <b-tab title="My Statistics"></b-tab>
-      <b-tab title="Team"></b-tab>
+      <b-tab title="My Statistics">
+        <Statistics />
+      </b-tab>
+      <b-tab title="Team">
+        <Team />
+      </b-tab>
       <b-tab title="Map">
         <b-col class="mb-5">
           <GmapMap
@@ -86,10 +90,13 @@
 <script>
 import validations from "../../services/validations";
 import validateFormMixin from "@/core/mixins/validate-form-mixin";
+import Statistics from "../../components/Statistics";
+import Team from "../../components/Team";
 import { mapActions } from "vuex";
 import axios from "axios";
 
 export default {
+  components: { Statistics, Team },
   mixins: [validateFormMixin],
   data: () => ({
     form: {

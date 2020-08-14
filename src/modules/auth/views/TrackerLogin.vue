@@ -65,7 +65,8 @@ export default {
     ...mapActions("auth", ["loginTracker"]),
     sendRequest() {
       return this.loginTracker(this.form).then((data) => {
-        localStorage.setItem("tracker", JSON.stringify(data.tracker));
+        let tracker = JSON.stringify(data.tracker);
+        localStorage.setItem("tracker", tracker);
         this.$router.push({ name: "tracker.dashboard" });
       });
     },
