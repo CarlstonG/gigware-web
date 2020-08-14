@@ -42,8 +42,11 @@
         <b-collapse id="nav-collapse" is-nav>
           <!-- user -->
           <b-navbar-nav class="ml-auto align-items-center">
+
             <b-nav-item :to="{ name: 'faq' }" v-if="!isAdmin && !user && !tracker">FAQ</b-nav-item>
             <template v-if="!isAdmin && user && !tracker">
+            <b-nav-item :to="{ name: 'faq' }" v-if="!isAdmin && !user">FAQ</b-nav-item>
+            <template v-if="!isAdmin && user">
               <b-nav-item :to="{ name: 'contact-us' }">Support</b-nav-item>
               <b-nav-item :to="{ name: 'search-partners' }">View Partners</b-nav-item>
             </template>
