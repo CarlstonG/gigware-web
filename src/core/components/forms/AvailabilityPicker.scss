@@ -8,7 +8,7 @@
   &[disabled="disabled"] {
     position: relative;
 
-    // fix to prevent reactions
+  // this is fix to prevent reactions
     &:before {
       content: '';
       position: absolute;

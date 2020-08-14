@@ -3,11 +3,13 @@
 
     <div v-if="$auth.ready()">
       <router-view/>
+      
     </div>
 
     <!--    show homepage until load -->
     <div v-if="!$auth.ready()">
       <navbar/>
+      <!-- <Profile/> -->
     </div>
     <div class="app-loading" v-if="!$auth.ready()">
       <b-spinner variant="primary"/>
@@ -32,6 +34,8 @@
 </style>
 <script>
   import Navbar from "./core/components/global/Navbar";
+  // for checking only
+  //import Profile from "./modules/provider/views/Profile";
 
   export default {
     components: { Navbar },

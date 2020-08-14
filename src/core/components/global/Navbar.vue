@@ -44,10 +44,17 @@
             <b-nav-item :to="{ name: 'faq' }" v-if="!isAdmin && !user">
               FAQ
             </b-nav-item>
+                   <!-- Added tracktime -->
+               <b-nav-item class="with-space" :to="{name: 'faq'}" v-if="!isAdmin">
+                  TrackTime
+                </b-nav-item>
             <template v-if="!isAdmin && user">
               <b-nav-item :to="{ name: 'contact-us' }">
                 Support
               </b-nav-item>
+           <b-nav-item class="with-space" :to="{name: 'faq'}" >
+                  TrackTime
+                </b-nav-item>
               <b-nav-item :to="{ name: 'search-partners' }">
                 View Partners
               </b-nav-item>
