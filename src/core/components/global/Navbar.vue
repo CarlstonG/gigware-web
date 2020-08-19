@@ -41,7 +41,7 @@
         </b-navbar-brand>
         <b-collapse id="nav-collapse" is-nav>
           <b-navbar-nav class="ml-auto align-items-center">
-<<<<<<< HEAD
+
             <b-nav-item :to="{ name: 'faq' }" v-if="!isAdmin && !user">
               FAQ
             </b-nav-item>
@@ -59,12 +59,12 @@
               <b-nav-item :to="{ name: 'search-partners' }">
                 View Partners
               </b-nav-item>
-=======
+
             <b-nav-item :to="{ name: 'faq' }" v-if="!isAdmin && !user">FAQ</b-nav-item>
             <template v-if="!isAdmin && user">
               <b-nav-item :to="{ name: 'contact-us' }">Support</b-nav-item>
               <b-nav-item :to="{ name: 'search-partners' }">View Partners</b-nav-item>
->>>>>>> 426ff7758861d8cbbe56fbdbb54061d4edb1def8
+
             </template>
             <navbar-item-account />
 
