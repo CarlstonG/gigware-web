@@ -40,17 +40,22 @@
           <img src="/images/logo-white.png" alt="Gig Wire" />
         </b-navbar-brand>
         <b-collapse id="nav-collapse" is-nav>
-          <!-- user -->
           <b-navbar-nav class="ml-auto align-items-center">
-<<<<<<< HEAD
 
-            <b-nav-item :to="{ name: 'faq' }" v-if="!isAdmin && !user">
+
+          <!--//
+              //
+              // remove double button showing faq and tracktime on desktop menu -->
+
+
+          <!--  <b-nav-item :to="{ name: 'faq' }" v-if="!isAdmin && !user">
               FAQ
             </b-nav-item>
-                   <!-- Added tracktime -->
-               <b-nav-item class="with-space" :to="{name: 'faq'}" v-if="!isAdmin">
+                   // Added tracktime -->
+              <!-- <b-nav-item class="with-space" :to="{name: 'faq'}" v-if="!isAdmin">
                   TrackTime
-                </b-nav-item>
+                </b-nav-item>  -->
+
             <template v-if="!isAdmin && user">
               <b-nav-item :to="{ name: 'contact-us' }">
                 Support
@@ -61,26 +66,18 @@
               <b-nav-item :to="{ name: 'search-partners' }">
                 View Partners
               </b-nav-item>
-
+            </template>
             <b-nav-item :to="{ name: 'faq' }" v-if="!isAdmin && !user">FAQ</b-nav-item>
             <template v-if="!isAdmin && user">
               <b-nav-item :to="{ name: 'contact-us' }">Support</b-nav-item>
               <b-nav-item :to="{ name: 'search-partners' }">View Partners</b-nav-item>
 
-=======
-            <b-nav-item :to="{ name: 'faq' }" v-if="!isAdmin && !user && !tracker">FAQ</b-nav-item>
-            <template v-if="!isAdmin && user && !tracker">
-              <b-nav-item :to="{ name: 'faq' }" v-if="!isAdmin && !user">FAQ</b-nav-item>
+
             </template>
-            <template v-if="!isAdmin && user">
-              <b-nav-item :to="{ name: 'contact-us' }">Support</b-nav-item>
-              <b-nav-item :to="{ name: 'search-partners' }">View Partners</b-nav-item>
->>>>>>> ff7c4b03634a2aa304455d2ddeaa7b5b1549a7ce
-            </template>
-            <navbar-item-account v-if="!tracker" />
+            <navbar-item-account />
 
             <template v-if="!isAdmin">
-              <b-nav-item :to="{ name: 'register' }" v-if="!user && !tracker">Build a profile</b-nav-item>
+              <b-nav-item :to="{ name: 'register' }" v-if="!user">Build a profile</b-nav-item>
               <!--              <b-button-->
               <!--                  variant="primary"-->
               <!--                  size="lg"-->
@@ -93,18 +90,10 @@
               <!--              </b-button>-->
             </template>
             <template>
-              <b-nav-item :to="{ name: 'tracker-registration' }" v-if="!user && !tracker">Track Time</b-nav-item>
-              <b-button
-                variant="primary"
-                size="lg"
-                class="ml-lg-4"
-                v-if="!user && !tracker"
-              >View Partners</b-button>
+              <b-nav-item :to="{ name: 'tracker-registration' }" v-if="!user">Track Time</b-nav-item>
             </template>
-
-            <!-- tracker -->
-            <template v-if="tracker != null">
-              <b-button variant="primary" size="lg" class="ml-lg-4">Invite Members</b-button>
+            <template>
+              <b-button variant="primary" size="lg" class="ml-lg-4" v-if="!user">View Partners</b-button>
             </template>
           </b-navbar-nav>
         </b-collapse>
@@ -121,14 +110,10 @@ export default {
   components: { NavbarItemAccount },
   data: () => ({
     isFloating: true, // always has the box-shadow
-    tracker: null,
   }),
   watch: {
     $route() {
       // this.initFloatingDetection();
-    },
-    tracker() {
-      return localStorage.getItem("tracker");
     },
   },
   methods: {
@@ -155,7 +140,6 @@ export default {
   },
   mounted() {
     // this.initFloatingDetection();
-    this.tracker = localStorage.getItem("tracker");
   },
   destroyed() {
     //window.removeEventListener('scroll', this.handleScroll);
