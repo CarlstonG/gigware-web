@@ -17,6 +17,17 @@ import '@/assets/scss/main.scss'
 // extensions
 require('./plugins/extensions/index')
 
+
+// added google analytics plugin here --->
+
+import VueAnalytics from 'vue-analytics'
+
+Vue.use(VueAnalytics, {
+  id: 'UA-175923013-2'
+})
+
+
+
 // global mixins
 // import geoLocationMixin from "@/core/mixins/geo-location";
 // Vue.mixin(geoLocationMixin);
