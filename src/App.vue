@@ -9,11 +9,14 @@
     <!--    show homepage until load -->
     <div v-if="!$auth.ready()">
       <navbar/>
+      
       <!-- <Profile/> -->
     </div>
+    
     <div class="app-loading" v-if="!$auth.ready()">
       <b-spinner variant="primary"/>
     </div>
+    
   </div>
 </template>
 <style scoped lang="scss">
