@@ -34,7 +34,8 @@
         </validated-b-form-wrapper>
         <div class="mt-5">
           Don't have an account?
-          <b-link :to="{ name: 'tracker-registration' }">Join</b-link>Gig Wire.
+          <b-link :to="{ name: 'tracker-registration' }">Join</b-link>
+          Gig Wire.
         </div>
       </div>
     </div>

@@ -53,19 +53,15 @@
                   TrackTime
             </b-nav-item>-->
 
-            <template v-if="!isAdmin && user">
+            <template v-if="!isAdmin && user  && !tracker">
               <b-nav-item :to="{ name: 'contact-us' }">Support</b-nav-item>
-              <b-nav-item class="with-space" :to="{name: 'faq'}">TrackTime</b-nav-item>
-              <b-nav-item :to="{ name: 'search-partners' }">View Partners</b-nav-item>
+              <b-nav-item class="with-space" :to="{name: 'tracker-registration'}">Track Time</b-nav-item>
+              <b-nav-item :to="{ name: 'search-partners' }">Search Partners</b-nav-item>
             </template>
-            <b-nav-item :to="{ name: 'faq' }" v-if="!isAdmin && !user">FAQ</b-nav-item>
-            <template v-if="!isAdmin && user">
-              <b-nav-item :to="{ name: 'contact-us' }">Support</b-nav-item>
-              <b-nav-item :to="{ name: 'search-partners' }">View Partners</b-nav-item>
-            </template>
+            <b-nav-item :to="{ name: 'faq' }" v-if="!isAdmin && !user && !tracker">FAQ</b-nav-item>
             <navbar-item-account />
 
-            <template v-if="!isAdmin">
+            <template v-if="!isAdmin && !tracker">
               <b-nav-item :to="{ name: 'register' }" v-if="!user">Build a profile</b-nav-item>
               <!--              <b-button-->
               <!--                  variant="primary"-->
@@ -79,7 +75,14 @@
               <!--              </b-button>-->
             </template>
             <template>
-              <b-nav-item :to="{ name: 'tracker-registration' }" v-if="!user">Track Time</b-nav-item>
+              <b-nav-item :to="{ name: 'tracker-registration' }" v-if="!user && !tracker">Track Time</b-nav-item>
+              <b-button
+                :to="{ name: 'search-partners' }"
+                variant="primary"
+                size="lg"
+                class="ml-lg-4"
+                v-if="!tracker"
+              >View Partners</b-button>
             </template>
 
             <!-- tracker -->
@@ -103,6 +106,7 @@ export default {
   components: { NavbarItemAccount, Notification },
   data: () => ({
     isFloating: true, // always has the box-shadow
+    tracker: null,
   }),
   watch: {
     $route() {
