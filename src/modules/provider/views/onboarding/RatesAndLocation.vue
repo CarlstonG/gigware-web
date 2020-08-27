@@ -17,11 +17,12 @@
               />
             </div>
           </validated-b-form-group>
+          <!-- location address set not required -->
           <validated-b-form-group
               name="address.city"
               label="Your city"
               :disabled="formLocked"
-              class="required"
+              class=""
           >
             <b-form-input
                 v-model.trim.lazy="form.address.city"

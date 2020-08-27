@@ -34,11 +34,12 @@
                           v-on:keyup="formatPhoneNumber()"
                           maxlength="10"/>
           </validated-b-form-group>
+          <!--set company name to not required -->
           <validated-b-form-group
               name="company_name"
               label="Company Name"
               :disabled="formLocked"
-              class="required"
+              class=" "
           >
             <b-form-input v-model.trim.lazy="form.company_name"
                           :placeholder="placeholders.company_name"/>

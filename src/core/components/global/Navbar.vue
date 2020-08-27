@@ -40,20 +40,33 @@
           <img src="/images/logo-white.png" alt="Gig Wire" />
         </b-navbar-brand>
         <b-collapse id="nav-collapse" is-nav>
-          <!-- user -->
           <b-navbar-nav class="ml-auto align-items-center">
-            <b-nav-item :to="{ name: 'faq' }" v-if="!isAdmin && !user && !tracker">FAQ</b-nav-item>
-            <template v-if="!isAdmin && user && !tracker">
-              <b-nav-item :to="{ name: 'faq' }" v-if="!isAdmin && !user">FAQ</b-nav-item>
+            <!--//
+              //
+            // remove double button showing faq and tracktime on desktop menu-->
+
+            <!--  <b-nav-item :to="{ name: 'faq' }" v-if="!isAdmin && !user">
+              FAQ
+            </b-nav-item>
+            // Added tracktime-->
+            <!-- <b-nav-item class="with-space" :to="{name: 'faq'}" v-if="!isAdmin">
+                  TrackTime
+            </b-nav-item>-->
+
+            <template v-if="!isAdmin && user">
+              <b-nav-item :to="{ name: 'contact-us' }">Support</b-nav-item>
+              <b-nav-item class="with-space" :to="{name: 'faq'}">TrackTime</b-nav-item>
+              <b-nav-item :to="{ name: 'search-partners' }">View Partners</b-nav-item>
             </template>
+            <b-nav-item :to="{ name: 'faq' }" v-if="!isAdmin && !user">FAQ</b-nav-item>
             <template v-if="!isAdmin && user">
               <b-nav-item :to="{ name: 'contact-us' }">Support</b-nav-item>
               <b-nav-item :to="{ name: 'search-partners' }">View Partners</b-nav-item>
             </template>
-            <navbar-item-account v-if="!tracker" />
+            <navbar-item-account />
 
             <template v-if="!isAdmin">
-              <b-nav-item :to="{ name: 'register' }" v-if="!user && !tracker">Build a profile</b-nav-item>
+              <b-nav-item :to="{ name: 'register' }" v-if="!user">Build a profile</b-nav-item>
               <!--              <b-button-->
               <!--                  variant="primary"-->
               <!--                  size="lg"-->
@@ -66,13 +79,7 @@
               <!--              </b-button>-->
             </template>
             <template>
-              <b-nav-item :to="{ name: 'tracker-registration' }" v-if="!user && !tracker">Track Time</b-nav-item>
-              <b-button
-                variant="primary"
-                size="lg"
-                class="ml-lg-4"
-                v-if="!user && !tracker"
-              >View Partners</b-button>
+              <b-nav-item :to="{ name: 'tracker-registration' }" v-if="!user">Track Time</b-nav-item>
             </template>
 
             <!-- tracker -->
@@ -96,14 +103,10 @@ export default {
   components: { NavbarItemAccount, Notification },
   data: () => ({
     isFloating: true, // always has the box-shadow
-    tracker: null,
   }),
   watch: {
     $route() {
       // this.initFloatingDetection();
-    },
-    tracker() {
-      return localStorage.getItem("tracker");
     },
   },
   methods: {

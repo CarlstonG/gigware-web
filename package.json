@@ -11,7 +11,7 @@
   },
   "dependencies": {
     "@turf/turf": "^5.1.6",
-    "@vue/cli": "^4.4.6",
+    "@vue/cli": "^4.5.4",
     "@websanova/vue-auth": "^3.2.1-beta",
     "axios": "^0.19.2",
     "axios-auth-refresh": "^2.2.7",
@@ -21,6 +21,7 @@
     "hooper": "^0.3.4",
     "v-calendar": "^1.0.8",
     "vue": "^2.6.11",
+    "vue-analytics": "^5.22.1",
     "vue-axios": "^2.1.5",
     "vue-browser-geolocation": "^1.8.0",
     "vue-cropperjs": "^4.1.0",
