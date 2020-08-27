@@ -77,6 +77,7 @@
 
             <!-- tracker -->
             <template v-if="tracker != null">
+              <Notification :email="tracker.email" :company="tracker.company_name" />
               <b-button variant="primary" size="lg" class="ml-lg-4">Invite Members</b-button>
             </template>
           </b-navbar-nav>
@@ -88,10 +89,11 @@
 
 <script>
 import NavbarItemAccount from "./NavbarItemAccount";
+import Notification from "./Notification";
 import { mapGetters } from "vuex";
 
 export default {
-  components: { NavbarItemAccount },
+  components: { NavbarItemAccount, Notification },
   data: () => ({
     isFloating: true, // always has the box-shadow
     tracker: null,
@@ -128,7 +130,7 @@ export default {
   },
   mounted() {
     // this.initFloatingDetection();
-    this.tracker = localStorage.getItem("tracker");
+    this.tracker = JSON.parse(localStorage.getItem("tracker"));
   },
   destroyed() {
     //window.removeEventListener('scroll', this.handleScroll);

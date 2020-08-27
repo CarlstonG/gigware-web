@@ -67,7 +67,7 @@ export default {
       return this.loginTracker(this.form).then((data) => {
         let tracker = JSON.stringify(data.tracker);
         localStorage.setItem("tracker", tracker);
-        this.$router.push({ name: "tracker.dashboard" });
+        window.location.href = "/tracker/dashboard";
       });
     },
   },
