@@ -86,8 +86,8 @@
 
         <!-- adding video share @Jeff-->
 
-
-        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">Share Video</button>
+<section class="vidshare">
+  <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">Share Video</button>
 
   <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
@@ -113,7 +113,7 @@
     </div>
   </div>
 </div>
-
+</section>
     <!-- share vid ends here -->
 
         <hr/>

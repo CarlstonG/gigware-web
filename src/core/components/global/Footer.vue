@@ -37,6 +37,7 @@
             <b-link href="https://www.facebook.com/gigwireteam/" target="_blank">
               <svg-icon name="facebook_footer" :width="$screens({ default: '32', md: '32' })"/>
             </b-link>
+            <!--linkedin added -->
             <b-link href="https://www.linkedin.com/company/gig-wire?trk=public_profile_experience-item_result-card_image-click" target="_blank">
               <svg-icon name="linkedin_footer" :width="$screens({ default: '32', md: '32' })"/>
             </b-link>
