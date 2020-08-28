@@ -1,5 +1,5 @@
 <template>
-  <div class="navbar-item-account">
+  <div class="navbar-item-account" v-if="!tracker">
     <b-nav-item v-if="isSigningIn && !user">
       <b-spinner variant="primary"/>
     </b-nav-item>
@@ -129,6 +129,9 @@
       },
       isSigningIn() {
         return this.$auth.$vm.signing_in
+      },
+      tracker() {
+        return JSON.parse(localStorage.getItem("tracker"));
       }
     },
     methods: {
