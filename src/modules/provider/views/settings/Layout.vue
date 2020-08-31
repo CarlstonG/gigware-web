@@ -41,7 +41,7 @@
           route: { name: 'provider.settings.licenses' },
         },
         {
-          label: 'Experience',
+          label: 'References',
           route: { name: 'provider.settings.experience' },
         },
         {

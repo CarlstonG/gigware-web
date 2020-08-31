@@ -17,7 +17,9 @@
               />
             </div>
           </validated-b-form-group>
+          
           <!-- location address set not required -->
+          <p class="font-weight-bold">Business Address:</p>
           <validated-b-form-group
               name="address.city"
               label="Your city"
@@ -29,7 +31,20 @@
                 :placeholder="placeholders.city"
                 ref="autocomplete"
             />
+            
           </validated-b-form-group>
+          
+          <!-- inserted zipcode below city -->
+          <validated-b-form-group
+              name="address.zip_code"
+              label="Zip Code"
+              :disabled="formLocked"
+              class="required"
+          >
+            <b-form-input v-model.trim.lazy="form.address.zip_code"
+                          :placeholder="placeholders.zip_code"/>
+          </validated-b-form-group>
+          
           <validated-b-form-group
               name="work_radius"
               label="What mile radius beyond your city will your team work?"
@@ -51,6 +66,8 @@
               style="height: 215px; width: 100%; border: 1px solid #A0AEC0"
           ></div>
         </b-col>
+     <!-- remove suit # -->
+      <!--     
         <b-col lg="6" class="col-right">
           <p class="font-weight-bold">Business Address:</p>
           <validated-b-form-group
@@ -62,7 +79,8 @@
             <b-form-input v-model.trim.lazy="form.address.street_address"
                           :placeholder="placeholders.street_address"/>
           </validated-b-form-group>
-          <validated-b-form-group
+     
+      <validated-b-form-group
               name="address.suite"
               label="Suite or #"
               :disabled="formLocked"
@@ -71,6 +89,8 @@
             <b-form-input v-model.trim.lazy="form.address.suite"
                           :placeholder="placeholders.address_suite"/>
           </validated-b-form-group>
+
+
           <validated-b-form-group
               name="address.zip_code"
               label="Zip Code"
@@ -80,7 +100,7 @@
             <b-form-input v-model.trim.lazy="form.address.zip_code"
                           :placeholder="placeholders.zip_code"/>
           </validated-b-form-group>
-        </b-col>
+        </b-col> -->
       </b-row>
       <steps-footer :loading="formLocked" :state="formState"/>
     </b-form>
