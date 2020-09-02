@@ -3,7 +3,10 @@
     <b-form @submit.prevent="submit">
       <b-row class="mb-5" v-for="(form, index) in forms" :key="index">
         <b-col lg="6" class="col-left">
-          <validated-b-form-group
+         
+         
+         <!-- remove job discription and job location -->
+         <!-- <validated-b-form-group
               :name="`$each.${index}.job_location`"
               label="Job Location"
               :disabled="formLocked"
@@ -23,7 +26,10 @@
                 placeholder="The team completed 15 runs for a new computer facility on campus"
                 rows="4"
             />
-          </validated-b-form-group>
+          </validated-b-form-group> -->
+
+
+
           <validated-b-form-group
               :name="`$each.${index}.employer_name`"
               label="Employer's Name"
