@@ -329,6 +329,15 @@ export default {
     },
     searchTeam() {},
   },
+  beforeRouteEnter: (to, from, next) => {
+    let tracker = JSON.parse(localStorage.getItem("tracker"));
+    console.log(tracker);
+    if (tracker == null) {
+      window.location.href = "/login";
+    } else {
+      next();
+    }
+  },
   created() {
     this.tracker = JSON.parse(localStorage.getItem("tracker"));
     this.fetchProjectsData();

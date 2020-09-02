@@ -53,16 +53,16 @@
                   TrackTime
             </b-nav-item>-->
 
-            <template v-if="!isAdmin && user  && !tracker">
+            <template v-if="!isAdmin && user">
               <b-nav-item :to="{ name: 'contact-us' }">Support</b-nav-item>
-              <b-nav-item class="with-space" :to="{name: 'tracker-registration'}">Track Time</b-nav-item>
+              <b-nav-item class="with-space" :to="{name: 'tracker-dashboard'}">Track Time</b-nav-item>
               <b-nav-item :to="{ name: 'search-partners' }">Search Partners</b-nav-item>
             </template>
             <b-nav-item :to="{ name: 'faq' }" v-if="!isAdmin && !user && !tracker">FAQ</b-nav-item>
             <navbar-item-account />
 
-            <template v-if="!isAdmin && !tracker">
-              <b-nav-item :to="{ name: 'register' }" v-if="!user">Build a profile</b-nav-item>
+            <template v-if="!isAdmin">
+              <b-nav-item :to="{ name: 'register' }" v-if="!user & !tracker">Build a profile</b-nav-item>
               <!--              <b-button-->
               <!--                  variant="primary"-->
               <!--                  size="lg"-->
@@ -86,7 +86,7 @@
             </template>
 
             <!-- tracker -->
-            <template v-if="tracker != null">
+            <template v-if="tracker !== null">
               <Notification :email="tracker.email" :company="tracker.company_name" />
               <b-button variant="primary" size="lg" class="ml-lg-4">Invite Members</b-button>
             </template>
@@ -111,6 +111,10 @@ export default {
   watch: {
     $route() {
       // this.initFloatingDetection();
+    },
+    tracker() {
+      console.log(this.tracker);
+      return this.tracker;
     },
   },
   methods: {
@@ -138,6 +142,7 @@ export default {
   mounted() {
     // this.initFloatingDetection();
     this.tracker = JSON.parse(localStorage.getItem("tracker"));
+    console.log(this.tracker);
   },
   destroyed() {
     //window.removeEventListener('scroll', this.handleScroll);
