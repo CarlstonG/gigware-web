@@ -24,7 +24,7 @@
         </div>
       </div>
     </div>
-    <link href="https://assets.calendly.com/assets/external/widget.css" rel="stylesheet">
+   <!-- <link href="https://assets.calendly.com/assets/external/widget.css" rel="stylesheet"> -->
     <site-footer />
      
   </div>
