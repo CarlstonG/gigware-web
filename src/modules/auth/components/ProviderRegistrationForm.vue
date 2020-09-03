@@ -28,6 +28,7 @@
           :disabled="!termsAndConds || formLocked"
           :state="formState"
           default-text="Submit"
+          href="https://assets.calendly.com/assets/external/widget.css"
         >
         <!-- Added calendly link on submit button -->
         <a href="https://assets.calendly.com/assets/external/widget.css"></a>

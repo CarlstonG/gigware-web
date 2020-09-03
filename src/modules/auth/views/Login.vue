@@ -55,11 +55,13 @@
 </template>
 
 <script>
-<<<<<<< HEAD
+
   import { default as SiteFooter } from '@/core/components/global/Footer'
   import validations from '../services/validations'
   import validateFormMixin from '@/core/mixins/validate-form-mixin'
   import { mapActions } from 'vuex'
+  import axios from "axios";
+// import User from "@/core/classes/user";
   
   //added placeholder on imports
  // import placeholders from '@/core/constants/placeholders'
@@ -111,50 +113,8 @@
             } else {
               this.$auth.unremember();
             }
-=======
-import { default as SiteFooter } from "@/core/components/global/Footer";
-import validations from "../services/validations";
-import validateFormMixin from "@/core/mixins/validate-form-mixin";
-import { mapActions } from "vuex";
-import axios from "axios";
-// import User from "@/core/classes/user";
 
-export default {
-  components: { SiteFooter },
-  mixins: [validateFormMixin],
-  data: () => ({
-    form: {
-      email: "",
-      password: "",
-      remember_me: false,
-    },
-  }),
-  validations: validations.login,
-  methods: {
-    ...mapActions("auth", ["login"]),
-    sendRequest() {
-      return this.$auth
-        .login({
-          data: {
-            email: this.form.email,
-            password: this.form.password,
-            remember_me: this.form.remember_me,
-          },
-          staySignedIn: this.form.remember_me,
-          fetchUser: false,
-          redirect: null,
-        })
-        .then(() => {
-          if (this.form.remember) {
-            this.$auth.remember(
-              JSON.stringify({
-                name: this.$auth.user().first_name,
-              })
-            );
-          } else {
-            this.$auth.unremember();
-          }
->>>>>>> ee9a714e9e9149ffa522684c0105a0632d3ded93
+
 
           return this.$auth
             .fetch()
