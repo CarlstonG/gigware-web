@@ -1,6 +1,8 @@
 <template>
   <div>
     <div class="auth">
+     <!-- Calendly inline widget begin 
+     <div class="calendly-inline-widget" data-url="https://calendly.com/s/zpNiIdpH" style="min-width:320px;height:630px;"></div>-->
       <div class="form-card">
         <p>Connect your security team</p>
         <p>with more business.</p>
@@ -12,6 +14,9 @@
         />
         <provider-registration-form v-if="selectedRole == 1" />
         <customer-registration-form v-else />
+       
+       
+       
         <div class="mt-5">
           Want to
           <b-link :to="{ name: 'login' }">Sign in</b-link>
@@ -19,8 +24,11 @@
         </div>
       </div>
     </div>
+    <link href="https://assets.calendly.com/assets/external/widget.css" rel="stylesheet">
     <site-footer />
+     
   </div>
+  
 </template>
 
 <script>

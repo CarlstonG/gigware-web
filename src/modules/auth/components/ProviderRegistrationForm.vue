@@ -28,7 +28,11 @@
           :disabled="!termsAndConds || formLocked"
           :state="formState"
           default-text="Submit"
-        />
+        >
+        <!-- Added calendly link on submit button -->
+        <a href="https://assets.calendly.com/assets/external/widget.css"></a>
+        
+        </b-progress-button>
       </b-form-row>
     </b-form>
   </validated-b-form-wrapper>

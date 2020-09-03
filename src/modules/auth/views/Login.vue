@@ -19,6 +19,25 @@
             >
               <b-form-input v-model.trim.lazy="form.password" type="password"/>
             </validated-b-form-group>
+            
+            <!-- added phone number on login --> 
+            
+
+            <validated-b-form-group
+              name="phone_number"
+              label="Phone Number"
+              :disabled="formLocked"
+              class="required"
+          >
+            <b-form-input v-model.trim.lazy="form.phone_number"
+                          
+                          v-on:keyup="formatPhoneNumber()"
+                          maxlength="10"/>
+          </validated-b-form-group>
+
+
+
+
             <div class="d-flex justify-content-between">
               <b-form-checkbox v-model="form.remember_me">
                 Keep me logged in
@@ -51,6 +70,11 @@
   import validations from '../services/validations'
   import validateFormMixin from '@/core/mixins/validate-form-mixin'
   import { mapActions } from 'vuex'
+  
+  //added placeholder on imports
+ // import placeholders from '@/core/constants/placeholders'
+
+
   // import User from "@/core/classes/user";
 
   export default {
@@ -60,9 +84,20 @@
       form: {
         email: '',
         password: '',
+        phone_number: '',
         remember_me: false,
       },
     }),
+
+        // added phone number on async
+      formatPhoneNumber() {
+        let x = this.form.phone_number;
+        return this.form.phone_number = x.replace(/\D+/g, '').replace(/(\d{3})(\d{3})(\d{4})/,'($1)-$2-$3');
+      },
+
+
+
+
     validations: validations.login,
     methods: {
       ...mapActions('auth', ['login']),

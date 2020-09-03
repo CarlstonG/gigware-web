@@ -16,7 +16,7 @@
     <div class="app-loading" v-if="!$auth.ready()">
       <b-spinner variant="primary"/>
     </div>
-    
+   
   </div>
 </template>
 <style scoped lang="scss">
