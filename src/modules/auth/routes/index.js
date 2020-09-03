@@ -54,15 +54,16 @@ export default [
     path: '/tracker-registration',
     name: 'tracker-registration',
     component: TrackerRegistration,
-    beforeEnter: (to, from, next) => {
-      // check for tracker
-      if (localStorage.getItem('tracker') != null) {
-        window.location.href = '/tracker/dashboard'
-      } else {
-        next()
-      }
+    // beforeEnter: (to, from, next) => {
+    //   // check for tracker
+    //   // console.log(localStorage.getItem('tracker') + 'asdasda')
+    //   if (localStorage.getItem('tracker') != null) {
+    //     window.location.href = '/tracker/dashboard'
+    //   } else {
+    //     next()
+    //   }
 
-    },
+    // },
     meta: {
       auth: false
     }
@@ -71,15 +72,15 @@ export default [
     path: '/tracker-login',
     name: 'tracker-login',
     component: TrackerLogin,
-    beforeEnter: (to, from, next) => {
-      // check for tracker
-      if (localStorage.getItem('tracker') != null) {
-        window.location.href = '/tracker/dashboard'
-      } else {
-        next()
-      }
+    // beforeEnter: (to, from, next) => {
+    //   // check for tracker
+    //   if (localStorage.getItem('tracker') != null) {
+    //     window.location.href = '/tracker/dashboard'
+    //   } else {
+    //     next()
+    //   }
 
-    },
+    // },
     meta: {
       auth: false
     }
