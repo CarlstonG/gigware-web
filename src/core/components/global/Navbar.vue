@@ -15,18 +15,27 @@
           <div class="container">
             <b-collapse id="nav-collapse" is-nav>
               <b-navbar-nav class="ml-auto align-items-center">
-                <b-nav-item class="with-space" :to="{name: 'faq'}" v-if="!isAdmin">FAQ</b-nav-item>
+               
+               <!-- // Hidden FAQ as per ticket -->
+               <!--
+                <b-nav-item class="with-space" :to="{name: 'faq'}" v-if="!isAdmin">FAQ</b-nav-item> -->
+               
+               
                 <navbar-item-account />
 
                 <template v-if="!isAdmin">
                   <b-nav-item></b-nav-item>
                   <b-nav-item :to="{ name: 'register' }" v-if="!user">Build a profile</b-nav-item>
-                  <b-nav-item
+                  
+                  
+                 <!-- <b-nav-item
                     class="text-primary with-space"
                     v-if="user"
                     :to="{ name: 'search-partners' }"
-                  >View Partners</b-nav-item>
-                </template>
+                  >View Partners</b-nav-item> -->
+                
+                
+                </template> 
               </b-navbar-nav>
             </b-collapse>
           </div>
@@ -44,7 +53,9 @@
             <!--//
               //
             // remove double button showing faq and tracktime on desktop menu-->
+         
 
+         <!-- // Hidden FAQ as per ticket -->
             <!--  <b-nav-item :to="{ name: 'faq' }" v-if="!isAdmin && !user">
               FAQ
             </b-nav-item>
@@ -58,10 +69,16 @@
               <b-nav-item class="with-space" :to="{name: 'tracker-dashboard'}">Track Time</b-nav-item>
               <b-nav-item :to="{ name: 'search-partners' }">Search Partners</b-nav-item>
             </template>
-            <b-nav-item :to="{ name: 'faq' }" v-if="!isAdmin && !user && !tracker">FAQ</b-nav-item>
+            
+            
+            <!--<b-nav-item :to="{ name: 'faq' }" v-if="!isAdmin && !user && !tracker">FAQ</b-nav-item> -->
+            
+            
             <navbar-item-account />
 
             <template v-if="!isAdmin">
+              <b-nav-item :to="{ name: 'tracker-registration' }" v-if="!user && !tracker">Track Time</b-nav-item>
+              
               <b-nav-item :to="{ name: 'register' }" v-if="!user & !tracker">Build a profile</b-nav-item>
               <!--              <b-button-->
               <!--                  variant="primary"-->
@@ -75,14 +92,19 @@
               <!--              </b-button>-->
             </template>
             <template>
-              <b-nav-item :to="{ name: 'tracker-registration' }" v-if="!user && !tracker">Track Time</b-nav-item>
-              <b-button
+            
+
+        <!-- View partners hidden -->        
+            
+            <!--  <b-button
                 :to="{ name: 'search-partners' }"
                 variant="primary"
                 size="lg"
                 class="ml-lg-4"
                 v-if="!tracker"
-              >View Partners</b-button>
+              >View Partners</b-button> -->
+            
+            
             </template>
 
             <!-- tracker -->
