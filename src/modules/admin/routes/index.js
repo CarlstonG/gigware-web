@@ -1,5 +1,6 @@
 import SearchProfilesList from "@/modules/admin/views/SearchProfilesList";
 import VerifyProvider from "@/modules/admin/views/VerifyProvider";
+import RegistrationApproval from "@/modules/admin/views/RegistrationApproval";
 
 export default [
   {
@@ -22,6 +23,17 @@ export default [
         roles: 'admin',
         redirect: { name: '404' }
       }
+    }
+  },
+  {
+    path: '/admin/registration-approval',
+    name: 'admin.registration-approval',
+    component: RegistrationApproval,
+    meta: {
+      // auth: {
+      // roles: 'admin',
+      // redirect: { name: '404' }
+      // }
     }
   }
 ]

@@ -5,6 +5,7 @@ import Forgot from '@/modules/auth/views/Forgot'
 import PasswordReset from '@/modules/auth/views/PasswordReset'
 import TrackerRegistration from '@/modules/auth/views/TrackerRegistration'
 import TrackerLogin from '@/modules/auth/views/TrackerLogin'
+import Scheduler from '@/core/components/global/Scheduler'
 
 export default [
   {
@@ -85,4 +86,9 @@ export default [
       auth: false
     }
   },
+  {
+    path: '/schedule',
+    name: 'scheduler',
+    component: Scheduler
+  }
 ]

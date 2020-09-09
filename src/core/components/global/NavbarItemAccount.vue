@@ -35,7 +35,7 @@
           class="account-phone menu-link d-lg-none"
           :to="{ name: isCustomer ? 'customer.settings' : 'provider.settings.basic-information' }"
         >
-          <span class="icon-card">
+          <span class="icon-card" v-if="!user.is_verified">
             <svg-icon name="navbar_settings" width="32" class="icon-card-icon"></svg-icon>
             <span>Settings</span>
           </span>
@@ -100,6 +100,7 @@
           <b-dropdown-item
             link-class="menu-link"
             :to="{ name: isCustomer ? 'customer.settings' : 'provider.settings.basic-information' }"
+            v-if="user.is_verified"
           >
             <span class="icon-card">
               <svg-icon name="navbar_settings" width="20" class="icon-card-icon"></svg-icon>

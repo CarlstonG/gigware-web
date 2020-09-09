@@ -123,10 +123,13 @@
               const user = data;
 
               axios.get("/tracker").then((response) => {
-                console.log(response.data);
                 let tracker = JSON.stringify(response.data);
                 localStorage.setItem("tracker", tracker);
               });
+
+              if (!user.is_verified){
+                window.location.href = "/schedule";
+              }
 
               if (user?.system_role === "admin") {
                 this.$router.replace({ name: "admin.search-profiles" });
