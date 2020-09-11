@@ -64,12 +64,11 @@
                   TrackTime
             </b-nav-item>-->
 
-            <template v-if="!isAdmin && user">
+            <template v-if="!isAdmin && user && user.is_verified">
               <b-nav-item :to="{ name: 'contact-us' }">Support</b-nav-item>
               <b-nav-item class="with-space" :to="{name: 'tracker-dashboard'}">Track Time</b-nav-item>
               <b-nav-item :to="{ name: 'search-partners' }">Search Partners</b-nav-item>
             </template>
-            
             
             <!--<b-nav-item :to="{ name: 'faq' }" v-if="!isAdmin && !user && !tracker">FAQ</b-nav-item> -->
             
