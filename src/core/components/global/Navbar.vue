@@ -65,9 +65,9 @@
             </b-nav-item>-->
 
             <template v-if="!isAdmin && user">
-              <b-nav-item :to="{ name: 'contact-us' }" v-if="user.is_verified">Support</b-nav-item>
-              <b-nav-item class="with-space" :to="{name: 'tracker-dashboard'}" v-if="user.is_verified">Track Time</b-nav-item>
-              <b-nav-item :to="{ name: 'search-partners' }" v-if="user.is_verified">Search Partners</b-nav-item>
+              <b-nav-item :to="{ name: 'contact-us' }" v-if="user && user.is_verified">Support</b-nav-item>
+              <b-nav-item class="with-space" :to="{name: 'tracker-dashboard'}" v-if="user && user.is_verified">Track Time</b-nav-item>
+              <b-nav-item :to="{ name: 'search-partners' }" v-if="user && user.is_verified">Search Partners</b-nav-item>
             </template>
             
             <!--<b-nav-item :to="{ name: 'faq' }" v-if="!isAdmin && !user && !tracker">FAQ</b-nav-item> -->
