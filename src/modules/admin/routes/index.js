@@ -30,10 +30,10 @@ export default [
     name: 'admin.registration-approval',
     component: RegistrationApproval,
     meta: {
-      // auth: {
-      // roles: 'admin',
-      // redirect: { name: '404' }
-      // }
+      auth: {
+        roles: 'admin',
+        redirect: { name: '404' }
+      }
     }
   }
 ]

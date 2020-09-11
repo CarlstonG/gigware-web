@@ -64,10 +64,10 @@
                   TrackTime
             </b-nav-item>-->
 
-            <template v-if="!isAdmin && user && user.is_verified">
-              <b-nav-item :to="{ name: 'contact-us' }">Support</b-nav-item>
-              <b-nav-item class="with-space" :to="{name: 'tracker-dashboard'}">Track Time</b-nav-item>
-              <b-nav-item :to="{ name: 'search-partners' }">Search Partners</b-nav-item>
+            <template v-if="!isAdmin && user">
+              <b-nav-item :to="{ name: 'contact-us' }" v-if="user.is_verified">Support</b-nav-item>
+              <b-nav-item class="with-space" :to="{name: 'tracker-dashboard'}" v-if="user.is_verified">Track Time</b-nav-item>
+              <b-nav-item :to="{ name: 'search-partners' }" v-if="user.is_verified">Search Partners</b-nav-item>
             </template>
             
             <!--<b-nav-item :to="{ name: 'faq' }" v-if="!isAdmin && !user && !tracker">FAQ</b-nav-item> -->
@@ -163,7 +163,7 @@ export default {
   mounted() {
     // this.initFloatingDetection();
     this.tracker = JSON.parse(localStorage.getItem("tracker"));
-    console.log(this.tracker);
+    console.log(this.user);
   },
   destroyed() {
     //window.removeEventListener('scroll', this.handleScroll);
