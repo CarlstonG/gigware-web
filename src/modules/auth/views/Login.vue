@@ -16,13 +16,14 @@
             
 
             <validated-b-form-group
+              
               name="phone_number"
               label="Phone Number"
               :disabled="formLocked"
               class="required"
           >
             <b-form-input v-model.trim.lazy="form.phone_number"
-                          
+                          :placeholder="placeholders.phone_number"
                           v-on:keyup="formatPhoneNumber()"
                           maxlength="10"/>
           </validated-b-form-group>
@@ -64,7 +65,7 @@
 // import User from "@/core/classes/user";
   
   //added placeholder on imports
- // import placeholders from '@/core/constants/placeholders'
+ import placeholders from '@/core/constants/placeholders'
 
 
   // import User from "@/core/classes/user";
@@ -79,6 +80,7 @@
         phone_number: '',
         remember_me: false,
       },
+       placeholders: placeholders,
     }),
 
         // added phone number on async
@@ -99,6 +101,9 @@
             data: {
               email: this.form.email,
               password: this.form.password,
+
+              // added phone number validation
+              phone_number: this.form.phone_number,
               remember_me: this.form.remember_me
             },
             staySignedIn: this.form.remember_me,
