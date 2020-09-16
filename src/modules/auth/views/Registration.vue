@@ -4,8 +4,8 @@
      <!-- Calendly inline widget begin 
      <div class="calendly-inline-widget" data-url="https://calendly.com/s/zpNiIdpH" style="min-width:320px;height:630px;"></div>-->
       <div class="form-card">
-        <p>Connect your security team</p>
-        <p>with more business.</p>
+        <p>Schedule an interview</p>
+        <p>to get more gigs.</p>
         <b-form-radio-group
           class="mt-5"
           v-model="selectedRole"

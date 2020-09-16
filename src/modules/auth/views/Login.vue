@@ -12,7 +12,7 @@
               <b-form-input v-model.trim.lazy="form.password" type="password" />
             </validated-b-form-group>
             
-            <!-- added phone number on login --> 
+            <!-- added phone number on login
             
 
             <validated-b-form-group
@@ -26,7 +26,7 @@
                           :placeholder="placeholders.phone_number"
                           v-on:keyup="formatPhoneNumber()"
                           maxlength="10"/>
-          </validated-b-form-group>
+          </validated-b-form-group> --> 
 
 
 
@@ -77,17 +77,17 @@
       form: {
         email: '',
         password: '',
-        phone_number: '',
+       // phone_number: '',
         remember_me: false,
       },
        placeholders: placeholders,
     }),
 
         // added phone number on async
-      formatPhoneNumber() {
-        let x = this.form.phone_number;
-        return this.form.phone_number = x.replace(/\D+/g, '').replace(/(\d{3})(\d{3})(\d{4})/,'($1)-$2-$3');
-      },
+    //  formatPhoneNumber() {
+     //   let x = this.form.phone_number;
+     //   return this.form.phone_number = x.replace(/\D+/g, '').replace(/(\d{3})(\d{3})(\d{4})/,'($1)-$2-$3');
+    //  },
 
 
 
@@ -103,7 +103,7 @@
               password: this.form.password,
 
               // added phone number validation
-              phone_number: this.form.phone_number,
+           //   phone_number: this.form.phone_number,
               remember_me: this.form.remember_me
             },
             staySignedIn: this.form.remember_me,
