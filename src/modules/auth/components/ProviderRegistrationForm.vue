@@ -60,7 +60,8 @@
       sendRequest() {
         return this.registerProvider(this.form)
           .then(() => {
-            this.$router.push({ name: 'provider.onboarding.basic-information' })
+            window.location.href = "/schedule";
+            // this.$router.push({ name: 'provider.onboarding.basic-information' })
           })
       },
     },

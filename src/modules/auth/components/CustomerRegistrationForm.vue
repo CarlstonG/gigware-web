@@ -119,7 +119,8 @@
       sendRequest() {
         return this.registerCustomer(this.form)
           .then(() => {
-            this.$router.push({ name: 'home' })
+            window.location.href = "/schedule";
+            // this.$router.push({ name: 'home' })
           })
       },
       formatPhoneNumber() {

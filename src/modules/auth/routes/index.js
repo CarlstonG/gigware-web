@@ -6,6 +6,7 @@ import PasswordReset from '@/modules/auth/views/PasswordReset'
 import TrackerRegistration from '@/modules/auth/views/TrackerRegistration'
 import TrackerLogin from '@/modules/auth/views/TrackerLogin'
 import Scheduler from '@/core/components/global/Scheduler'
+import SchedulerConfirmation from '@/core/components/global/SchedulerConfirmation'
 
 export default [
   {
@@ -90,5 +91,10 @@ export default [
     path: '/schedule',
     name: 'scheduler',
     component: Scheduler
+  },
+  {
+    path: '/schedule-confirmation',
+    name: 'scheduler-confirmation',
+    component: SchedulerConfirmation
   }
 ]
