@@ -31,7 +31,7 @@
           href="https://assets.calendly.com/assets/external/widget.css"
         >
         <!-- Added calendly link on submit button -->
-        <a href="https://assets.calendly.com/assets/external/widget.css"></a>
+        <a href="https://calendly.com/gigwire"></a>
         
         </b-progress-button>
       </b-form-row>
