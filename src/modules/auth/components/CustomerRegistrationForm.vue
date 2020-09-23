@@ -4,6 +4,7 @@
       <validated-b-form-group name="email" label="Email" :disabled="formLocked">
         <b-form-input v-model.trim.lazy="form.email"
                       :placeholder="placeholders.email"/>
+                        <b-button class="mt-2" variant="outline-primary" @click="generateEmail">Generate email</b-button>
       </validated-b-form-group>
       <validated-b-form-group
           name="password"
@@ -91,6 +92,7 @@
   import validateFormMixin from '@/core/mixins/validate-form-mixin'
   import placeholders from '@/core/constants/placeholders'
   import { mapActions } from 'vuex'
+  import axios from 'axios'
 
   export default {
     mixins: [validateFormMixin],
@@ -126,6 +128,11 @@
       formatPhoneNumber() {
         let x = this.form.phone_number;
         return this.form.phone_number = x.replace(/\D+/g, '').replace(/(\d{3})(\d{3})(\d{4})/,'($1)-$2-$3');
+      },
+      generateEmail() {
+        axios.get('https://fakerapi.it/api/v1/users?_quantity=1').then((response)=>{
+          this.form.email = response.data.data[0].email;
+        })
       }
     },
   }
