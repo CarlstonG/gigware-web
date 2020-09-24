@@ -4,7 +4,7 @@
       <validated-b-form-group name="email" label="Email" :disabled="formLocked">
         <b-form-input v-model.trim.lazy="form.email"
                       :placeholder="placeholders.email"/>
-                        <b-button class="mt-2" variant="outline-primary" @click="generateEmail">Generate email</b-button>
+                        <b-button class="mt-2" variant="outline-primary" @click="generateEmail" v-if="this.$route.name=='register-test'">Generate email</b-button>
       </validated-b-form-group>
       <validated-b-form-group
           name="password"
