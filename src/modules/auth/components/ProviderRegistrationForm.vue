@@ -28,10 +28,10 @@
           :disabled="!termsAndConds || formLocked"
           :state="formState"
           default-text="Submit"
-          href="https://assets.calendly.com/assets/external/widget.css"
+          href="https://calendly.com/gigwire/gigwire-on-boarding-interview"
         >
         <!-- Added calendly link on submit button -->
-        <a href="https://calendly.com/gigwire"></a>
+        <a href="https://calendly.com/gigwire/gigwire-on-boarding-interview"></a>
         
         </b-progress-button>
       </b-form-row>
