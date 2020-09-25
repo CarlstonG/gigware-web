@@ -21,7 +21,7 @@
     components: { SiteFooter },
     data() {
       return {
-        url: 'https://calendly.com/gigwire-1/30min',
+        url: 'https://calendly.com/gigwire/gigwire-on-boarding-interview',
         name: '',
         email: ''
       }
@@ -32,7 +32,7 @@
     mounted() {
       this.name = (this.user.first_name ?? '') +' '+ (this.user.last_name ?? '')
       this.email = this.user.email
-      this.url = 'https://calendly.com/gigwire-1/30min?name=' + this.name.trim() + '&email=' + this.email.trim()
+      this.url = 'https://calendly.com/gigwire/gigwire-on-boarding-interview?name=' + this.name.trim() + '&email=' + this.email.trim()
     },
   }
 </script>
