@@ -3,6 +3,7 @@
     <b-form @submit.prevent="submit">
       <validated-b-form-group name="email" label="Email" :disabled="formLocked">
         <b-form-input v-model.trim.lazy="form.email" />
+        <b-button class="mt-2" variant="outline-primary" @click="generateEmail" v-if="this.$route.name=='register-test'">Generate email</b-button>
       </validated-b-form-group>
       <validated-b-form-group
         name="password"
@@ -43,6 +44,7 @@
   import validations from '../services/validations'
   import validateFormMixin from '@/core/mixins/validate-form-mixin'
   import { mapActions } from 'vuex'
+  import axios from 'axios'
 
   export default {
     mixins: [validateFormMixin],
@@ -53,6 +55,7 @@
         password: '',
         password_confirmation: '',
       },
+      test: false
     }),
     validations: validations.providerRegistration,
     methods: {
@@ -63,6 +66,11 @@
             window.location.href = "/schedule";
             // this.$router.push({ name: 'provider.onboarding.basic-information' })
           })
+      },
+      generateEmail() {
+        axios.get('https://fakerapi.it/api/v1/users?_quantity=1').then((response)=>{
+          this.form.email = response.data.data[0].email;
+        })
       },
     },
   }

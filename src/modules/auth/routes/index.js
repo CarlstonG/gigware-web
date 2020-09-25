@@ -96,5 +96,23 @@ export default [
     path: '/schedule-confirmation',
     name: 'scheduler-confirmation',
     component: SchedulerConfirmation
+  },
+
+  // test
+  {
+    path: '/registration-test',
+    name: 'register-test',
+    component: Registration,
+    meta: {
+      auth: false
+    }
+  },
+  {
+    path: '/tracker-registration-test',
+    name: 'tracker-registration-test',
+    component: TrackerRegistration,
+    meta: {
+      auth: false
+    }
   }
 ]
