@@ -84,36 +84,47 @@
 
         <hr/>
 
-        <!-- adding video share @Jeff-->
+        <!-- adding video share-->
 
-<section class="vidshare">
-  <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">Share Video</button>
+<div>
+    <b-button variant="primary" class="btn" v-b-modal.modal-prevent-closing>Share Video</b-button>
 
-  <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Share a video link.</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <form>
-          <div class="form-group">
-            <label for="message-text" class="col-form-label">Video Link:</label>
-            <textarea class="form-control" id="message-text"></textarea>
-          </div>
-        </form>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Share</button>
-      </div>
+    <div class="mt-3">
+      Submitted links:
+      <div v-if="submittedNames.length === 0">--</div>
+      <ul v-else class="mb-0 pl-3">
+        <li v-for="name in submittedNames"
+        v-bind:key="name"
+        >{{ name }}</li>
+      </ul>
     </div>
+
+    <b-modal
+      id="modal-prevent-closing"
+      ref="modal"
+      title="Submit Your Link"
+      @show="resetModal"
+      @hidden="resetModal"
+      @ok="handleOk"
+    >
+      <form ref="form" @submit.stop.prevent="handleSubmit">
+        <b-form-group
+          :state="nameState"
+          label="Link"
+          label-for="name-input"
+          invalid-feedback="Link is required"
+        >
+          <b-form-input
+            id="name-input"
+            v-model="name"
+            :state="nameState"
+            required
+          ></b-form-input>
+        </b-form-group>
+      </form>
+    </b-modal>
   </div>
-</div>
-</section>
+
     <!-- share vid ends here -->
 
         <hr/>
@@ -275,7 +286,8 @@
             } else {
               this.handleServerError(error)
             }
-          });
+          },
+          );
       },
       scrollToTop(e) {
         e.preventDefault();
@@ -301,7 +313,49 @@
       },
       showAllReviews() {
         this.reviewsToShow = this.profileExternalReviewsCount;
+      },
+
+// added methods could be duplicate
+//modal param
+
+ data() {
+      return {
+        name: '',
+        nameState: null,
+        submittedNames: []
       }
+    },
+    methods: {
+      checkFormValidity() {
+        const valid = this.$refs.form.checkValidity()
+        this.nameState = valid
+        return valid
+      },
+      resetModal() {
+        this.name = ''
+        this.nameState = null
+      },
+      handleOk(bvModalEvt) {
+        // Prevent modal from closing
+        bvModalEvt.preventDefault()
+        // Trigger submit handler
+        this.handleSubmit()
+      },
+      handleSubmit() {
+        // Exit when the form isn't valid
+        if (!this.checkFormValidity()) {
+          return
+        }
+        // Push the name to submitted names
+        this.submittedNames.push(this.name)
+        // Hide the modal manually
+        this.$nextTick(() => {
+          this.$bvModal.hide('modal-prevent-closing')
+        })
+      }
+    }
+// end of modal param
+      
     },
     computed: {
       ...mapState('auth', ['user']),
@@ -319,7 +373,8 @@
     },
     created() {
       this.loadContent();
-    }
+    },
+    
   }
 </script>
 

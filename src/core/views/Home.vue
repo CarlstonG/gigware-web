@@ -169,7 +169,54 @@
             <b-button class="button" :to="{ name: 'register' }" variant="primary">
               Build a Profile
             </b-button>
+
+
+          <!--modal
+ <div>
+    <b-button variant="primary" class="btn" v-b-modal.modal-prevent-closing>Share Video</b-button>
+
+    <div class="mt-3">
+      Submitted links:
+      <div v-if="submittedNames.length === 0">--</div>
+      <ul v-else class="mb-0 pl-3">
+        <li v-for="name in submittedNames"
+        v-bind:key="name"
+        >{{ name }}</li>
+      </ul>
+    </div>
+
+    <b-modal
+      id="modal-prevent-closing"
+      ref="modal"
+      title="Submit Your Link"
+      @show="resetModal"
+      @hidden="resetModal"
+      @ok="handleOk"
+    >
+      <form ref="form" @submit.stop.prevent="handleSubmit">
+        <b-form-group
+          :state="nameState"
+          label="Video Link"
+          label-for="name-input"
+          invalid-feedback="Link is required"
+        >
+          <b-form-input
+            id="name-input"
+            v-model="name"
+            :state="nameState"
+            required
+          ></b-form-input>
+        </b-form-group>
+      </form>
+    </b-modal>
+  </div>
+
+ -->
+
+
+
           </div>
+          
         </div>
       </b-col>
       <b-col lg="6" class="col-image">
@@ -180,6 +227,7 @@
     <site-footer/>
   </div>
 </template>
+<style scoped lang="scss" src="./Homecard.scss"></style>
 
 <script>
   import { default as SiteFooter } from '@/core/components/global/Footer'
@@ -187,5 +235,10 @@
 
   export default {
     components: { SearchBar, SiteFooter },
+
+  //  will delete sample script
+
+  
+
   }
 </script>

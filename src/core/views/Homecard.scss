@@ -1,0 +1,40 @@
+@import 'src/assets/scss/local-styles-includes';
+
+.el-container {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+
+  &.deactivated {
+    .provider-card {
+      border-color: $error;
+      background-color: rgba($error, .25);
+
+      .card-footer .btn {
+        background-color: rgba($error, .35);
+        color: $error;
+      }
+    }
+  }
+}
+
+.provider-card {
+  flex-grow: 1;
+
+  .caution-icon {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+  }
+
+  .profile-type {
+    position: absolute;
+    top: 1rem;
+    right: 4rem;
+  }
+}
+
+li {
+  list-style-type: none;
+  text-decoration: none;
+}

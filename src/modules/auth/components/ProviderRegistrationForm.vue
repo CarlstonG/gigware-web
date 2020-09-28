@@ -33,7 +33,7 @@
         >
         <!-- Added calendly link on submit button -->
         <a href="https://calendly.com/gigwire/gigwire-on-boarding-interview"></a>
-        
+        <!-- End of calendly link on submit button -->
         </b-progress-button>
       </b-form-row>
     </b-form>
