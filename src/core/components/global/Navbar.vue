@@ -79,10 +79,10 @@
 
             <template v-if="!isAdmin">
               <b-nav-item :to="{ name: 'tracker-registration' }" v-if="!user && !tracker">Track Time</b-nav-item>
-              
-                   <b-nav-item 
-                  class="text-primary button"
-                  :to="{ name: 'register' }" v-if="!user">Build a profile</b-nav-item>
+                    
+                   <b-button class="button" 
+                  variant="primary"
+                  :to="{ name: 'register' }" v-if="!user">Build a profile</b-button>
               <!--              <b-button-->
               <!--                  variant="primary"-->
               <!--                  size="lg"-->

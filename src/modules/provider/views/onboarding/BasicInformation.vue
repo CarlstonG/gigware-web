@@ -83,6 +83,94 @@
                           }"
             />
             <verification-message :value="avatarModel.verification"/>
+          <!-- Added video link function on registration -->
+      <div id="Vid">
+         <button type="button" class="btn btn-primary mb-2" @click="showAddModal=true">
+        <i class="fab fa-youtube"> Share Video Link</i>
+      </button>
+
+      <!-- video pop model -->
+      <div id="overlay" v-if="showAddModal">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title">
+                New Video Link
+              </h5>
+              <button type="button" class="close" @click="showAddModal=false">
+                <span aria-hidden="true">&times;</span>
+              </button>
+                  
+            </div>
+            <div class="modal-body p-4">
+              <form action="#" 
+              method="post">
+                  <div class="form-group">
+                    <input type="text" name="name" class="form-control
+                    form-control-lg" 
+                     id="name-input"
+                    v-model="name"
+                    :state="nameState"
+                    required
+                            placeholder="Video Link">
+                  </div>
+
+
+                  <!-- BUG ON UPLOAD SHARE -->
+                  
+                  <div class="form-group">
+                    <button class="btn btn-info btn-block btn-lg"
+                        id="modal-prevent-closing"
+                        ref="modal"
+                        title="Submit Your Name"
+                        @show="resetModal"
+                        @hidden="resetModal"
+                        @ok="handleOk"
+                                      
+                    >
+                    Share your link!
+                    </button>
+                  </div>
+                  <div class="container">
+                    <div class="col text-center">
+                      <div class="col-lg-12">
+                        <h3 class="center text-info">Your Links!</h3>
+                      </div>
+                      <hr>
+                    </div>
+                    <div class="row">
+                      <div class="col-lg-12">
+                        <table class="table table-bordered table-striped">
+                          <thead>
+                            <tr class="text-center bg-info text-light">
+                               
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <tr class="text-center">
+                              <td v-for="name in submittedNames" v-bind:key="name">{{ name }}</td>
+                              <td><a href="#" class="text-success"><i class="fas fa-edit">
+                                </i></a></td>
+                              <td><a href="#" class="text-danger"><i class="fas fa-trash">
+                                </i></a></td>  
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </div>
+
+                  </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+      </div>
+        <!-- End of Added video link function on registration -->
+      <hr>
+
+         
+         
           </validated-b-form-group>
         </b-col>
       </b-row>
@@ -91,6 +179,17 @@
   </validated-b-form-wrapper>
 </template>
 <style scoped lang="scss" src="./BasicInformation.scss"></style>
+<style type="text/css">
+  #overlay{
+    margin-top: 5rem;
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: rgba(0, 0, 0, 0.6);
+  }
+</style>
 
 <script>
   import validations from '@/modules/provider/services/validations'
@@ -102,11 +201,22 @@
   import { mapActions, mapGetters } from 'vuex'
   import VerificationMessage from "@/core/components/forms/VerificationMessage";
   import { avatarCroppedBlobOptions } from "@/core/constants/cropped-blob-options";
+  //import axios from 'axios'
+
 
   export default {
     mixins: [validateFormMixin, settingsSaveMixin],
     components: { VerificationMessage, FileUpload, StepsFooter },
     data: () => ({
+      // START OF VID BLOB
+     link: '',
+        nameState: null,
+        submittedLinks: [],
+        termsAndConds: false,
+        errorMsg: false,
+        successMsg: false,
+        showAddModal: false,
+      // END OF VID DATA BLOB
       form: {
         first_name: '',
         last_name: '',
@@ -147,7 +257,40 @@
       formatPhoneNumber() {
         let x = this.form.phone_number;
         return this.form.phone_number = x.replace(/\D+/g, '').replace(/(\d{3})(\d{3})(\d{4})/,'($1)-$2-$3');
+      },
+      // START OF VID METHODS
+      // // //
+            checkFormValidity() {
+        const valid = this.$refs.form.checkValidity()
+        this.nameState = valid
+        return valid
+      },
+      resetModal() {
+        this.name = ''
+        this.nameState = null
+      },
+      handleOk(bvModalEvt) {
+        // Prevent modal from closing
+        bvModalEvt.preventDefault()
+        // Trigger submit handler
+        this.handleSubmit()
+      },
+      handleSubmit() {
+        // Exit when the form isn't valid
+        if (!this.checkFormValidity()) {
+          return
+        }
+        // Push the name to submitted names
+        this.submittedNames.push(this.name)
+        // Hide the modal manually
+        this.$nextTick(() => {
+          this.$bvModal.hide('modal-prevent-closing')
+        })
       }
+
+
+      // END OF VID METHOD //
+
     },
     computed: {
       ...mapGetters('auth', ['user', 'avatarUrl']),
@@ -177,5 +320,6 @@
         })
         .finally(() => this.formState = 'default')
     }
+
   }
 </script>
