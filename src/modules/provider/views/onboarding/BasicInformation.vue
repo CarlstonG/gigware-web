@@ -84,7 +84,7 @@
             />
             <verification-message :value="avatarModel.verification"/>
           <!-- Added video link function on registration -->
-      <div id="Vid">
+      <div id="Vid" class="mt-1">
          <button type="button" class="btn btn-primary mb-2" @click="showAddModal=true">
         <i class="fab fa-youtube"> Share Video Link</i>
       </button>
