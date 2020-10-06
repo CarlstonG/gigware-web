@@ -49,8 +49,14 @@
         <b-navbar-toggle class="border-0 p-0" target="nav-collapse" />
         <b-navbar-brand :to="{ name: 'home' }">
           <img src="/images/logo-white.png" alt="Gig Wire" />
+          
         </b-navbar-brand>
+   
+                
+        
+        
         <b-collapse id="nav-collapse" is-nav>
+
           <b-navbar-nav class="ml-auto align-items-center">
             <!--//
               //
@@ -67,6 +73,7 @@
             </b-nav-item>-->
 
             <template v-if="!isAdmin && user">
+              
               <b-nav-item :to="{ name: 'contact-us' }" v-if="user && user.is_verified">Support</b-nav-item>
               <b-nav-item class="with-space" :to="{name: 'tracker-dashboard'}" v-if="user && user.is_verified">Track Time</b-nav-item>
               <b-nav-item :to="{ name: 'search-partners' }" v-if="user && user.is_verified">Search Partners</b-nav-item>
@@ -75,14 +82,25 @@
             <!--<b-nav-item :to="{ name: 'faq' }" v-if="!isAdmin && !user && !tracker">FAQ</b-nav-item> -->
             
             
-            <navbar-item-account />
+         
 
             <template v-if="!isAdmin">
+              <b-navbar-nav class="navUsers mr-5" lign-h="center">
+                 <b-nav-item :to="{ name: 'register' }" v-if="!user">Clients</b-nav-item>
+                <b-nav-item class="mr-5" :to="{ name: 'register' }" v-if="!user">Workers</b-nav-item>
+                <b-nav-item href="#"></b-nav-item>
+
+
+                <!-- Buffer spacing -->
+                <b-nav-item class="mr-5" href="#"></b-nav-item>
+                <b-nav-item class="mr-5" href="#"></b-nav-item>
+              </b-navbar-nav>
+              <navbar-item-account />
               <b-nav-item :to="{ name: 'tracker-registration' }" v-if="!user && !tracker">Track Time</b-nav-item>
                     
                    <b-button class="button" 
                   variant="primary"
-                  :to="{ name: 'register' }" v-if="!user">Build a profile</b-button>
+                  :to="{ name: 'register' }" v-if="!user">Sign Up</b-button>
               <!--              <b-button-->
               <!--                  variant="primary"-->
               <!--                  size="lg"-->

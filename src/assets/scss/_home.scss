@@ -1,6 +1,25 @@
+// for sticky footer
+body {
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+}
+
+
 .home {
+//// for sticky footer 
+ flex: 1;
+
+
   .display-title {
-    margin-top: 2rem;
+    margin-top: 0rem;
+    font-size: 35px;
+    
+  }
+
+  p {
+    font: normal normal normal 17px/33px Roboto;
+    font-size: 18px;
   }
 
   .connect-your-team {
