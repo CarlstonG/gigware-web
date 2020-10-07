@@ -116,15 +116,14 @@ looking for local wiring talent..</h7>
   <br>
         <!-- UI NEW IMAGE --> 
 <!-- New UI photo grid -->
-<div class="container-tech m-1 mt-0">
-      <img src="/images/gigwiretech1.png" alt="Tech Image" class="img-responsive center-block d-block mx-auto">
-   
+<div class="row">
+  <div class="col"><img src="/images/gigwiretech1.png" alt="Tech Image" class="img-responsive center-block d-block mx-auto"></div>
+</div>
+<div class="row">
+    <div class="col"><img src="/images/gigwiretech2.PNG" alt="Tech Image" class="img-responsive center-block d-block mx-auto"></div>
+</div>
 
 
-</div>
-<div class="container-tech2 m-1 mt-0">
-   <img src="/images/gigwiretech2.PNG" alt="Tech Image" class="img-responsive center-block d-block mx-auto">
-</div>
     <br>
 
            <!-- new Subhero layout -->
