@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Home from '@/core/views/Home'
+import Workers from '@/core/views/Workers'
 import PageNotFound from "@/core/views/PageNotFound";
 // Auth
 import authRoutes from '@/modules/auth/routes'
@@ -26,6 +27,14 @@ const routes = [
         component: Home,
       },
 
+      {
+        path: "/",
+        name: "workers",
+        component: Workers,
+      },
+
+
+
       ...authRoutes,
       ...customerRoutes,
       ...providerRoutes,
@@ -38,7 +47,7 @@ const routes = [
   },
 
   // all other pages
-  {
+    {
     path: "",
     component: Default,
     children: [

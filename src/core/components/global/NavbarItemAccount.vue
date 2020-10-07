@@ -4,6 +4,7 @@
       <b-spinner variant="primary" />
     </b-nav-item>
     <b-nav-item :to="{ name: 'login' }" v-else-if="!authenticated">Log In</b-nav-item>
+  
     <template v-else>
       <template v-if="isAdmin">
         <b-nav-item
