@@ -37,9 +37,9 @@
           <div class="col-md-5 col-12 col-md-offset-2 shadow">
             <div class="card bg-white text-black border-0">
               <div class="card-body">
-                <h2 class="text-primary">Find Elite Wiring Talent</h2>
-                <h7>Learn more about how to connect with top, 
-local freelance wiring talent.</h7>
+                <h3 class="text-primary">Find Elite Wiring Talent</h3>
+                <p>Learn more about how to connect with top, 
+local freelance wiring talent.</p>
                 <br>
                 <p class="card-text text-justify"></p>
                  <b-button class="btn btn-primary btn-lg" :to="{ name: 'register' }" variant="primary">
@@ -52,14 +52,15 @@ local freelance wiring talent.</h7>
                   <div class="col-md-5 col-12 shadow">
             <div class="card bg-white text-black border-0 mr-2">
               <div class="card-body">
-                <h2 class="text-primary">Find Great Paying Projects</h2>
-                <h7>Connect with ready-to-hire companies 
-looking for local wiring talent..</h7>
+                <h3 class="text-primary">Find Great Paying Projects</h3>
+                <p>Connect with ready-to-hire companies 
+looking for local wiring talent..</p>
+<br>
               <p class="card-text text-justify">
            
               </p>
                      <b-button class="btn btn-primary btn-lg" :to="{ name: 'register' }" variant="primary">
-              Hire Smarter
+              Work Smarter
             </b-button>
               </div>
 
@@ -116,10 +117,10 @@ looking for local wiring talent..</h7>
   <br>
         <!-- UI NEW IMAGE --> 
 <!-- New UI photo grid -->
-<div class="row">
+<div class="row col-md-6 col-sm-1 col-lg-12">
   <div class="col"><img src="/images/gigwiretech1.png" alt="Tech Image" class="img-responsive center-block d-block mx-auto"></div>
 </div>
-<div class="row">
+<div class="row col-md-6 col-sm-1 col-lg-12">
     <div class="col"><img src="/images/gigwiretech2.PNG" alt="Tech Image" class="img-responsive center-block d-block mx-auto"></div>
 </div>
 
@@ -134,8 +135,8 @@ looking for local wiring talent..</h7>
           <div class="col-md-5 col-12">
             <div class="card bg-white text-black border-0 shadow">
               <div class="card-body">
-                 <h6 class="font-weight-normal">CLIENTS</h6>
-                <h5>Find Elite Wiring Talent</h5>
+                 <h6 class="text-primary">CLIENTS</h6>
+                <h5 class="text-primary">Find Elite Wiring Talent</h5>
               <p class="card-text text-justify">
                 Become a GigWire client and expand your hiring resources. Learn more here.
               
@@ -150,8 +151,8 @@ looking for local wiring talent..</h7>
                   <div class="col-md-5 col-12">
             <div class="card bg-white text-black border-0 shadow">
               <div class="card-body">
-                <h6 class="font-weight-normal">GIG WORKERS</h6>
-                <h5>Find Great Paying Projects</h5>
+                <h6 class="text-primary">GIG WORKERS</h6>
+                <h5 class="text-primary">Find Great Paying Projects</h5>
               
               <p class="card-text text-justify">
                 If you’re a wiring professional and are looking to improve your lifestyle and pay, learn more here.
