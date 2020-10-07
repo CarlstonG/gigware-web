@@ -140,6 +140,15 @@
   </div>
 </template>
 
+<style type="text/css">
+@media screen and (max-width: 1200px) {
+    .navUsers nav {
+         font-size:80%;
+    }
+}
+</style>
+
+
 <script>
 import NavbarItemAccount from "./NavbarItemAccount";
 import Notification from "./Notification";

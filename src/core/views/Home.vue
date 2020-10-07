@@ -7,7 +7,7 @@
           <div class="w-100 mb-5">
             <div class="display-title">
               GigWire connects companies with talented freelance wiring professionals 
-              for short and long-tem hires.
+              for short and long-term hires.
         
             </div>
                  <p class="mt-3 ">Companies posting jobs on GigWire quickly find high-quality, vetted workers they can rely. Gig workers on our platform earn a great lifestyle, control over their schedule and career advancement.</p>
