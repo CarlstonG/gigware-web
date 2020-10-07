@@ -1,0 +1,30 @@
+@import 'node_modules/bootstrap/scss/bootstrap';
+@import "src/assets/scss/variables";
+
+.jobs {
+  background: #edf2f7;
+  min-height: 600px;
+  justify-content: center;
+
+  > .container {
+    padding: 4rem 0;
+    background-color: transparent;
+  }
+
+  .card-header {
+    background-color: $dark-blue;
+    color: $white;
+    padding: 1.5rem 3rem;
+    border: 0;
+
+    .card-header-title {
+      font-size: 1.3rem;
+      color: $dirty-white;
+      margin-bottom: 0;
+    }
+
+    .card-header-subtitle {
+      color: $light-blue;
+    }
+  }
+}

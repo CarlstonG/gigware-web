@@ -12,5 +12,6 @@ export default {
   street_address: "",
   address_suite: "",
   zip_code: "",
-  contact_us_message: ""
+  contact_us_message: "",
+  budget: "X.XX"
 }
