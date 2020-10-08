@@ -17,15 +17,13 @@ p {
 }
 
 .job-footer {
-  margin-left: -20px;
-  margin-right: -20px;
   margin-top: 20px;
-  margin-bottom: -20px;
+  margin-bottom: -68px;
   border: none;
   height: 75px;
   background-color: #F7FAFC;
   padding-top: 20px;
-  padding-left: 50px;
+  padding-left: 20px;
 }
 
 .switch {
@@ -86,4 +84,40 @@ input:checked + .slider:before {
 
 .slider.round:before {
   border-radius: 50%;
+}
+
+.jobs {
+  margin-left: -36px;
+  margin-right: -36px;
+  margin-top: -35px;
+}
+
+
+.response-item {
+  border-top: solid 1px #e5e5e5;
+}
+
+
+
+// send
+.img-white {
+  -webkit-filter: grayscale(1) invert(1);
+  filter: grayscale(1) invert(1);
+
+}
+
+
+// documents
+
+.upload-documents {
+  padding: 15px;
+}
+
+.job-list {
+  margin-top: -36px;
+  background-color: #edf2f7;
+}
+
+.response {
+  margin-top: 68px;
 }
