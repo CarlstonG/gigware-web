@@ -6,9 +6,9 @@
         <div class="text-block block-text-left">
           <div class="w-100 mb-5">
             <div class="display-title">
-             <h2 class="text-title p-0 mt-0 mb-1">
+             <h1 class="text-title p-0 mt-0 mb-1">
                 Enjoy The Gig Lifestyle
-            </h2> 
+            </h1> 
                 <p class="mt-3 pr-5 pb-3">Gig work is one of the fastest growing changes in the 
                     American workforce.</p>
                     
@@ -18,7 +18,9 @@
                     to their lifestyle with gig work and 78% of gig workers say they 
                     are more satisfied with the benefits of the lifestyle.
                 </p>
-
+              <b-button class="btn btn-primary btn-lg" :to="{ name: 'register' }" variant="primary">
+              Get Started Now
+            </b-button>
             </div>
 
             <search-bar no-left-filter @onSearch="$router.push({ name: 'search-partners'})"/>
@@ -35,7 +37,7 @@
       </b-col>
       <b-col md="6">
           <div class="workerhero">
-                        <img src="/images/workers/workerHero.jpg" class="img-fluid" alt="Gig Wire" style="height: 100%;"/>
+                        <img src="/images/workers/workerHero.jpg" class="img-fluid" alt="Gig Wire"/>
           </div>
       </b-col>
       </b-row>
@@ -44,258 +46,182 @@
 
     </div>
      <br>
- <b-row class="connect-your-team mt-5" style="background-color: #FAFAFB" no-gutters>
-      <b-col sm="6" class="col-image wire-image" >
-        <b-img src="/images/workers/herograph.jpg" fluid-grow alt="Fluid-grow image" style="height: 110%, width: 100%;"></b-img>
-      </b-col>
-      <b-col sm="6">
-        <div class="text-block block-text-right">
-          <div>
-            <div class="display-title">
-              Earn a High GigWire Rating and  
-                Get Top Paying Projects 
-            </div>
-            <div class="subtitle">
-              <span>How do we do it?</span>
-              <b-link :to="{ name: 'register' }">
-                Free advertising.
-              </b-link>
-            </div>
-            <div class="content">
-              <p>
-               According to Forbes, the gig economy is expanding at 3x the pace of 
-              the traditional US workforce. That’s because companies are finding its 
-              smart business to hire gig workers.
-
-              </p>
-              <p>
-                Many workers are finding their skills are in demand if they can find 
-                quality gigs. And that’s where GigWire comes in.
-              </p>
-            </div>
-            
-          </div>
-        </div>
-      </b-col>
-    </b-row>
+     <br>
+     <br>
  <!-- UI NEW IMAGE --> 
-<!-- New UI photo grid -->
-<!-- new Subhero layout -->
-  <div class="submenuBtn row rounded-top" style="text-align:left;">
-  <div class="col-sm-4">
-    <div class="card border-0">
-      <div class="card-body border-0">
-        <h6 class="text-primary font-weight-normal">CLIENTS</h6>
-        <h5 class="card-title text-primary">Find Elite Wiring Talent</h5>
-        <p class="card-text">Become a GigWire client and expand your hiring resources. Learn more here.</p>
-         <b-button class="btn-primary" :to="{ name: 'register' }" variant="primary">
-              Become A Client
-            </b-button>
-      </div>
-    </div>
-  </div>
-  <div class="col-sm-4">
-    <div class="card border-0">
-      <div class="card-body border-0">
-        <h6 class="text-primary font-weight-normal">GIG WORKERS</h6>
-        <h5 class="card-title text-primary">Find Great Paying Projects</h5>
-          <p class="card-text">
-                If you’re a wiring professional and are looking to 
-improve your lifestyle and pay, learn more here.
-             </p>
-            <b-button class="btn-primary" :to="{ name: 'register' }" variant="primary">
-              Join GigWire
-            </b-button>
-      </div>
-    </div>
-  </div>
-    <div class="col-sm-4">
-    <div class="card border-0">
-      <div class="card-body border-0">
-        <h6 class="text-primary font-weight-normal">GIG WORKERS</h6>
-        <h5 class="card-title text-primary">Find Great Paying Projects</h5>
-          <p class="card-text">
-                If you’re a wiring professional and are looking to 
-improve your lifestyle and pay, learn more here.
-             </p>
-            <b-button class="btn-primary" :to="{ name: 'register' }" variant="primary">
-              Join GigWire
-            </b-button>
-      </div>
-    </div>
-  </div>
-</div>
-        
-<!-- end of new UI photo grid -->
-
-<!--
-    <b-row class="advertise-for-free" no-gutters>
-      <b-col lg="6">
-        <div class="text-block block-text-left">
-          <div>
-            <div class="w-100">
-              <div class="display-title">
-                Advertise for free<br/>
-                by sharing:
+       <div class="container">
+    
+        <div class="row justify-content-center">
+          <div class="col-lg-6 col-12 col-md-offset-2">
+            <div class="card bg-white text-black border-0">
+              <div class="card-body">
+                 <b-img class="image-responsive fit-image" src="/images/workers/herograph.jpg" fluid-grow alt="Fluid-grow image"></b-img>
               </div>
-              <b-row class="content">
-                <b-col cols="6">
-                  <svg-icon name="checkmark"/>
-                  Your rates
-                </b-col>
-                <b-col cols="6">
-                  <svg-icon name="checkmark"/>
-                  Credentials
-                </b-col>
-                <b-col cols="6">
-                  <svg-icon name="checkmark"/>
-                  Team Size
-                </b-col>
-                <b-col cols="6">
-                  <svg-icon name="checkmark"/>
-                  Experience
-                </b-col>
-                <b-col cols="6">
-                  <svg-icon name="checkmark"/>
-                  Contact Information
-                </b-col>
-                <b-col cols="6">
-                  <svg-icon name="checkmark"/>
-                  Proof of Insurance
-                </b-col>
-                <b-col cols="6">
-                  <svg-icon name="checkmark"/>
-                  Location
-                </b-col>
-                <b-col cols="6">
-                  <svg-icon name="checkmark"/>
-                  Referrals
-                </b-col>
-                <b-col cols="6">
-                  <svg-icon name="checkmark"/>
-                  Reviews
-                </b-col>
-                <b-col cols="6">
-                  <svg-icon name="checkmark"/>
-                  Completed Jobs
-                </b-col>
-              </b-row>
+
+              </div>
             </div>
-            <b-button class="button" :to="{ name: 'register' }" variant="primary">
-              Build a Profile
-            </b-button>
-
-
-         
-
-
-
+                  <div class="col-lg-6 col-12 col-md-offset-2">
+                  <div class="display-title">
+                    <h1 class="text-title">Earn a High GigWire Rating and</h1>
+                    <h1 class="text-title">Get Top Paying Projects</h1>
+                    <br>
+                    <br>
+                  </div>
+                  <div class="card-body">
+                      <div class="row">
+                        <div class="col-sm-2">
+                            <b-img class="image-responsive fit-image" src="/images/workers/BadgeB.png" fluid-grow alt="Fluid-grow image"></b-img>
+                        </div>
+                        <div class="col">
+                          <h4><strong>B Players | GigWire Score: 80-89.9%</strong></h4>
+                          <p>Secure your Vetted badge as a B Player and start your way into building credibility and getting projects on the platform.</p>
+                        </div>
+                      </div>
+                              <div class="row">
+                        <div class="col-sm-2">
+                            <b-img class="image-responsive fit-image" src="/images/workers/BadgeA.png" fluid-grow alt="Fluid-grow image"></b-img>
+                        </div>
+                        <div class="col">
+                          <h4><strong>A Players | GigWire Score: 90-96.0%</strong></h4>
+                          <p>GigWire awards the A Player distinction to serious service providers. This proficiency badge helps you land higher paying projects on GigWire.</p>
+                        </div>
+                      </div>
+                              <div class="row">
+                        <div class="col-sm-2">
+                            <b-img class="image-responsive fit-image" src="/images/workers/BadgeC.png" fluid-grow alt="Fluid-grow image"></b-img>
+                        </div>
+                        <div class="col">
+                          <h4><strong>Top 3% | GigWire Score: 97-100%</strong></h4>
+                          <p>Earn your 3% badge to stand out and connect with top companies on GigWire.</p>
+                        </div>
+                      </div>
+                  </div>
+                  </div>
           </div>
-          
         </div>
-      </b-col>
-      <b-col lg="6" class="col-image">
-        <img :src="$screens({ default: '/images/home_adv_mobile.png', md: '/images/home_image_3.png'})"
-             class="img-fluid" alt="Gig Wire"/>
-      </b-col>
-    </b-row> -->
+    <br>    
+<!-- New UI photo grid -->
+<section id="facilities">
+  <div class="container">
+    <div class="title">
+      <h1 class="text-center">Why Work on the GigWire Platform</h1>
+      <br>
+    </div>
+    <div class="row">
+      <div class="col-md-4">
+        <div class="card text-center">
+             
+             <div class="card-body">
+              <img class="mx-auto d-block" src="/images/workers/Money.png" width="40" height="40" />
+
+                 <h5 class="card-title">Higher Pay</h5>
+                
+              
+               
+               <p class="card-text">Unlike temp agencies or platforms the take fees, GigWire charges an affordable subscription fee. This means there is not huge agent fee or commission that gets taken out of the labor cost the project pays. </p>
+             </div>
+        </div>
+      </div>
+            <div class="col-md-4">
+            <div class="card text-center">
+             
+             <div class="card-body">
+                    <img class="mx-auto d-block" src="/images/workers/Work.png" width="40" height="40" />
+                 <h5 class="card-title">Personal Development</h5>
+                
+              
+               
+               <p class="card-text">Working with GigWire you will rapidly gain experience working on local projects and with different technologies and crews. This builds experience and career development and the value you can demand for your services.</p>
+             </div>
+        </div>
+      </div>
+            <div class="col-md-4">
+            <div class="card text-center">
+             
+             <div class="card-body">
+                  <img class="mx-auto d-block" src="/images/workers/Build.png" width="40" height="40"  />
+                 <h5 class="card-title">Career Progression</h5>
+                
+              
+               
+               <p class="card-text">As you complete projects on GigWire clients will give you favorable reviews. Great reviews makes it easier to pick up higher paying projects and advance your career. Join Gigwire now and improve your career.</p>
+             </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</section>
+<section id="whyUS">
+  <div class="container">
+    <div class="title">
+      <h1 class="text-center">Become a GigWire Worker</h1>
+      <p class="text-center">
+        Sign up for GigWire and start enjoying the gig lifestyle today.
+
+      </p>
+         <b-button class="btn btn-primary btn-lg" :to="{ name: 'register' }" variant="primary">
+              Sign Up For GigWire
+            </b-button>
+      <br>
+    </div>
+   
+  </div>
+
+</section>
     <site-footer/>
   </div>
+  
 </template>
 <style scoped lang="scss" src="./Homecard.scss"></style>
-
 <style type="text/css">
-.home-overlay{
-  position: relative;
-}
-
-
-
-.subcontainer {
-   padding: 1px 25rem!important;
-   padding-left: 5rem;
-   height: 250px;
-   width: 100%;
-  position: absolute;
-  top: 97%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+*{
+  margin: 0px;
+  padding: 0px;
+  font-family: sans-serif;
 
 }
 
-.subcontainer .card {
-  margin: 0;
+.text-title {
+  font-weight: 600;
+}
+#facilities {
+  background-color: #0F4F85;
+  padding: 50px 0px;
 }
 
-.card-body{
-  margin: 1rem;
+#whyUS {
+   padding: 150px 0px;
+}
+#whyUS h1 {
+  font-weight: 600;
 }
 
-.connect-your-team {
-  position: relative;
-  padding-top: 5rem;
-  margin: 2rem;
-  
+#facilities h1 {
+  font-weight: 600;
+  font-size: 34px;
+  padding: 50px 0px;
+  padding-top: 70px;
+  color: aliceblue;
 }
 
-.connect-your-team {
-  align-items: center;
-  justify-items: center;
-  padding: 4rem;
-}
-.container-tech img {
-  width: 58%;
-  height: 55%;
-  padding: 0;
-  margin: 0;
-}
-.container-tech2 img {
-    width: 58%;
-  height: 55%;
-  padding: 0;
-  margin: 0;
-  margin-left: 25rem!important;
+.title {
+  text-align: center;
+  padding-top: 25px 0px;
 }
 
-.submenuBtn {
-  background-color: #ecf2f7;
-  justify-items: center;
-  align-items: center;
-  margin: auto 20rem;
-  padding: 5rem 25rem;
-  overflow: hidden;
+
+ #facilities .card-body {
+  box-shadow: 0 0 20px 7px rgba(0, 0, 0, 0.1);
+}
+#facilities .card {
+  margin: 20px 20px;
 }
 
-.submenuBtn .card {
-  margin: 2rem 0.1rem;
-  border: 1px solid whitesmoke;
-  background-color: rgb(255, 254, 254);
-  padding: 0;
-  -webkit-box-shadow: -1px 2px 5px 0px rgba(0,0,0,0.55);
--moz-box-shadow: -1px 2px 5px 0px rgba(0,0,0,0.55);
-box-shadow: -1px 2px 5px 0px rgba(0,0,0,0.55);
+.card-body h5 {
+  margin: 50px 0px;
 }
 
-.workerhero img {
-    padding: 0!important;
-    margin: 0!important;
-   
-}
-.col-image img {
-    height: 100%!important;
-    width: 100%;
-}
-
-@media screen and (max-width: 600px) {
-  .subcontainer {
-    visibility: hidden;
-    clear: both;
-    float: left;
-    margin: 10px auto 5px 20px;
-    width: 28%;
-    display: none;
-  }
-}
 
 </style>
 <script>

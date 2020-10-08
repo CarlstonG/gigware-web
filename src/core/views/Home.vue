@@ -25,7 +25,7 @@
         </div>
       </b-col>
       <b-col md="6">
-        <img src="/images/home_image.png" class="img-fluid" alt="Gig Wire"/>
+        <img src="/images/home_image.png" class="   " alt="Gig Wire"/>
       </b-col>
       </b-row>
 
