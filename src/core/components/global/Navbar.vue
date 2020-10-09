@@ -86,7 +86,7 @@
 
             <template v-if="!isAdmin">
               <b-navbar-nav class="navUsers mr-5" lign-h="center">
-                 <b-nav-item :to="{ name: 'register' }" v-if="!user">Clients</b-nav-item>
+                 <b-nav-item :to="{ name: 'clients' }" v-if="!user">Clients</b-nav-item>
                 <b-nav-item class="mr-5" :to="{ name: 'workers' }" v-if="!user">Workers</b-nav-item>
                 <b-nav-item href="#"></b-nav-item>
 
