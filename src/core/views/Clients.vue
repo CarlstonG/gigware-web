@@ -41,8 +41,9 @@
 
 
 
+     
      <br>
-     <br>
+     
      <br>
  <!-- UI NEW IMAGE --> 
        <div class="container">
@@ -81,65 +82,157 @@
           </div>
         </div>
     <br>    
-<!-- New UI photo grid -->
-<section id="facilities">
-  <div class="container">
-    <div class="title">
-      <h1 class="text-center">Why Work on the GigWire Platform</h1>
-      <br>
-    </div>
-    <div class="row">
-      <div class="col-md-4">
-        <div class="card text-center">
-             
-             <div class="card-body">
-              <img class="mx-auto d-block" src="/images/workers/Money.png" width="40" height="40" />
+<div class="container">
+    
+        <div class="row justify-content-center">
+    
+                  <div class="col-lg-6 col-12 col-md-offset-2">
+                  <div class="display-title">
+                    
+                    <br>
+                    <br>
+                  </div>
+                  <div class="card-body">
+                      <div class="row">
+                 
+                        <div class="col">
+                            <h1 class="text-title">Why Hire GigWorkers?</h1>
+                      
+                            <p>
+                                Save money. Get flexible on demand labor.
+                            </p>
+                            <p>      
+                                Gig workers are highly motivated to earn a great rating on the platform and to be hired again. 
+                            </p>
+                            <p>
+                                They work directly for you and your rating of their performance affects their next hire as it’s published on the platform. 
+                            </p>
+                      <button class="btn btn-primary btn-lg" :to="{ name: 'register' }" variant="primary">Start Your 3 Month Free Trial</button>
+                        </div>
+                         
+                      </div>
+           
+                  </div>
+                  </div>
+                        <div class="col-lg-6 col-12 col-md-offset-2">
+            <div class="card bg-white text-black border-0">
+              <div class="card-body">
+                 <b-img class="image-responsive fit-image" src="/images/workers/herograph.jpg" fluid-grow alt="Fluid-grow image"></b-img>
+              </div>
 
-                 <h5 class="card-title">Higher Pay</h5>
-                
-              
-               
-               <p class="card-text">Unlike temp agencies or platforms the take fees, GigWire charges an affordable subscription fee. This means there is not huge agent fee or commission that gets taken out of the labor cost the project pays. </p>
-             </div>
+              </div>
+            </div>
+          </div>
         </div>
-      </div>
-            <div class="col-md-4">
-            <div class="card text-center">
-             
-             <div class="card-body">
-                    <img class="mx-auto d-block" src="/images/workers/Work.png" width="40" height="40" />
-                 <h5 class="card-title">Personal Development</h5>
-                
-              
-               
-               <p class="card-text">Working with GigWire you will rapidly gain experience working on local projects and with different technologies and crews. This builds experience and career development and the value you can demand for your services.</p>
-             </div>
+<br>
+<br>
+ <div class="container">
+    
+        <div class="row justify-content-center">
+          <div class="col-lg-6 col-12 col-md-offset-2">
+            <div class="card bg-white text-black border-0">
+              <div class="card-body">
+                 <b-img class="image-responsive fit-image" src="/images/workers/Funnel.jpg" fluid-grow alt="Fluid-grow image"></b-img>
+              </div>
+
+              </div>
+            </div>
+                  <div class="col-lg-6 col-12 col-md-offset-2">
+                  <div class="display-title">
+                    <h1 class="text-title">GigWire Screening Process</h1>
+                    <br>
+                    <br>
+                  </div>
+                  <div class="card-body" id="num-body">
+                      <div class="row">
+                        <div class="col-sm-2">
+                            <b-img class="image-responsive img-fluid" src="/images/workers/Step1.png" fluid-grow alt="Fluid-grow image"></b-img>
+                        </div>
+                        <div class="col">
+                          <h4><strong>Initial Screening</strong></h4>
+                          <p>Each GigWire candidate is interviewed by a GigWire screener who is a 
+                        domain expert. During the screening process the candidate is presented 
+                        with live exercises, must prove depth-of-experience, problem-solving 
+                        skills within their area of expertise, establish that they both understand 
+                        and follow safety procedures, and exhibit client success stories.
+                        </p>
+                        </div>
+                      </div>
+                              <div class="row">
+                        <div class="col-sm-2">
+                            <b-img class="image-responsive img-fluid" src="/images/workers/Step2.png" fluid-grow alt="Fluid-grow image"></b-img>
+                        </div>
+                        <div class="col">
+                          <h4><strong>Work History Verification</strong></h4>
+                          <p>Applicants are required to provide quality work history showing solid 
+                            work performance documentation on commercial projects prior to being 
+                            allowed on the platform.
+                            </p>
+                        </div>
+                      </div>
+                              <div class="row">
+                        <div class="col-sm-2">
+                            <b-img class="image-responsive img-fluid" src="/images/workers/Step3.png" fluid-grow alt="Fluid-grow image" ></b-img>
+                        </div>
+                        <div class="col">
+                          <h4><strong>Background Checks and Drug Screenings</strong></h4>
+                          <p>Applicants are required to pass a thorough background check and drug 
+                            test before being allowed on the platform.
+                            </p>
+                        </div>
+                      </div>
+                                   <div class="row">
+                        <div class="col-sm-2">
+                            <b-img class="image-responsive img-fluid" src="/images/workers/Step4.png" fluid-grow alt="Fluid-grow image"></b-img>
+                        </div>
+                        <div class="col">
+                          <h4><strong>Maintain Quality Work Record on GigWire</strong></h4>
+                          <p>GigWire workers are expected to maintain a track record of excellence 
+                            while working on client projects. We review the ratings and reputation of 
+                            our workers to ensure the quality of performance is kept high.
+                            </p>
+                        </div>
+                      </div>
+                  </div>
+                  </div>
+          </div>
         </div>
-      </div>
-            <div class="col-md-4">
-            <div class="card text-center">
-             
-             <div class="card-body">
-                  <img class="mx-auto d-block" src="/images/workers/Build.png" width="40" height="40"  />
-                 <h5 class="card-title">Career Progression</h5>
-                
-              
-               
-               <p class="card-text">As you complete projects on GigWire clients will give you favorable reviews. Great reviews makes it easier to pick up higher paying projects and advance your career. Join Gigwire now and improve your career.</p>
-             </div>
-        </div>
-      </div>
-    </div>
+<br>
+<section id="Howgigwire">
+  <div class="Howoverlay">
+    <img src="/images/workers/Howcost.jpg" class="img-fluid">
+                  <div class="HowText">
+                    <h1 class="strong">How much does a 
+subscription on GigWire cost?</h1>
+<br>
+                          <p><span>Our model is affordable. We offer a steady subscription based model 
+                  to access our platform and hire GigWire workers. 
+                  </span>
+                  </p>
+                          <p><span>We provide rigorous vetting and screening to ensure you have the best 
+                  the local area has to offer.
+
+                  </span>
+                  </p>     
+                            <p><span>Learn more about our pricing here.
+
+                  </span>
+                  </p>
+                          </div>
   </div>
+      
+  </section>
+<!-- New UI photo grid -->
 
-</section>
 <section id="whyUS">
   <div class="container">
     <div class="title">
-      <h1 class="text-center">Become a GigWire Worker</h1>
+      <h1 class="text-center">Become a GigWire Client </h1>
       <p class="text-center">
-        Sign up for GigWire and start enjoying the gig lifestyle today.
-
+     <span> Sign up for GigWire today and experience an easier way to find and hire quality local 
+professionals. </span> <br>  
+        <span>The first three months are free to try out the platform so it’s risk free.
+</span> 
       </p>
          <b-button class="btn btn-primary btn-lg" :to="{ name: 'register' }" variant="primary">
               Sign Up For GigWire
@@ -161,6 +254,10 @@
   padding: 0px;
   font-family: sans-serif;
 
+}
+
+.card-body {
+     padding: 70px 0px;
 }
 
 .client .container-body {
@@ -208,6 +305,29 @@
 }
 
 
+#num-body .row img{
+    width: 50%;
+    height: 9rem;
+    padding: 15px 0px;
+    margin-top: -1rem;
+}
+
+.Howoverlay {
+  position: relative;
+  text-align: left;
+}
+.HowText {
+  position: absolute;
+  bottom: 110px;
+  left: 16px;
+  color: aliceblue;
+
+  
+}
+
+.HowText h1 {
+  font-weight: 800;
+}
 </style>
 <script>
   import { default as SiteFooter } from '@/core/components/global/Footer'
