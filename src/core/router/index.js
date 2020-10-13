@@ -2,6 +2,7 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Home from '@/core/views/Home'
 import Workers from '@/core/views/Workers'
+import Clients from '@/core/views/Clients'
 import PageNotFound from "@/core/views/PageNotFound";
 // Auth
 import authRoutes from '@/modules/auth/routes'
@@ -29,15 +30,19 @@ const routes = [
 
       {
         path: "/",
-        name: "workers",
-        component: Workers,
+        name: "clients",
+        component: Clients,
       },
-
 
 
       ...authRoutes,
       ...customerRoutes,
       ...providerRoutes,
+      {
+        path: "/",
+        name: "workers",
+        component: Workers,
+      },
       ...searchRoutes,
       ...staticRoutes,
       ...trackerRoutes,
