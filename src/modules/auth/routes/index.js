@@ -114,5 +114,17 @@ export default [
     meta: {
       auth: false
     }
+  },
+
+  // register/login - no calendly
+
+  {
+    path: '/registration-no-calendly',
+    name: 'register-no-calendly',
+    component: Registration,
+    meta: {
+      auth: false,
+      calendly: false
+    }
   }
 ]

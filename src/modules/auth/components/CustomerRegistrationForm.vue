@@ -121,8 +121,11 @@
       sendRequest() {
         return this.registerCustomer(this.form)
           .then(() => {
-            window.location.href = "/schedule";
-            // this.$router.push({ name: 'home' })
+            if(this.calendly) {
+              window.location.href = "/schedule";
+            } else {
+              this.$router.push({ name: 'home' })
+            }
           })
       },
       formatPhoneNumber() {
@@ -134,6 +137,21 @@
           this.form.email = response.data.data[0].email;
         })
       }
+    },
+    computed: {
+      calendly: {
+        get: function () {
+          let res = this.$route.meta.calendly
+          if(res == undefined) {
+            return true;
+          } else {
+            return false;
+          }
+        }
+      },
+    },
+    created() {
+      console.log(this.calendly)
     },
   }
 </script>

@@ -100,8 +100,11 @@
       sendRequest() {
         return this.registerProvider(this.form)
           .then(() => {
-            window.location.href = "/schedule";
-            // this.$router.push({ name: 'provider.onboarding.basic-information' })
+            if(this.calendly) {
+              window.location.href = "/schedule";
+            } else {
+              this.$router.push({ name: 'provider.onboarding.basic-information' })
+            }
           })
       },
       generateEmail() {
@@ -141,7 +144,21 @@
       }
     
     },
-
+    computed: {
+      calendly: {
+        get: function () {
+          let res = this.$route.meta.calendly
+          if(res == undefined) {
+            return true;
+          } else {
+            return false;
+          }
+        }
+      },
+    },
+    created() {
+      console.log(this.calendly)
+    },
   
   }
 
