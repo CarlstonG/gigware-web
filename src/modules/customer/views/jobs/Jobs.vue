@@ -9,6 +9,7 @@
       margin-bottom: -36px;
       padding-top: 80px;
     "
+    v-if="!hasRow"
   >
     <p>You Have no posted Jobs yet! Click bellow to post your first job.</p>
 
@@ -24,11 +25,27 @@
 <style scoped lang="scss" src="./Jobs.scss"></style>
 
 <script>
+import axios from "axios";
+
 export default {
   components: {},
-  data: () => ({}),
-  methods: {},
+  data: () => ({
+    hasRow: false,
+  }),
+  methods: {
+    getJobs() {
+      axios.get("customer-job").then((response) => {
+        this.jobs = response.data;
+        if (this.jobs.length > 0) {
+          this.hasRow = true;
+          window.location.href = "/jobs/customer/list";
+        }
+      });
+    },
+  },
   computed: {},
-  created() {},
+  created() {
+    this.getJobs();
+  },
 };
 </script>

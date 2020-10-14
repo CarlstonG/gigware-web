@@ -31,27 +31,48 @@
             :disabled="formLocked"
             class="required"
           >
-            <b-form-input
-              v-model.trim.lazy="form.start_date"
-              :placeholder="placeholders.start_date"
-            />
+            <b-form-datepicker
+              v-model="form.start_date"
+              class="mb-2"
+            ></b-form-datepicker>
           </validated-b-form-group>
           <validated-b-form-group
-            name="profile_image"
+            name="document"
             label="Document Upload"
             :disabled="formLocked"
             class=""
           >
-            <file-upload
-              v-model="form.profile_image"
-              ref="fileUpload"
-              :file-src="avatarUrl"
-              :cropperImageStyle="{
-                'object-fit': 'contain',
-                'max-height': '30vh',
-              }"
-              :cropperAspectRatio="1"
-            />
+            <div class="doc-uploader pb-4">
+              <div class="text-gray mt-3" style="font-size: 2em;">
+                <b-icon icon="upload" aria-hidden="true"></b-icon>
+              </div>
+              <div class="text-gray mt-3">
+                <label v-if="!this.form.hasFiles"
+                  >Drag document to upload</label
+                >
+                <label v-if="this.form.hasFiles">Selected File(s):</label>
+                <span
+                  class="d-flex"
+                  v-for="doc in this.form.document"
+                  :key="doc.index"
+                  >{{ doc.name }}</span
+                >
+              </div>
+              <div class="mt-3">
+                <b-button variant="primary" class="center" @click="selectFiles"
+                  >Choose Document</b-button
+                >
+              </div>
+              <b-form-file
+                v-model="form.document"
+                class="mt-3"
+                plain
+                multiple
+                hidden
+                @change="filesChange"
+                id="select-files"
+              ></b-form-file>
+            </div>
           </validated-b-form-group>
         </b-col>
         <b-col lg="5" offset-lg="1" sm="6" offset-sm="3">
@@ -81,13 +102,13 @@
             />
           </validated-b-form-group>
           <validated-b-form-group
-            name="skills"
+            name="required_skills"
             label="Required Skills"
             :disabled="formLocked"
           >
             <b-form-input
-              v-model.trim.lazy="form.skills"
-              :placeholder="placeholders.skills"
+              v-model.trim.lazy="form.required_skills"
+              :placeholder="placeholders.required_skills"
             />
             <small>Separate skills with comma</small>
           </validated-b-form-group>
@@ -100,6 +121,7 @@
           :state="formState"
           default-text="Save"
           loading-text="Loading..."
+          @click="save"
         />
       </div>
     </b-form>
@@ -111,11 +133,10 @@
 import validations from "../../services/validations";
 import validateFormMixin from "@/core/mixins/validate-form-mixin";
 import placeholders from "@/core/constants/placeholders";
-import { mapActions, mapGetters } from "vuex";
-import FileUpload from "@/core/components/file/FileUpload";
+import axios from "axios";
 
 export default {
-  components: { FileUpload },
+  components: {},
   mixins: [validateFormMixin],
   data: () => ({
     form: {
@@ -124,31 +145,48 @@ export default {
       start_date: "",
       budget: "",
       job_description: "",
-      skills: "",
-      profile_image: null,
+      required_skills: "",
+      document: null,
+      hasFiles: false,
+      files: [],
     },
     placeholders: placeholders,
   }),
   validations: validations.settings,
   methods: {
-    ...mapActions(["updateCustomerSettings"]),
-    async sendRequest() {
-      return this.updateCustomerSettings(await this.formData()).then(() => {
-        this.$refs.fileUpload?.resetUploadedFile();
-        this.$root.$bvToast.toast("Your changes have been saved.", {
+    save() {
+      let params = new FormData();
+      params.append("job_title", this.form.job_title);
+      params.append("job_location", this.form.job_location);
+      params.append("start_date", this.form.start_date);
+      params.append("budget", this.form.budget);
+      params.append("job_description", this.form.job_description);
+      params.append("required_skills", this.form.required_skills);
+      for (let i = 0; i < this.form.files.length; i++) {
+        params.append("documents[]", this.form.files[i]);
+      }
+      const config = { headers: { "Content-Type": "multipart/form-data" } };
+      console.log(params);
+
+      axios.post("customer-job", params, config).then((response) => {
+        this.$root.$bvToast.toast(response.data.message, {
           toaster: "b-toaster-top-right",
-          variant: "primary",
+          variant: "success",
         });
+        window.location = "/jobs/customer";
       });
     },
-    async formData() {
-      let formData = new FormData();
-      return formData;
+    selectFiles() {
+      let elem = document.getElementById("select-files");
+      elem.click();
+    },
+    filesChange(e) {
+      let elem = document.getElementById("select-files");
+      this.form.files = e.target.files;
+      console.log(this.form.files);
+      if (elem.files.length > 0) this.form.hasFiles = true;
     },
   },
-  computed: {
-    ...mapGetters("auth", ["user", "avatarUrl"]),
-  },
-  created() {},
+  computed: {},
 };
 </script>

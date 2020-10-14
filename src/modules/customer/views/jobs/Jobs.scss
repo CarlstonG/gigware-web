@@ -116,8 +116,18 @@ input:checked + .slider:before {
 .job-list {
   margin-top: -36px;
   background-color: #edf2f7;
+  margin-bottom: -60px!important
 }
 
 .response {
   margin-top: 68px;
+}
+
+// document uploader
+.doc-uploader {
+  position: relative;
+  background-color: #F7FAFC;
+  border: 1px solid #dee2e6;
+  border-radius: 0.25rem;
+  text-align: center;
 }
