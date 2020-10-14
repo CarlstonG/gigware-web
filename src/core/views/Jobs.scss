@@ -1,0 +1,133 @@
+@import 'src/assets/scss/local-styles-includes';
+
+p {
+  text-align: center;
+}
+
+.title{
+  font-size: 1.5rem;
+}
+
+.center {
+  text-align:center;
+}
+
+.text-gray {
+  color: #718096;
+}
+
+.job-footer {
+  margin-top: 20px;
+  margin-bottom: -68px;
+  border: none;
+  height: 75px;
+  background-color: #F7FAFC;
+  padding-top: 20px;
+  padding-left: 20px;
+}
+
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 34px;
+}
+
+.switch input { 
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 26px;
+  width: 26px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+input:checked + .slider {
+  background-color: #2196F3;
+}
+
+input:focus + .slider {
+  box-shadow: 0 0 1px #2196F3;
+}
+
+input:checked + .slider:before {
+  -webkit-transform: translateX(26px);
+  -ms-transform: translateX(26px);
+  transform: translateX(26px);
+}
+
+/* Rounded sliders */
+.slider.round {
+  border-radius: 34px;
+}
+
+.slider.round:before {
+  border-radius: 50%;
+}
+
+.jobs {
+  margin-left: -36px;
+  margin-right: -36px;
+  margin-top: -35px;
+}
+
+
+.response-item {
+  border-top: solid 1px #e5e5e5;
+}
+
+
+
+// send
+.img-white {
+  -webkit-filter: grayscale(1) invert(1);
+  filter: grayscale(1) invert(1);
+
+}
+
+
+// documents
+
+.upload-documents {
+  padding: 15px;
+}
+
+.job-list {
+  margin-top: -36px;
+  background-color: #edf2f7;
+  margin-bottom: -60px!important
+}
+
+.response {
+  margin-top: 68px;
+}
+
+// document uploader
+.doc-uploader {
+  position: relative;
+  background-color: #F7FAFC;
+  border: 1px solid #dee2e6;
+  border-radius: 0.25rem;
+  text-align: center;
+}

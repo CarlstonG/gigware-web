@@ -3,7 +3,8 @@ import VueRouter from 'vue-router'
 import Home from '@/core/views/Home'
 import Workers from '@/core/views/Workers'
 import Clients from '@/core/views/Clients'
-import PageNotFound from "@/core/views/PageNotFound";
+import PageNotFound from "@/core/views/PageNotFound"
+import CustomerProfileView from "@/core/views/CustomerProfileView"
 // Auth
 import authRoutes from '@/modules/auth/routes'
 // Modules routers
@@ -26,6 +27,11 @@ const routes = [
         path: "/",
         name: "home",
         component: Home,
+      },
+      {
+        path: "/",
+        name: "customerprofileview",
+        component: CustomerProfileView,
       },
 
       {
