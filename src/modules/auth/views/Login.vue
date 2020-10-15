@@ -132,7 +132,7 @@
                 localStorage.setItem("tracker", tracker);
               });
 
-              if (!user.is_verified){
+              if (!user.verified){
                 window.location.href = "/schedule";
               }
 
