@@ -29,7 +29,7 @@ const routes = [
         component: Home,
       },
       {
-        path: "/",
+        path: "/customerprofileview",
         name: "customerprofileview",
         component: CustomerProfileView,
       },
