@@ -115,7 +115,7 @@
           >
             <span class="icon-card">
               <svg-icon name="navbar_schedule" width="20" class="icon-card-icon"></svg-icon>
-              <span>Fill up profile</span>
+              <span>Complete Profile</span>
             </span>
           </b-dropdown-item>
           <b-dropdown-item

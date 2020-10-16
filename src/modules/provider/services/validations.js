@@ -20,7 +20,7 @@ export default {
         rates_per_run: { required },
         work_radius: { required },
         address: {
-          street_address: { required },
+          // street_address: { required },
           city: { required },
           //suite # should not be required  Dev: Carlston G.
           suite: {  },
