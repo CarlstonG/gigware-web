@@ -31,8 +31,8 @@ export default {
     experience: {
       forms: {
         $each: {
-          job_location: { required },
-          job_description: { required },
+          // job_location: { required },
+          // job_description: { required },
           employer_name: { required },
           employer_title: { required },
           employer_phone: { required },
