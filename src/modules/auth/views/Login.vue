@@ -145,10 +145,11 @@
               const roleSlug = user?.role?.slug;
               const providerProfileId = user?.provider_profile?.id;
               if (isRegistered && providerProfileId) {
-                this.$router.replace({
-                  name: "provider.profile",
-                  params: { id: providerProfileId },
-                }); // todo: implement routes history ignoring and send before login
+                this.$router.replace({ name: "home" });
+                // this.$router.replace({
+                //   name: "provider.profile",
+                //   params: { id: providerProfileId },
+                // }); // todo: implement routes history ignoring and send before login
               } else if (!isRegistered && roleSlug === "provider") {
                 this.$router.replace({
                   name: "provider.onboarding.basic-information",

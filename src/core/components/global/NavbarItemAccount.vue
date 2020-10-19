@@ -36,7 +36,7 @@
           class="account-phone menu-link d-lg-none"
           :to="{ name: isCustomer ? 'customer.settings' : 'provider.settings.basic-information' }"
         >
-          <span class="icon-card" v-if="!user.verified">
+          <span class="icon-card" v-if="!verified">
             <svg-icon name="navbar_settings" width="32" class="icon-card-icon"></svg-icon>
             <span>Settings</span>
           </span>
@@ -101,7 +101,7 @@
           <b-dropdown-item
             link-class="menu-link"
             :to="{ name: isCustomer ? 'customer.settings' : 'provider.settings.basic-information' }"
-            v-if="user.verified"
+            v-if="verified"
           >
             <span class="icon-card">
               <svg-icon name="navbar_settings" width="20" class="icon-card-icon"></svg-icon>
@@ -170,6 +170,9 @@ export default {
     tracker() {
       return JSON.parse(localStorage.getItem("tracker"));
     },
+    verified() {
+      return this.$auth.user().verified
+    }
   },
   methods: {
     ...mapActions("auth", ["provideLoginAs"]),
