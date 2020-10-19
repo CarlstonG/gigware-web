@@ -268,12 +268,21 @@
       proofOfInsuranceData: null,
       seeOnMapData: null,
       reviewsToShow: 3,
+      name: '',
+        nameState: null,
+        submittedNames: []
     }),
     watch: {
       '$route.params.id': function () {
         this.loadContent();
       }
     },
+    
+      
+
+// added methods could be duplicate
+//modal param
+
     methods: {
       ...mapActions('provider', ['profileRequest']),
       loadContent() {
@@ -314,18 +323,6 @@
       showAllReviews() {
         this.reviewsToShow = this.profileExternalReviewsCount;
       },
-
-// added methods could be duplicate
-//modal param
-
- data() {
-      return {
-        name: '',
-        nameState: null,
-        submittedNames: []
-      }
-    },
-    methods: {
       checkFormValidity() {
         const valid = this.$refs.form.checkValidity()
         this.nameState = valid
@@ -353,10 +350,9 @@
           this.$bvModal.hide('modal-prevent-closing')
         })
       }
-    }
+    },
 // end of modal param
       
-    },
     computed: {
       ...mapState('auth', ['user']),
       ...mapState('provider', ['provider_profile']),
