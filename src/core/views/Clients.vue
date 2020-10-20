@@ -72,9 +72,11 @@
                             <p>
                                 GigWire works on a subscription model that starts at $9.99 a month. The first three months are free to try out the platform so it’s a risk free on your part.
                             </p>
-                      <button class="btn btn-primary btn-lg" :to="{ name: 'register' }" variant="primary">Start Your 3 Month Free Trial</button>
+                      <b-button class="btn btn-primary btn-lg" :to="{ name: 'register' }" variant="primary">
+              Start Your 3 Month Free Trial
+            </b-button>
                         </div>
-                         
+                          
                       </div>
            
                   </div>

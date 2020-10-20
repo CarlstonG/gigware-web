@@ -9,7 +9,7 @@
      <span> You Have no posted Jobs yet! Click to post your first Job.</span>  
        
       </p>
-         <b-button class="btn btn-primary btn-lg" :to="{ name: 'register' }" variant="primary">
+         <b-button class="btn btn-primary btn-lg" :to="{ name: 'customerCard' }" variant="primary">
               Add New Job
             </b-button>
       <br>

@@ -5,6 +5,7 @@ import Workers from '@/core/views/Workers'
 import Clients from '@/core/views/Clients'
 import PageNotFound from "@/core/views/PageNotFound"
 import CustomerProfileView from "@/core/views/CustomerProfileView"
+import CustomerCard from "@/core/views/CustomerCard"
 // Auth
 import authRoutes from '@/modules/auth/routes'
 // Modules routers
@@ -32,6 +33,12 @@ const routes = [
         path: "/customerprofileview",
         name: "customerprofileview",
         component: CustomerProfileView,
+      },
+
+      {
+        path: "/customerCard",
+        name: "customerCard",
+        component: CustomerCard,
       },
 
       {
