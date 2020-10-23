@@ -25,7 +25,7 @@
         </div>
       </b-col>
       <b-col md="6">
-        <img src="/images/home_image.png" class="   " alt="Gig Wire"/>
+        <img src="/images/home_image.png" class="" alt="Gig Wire"/>
       </b-col>
       </b-row>
 
@@ -78,7 +78,7 @@ looking for local wiring talent..</p>
           <div class="col-md-5 col-12 col-md-offset-2">
             <div class="card bg-white text-black border-0">
               <div class="card-body">
-                 <b-img class="image-responsive fit-image" src="/images/subhomeimage.jpg" fluid-grow alt="Fluid-grow image"></b-img>
+                 <b-img class="image-responsive" src="/images/subhomeimage.jpg" fluid-grow alt="Fluid-grow image"></b-img>
               </div>
 
               </div>

@@ -81,20 +81,20 @@
             
             <!--<b-nav-item :to="{ name: 'faq' }" v-if="!isAdmin && !user && !tracker">FAQ</b-nav-item> -->
             
-            
-         
-
-            <template v-if="!isAdmin">
-              <b-navbar-nav class="navUsers mr-5" lign-h="center">
-                 <b-nav-item :to="{ name: 'clients' }" v-if="!user">Clients</b-nav-item>
-                <b-nav-item class="mr-5" :to="{ name: 'workers' }" v-if="!user">Workers</b-nav-item>
+                <b-navbar-nav class="navUsers mr-5" lign-h="center">
+                <b-nav-item :to="{ name: 'clients' }">Clients</b-nav-item>
+                <b-nav-item :to="{ name: 'workers' }">Workers</b-nav-item>
                 <b-nav-item href="#"></b-nav-item>
 
 
                 <!-- Buffer spacing -->
-                <b-nav-item class="mr-5" href="#"></b-nav-item>
+                <b-nav-item class="mr-5"></b-nav-item>
                 <b-nav-item class="mr-5" href="#"></b-nav-item>
               </b-navbar-nav>
+         
+
+            <template v-if="!isAdmin">
+              
               <navbar-item-account />
               <b-nav-item :to="{ name: 'tracker-registration' }" v-if="!user && !tracker">Track Time</b-nav-item>
                     
@@ -155,10 +155,14 @@ import Notification from "./Notification";
 import { mapGetters } from "vuex";
 
 export default {
+
   components: { NavbarItemAccount, Notification },
   data: () => ({
     isFloating: true, // always has the box-shadow
     tracker: null,
+    workers: null,
+    clients: null,
+    
   }),
   watch: {
     $route() {
@@ -199,5 +203,8 @@ export default {
   destroyed() {
     //window.removeEventListener('scroll', this.handleScroll);
   },
+
+
 };
+
 </script>
