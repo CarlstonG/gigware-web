@@ -75,10 +75,10 @@ looking for local wiring talent..</p>
      <br>
       <div class="container  mt-5 mb-5">
         <div class="row justify-content-center">
-          <div class="col-md-5 col-12 col-md-offset-2">
+          <div class="col-md-6 col-12 col-md-offset-2">
             <div class="card bg-white text-black border-0">
               <div class="card-body">
-                 <b-img class="image-responsive" src="/images/subhomeimage.jpg" fluid-grow alt="Fluid-grow image"></b-img>
+                 <b-img class="image-responsive" src="/images/subhomeimage2x.jpg" fluid-grow alt="Fluid-grow image"></b-img>
               </div>
 
               </div>
