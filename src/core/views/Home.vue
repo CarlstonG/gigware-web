@@ -83,8 +83,8 @@ looking for local wiring talent..</p>
 
               </div>
             </div>
-                  <div class="col-md-5 col-12">
-            <div class="card bg-white text-black border-0 mr-2">
+                  <div class="col-md-5 col-12 mr-3">
+            <div class="card bg-white text-left border-0">
               <div class="card-body">
                 <div class="display-title">
               The Gig Economy Is Rapidly Growing
