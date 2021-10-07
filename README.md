@@ -4,10 +4,7 @@
 make help
 ```
 
-### Compiles and hot-reloads for development
-Environment params:
-* `VUE_APP_BASE_API_URL=http://127.0.0.1/api` request to api
-* `VUE_APP_GOOGLE_MAPS_API_KEY=`
+### Main API is on AWS and will not be posted publicly. 
 ```
 npm run serve
 ```
